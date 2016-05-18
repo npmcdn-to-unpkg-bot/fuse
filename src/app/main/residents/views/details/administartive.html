@@ -1,0 +1,50 @@
+<!-- Administrative CONTENT -->
+<div ng-if="vm.selectedResident === null">
+  <h3>Select a resident to view details </h3>
+</div>
+
+<div ng-if="vm.selectedResident !== null">
+<div class="mail-header">
+    <div class="subject" flex>{{vm.selectedCategory}}</div>
+</div>
+
+<div class="mail-content">
+    <div class="info" layout="row" layout-align="space-between start">
+
+        <div layout="column" layout-align="start start">
+                <h4>First name: {{ vm.selectedResident.firstName }} </h4>
+                <h4>Middle name: {{ vm.selectedResident.middleName }} </h4>
+                <h4>Maiden name: {{ vm.selectedResident.maidenName }} </h4>
+                <h4>Last name: {{ vm.selectedResident.lastName }} </h4>
+                <h4>Birth date: {{ vm.selectedResident.birthDate | date }} </h4>
+                <h4>Admission date: {{ vm.selectedResident.admissionDate | date }} </h4>
+                <h4>Sex: {{ vm.selectedResident.sex }} </h4>
+                <h4>Building Status: {{ vm.selectedResident.buildingStatus }} </h4>
+
+                <!-- Update fields -->
+                <md-list>
+                 <md-list-item class="md-3-line" ng-repeat="update in vm.selectedResident.updateInfo">
+                   <div class="md-list-item-text">
+                     <h4>Update by: {{ update.updateBy }}</h4>
+                     <h4>Update date: {{ update.updateDate | date}}</h4>
+                     <!-- <h4>Updated fields: </h4> -->
+                     <h5 ng-repeat="f in update.updateField ">
+                       <!-- <span ng-if="vm.administrativeList.indexOf(f.field) != -1"> -->
+                         <span>Field : {{ f.field }} |</span>
+                         <span>Old value : {{ f.old }} |</span>
+                         <span>New value : {{ f.new }} </span>
+                       <!-- </span> -->
+                     </h5>
+                   </div>
+                   <md-divider ng-if="!$last"></md-divider>
+                 </md-list-item>
+               </md-list>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+</div>

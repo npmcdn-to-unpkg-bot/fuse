@@ -1,0 +1,93 @@
+<div id="scrumboard" class="page-layout simple fullwidth" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" ng-class="'md-'+vm.board.settings.color+'-bg'" layout="column">
+
+        <div class="header-content" layout="row" layout-align="space-between" layout-wrap flex>
+
+      <!-- BOARD SELECTION BUTTON -->
+           <div layout="row" layout-align="center center" flex-order="1" flex-order-xs="2">
+               <md-button class="md-accent md-raised md-hue-2 header-boards-button"
+                          ng-class="'md-'+vm.board.settings.color+'-700-bg'"
+                          ng-click="vm.boardSelectorVisible = !vm.boardSelectorVisible"
+                          aria-label="boards button" translate translate-attr-aria-label="SB.BOARDS_BUTTON">
+                   <md-icon md-font-icon="icon-trello" class="icon"></md-icon>
+                   <span>{{vm.boardName}}</span>
+               </md-button>
+           </div>
+       <!-- / BOARD SELECTION BUTTON -->
+
+
+            <!-- BOARD NAME -->
+            <div class="header-board-name" layout="row" layout-align="center center" flex-order="2" flex-order-xs="1"
+                 flex-xs="100">
+                <i ng-if="vm.board.settings.subscribed" class="board-subscribe s16 icon-eye"></i>
+                <span editable-text="vm.board.name" onaftersave="vm.updateBoardUri()">{{vm.board.name}}</span>
+            </div>
+            <!-- / BOARD NAME -->
+
+            <!-- TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center" flex-order="3">
+
+             <!-- not using any toolbar buttons -->
+             
+            </div>
+            <!-- / TOOLBAR -->
+
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- BOARD SELECTION -->
+    <div ng-show="vm.boardSelectorVisible"
+         id="board-selector"
+         class="md-accent-bg animate-slide-down board-list md-whiteframe-3dp"
+         ng-class="'md-'+vm.board.settings.color+'-bg'"
+         layout="row" layout-align="start center">
+
+        <div class="board-list-item" ng-repeat="board in vm.boardList"
+             ui-sref="app.issues.boards.board({id:board.id, uri:board.uri})"
+             layout="column" layout-align="space-between center">
+
+            <div class="board-icon">
+                <i class="icon-trello s64"></i>
+            </div>
+
+            <div flex class="board-name">{{board.name}}</div>
+
+            <div class="board-options">
+                <i class="icon-dots-horizontal"></i>
+            </div>
+
+            <div ng-if="board.id === vm.board.id" class="selected-icon green-bg">
+                <i class="icon-check s24"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <md-backdrop class="board-selector-backdrop md-dialog-backdrop md-opaque" ng-show="vm.boardSelectorVisible"
+                 ng-click="vm.boardSelectorVisible = false" aria-hidden="true">
+    </md-backdrop>
+    <!-- / BOARD SELECTION -->
+
+    <!-- CONTENT -->
+    <md-content class="content" flex layout="column" ui-view="issuesContent"></md-content>
+    <!-- / CONTENT -->
+
+    <!-- SETTINGS SIDENAV -->
+    <md-sidenav class="settings-sidenav md-sidenav-right" md-component-id="settings-sidenav"
+                ng-include="'app/main/issues/sidenavs/settings/settings-sidenav.html'"
+                ng-controller="SettingsSidenavController as vm" ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / SETTINGS SIDENAV -->
+
+    <!-- FILTERS SIDENAV -->
+    <md-sidenav class="filters-sidenav md-sidenav-right" md-component-id="filters-sidenav"
+                ng-include="'app/main/issues/sidenavs/filters/filters-sidenav.html'"
+                ng-controller="FiltersSidenavController as vm" ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / FILTERS SIDENAV -->
+
+</div>
