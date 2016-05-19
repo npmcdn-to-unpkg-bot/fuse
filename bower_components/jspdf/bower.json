@@ -2,7 +2,7 @@
   "name": "jspdf",
   "homepage": "https://github.com/mrrio/jspdf",
   "description": "PDF Document creation from JavaScript",
-  "main": "dist/jspdf.debug.js",
+  "main": "dist/jspdf.min.js",
   "moduleType": [
     "amd",
     "globals"

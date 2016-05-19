@@ -7,7 +7,7 @@
         .controller('AppoitmentsController', AppoitmentsController);
 
     /** @ngInject */
-    function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService, authentication)
+    function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService, authentication, exportPdf)
     {
         var vm = this;
 
@@ -16,6 +16,8 @@
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
+
+        var appointments = null;
 
         if(!authentication.isLoggedIn()) {
           $state.go("app.pages_auth_login");
@@ -41,6 +43,7 @@
         //load all the events and show them on the callendar
         apilaData.appointmentsList()
                .success(function(data) {
+                 appointments = data;
                  var i = 1;
                    angular.forEach(data, function(value, key) {
                      var dateObj = new Date(value.time);
@@ -129,8 +132,45 @@
         vm.addEvent = addEvent;
         vm.next = next;
         vm.prev = prev;
+        vm.exportAppointments = exportAppointments;
 
         //////////
+
+        function exportAppointments() {
+          var columns = ["Resident", "Date", "Reason", "Location", "Doctor", "Transportation"];
+
+          var month = vm.calendar.getDate().format("MMM");
+
+          var rows = _.map(_.filter(vm.events[0], function(o) {
+            return moment(o.start).format("MM") === vm.calendar.getDate().format("MM")
+                  && o.cancel === false;
+          }), function(d){
+              var arr = [];
+
+              var name = "";
+              if(d.residentGoing !=  null) {
+                name = d.residentGoing.firstName + " " + d.residentGoing.lastName;
+              }
+
+              arr.push(name);
+              arr.push(moment(d.submitDate).format("MM/DD/YY hh:mm"));
+              arr.push(d.reason);
+              arr.push(d.locationName);
+              arr.push(d.locationDoctor);
+              arr.push(d.transportation);
+
+              return arr;
+          });
+
+          // Only pt supported (not mm or in)
+          var doc = new jsPDF('p', 'pt');
+          doc.autoTable(columns, rows, {
+            beforePageContent: function(data) {
+              doc.text(" - Appointments for month " + month + " -", 160, 30);
+          }
+          });
+          doc.save('apila-' + month + '-appointments.pdf');
+        }
 
         /**
          * Go to next on current view (week, month etc.)
