@@ -35,5 +35,8 @@
             // Register
             'app.pages.auth.register',
 
+            // Homepage
+            'app.homepage'
+
         ]);
 })();

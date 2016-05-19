@@ -79,6 +79,7 @@
         <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="../bower_components/angular-translate/angular-translate.js"></script>
         <script src="../bower_components/moment/moment.js"></script>
+        <script src="../bower_components/momentjs/moment.js"></script>
         <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
         <script src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
         <script src="../bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
@@ -86,14 +87,11 @@
         <script src="../bower_components/mobile-detect/mobile-detect.js"></script>
         <script src="../bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
         <script src="../bower_components/toastr/toastr.js"></script>
-        <script src="../bower_components/momentjs/moment.js"></script>
         <script src="../bower_components/angular-material-datetimepicker/js/angular-material-datetimepicker.min.js"></script>
-        <script src="../bower_components/jspdf/dist/jspdf.debug.js"></script>
-        <script src="../bower_components/d3/d3.js"></script>
         <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
         <script src="../bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
         <script src="../bower_components/lodash/lodash.js"></script>
-        <script src="../bower_components/d3-cloud/build/d3.layout.cloud.js"></script>
+        <script src="../bower_components/jspdf/dist/jspdf.debug.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -147,22 +145,6 @@
         <script src="app/main/appointments/appointments.module.js"></script>
         <script src="app/main/appointments/dialogs/event-form/event-form-dialog.controller.js"></script>
         <script src="app/main/appointments/dialogs/event-detail/event-detail-dialog.controller.js"></script>
-        <script src="app/core/core.module.js"></script>
-        <script src="app/core/directives/ms-widget/ms-widget.directive.js"></script>
-        <script src="app/core/directives/ms-timeline/ms-timeline.js"></script>
-        <script src="app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
-        <script src="app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
-        <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
-        <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
-        <script src="app/core/directives/ms-scroll/ms-scroll.directive.js"></script>
-        <script src="app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>
-        <script src="app/core/directives/ms-random-class/ms-random-class.directive.js"></script>
-        <script src="app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
-        <script src="app/core/directives/ms-nav/ms-nav.directive.js"></script>
-        <script src="app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>
-        <script src="app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
-        <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
-        <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
         <script src="app/quick-panel/quick-panel.module.js"></script>
         <script src="app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
         <script src="app/main/ui/typography/typography.module.js"></script>
@@ -179,20 +161,34 @@
         <script src="app/main/issues/services/board.service.js"></script>
         <script src="app/main/auth/reset-password/reset-password.module.js"></script>
         <script src="app/main/auth/reset-password/reset-password.controller.js"></script>
-        <script src="app/main/auth/register-v2/register-v2.module.js"></script>
-        <script src="app/main/auth/register-v2/register-v2.controller.js"></script>
-        <script src="app/main/auth/login-v2/login-v2.controller.js"></script>
         <script src="app/main/auth/register/register.module.js"></script>
         <script src="app/main/auth/register/register.controller.js"></script>
         <script src="app/main/auth/login/login.module.js"></script>
         <script src="app/main/auth/login/login.controller.js"></script>
-        <script src="app/main/auth/forgot-password/forgot-password.module.js"></script>
-        <script src="app/main/auth/forgot-password/forgot-password.controller.js"></script>
         <script src="app/main/auth/lock/lock.module.js"></script>
         <script src="app/main/auth/lock/lock.controller.js"></script>
-        <script src="app/core/directives/highlight.directive.js"></script>
+        <script src="app/main/auth/forgot-password/forgot-password.module.js"></script>
+        <script src="app/main/auth/forgot-password/forgot-password.controller.js"></script>
+        <script src="app/core/core.module.js"></script>
+        <script src="app/core/directives/ms-widget/ms-widget.directive.js"></script>
+        <script src="app/core/directives/ms-timeline/ms-timeline.js"></script>
+        <script src="app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
+        <script src="app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
+        <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
+        <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
+        <script src="app/core/directives/ms-scroll/ms-scroll.directive.js"></script>
+        <script src="app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>
+        <script src="app/core/directives/ms-random-class/ms-random-class.directive.js"></script>
+        <script src="app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
+        <script src="app/core/directives/ms-nav/ms-nav.directive.js"></script>
+        <script src="app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>
+        <script src="app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
+        <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
+        <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
         <script src="app/main/residents/residents.controller.js"></script>
         <script src="app/main/issues/issues.controller.js"></script>
+        <script src="app/main/homepage/homepage.module.js"></script>
+        <script src="app/main/homepage/homepage.controller.js"></script>
         <script src="app/main/appointments/appointments.controller.js"></script>
         <script src="app/core/theming/fuse-theming.provider.js"></script>
         <script src="app/core/theming/fuse-theming.config.js"></script>
@@ -205,6 +201,7 @@
         <script src="app/core/services/api-resolver.service.js"></script>
         <script src="app/core/filters/tag.filter.js"></script>
         <script src="app/core/filters/basic.filter.js"></script>
+        <script src="app/core/directives/highlight.directive.js"></script>
         <script src="app/core/config/fuse-config.provider.js"></script>
         <script src="app/common/services/wordCloud.service.js"></script>
         <script src="app/common/services/exportPdf.service.js"></script>
@@ -225,7 +222,6 @@
         <script src="app/index.constants.js"></script>
         <script src="app/index.config.js"></script>
         <script src="app/index.api.js"></script>
-        <script src="app/main/auth/login-v2/login-v2.module.js"></script>
         <script src="app/main/ui/ui.module.js"></script>
         <!-- endinject -->
 

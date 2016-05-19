@@ -12,7 +12,7 @@
         $locationProvider.html5Mode(true);
 
        // $urlRouterProvider.otherwise('/sample');
-        $urlRouterProvider.otherwise('/appointments');
+        $urlRouterProvider.otherwise('/homepage');
 
         /**
          * Layout Style Switcher

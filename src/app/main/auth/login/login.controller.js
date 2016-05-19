@@ -7,10 +7,14 @@
         .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController(authentication, $location)
+    function LoginController(authentication, $location, $state)
     {
 
         var vm = this;
+
+        // if(authentication.isLoggedIn()) {
+        //   $state.go("app.appointments");
+        // }
 
         // Methods
 

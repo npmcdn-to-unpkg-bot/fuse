@@ -17,6 +17,9 @@
         var m = date.getMonth();
         var y = date.getFullYear();
 
+        if(!authentication.isLoggedIn()) {
+          $state.go("app.pages_auth_login");
+        }
 
         var username = authentication.currentUser().name;
 
