@@ -4,15 +4,35 @@
 
     angular
         .module('fuse')
-        .config(routeConfig);
+        .config(routeConfig)
+        .run(routeRun);
+
+    function routeRun($rootScope, $location, authentication) {
+
+      //urls we can't visit while we're not logged in
+      var restrictedUrls = ['app.residents', 'app.appointments', 'app.issues.boards.board'];
+
+      $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+
+          console.log(toState);
+
+          //if we are not logged in and it's a restricted url, switch page
+          if(!authentication.isLoggedIn()) {
+            if(_.includes(restrictedUrls, toState.name) === true) {
+                $location.path('/not-auth');
+            }
+          }
+        });
+    }
 
     /** @ngInject */
-    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider)
+    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider)
     {
         $locationProvider.html5Mode(true);
 
        // $urlRouterProvider.otherwise('/sample');
-        $urlRouterProvider.otherwise('/homepage');
+       $urlRouterProvider.when('/', '/homepage');
+       $urlRouterProvider.otherwise('/errors/error-404');
 
         /**
          * Layout Style Switcher
@@ -83,6 +103,8 @@
                     }
                 }
             });
+
+      $httpProvider.interceptors.push('errorInterceptor');
     }
 
 })();

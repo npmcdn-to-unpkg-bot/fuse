@@ -7,7 +7,7 @@
         .controller('AppoitmentsController', AppoitmentsController);
 
     /** @ngInject */
-    function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService, authentication, exportPdf)
+    function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService, authentication, exportPdf, $state)
     {
         var vm = this;
 
@@ -19,9 +19,9 @@
 
         var appointments = null;
 
-        if(!authentication.isLoggedIn()) {
-          $state.go("app.pages_auth_login");
-        }
+        // if(!authentication.isLoggedIn()) {
+        //   $state.go("app.pages_auth_login");
+        // }
 
         var username = authentication.currentUser().name;
 

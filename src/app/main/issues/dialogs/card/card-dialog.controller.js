@@ -28,7 +28,7 @@
         $scope.f = file;
         $scope.errFile = errFiles && errFiles[0];
 
-        var uploadUrl = 'http://localhost:3300/api/issues/'+ vm.card._id + '/attachments/new';
+        var uploadUrl = apilaData.getApiUrl() + '/api/issues/'+ vm.card._id + '/attachments/new';
 
         var updateInfo = setUpdateInfo('attachments',file.name , "");
 

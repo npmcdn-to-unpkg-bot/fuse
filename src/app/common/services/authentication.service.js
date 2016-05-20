@@ -8,6 +8,11 @@
 
     function authentication($http, $window) {
 
+      var apiUrl = "http://localhost:3300";
+
+      //  apiUrl = "";
+
+
         // create a saveToken method to read a value from localStorage
         var saveToken = function(token) {
             $window.localStorage['apila-token'] = token;
@@ -42,13 +47,13 @@
         };
 
         register = function(user) {
-            return $http.post('http://localhost:3300/api/register', user).success(function(data) {
+            return $http.post(apiUrl + '/api/register', user).success(function(data) {
                 saveToken(data.token);
             });
         };
 
         login = function(user) {
-            return $http.post('http://localhost:3300/api/login', user).success(function(data) {
+            return $http.post(apiUrl + '/api/login', user).success(function(data) {
                 saveToken(data.token);
             });
         };

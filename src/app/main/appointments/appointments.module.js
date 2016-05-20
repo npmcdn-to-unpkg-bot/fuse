@@ -20,7 +20,7 @@
                     controller : 'AppoitmentsController as vm'
                 }
             },
-        //    bodyClass: 'calendar'
+            bodyClass: 'appointments'
         });
 
         // Translation

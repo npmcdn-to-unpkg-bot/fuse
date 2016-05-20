@@ -36,7 +36,16 @@
             'app.pages.auth.register',
 
             // Homepage
-            'app.homepage'
+            'app.homepage',
+
+            // 404
+            'app.error-404',
+
+            // 500
+            'app.error-500',
+
+            // Restricted access
+            'app.not-auth'
 
         ]);
 })();

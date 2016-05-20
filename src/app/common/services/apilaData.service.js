@@ -13,8 +13,16 @@
 
         var apiUrl = "http://localhost:3300";
 
+
+      //  apiUrl = "";
+
+
         var appointList = null;
         var issueList = null;
+
+        var getApiUrl = function() {
+          return apiUrl;
+        }
 
         var locationById = function(locationid) {
             return $http.get(apiUrl + '/api/locations/' + locationid);
@@ -246,7 +254,8 @@
             deleteAttachment: deleteAttachment,
             updateIssue: updateIssue,
             openIssuesCount : openIssuesCount,
-            deleteIssue : deleteIssue
+            deleteIssue : deleteIssue,
+            getApiUrl   : getApiUrl
         };
     }
 
