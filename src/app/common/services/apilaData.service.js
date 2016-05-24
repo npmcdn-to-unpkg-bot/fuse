@@ -15,7 +15,7 @@
        // apiUrl = "";
 
        var authHeader = {
-         headers: {
+         "headers": {
              Authorization: 'Bearer ' + authentication.getToken()
          }
        };
