@@ -7,15 +7,27 @@
         .controller('HomepageController', HomepageController);
 
     /** @ngInject */
-    function HomepageController(authentication, $state)
+    function HomepageController($mdDialog, $document)
     {
         // Data
+        var vm = this;
 
         // Methods
-        if(authentication.isLoggedIn()) {
-          $state.go("app.appointments");
-        }
+        vm.openCommunityModal = openCommunityModal;
 
         //////////
+
+        function openCommunityModal(ev)
+        {
+          $mdDialog.show({
+              controller         : 'CreateCommunityController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/homepage/dialogs/createCommunity.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
+
     }
 })();
