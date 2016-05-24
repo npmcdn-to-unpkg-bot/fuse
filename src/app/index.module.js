@@ -45,7 +45,10 @@
             'app.error-500',
 
             // Restricted access
-            'app.not-auth'
+            'app.not-auth',
+
+            // Profile
+            'app.profile'
 
         ]);
 })();

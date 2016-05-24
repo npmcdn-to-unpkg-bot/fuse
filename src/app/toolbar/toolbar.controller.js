@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function ToolbarController($rootScope, $mdSidenav, $translate, $mdToast,
-                              $location, authentication)
+                              $location, $state, authentication)
     {
         var vm = this;
 
@@ -17,12 +17,8 @@
             search: ''
         };
 
-        vm.username = "";
 
-        if(authentication.currentUser().name == undefined) {
-          $location.open("/login");
-        }
-          vm.username = authentication.currentUser().name;
+        vm.username = authentication.currentUser().name;
 
         vm.bodyEl = angular.element('body');
         vm.userStatusOptions = [
@@ -79,6 +75,7 @@
         vm.changeLanguage = changeLanguage;
         vm.setUserStatus = setUserStatus;
         vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
+        vm.openProfile = openProfile;
 
         //////////
 
@@ -94,6 +91,15 @@
 
             // Get the selected language directly from angular-translate module setting
             vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
+        }
+
+
+        /**
+        * Opens profile page
+        */
+        function openProfile()
+        {
+          $state.go('app.profile');
         }
 
 
