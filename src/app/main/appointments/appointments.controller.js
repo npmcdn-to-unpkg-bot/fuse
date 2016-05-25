@@ -46,12 +46,14 @@
                      var dateObj = new Date(value.time);
 
                      var timeSwitch = false;
-                     var hours = dateObj.getUTCHours();
+                     var hours = dateObj.getHours();
 
-                     if(dateObj.getUTCHours() > 12) {
+                     if(dateObj.getHours() > 12) {
                        timeSwitch = true;
                        hours -= 12;
                      }
+
+                    console.log(value.time);
 
                      var calEvent = {
                        id: i,

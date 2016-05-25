@@ -128,12 +128,6 @@
       }
     }
 
-    function dateToUTC(date) {
-      return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
-      date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-    }
-
-
     function saveEvent() {
 
       //set up the date to proper fields before sending to the api
@@ -146,6 +140,7 @@
 
       var parseDate = new Date(vm.calendarEvent.date);
 
+      //converting date to am/pm format
       if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
         parseDate.setUTCHours(parseInt(vm.calendarEvent.hours) + 12);
       } else {
@@ -154,6 +149,10 @@
 
       parseDate.setMinutes(vm.calendarEvent.minutes);
 
+
+      console.log("The current date is:" + parseDate);
+
+      //this is sent to db as the appointments date/time
       vm.calendarEvent.time = parseDate;
 
       // Update

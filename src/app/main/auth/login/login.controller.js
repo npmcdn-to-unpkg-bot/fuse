@@ -12,10 +12,6 @@
 
         var vm = this;
 
-        // if(authentication.isLoggedIn()) {
-        //   $state.go("app.appointments");
-        // }
-
         // Methods
 
         vm.login = function() {
