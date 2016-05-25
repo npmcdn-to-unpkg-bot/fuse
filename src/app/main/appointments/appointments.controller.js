@@ -43,6 +43,9 @@
                  appointments = data;
                  var i = 1;
                    angular.forEach(data, function(value, key) {
+
+                             console.log(value);
+
                      var dateObj = new Date(value.time);
 
                      var timeSwitch = false;
@@ -52,8 +55,6 @@
                        timeSwitch = true;
                        hours -= 12;
                      }
-
-                    console.log(value.time);
 
                      var calEvent = {
                        id: i,
