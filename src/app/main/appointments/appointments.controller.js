@@ -44,8 +44,6 @@
                  var i = 1;
                    angular.forEach(data, function(value, key) {
 
-                             console.log(value);
-
                      var dateObj = new Date(value.time);
 
                      var timeSwitch = false;
@@ -148,7 +146,11 @@
 
           var month = vm.calendar.getDate().format("MMM");
 
-          var rows = _.map(_.filter(vm.events[0], function(o) {
+          var sortedEvents = _.sortBy(vm.events[0], function(p) {
+            return p.date;
+          });
+
+          var rows = _.map(_.filter(sortedEvents, function(o) {
             return moment(o.start).format("MM") === vm.calendar.getDate().format("MM")
                   && o.cancel === false;
           }), function(d){
@@ -169,7 +171,6 @@
               return arr;
           });
 
-          // Only pt supported (not mm or in)
           var doc = new jsPDF('p', 'pt');
           doc.autoTable(columns, rows, {
             beforePageContent: function(data) {
