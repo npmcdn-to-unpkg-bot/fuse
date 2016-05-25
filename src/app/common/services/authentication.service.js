@@ -8,7 +8,7 @@
 
     function authentication($http, $window) {
 
-      var apiUrl = "http://localhost:3300";
+       var apiUrl = "http://localhost:3300";
 
         //apiUrl = "";
 

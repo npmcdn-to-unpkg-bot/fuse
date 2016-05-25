@@ -48,7 +48,10 @@
             'app.not-auth',
 
             // Profile
-            'app.profile'
+            'app.profile',
+
+            // Dashboard
+            'app.dashboard'
 
         ]);
 })();

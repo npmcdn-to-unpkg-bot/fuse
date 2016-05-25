@@ -19,10 +19,6 @@
 
         var appointments = null;
 
-        // if(!authentication.isLoggedIn()) {
-        //   $state.go("app.pages_auth_login");
-        // }
-
         var username = authentication.currentUser().name;
 
         apilaData.openIssuesCount(username)
@@ -39,6 +35,7 @@
 
       var loadAppoitnments = function() {
 
+        var appointList = [];
 
         //load all the events and show them on the callendar
         apilaData.appointmentsList()
@@ -83,13 +80,20 @@
 
                      i++;
 
-                     vm.events[0].push(calEvent);
+                     appointList.push(calEvent);
 
                    });
+
+                   vm.events[0] = appointList;
+
                })
                .error(function(e) {
                    console.log("error loading appointments");
                });
+
+
+
+
              };
 
                loadAppoitnments();
@@ -153,7 +157,7 @@
               }
 
               arr.push(name);
-              arr.push(moment(d.submitDate).format("MM/DD/YY hh:mm"));
+              arr.push(moment(d.date).format("MM/DD/YY hh:mm"));
               arr.push(d.reason);
               arr.push(d.locationName);
               arr.push(d.locationDoctor);
