@@ -56,7 +56,8 @@
 
                      var calEvent = {
                        id: i,
-                       title: value.residentGoing.firstName + " going to " + value.locationName,
+                       title: value.residentGoing.firstName + " " + value.residentGoing.lastName + 
+                       " going to " + value.locationName,
                        start: value.time,
                        end: null,
                        transportation: value.transportation,
