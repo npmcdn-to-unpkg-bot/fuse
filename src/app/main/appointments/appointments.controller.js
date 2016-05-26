@@ -56,7 +56,7 @@
 
                      var calEvent = {
                        id: i,
-                       title: value.reason,
+                       title: value.residentGoing.firstName + " going to " + value.locationName,
                        start: value.time,
                        end: null,
                        transportation: value.transportation,
@@ -162,7 +162,7 @@
               }
 
               arr.push(name);
-              arr.push(moment(d.date).format("MM/DD/YY hh:mm"));
+              arr.push(moment(d.date).locale('en').format("MM/DD hh:mm A"));
               arr.push(d.reason);
               arr.push(d.locationName);
               arr.push(d.locationDoctor);
