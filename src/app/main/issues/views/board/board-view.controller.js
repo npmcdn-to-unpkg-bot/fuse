@@ -179,6 +179,7 @@
 
                 //foreach user make them a list
                 angular.forEach(d, function(v, k) {
+
                     var inList = false;
                     angular.forEach(vm.board.lists, function(value, key) {
                       if(value.name === v.name) {

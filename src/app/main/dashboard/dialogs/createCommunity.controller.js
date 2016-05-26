@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.homepage')
+        .module('app.dashboard')
         .controller('CreateCommunityController', CreateCommunityController);
 
     /** @ngInject */

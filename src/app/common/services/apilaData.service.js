@@ -94,6 +94,9 @@
           return $http.delete(apiUrl + '/api/issues/' + issueid, authHeader);
         }
 
+        var issuesCount = function() {
+          return $http.get(apiUrl + '/api/issues/issuescount/count', authHeader);
+        }
 
 
         /***************** APPOINTMENTS RESOURCES ***************/
@@ -125,6 +128,10 @@
             return $http.post(apiUrl + '/api/appointments/' + appointmentid + '/comments/', data, authHeader);
         };
 
+        var appointmentsToday = function() {
+          return $http.get(apiUrl + '/api/appointments/today/today', authHeader);
+        }
+
         /*********************************************************/
 
         /***************** RESIDENTS RESOURCES ******************/
@@ -145,6 +152,10 @@
             return $http.put(apiUrl + '/api/residents/update/' + residentid,
                 formData, authHeader);
 
+        };
+
+        var residentCount = function() {
+            return $http.get(apiUrl + '/api/residents/count/count', authHeader);
         };
 
         /**************************************************************/
@@ -170,6 +181,7 @@
             updateAppointment : updateAppointment,
             addAppointmentCommentById : addAppointmentCommentById,
             appointmentsListByMonth: appointmentsListByMonth,
+            appointmentsToday : appointmentsToday,
 
             //issues
             issuesList : issuesList,
@@ -188,12 +200,14 @@
             updateIssue: updateIssue,
             openIssuesCount : openIssuesCount,
             deleteIssue : deleteIssue,
+            issuesCount : issuesCount,
 
             //residents
             residentsList : residentsList,
             addResident : addResident,
             residentById : residentById,
             updateResident: updateResident,
+            residentCount : residentCount,
 
             //api url
             getApiUrl   : getApiUrl,

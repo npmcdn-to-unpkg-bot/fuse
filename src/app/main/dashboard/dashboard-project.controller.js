@@ -7,7 +7,7 @@
         .controller('DashboardProjectController', DashboardProjectController);
 
     /** @ngInject */
-    function DashboardProjectController($scope, $interval, $mdSidenav, DashboardData)
+    function DashboardProjectController($scope, $interval, $mdSidenav, DashboardData, $mdDialog, $document, apilaData)
     {
         var vm = this;
 
@@ -18,6 +18,37 @@
         // Widget 1
         vm.widget1 = vm.dashboardData.widget1;
 
+        // stats Data
+        vm.appointmentsToday = 0;
+        vm.residentCount = 0;
+        vm.issuesCount = 0;
+
+        // Setting stats data
+
+        apilaData.appointmentsToday()
+        .success(function(d) {
+          vm.appointmentsToday = d;
+        })
+        .error(function(d) {
+          console.log("Error loading appointments today count");
+        });
+
+        apilaData.residentCount()
+        .success(function(d) {
+          vm.residentCount = d;
+        })
+        .error(function(d) {
+          console.log("Error loading resident count");
+        });
+
+        apilaData.issuesCount()
+          .success(function(count) {
+            vm.issuesCount = count;
+          })
+          .error(function(count) {
+          })
+
+
         // Widget 2
         vm.widget2 = vm.dashboardData.widget2;
 
@@ -26,6 +57,21 @@
 
         // Widget 4
         vm.widget4 = vm.dashboardData.widget4;
+
+
+        vm.openCommunityModal = openCommunityModal;
+
+        function openCommunityModal(ev)
+        {
+          $mdDialog.show({
+              controller         : 'CreateCommunityController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/createCommunity.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
 
         // Widget 5
         // vm.widget5 = {
