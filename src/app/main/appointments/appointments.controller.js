@@ -56,7 +56,7 @@
 
                      var calEvent = {
                        id: i,
-                       title: value.residentGoing.firstName + " " + value.residentGoing.lastName + 
+                       title: value.residentGoing.firstName + " " + value.residentGoing.lastName +
                        " going to " + value.locationName,
                        start: value.time,
                        end: null,
@@ -228,7 +228,7 @@
          */
         function addEvent(e)
         {
-            var start = new Date(),
+            var start = new Date().getUTCDate(),
                 end = new Date();
 
             showEventFormDialog('add', false, start, end, e);
