@@ -34,7 +34,7 @@
             "count": {
                 "DT": 25,
             }
-        
+
         },
         "detail": "You can show some detailed information about this widget in here."
     },
@@ -494,7 +494,7 @@
         }
     },
     "widget11": {
-        "title": "Team Members",
+        "title": "Community Members",
         "table": {
             "columns": [
                 {
@@ -504,17 +504,8 @@
                     "title": "Name"
                 },
                 {
-                    "title": "Position"
+                    "title": "Email"
                 },
-                {
-                    "title": "Office"
-                },
-                {
-                    "title": "E-Mail"
-                },
-                {
-                    "title": "Phone"
-                }
             ],
             "rows": [
                 [
@@ -522,161 +513,32 @@
                     "Jack Gilbert",
                     "Design Manager",
                     "Johor Bahru",
-                    "jgilbert48@mail.com",
-                    "+16 298 032 7774"
-                ],
-                [
-                    "katherine.jpg",
-                    "Kathy Anderson",
-                    "Recruiting Manager",
-                    "Solţānābād",
-                    "kanderson49@mail.com.br",
-                    "+23 572 311 1136"
-                ],
-                [
-                    "andrew.jpg",
-                    "Mark Turner",
-                    "Recruiting Manager",
-                    "Neftegorsk",
-                    "mturner4a@mail.com",
-                    "+01 139 803 9263"
-                ],
-                [
-                    "jane.jpg",
-                    "Kathryn Martinez",
-                    "Director of Sales",
-                    "Palekastro",
-                    "kmartinez4b@mail.com",
-                    "+25 467 022 5393"
-                ],
-                [
-                    "alice.jpg",
-                    "Annie Gonzales",
-                    "Actuary",
-                    "Candon",
-                    "agonzales4c@mail.edu",
-                    "+99 891 619 7138"
-                ],
-                [
-                    "vincent.jpg",
-                    "Howard King",
-                    "Human Resources",
-                    "Bergen op Zoom",
-                    "hking4d@mail.gov",
-                    "+46 984 348 1409"
-                ],
-                [
-                    "joyce.jpg",
-                    "Elizabeth Dixon",
-                    "Electrical Engineer",
-                    "Písečná",
-                    "edixon4e@mail.gov",
-                    "+33 332 067 9063"
-                ],
-                [
-                    "danielle.jpg",
-                    "Dorothy Morris",
-                    "Office Assistant",
-                    "Magsaysay",
-                    "dmorris4f@mail.com",
-                    "+05 490 958 6120"
-                ],
-                [
-                    "carl.jpg",
-                    "Mark Gonzales",
-                    "Quality Control",
-                    "Matsue-shi",
-                    "mgonzales4g@mail.com",
-                    "+03 168 394 9935"
-                ],
-                [
-                    "profile.jpg",
-                    "Catherine Rogers",
-                    "Programmer Analyst",
-                    "Kangar",
-                    "crogers4h@mail.com",
-                    "+86 235 407 5373"
-                ],
-                [
-                    "garry.jpg",
-                    "Ruth Grant",
-                    "Community Outreach",
-                    "Beaune",
-                    "rgrant4i@mail.pl",
-                    "+36 288 083 8460"
-                ],
-                [
-                    "james.jpg",
-                    "Phyllis Gutierrez",
-                    "Administrative Assistant",
-                    "Shlissel’burg",
-                    "pgutierrez4j@mail.net",
-                    "+52 749 861 9304"
-                ],
-                [
-                    "alice.jpg",
-                    "Lillian Morris",
-                    "Media Planner",
-                    "Berlin",
-                    "lmorris4k@mail.de",
-                    "+59 695 110 3856"
-                ],
-                [
-                    "vincent.jpg",
-                    "Jeremy Anderson",
-                    "Systems Engineer",
-                    "Lũng Hồ",
-                    "janderson4l@mail.uk",
-                    "+40 384 115 1448"
-                ],
-                [
-                    "carl.jpg",
-                    "Arthur Lawrence",
-                    "Nurse Practicioner",
-                    "Sarkanjut",
-                    "alawrence4m@mail.com",
-                    "+36 631 599 7867"
-                ],
-                [
-                    "andrew.jpg",
-                    "David Simmons",
-                    "Social Worker",
-                    "Ushumun",
-                    "dsimmons4n@mail.com",
-                    "+01 189 681 4417"
-                ],
-                [
-                    "danielle.jpg",
-                    "Daniel Johnston",
-                    "Help Desk",
-                    "São Carlos",
-                    "djohnston4o@mail.gov",
-                    "+60 028 943 7919"
-                ],
-                [
-                    "joyce.jpg",
-                    "Ann King",
-                    "Internal Auditor",
-                    "Liren",
-                    "aking4p@mail.com",
-                    "+91 103 932 6545"
-                ],
-                [
-                    "james.jpg",
-                    "Phillip Franklin",
-                    "VP Accounting",
-                    "Soba",
-                    "pfranklin4q@mail.com",
-                    "+25 820 986 7626"
-                ],
-                [
-                    "garry.jpg",
-                    "Gary Gonzalez",
-                    "Speech Pathologist",
-                    "Gangkou",
-                    "ggonzalez4r@mail.cc",
-                    "+10 862 046 7916"
                 ]
+            ]
+        }
+    },
+    "pendingMemberWidget": {
+        "title": "Pending Members",
+        "table": {
+            "columns": [
+                {
+                    "title": ""
+                },
+                {
+                    "title": "Name"
+                },
+                {
+                    "title": "Email"
+                },
+                {
+                    "title": ""
+                },
+                {
+                    "title": ""
+                },
+            ],
+            "rows": [
+
             ]
         }
     },

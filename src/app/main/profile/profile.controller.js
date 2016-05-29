@@ -11,21 +11,23 @@
     {
         var vm = this;
 
+        vm.searchText = "";
+
         // Data
         vm.username = authentication.currentUser().name;
 
         // Methods
-
+        vm.sendRequest = sendRequest;
 
         //Autofield selectbox setup
         vm.residentList = [];
-        vm.selectedUser = {};
+        vm.selectedCommunity = {};
 
-        apilaData.residentsList()
+        apilaData.communityList()
           .success(function(residentList) {
             //console.log(residentList);
             vm.residentList = residentList.map(function(elem) {
-              return {value: elem._id, display: elem.firstName + " " + elem.lastName};
+              return {value: elem._id, display: elem.name};
             });
           })
           .error(function(residentList) {
@@ -44,6 +46,31 @@
               });
               return ret;
           }
+
+        apilaData.userCommunity(vm.username)
+          .success(function(d) {
+            vm.myCommunity = d;
+          })
+          .error(function(d) {
+          });
+
+        function sendRequest()
+        {
+
+          console.log(vm.selectedItem);
+          vm.communityId = vm.selectedItem.value;
+
+          var data = {};
+          data.pendingMember = vm.username;
+
+          apilaData.addPendingMember(data, vm.communityId)
+          .success(function(d) {
+            vm.searchText = "";
+          })
+          .error(function(d) {
+
+          });
+        }
 
         //////////
     }

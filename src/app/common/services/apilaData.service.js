@@ -166,11 +166,31 @@
           return $http.get(apiUrl + '/api/users', authHeader);
         }
 
+        var userCommunity = function(username) {
+          return $http.get(apiUrl + '/api/users/community/' + username, authHeader);
+        }
+
 
         /***************** COMMUNITY RESOURCES ***************/
 
         var addCommunity = function(data) {
           return $http.post(apiUrl + '/api/communities/new', data);
+        }
+
+        var communityList = function(data) {
+          return $http.get(apiUrl + '/api/communities/', authHeader);
+        }
+
+        var acceptMember = function(data, communityid) {
+          return $http.put(apiUrl + '/api/communities/accept/' + communityid, data, authHeader);
+        }
+
+        var addPendingMember = function(data, communityid) {
+          return $http.put(apiUrl + '/api/communities/pending/' + communityid, data, authHeader);
+        }
+
+        var declineMember = function(data, communityid) {
+          return $http.put(apiUrl + '/api/communities/decline/' + communityid, data, authHeader);
         }
 
         return {
@@ -214,9 +234,14 @@
 
             //users
             usersList : usersList,
+            userCommunity : userCommunity,
 
             //community
-            addCommunity : addCommunity
+            addCommunity : addCommunity,
+            communityList : communityList,
+            acceptMember : acceptMember,
+            addPendingMember : addPendingMember,
+            declineMember : declineMember
         };
     }
 

@@ -7,13 +7,19 @@
         .controller('DashboardProjectController', DashboardProjectController);
 
     /** @ngInject */
-    function DashboardProjectController($scope, $interval, $mdSidenav, DashboardData, $mdDialog, $document, apilaData)
+    function DashboardProjectController($scope, $interval, $mdSidenav, DashboardData,
+                        $mdDialog, $document, apilaData, authentication)
     {
         var vm = this;
+
+        var username = authentication.currentUser().name;
 
         // Data
         vm.dashboardData = DashboardData;
         vm.projects = vm.dashboardData.projects;
+
+        vm.acceptMember = acceptMember;
+        vm.declineMember = declineMember;
 
         // Widget 1
         vm.widget1 = vm.dashboardData.widget1;
@@ -22,6 +28,37 @@
         vm.appointmentsToday = 0;
         vm.residentCount = 0;
         vm.issuesCount = 0;
+
+        vm.title = "Join or create a new community";
+
+        vm.myComunity = null;
+
+        var pendingMemberTable = [];
+        var communityMemberTable = [];
+
+        apilaData.userCommunity(username)
+        .success(function(d) {
+          console.log(d);
+          vm.myCommunity = d;
+
+          communityMemberTable = _.map(vm.myCommunity.communityMembers, function(v) {
+            return ["james.jpg", v.name, v.email];
+          });
+
+          pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
+            return ["james.jpg", v.name, v.email, v._id];
+          });
+
+          vm.dashboardData.widget11.table.rows = communityMemberTable;
+          vm.dashboardData.pendingMemberWidget.table.rows = pendingMemberTable;
+
+          setWidget();
+
+          vm.title = "Welcome to " + vm.myCommunity.name + " community";
+        })
+        .error(function(d) {
+
+        });
 
         // Setting stats data
 
@@ -60,6 +97,44 @@
 
 
         vm.openCommunityModal = openCommunityModal;
+
+        function acceptMember(index, member)
+        {
+
+          pendingMemberTable.splice(index, 1);
+
+          var data = {};
+          data.member = member[3];
+
+          apilaData.acceptMember(data, vm.myCommunity._id)
+          .success(function(d) {
+            console.log(d);
+            member.splice(member.length-1, 1);
+            communityMemberTable.push(member);
+          })
+          .error(function(d) {
+
+          });
+        }
+
+        function declineMember(index, memberid)
+        {
+
+          pendingMemberTable.splice(index, 1);
+
+          var data = {};
+          data.member = memberid;
+
+
+
+          apilaData.declineMember(data, vm.myCommunity._id)
+          .success(function(d) {
+            console.log(d);
+          })
+          .error(function(d) {
+
+          });
+        }
 
         function openCommunityModal(ev)
         {
@@ -509,28 +584,55 @@
         // vm.widget10 = vm.dashboardData.widget10;
         //
         // // Widget 11
-        // vm.widget11 = {
-        //     title    : vm.dashboardData.widget11.title,
-        //     table    : vm.dashboardData.widget11.table,
-        //     dtOptions: {
-        //         dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-        //         pagingType: 'simple',
-        //         autoWidth : false,
-        //         responsive: true,
-        //         order     : [1, 'asc'],
-        //         columnDefs: [
-        //             {
-        //                 width    : '40',
-        //                 orderable: false,
-        //                 targets  : [0]
-        //             },
-        //             {
-        //                 width  : '20%',
-        //                 targets: [1, 2, 3, 4, 5]
-        //             }
-        //         ]
-        //     }
-        // };
+
+        function setWidget() {
+          vm.widget11 = {
+              title    : vm.dashboardData.widget11.title,
+              table    : vm.dashboardData.widget11.table,
+              dtOptions: {
+                  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+                  pagingType: 'simple',
+                  autoWidth : false,
+                  responsive: true,
+                  order     : [1, 'asc'],
+                  columnDefs: [
+                      {
+                          width    : '40',
+                          orderable: false,
+                          targets  : [0]
+                      },
+                      {
+                          width  : '20%',
+                          targets: [1, 2, 3, 4, 5]
+                      }
+                  ]
+              }
+          };
+
+
+          vm.pendingMemberWidget = {
+              title    : vm.dashboardData.pendingMemberWidget.title,
+              table    : vm.dashboardData.pendingMemberWidget.table,
+              dtOptions: {
+                  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+                  pagingType: 'simple',
+                  autoWidth : false,
+                  responsive: true,
+                  order     : [1, 'asc'],
+                  columnDefs: [
+                      {
+                          width    : '40',
+                          orderable: false,
+                          targets  : [0]
+                      },
+                      {
+                          width  : '20%',
+                          targets: [1, 2, 3, 4, 5]
+                      }
+                  ]
+              }
+          };
+        }
 
         // Now widget
         vm.nowWidget = {
