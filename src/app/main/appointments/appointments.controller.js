@@ -297,13 +297,17 @@
                 hours -= 12;
               }
 
+              var resident = response.calendarEvent.residentGoing;
+
+              var formatTitle = resident.firstName + " " + resident.lastName +
+              " going to " + response.calendarEvent.locationName;
+
                 if ( response.type === 'add' )
                 {
-
                     // Add new
                     vm.events[0].push({
                         id   : vm.events[0].length + 80,
-                        title: response.calendarEvent.title,
+                        title: formatTitle,
                         start: response.calendarEvent.time,
                         end  : null,
                         transportation: response.calendarEvent.transportation,
@@ -334,7 +338,7 @@
                           console.log("Updejtovo");
 
                             var currEvent = {
-                              title: response.calendarEvent.title,
+                              title: formatTitle,
                               start: response.calendarEvent.time,
                               end  : null,
                               transportation: response.calendarEvent.transportation,

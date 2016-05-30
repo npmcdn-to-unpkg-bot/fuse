@@ -206,6 +206,10 @@
 
       } else { // Add
 
+        console.log("Time added " + vm.calendarEvent.time);
+
+        vm.calendarEvent.time =  vm.calendarEvent.time.toISOString();
+
         apilaData.addAppointment(vm.calendarEvent)
           .success(function(appoint) {
 
