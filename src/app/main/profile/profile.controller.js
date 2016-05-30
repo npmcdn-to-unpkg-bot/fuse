@@ -7,7 +7,7 @@
         .controller('ProfileController', ProfileController);
 
     /** @ngInject */
-    function ProfileController(authentication, apilaData)
+    function ProfileController(authentication, apilaData, $mdToast)
     {
         var vm = this;
 
@@ -57,7 +57,17 @@
         function sendRequest()
         {
 
-          console.log(vm.selectedItem);
+          if(vm.selectedItem === null) {
+            return;
+          }
+
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Invite Request Sent to ' + vm.selectedItem.display)
+              .position("top right")
+              .hideDelay(3000)
+          );
+
           vm.communityId = vm.selectedItem.value;
 
           var data = {};
