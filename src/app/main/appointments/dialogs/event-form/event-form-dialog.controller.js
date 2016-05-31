@@ -95,7 +95,7 @@
 
         console.log(vm.calendarEvent);
 
-        vm.calendarEvent.reason = vm.calendarEvent.title;
+        vm.calendarEvent.reason = vm.calendarEvent.reason;
         vm.isCancel = vm.calendarEvent.cancel;
         vm.date = new Date(vm.calendarEvent.date);
         //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));

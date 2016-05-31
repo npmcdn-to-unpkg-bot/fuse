@@ -338,7 +338,7 @@
                           console.log("Updejtovo");
 
                             var currEvent = {
-                              title: formatTitle,
+                              title: response.title,
                               start: response.calendarEvent.time,
                               end  : null,
                               transportation: response.calendarEvent.transportation,
