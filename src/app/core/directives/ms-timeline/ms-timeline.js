@@ -48,7 +48,8 @@
     {
         return {
             scope     : {
-                loadMore: '&?msTimelineLoadMore'
+                msTimeline: '=?',
+                loadMore  : '&?msTimelineLoadMore'
             },
             controller: 'MsTimelineController',
             compile   : function (tElement)
@@ -61,8 +62,16 @@
                     var loadMoreEl = angular.element('<div class="ms-timeline-loader md-accent-bg md-whiteframe-4dp"><span class="spinner animate-rotate"></span></div>');
                     iElement.append(loadMoreEl);
 
+                    // Default config
+                    var config = {
+                        scrollEl: '#content'
+                    };
+
+                    // Extend the configuration
+                    config = angular.extend(config, scope.msTimeline, {});
+                    
                     // Grab the scrollable element and store it in the controller for general use
-                    var scrollEl = angular.element('#content');
+                    var scrollEl = angular.element(config.scrollEl);
                     MsTimelineCtrl.setScrollEl(scrollEl);
 
                     // Threshold

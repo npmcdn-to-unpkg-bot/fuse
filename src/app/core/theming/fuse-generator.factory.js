@@ -250,7 +250,7 @@
                 color[3] = contrastLevels.white[contrastLevel];
             }
             // If black
-            else if ( color[0] === 0 && color[1] === 0, color[2] === 0 )
+            else if ( color[0] === 0 && color[1] === 0 && color[2] === 0 )
             {
                 color[3] = contrastLevels.black[contrastLevel];
             }

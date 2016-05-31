@@ -291,22 +291,24 @@
             var activeItem = null,
                 navigationScope = null,
                 folded = null,
-                foldedOpen = null;
+                foldedOpen = null,
+                _flatNavigation = [];
 
             var service = {
-                saveItem           : saveItem,
-                deleteItem         : deleteItem,
-                sort               : sortByWeight,
-                clearNavigation    : clearNavigation,
-                setActiveItem      : setActiveItem,
-                getActiveItem      : getActiveItem,
-                getNavigationObject: getNavigationObject,
-                setNavigationScope : setNavigationScope,
-                setFolded          : setFolded,
-                getFolded          : getFolded,
-                setFoldedOpen      : setFoldedOpen,
-                getFoldedOpen      : getFoldedOpen,
-                toggleFolded       : toggleFolded
+                saveItem          : saveItem,
+                deleteItem        : deleteItem,
+                sort              : sortByWeight,
+                clearNavigation   : clearNavigation,
+                setActiveItem     : setActiveItem,
+                getActiveItem     : getActiveItem,
+                getNavigation     : getNavigation,
+                getFlatNavigation : getFlatNavigation,
+                setNavigationScope: setNavigationScope,
+                setFolded         : setFolded,
+                getFolded         : getFolded,
+                setFoldedOpen     : setFoldedOpen,
+                getFoldedOpen     : getFoldedOpen,
+                toggleFolded      : toggleFolded
             };
 
             return service;
@@ -351,12 +353,12 @@
             }
 
             /**
-             * Return navigation object
+             * Return navigation array
              *
              * @param root
-             * @returns {Array}
+             * @returns Array
              */
-            function getNavigationObject(root)
+            function getNavigation(root)
             {
                 if ( root )
                 {
@@ -367,9 +369,26 @@
                             return [navigation[i]];
                         }
                     }
+
+                    return null;
                 }
 
                 return navigation;
+            }
+
+            /**
+             * Return flat navigation array
+             *
+             * @param root
+             * @returns Array
+             */
+            function getFlatNavigation(root)
+            {
+                // Get the correct navigation array
+                var navigation = getNavigation(root);
+
+                // Flatten the navigation object
+                return _flattenNavigation(navigation);
             }
 
             /**
@@ -430,6 +449,37 @@
             {
                 navigationScope.toggleFolded();
             }
+
+            /**
+             * Flatten the given navigation
+             *
+             * @param navigation
+             * @private
+             */
+            function _flattenNavigation(navigation)
+            {
+                var flatNav = [];
+
+                for ( var x = 0; x < navigation.length; x++ )
+                {
+                    // Copy and clear the children of the
+                    // navigation that we want to push
+                    var navToPush = angular.copy(navigation[x]);
+                    navToPush.children = [];
+
+                    // Push the item
+                    flatNav.push(navToPush);
+
+                    // If there are child items in this navigation,
+                    // do some nested function magic
+                    if ( navigation[x].children.length > 0 )
+                    {
+                        flatNav = flatNav.concat(_flattenNavigation(navigation[x].children));
+                    }
+                }
+
+                return flatNav;
+            }
         };
     }
 
@@ -441,11 +491,11 @@
         // Data
         if ( $scope.root )
         {
-            vm.navigation = msNavigationService.getNavigationObject($scope.root);
+            vm.navigation = msNavigationService.getNavigation($scope.root);
         }
         else
         {
-            vm.navigation = msNavigationService.getNavigationObject();
+            vm.navigation = msNavigationService.getNavigation();
         }
 
         // Methods
@@ -732,12 +782,6 @@
                     {
                         // Close the sidenav
                         sidenav.close();
-
-                        // If navigation is folded open, close it
-                        if ( msNavigationService.getFolded() )
-                        {
-                            onFoldCollapserHover();
-                        }
                     });
 
                     // Cleanup
@@ -898,6 +942,21 @@
 
                     // Collapse everything except the one we're using
                     $rootScope.$broadcast('msNavigation::collapse', vm.node._path);
+                }
+
+                // Expand the parents if we the current
+                // state is a child of the node's state
+                if ( $state.includes(vm.node.state) )
+                {
+                    // If state params are defined, make sure they are
+                    // equal, otherwise do not set the active item
+                    if ( angular.isDefined(vm.node.stateParams) && angular.isDefined($state.params) && !angular.equals(vm.node.stateParams, $state.params) )
+                    {
+                        return;
+                    }
+
+                    // Emit the stateMatched
+                    $scope.$emit('msNavigation::stateMatched');
                 }
             });
         }
@@ -1236,7 +1295,7 @@
             // Listen for $stateChangeSuccess event
             $scope.$on('$stateChangeSuccess', function ()
             {
-                if ( vm.node.state === $state.current.name )
+                if ( vm.node.state === $state.current.name || $state.includes(vm.node.state) )
                 {
                     // If state params are defined, make sure they are
                     // equal, otherwise do not set the active item
@@ -1248,7 +1307,7 @@
                     // Update active item on state change
                     msNavigationService.setActiveItem(vm.node, $scope);
 
-                    // Clear all active states everything except the one we're using
+                    // Clear all active states except the one we're using
                     $rootScope.$broadcast('msNavigation::clearActive');
                 }
             });

@@ -40,6 +40,8 @@
         vm.isStepCurrent = isStepCurrent;
         vm.isStepDisabled = isStepDisabled;
         vm.isStepOptional = isStepOptional;
+        vm.isStepHidden = isStepHidden;
+        vm.filterHiddenStep = filterHiddenStep;
         vm.isStepValid = isStepValid;
         vm.isStepNumberValid = isStepNumberValid;
 
@@ -115,7 +117,7 @@
 
                 // Go to first step
                 gotoFirstStep();
-            })
+            });
         }
 
         /**
@@ -151,6 +153,13 @@
          */
         function gotoStep(stepNumber)
         {
+            // If the step we are about to go
+            // is hidden, bail...
+            if ( isStepHidden(stepNumber) )
+            {
+                return;
+            }
+
             vm.setCurrentStep(stepNumber);
         }
 
@@ -159,7 +168,20 @@
          */
         function gotoPreviousStep()
         {
-            vm.setCurrentStep(vm.currentStepNumber - 1);
+            var stepNumber = vm.currentStepNumber - 1;
+
+            // Test the previous steps and make sure
+            // we will land to a one that is not hidden
+            for ( var s = stepNumber; s >= 1; s-- )
+            {
+                if ( !isStepHidden(s) )
+                {
+                    stepNumber = s;
+                    break;
+                }
+            }
+
+            vm.setCurrentStep(stepNumber);
         }
 
         /**
@@ -167,7 +189,20 @@
          */
         function gotoNextStep()
         {
-            vm.setCurrentStep(vm.currentStepNumber + 1);
+            var stepNumber = vm.currentStepNumber + 1;
+
+            // Test the following steps and make sure
+            // we will land to a one that is not hidden
+            for ( var s = stepNumber; s <= vm.steps.length; s++ )
+            {
+                if ( !isStepHidden(s) )
+                {
+                    stepNumber = s;
+                    break;
+                }
+            }
+
+            vm.setCurrentStep(stepNumber);
         }
 
         /**
@@ -269,6 +304,34 @@
         }
 
         /**
+         * Check if the given step is hidden
+         *
+         * @param stepNumber
+         * @returns {null|boolean}
+         */
+        function isStepHidden(stepNumber)
+        {
+            // If the stepNumber is not a valid step number, bail...
+            if ( !isStepNumberValid(stepNumber) )
+            {
+                return null;
+            }
+
+            return !!vm.steps[stepNumber - 1].scope.hideStep;
+        }
+
+        /**
+         * Check if the given step is hidden as a filter
+         *
+         * @param step
+         * @returns {boolean}
+         */
+        function filterHiddenStep(step)
+        {
+            return !isStepHidden(step.stepNumber);
+        }
+
+        /**
          * Check if the given step is valid
          *
          * @param stepNumber
@@ -299,7 +362,7 @@
          */
         function isStepNumberValid(stepNumber)
         {
-            return !(stepNumber < 1 || stepNumber > vm.steps.length);
+            return !(angular.isUndefined(stepNumber) || stepNumber < 1 || stepNumber > vm.steps.length);
         }
 
         /**
@@ -341,7 +404,7 @@
                     MsStepperCtrl.setupSteps();
                 };
             }
-        }
+        };
     }
 
     /** @ngInject */
@@ -354,7 +417,8 @@
             scope   : {
                 step        : '=?',
                 stepTitle   : '=?',
-                optionalStep: '=?'
+                optionalStep: '=?',
+                hideStep    : '=?'
             },
             compile : function (tElement)
             {
@@ -375,6 +439,6 @@
                     iElement.hide();
                 };
             }
-        }
+        };
     }
 })();

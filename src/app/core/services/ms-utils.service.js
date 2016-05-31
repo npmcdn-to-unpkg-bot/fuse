@@ -18,9 +18,7 @@
             detectBrowser: detectBrowser,
             guidGenerator: guidGenerator,
             isMobile     : isMobile,
-            toggleInArray: toggleInArray,
-            toggleInMembersArray: toggleInMembersArray,
-            existsMembers: existsMembers
+            toggleInArray: toggleInArray
         };
 
         return service;
@@ -34,22 +32,9 @@
          * @param list
          * @returns {boolean}
          */
-        function existsMembers(item, list)
-        {
-
-            return list.map(function(d){return d._id;}).indexOf(item._id) > -1;
-        }
-
-        /**
-         * Check if item exists in a list
-         *
-         * @param item
-         * @param list
-         * @returns {boolean}
-         */
         function exists(item, list)
         {
-              return list.indexOf(item) > -1;
+            return list.indexOf(item) > -1;
         }
 
         /**
@@ -269,26 +254,6 @@
          * @param item
          * @param array
          */
-        function toggleInMembersArray(item, array)
-        {
-            if ( array.map(function(d){return d._id;}).indexOf(item._id) === -1 )
-            {
-                array.push(item);
-            }
-            else
-            {
-
-                array.splice(array.map(function(d){return d._id;}).indexOf(item._id), 1);
-                console.log(array);
-            }
-        }
-
-        /**
-         * Toggle in array (push or splice)
-         *
-         * @param item
-         * @param array
-         */
         function toggleInArray(item, array)
         {
             if ( array.indexOf(item) === -1 )
@@ -297,7 +262,6 @@
             }
             else
             {
-
                 array.splice(array.indexOf(item), 1);
             }
         }

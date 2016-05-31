@@ -11,10 +11,20 @@
 
         <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
         <!-- bower:css -->
+        <link rel='stylesheet' href='../bower_components/angular-chart.js/dist/angular-chart.css' />
+        <link rel='stylesheet' href='../bower_components/chartist/dist/chartist.min.css' />
+        <link rel='stylesheet' href='../bower_components/datatables/media/css/jquery.dataTables.css' />
+        <link rel='stylesheet' href='../bower_components/angular-gantt/assets/angular-gantt.css' />
+        <link rel='stylesheet' href='../bower_components/angular-gantt/assets/angular-gantt-plugins.css' />
+        <link rel='stylesheet' href='../bower_components/nvd3/build/nv.d3.css' />
         <link rel='stylesheet' href='../bower_components/fullcalendar/dist/fullcalendar.css' />
+        <link rel='stylesheet' href='../bower_components/angular-ui-tree/dist/angular-ui-tree.css' />
+        <link rel='stylesheet' href='../bower_components/angular-xeditable/dist/css/xeditable.css' />
+        <link rel='stylesheet' href='../bower_components/c3/c3.css' />
+        <link rel='stylesheet' href='../bower_components/highlightjs/styles/default.css' />
+        <link rel='stylesheet' href='../bower_components/moment-picker/dist/angular-moment-picker.min.css' />
         <link rel='stylesheet' href='../bower_components/perfect-scrollbar/css/perfect-scrollbar.css' />
-        <link rel='stylesheet' href='../bower_components/toastr/toastr.css' />
-        <link rel='stylesheet' href='../bower_components/angular-material-datetimepicker/css/material-datetimepicker.min.css' />
+        <link rel='stylesheet' href='../bower_components/textAngular/dist/textAngular.css' />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -72,36 +82,86 @@
         <script src="../bower_components/angular/angular.js"></script>
         <script src="../bower_components/angular-animate/angular-animate.js"></script>
         <script src="../bower_components/angular-aria/angular-aria.js"></script>
+        <script src="../bower_components/Chart.js/Chart.js"></script>
+        <script src="../bower_components/angular-chart.js/dist/angular-chart.js"></script>
+        <script src="../bower_components/chartist/dist/chartist.min.js"></script>
+        <script src="../bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
         <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="../bower_components/datatables/media/js/jquery.dataTables.js"></script>
+        <script src="../bower_components/angular-datatables/dist/angular-datatables.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+        <script src="../bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+        <script src="../bower_components/angular-native-dragdrop/draganddrop.js"></script>
+        <script src="../bower_components/jsPlumb/dist/js/jsPlumb-2.0.5.js"></script>
+        <script src="../bower_components/moment/moment.js"></script>
+        <script src="../bower_components/angular-moment/angular-moment.js"></script>
+        <script src="../bower_components/angular-gantt/assets/angular-gantt.js"></script>
+        <script src="../bower_components/angular-gantt/assets/angular-gantt-plugins.js"></script>
+        <script src="../bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+        <script src="../bower_components/lodash/lodash.js"></script>
+        <script src="../bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
         <script src="../bower_components/angular-messages/angular-messages.js"></script>
         <script src="../bower_components/angular-material/angular-material.js"></script>
+        <script src="../bower_components/d3/d3.js"></script>
+        <script src="../bower_components/nvd3/build/nv.d3.js"></script>
+        <script src="../bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
         <script src="../bower_components/angular-resource/angular-resource.js"></script>
         <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="../bower_components/humanize-duration/humanize-duration.js"></script>
+        <script src="../bower_components/angular-timer/dist/angular-timer.js"></script>
         <script src="../bower_components/angular-translate/angular-translate.js"></script>
-        <script src="../bower_components/moment/moment.js"></script>
+        <script src="../bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
         <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
         <script src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
-        <script src="../bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
         <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="../bower_components/jquery-ui/jquery-ui.js"></script>
+        <script src="../bower_components/angular-ui-sortable/sortable.js"></script>
+        <script src="../bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+        <script src="../bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+        <script src="../bower_components/c3/c3.js"></script>
+        <script src="../bower_components/c3-angular/c3-angular.min.js"></script>
+        <script src="../bower_components/css-element-queries/src/ElementQueries.js"></script>
+        <script src="../bower_components/css-element-queries/src/ResizeSensor.js"></script>
+        <script src="../bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+        <script src="../bower_components/highlightjs/highlight.pack.js"></script>
+        <script src="../bower_components/ev-emitter/ev-emitter.js"></script>
+        <script src="../bower_components/imagesloaded/imagesloaded.js"></script>
+        <script src="../bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.min.js"></script>
         <script src="../bower_components/mobile-detect/mobile-detect.js"></script>
+        <script src="../bower_components/moment-picker/dist/angular-moment-picker.min.js"></script>
+        <script src="../bower_components/moment-range/dist/moment-range.js"></script>
+        <script src="../bower_components/flow.js/dist/flow.js"></script>
+        <script src="../bower_components/ng-flow/dist/ng-flow.js"></script>
         <script src="../bower_components/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-        <script src="../bower_components/toastr/toastr.js"></script>
-        <script src="../bower_components/momentjs/moment.js"></script>
-        <script src="../bower_components/angular-material-datetimepicker/js/angular-material-datetimepicker.min.js"></script>
-        <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
-        <script src="../bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
-        <script src="../bower_components/lodash/lodash.js"></script>
-        <script src="../bower_components/jspdf/dist/jspdf.min.js"></script>
-        <script src="../bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js"></script>
+        <script src="../bower_components/Sortable/Sortable.js"></script>
+        <script src="../bower_components/Sortable/ng-sortable.js"></script>
+        <script src="../bower_components/rangy/rangy-core.js"></script>
+        <script src="../bower_components/rangy/rangy-classapplier.js"></script>
+        <script src="../bower_components/rangy/rangy-highlighter.js"></script>
+        <script src="../bower_components/rangy/rangy-selectionsaverestore.js"></script>
+        <script src="../bower_components/rangy/rangy-serializer.js"></script>
+        <script src="../bower_components/rangy/rangy-textrange.js"></script>
+        <script src="../bower_components/textAngular/dist/textAngular.js"></script>
+        <script src="../bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+        <script src="../bower_components/textAngular/dist/textAngularSetup.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
         <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
         <!-- inject:js -->
         <script src="app/main/issues/issues.module.js"></script>
-        <script src="app/main/issues/views/calendar/dialogs/event/event-dialog.controller.js"></script>
         <script src="app/main/issues/sidenavs/settings/menus/members/members-menu.controller.js"></script>
         <script src="app/main/issues/sidenavs/settings/menus/labels/labels-menu.controller.js"></script>
+        <script src="app/main/issues/views/calendar/dialogs/event/event-dialog.controller.js"></script>
         <script src="app/main/issues/sidenavs/settings/menus/color/color-menu.controller.js"></script>
         <script src="app/main/ui/theme-colors/theme-colors.module.js"></script>
         <script src="app/main/ui/theme-colors/dialogs/custom-theme/custom-theme-dialog.controller.js"></script>
@@ -125,10 +185,10 @@
         <script src="app/main/ui/page-layouts/carded/left-sidenav-ii/left-sidenav-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/left-sidenav/left-sidenav.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/left-sidenav/left-sidenav.controller.js"></script>
-        <script src="app/main/ui/page-layouts/carded/fullwidth-ii/fullwidth-ii.module.js"></script>
-        <script src="app/main/ui/page-layouts/carded/fullwidth-ii/fullwidth-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/fullwidth/fullwidth.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/fullwidth/fullwidth.controller.js"></script>
+        <script src="app/main/ui/page-layouts/carded/fullwidth-ii/fullwidth-ii.module.js"></script>
+        <script src="app/main/ui/page-layouts/carded/fullwidth-ii/fullwidth-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.module.js"></script>
         <script src="app/main/ui/page-layouts/blank/blank.controller.js"></script>
         <script src="app/main/residents/residents.module.js"></script>
@@ -172,10 +232,10 @@
         <script src="app/main/auth/register/register.controller.js"></script>
         <script src="app/main/auth/not-auth/not-auth.module.js"></script>
         <script src="app/main/auth/not-auth/not-auth.controller.js"></script>
-        <script src="app/main/auth/login/login.module.js"></script>
-        <script src="app/main/auth/login/login.controller.js"></script>
         <script src="app/main/auth/lock/lock.module.js"></script>
         <script src="app/main/auth/lock/lock.controller.js"></script>
+        <script src="app/main/auth/login/login.module.js"></script>
+        <script src="app/main/auth/login/login.controller.js"></script>
         <script src="app/main/auth/forgot-password/forgot-password.module.js"></script>
         <script src="app/main/auth/forgot-password/forgot-password.controller.js"></script>
         <script src="app/core/core.module.js"></script>
@@ -184,6 +244,7 @@
         <script src="app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
         <script src="app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
         <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
+        <script src="app/core/directives/ms-shortcuts/ms-shortcuts.directive.js"></script>
         <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
         <script src="app/core/directives/ms-scroll/ms-scroll.directive.js"></script>
         <script src="app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>
@@ -191,6 +252,8 @@
         <script src="app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
         <script src="app/core/directives/ms-nav/ms-nav.directive.js"></script>
         <script src="app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>
+        <script src="app/core/directives/ms-masonry/ms-masonry.directive.js"></script>
+        <script src="app/core/directives/ms-info-bar/ms-info-bar.directive.js"></script>
         <script src="app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
         <script src="app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
         <script src="app/core/directives/ms-card/ms-card.directive.js"></script>
@@ -212,18 +275,21 @@
         <script src="app/core/services/ms-api.provider.js"></script>
         <script src="app/core/services/api-resolver.service.js"></script>
         <script src="app/core/filters/tag.filter.js"></script>
+        <script src="app/core/filters/filterByPropIds.filter.js"></script>
+        <script src="app/core/filters/filterByIds.filter.js"></script>
         <script src="app/core/filters/basic.filter.js"></script>
+        <script src="app/core/filters/altDate.filter.js"></script>
         <script src="app/core/directives/highlight.directive.js"></script>
         <script src="app/core/config/fuse-config.provider.js"></script>
+        <script src="app/index.module.js"></script>
+        <script src="app/common/factories/errorInterceptor.factory.js"></script>
         <script src="app/common/services/wordCloud.service.js"></script>
         <script src="app/common/services/exportPdf.service.js"></script>
         <script src="app/common/services/authentication.service.js"></script>
         <script src="app/common/services/apilaData.service.js"></script>
-        <script src="app/index.module.js"></script>
-        <script src="app/common/factories/errorInterceptor.factory.js"></script>
+        <script src="app/quick-panel/quick-panel.controller.js"></script>
         <script src="app/toolbar/toolbar.module.js"></script>
         <script src="app/toolbar/toolbar.controller.js"></script>
-        <script src="app/quick-panel/quick-panel.controller.js"></script>
         <script src="app/navigation/navigation.module.js"></script>
         <script src="app/navigation/navigation.controller.js"></script>
         <script src="app/main/main.controller.js"></script>

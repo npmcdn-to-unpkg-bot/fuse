@@ -12,10 +12,19 @@
                 'ngResource',
                 'ngSanitize',
                 'ngMaterial',
+                'angular-chartist',
+                'chart.js',
+                'datatables',
+                'gridshore.c3js.chart',
+                'nvd3',
                 'pascalprecht.translate',
+                'timer',
                 'ui.router',
-                'ngMaterialDatePicker',
-                "ngFileUpload"
-
+                'uiGmapgoogle-maps',
+                'textAngular',
+                'ui.sortable',
+                'ng-sortable',
+                'xeditable',
+                'moment-picker'
             ]);
 })();

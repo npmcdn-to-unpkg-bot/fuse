@@ -14,9 +14,8 @@
         /* ----------------- */
         var provider = this;
 
-        // Inject required services
-        var $log = angular.injector(['ng']).get('$log'),
-            $resource = angular.injector(['ngResource']).get('$resource');
+        // Inject the $log service
+        var $log = angular.injector(['ng']).get('$log');
 
         // Data
         var baseUrl = '';
@@ -80,22 +79,19 @@
                 return;
             }
 
-            // Prepare the resource object
-            var resourceObj = {
+            // Store the API object
+            api[key] = {
                 url          : baseUrl + (resource[0] || ''),
                 paramDefaults: resource[1] || [],
                 actions      : resource[2] || [],
                 options      : resource[3] || {}
             };
-
-            // Assign the resource
-            api[key] = $resource(resourceObj.url, resourceObj.paramDefaults, resourceObj.actions, resourceObj.options);
         }
 
         /* ----------------- */
         /* Service           */
         /* ----------------- */
-        this.$get = function ($q, $log)
+        this.$get = function ($q, $log, $resource)
         {
             // Data
 
@@ -145,7 +141,11 @@
                 }
                 else
                 {
-                    apiObject[method](params,
+                    // Generate the $resource object based on the stored API object
+                    var resourceObject = $resource(apiObject.url, apiObject.paramDefaults, apiObject.actions, apiObject.options);
+
+                    // Make the call...
+                    resourceObject[method](params,
 
                         // Success
                         function (response)
@@ -201,7 +201,11 @@
                 }
                 else
                 {
-                    apiObject[method](params,
+                    // Generate the $resource object based on the stored API object
+                    var resourceObject = $resource(apiObject.url, apiObject.paramDefaults, apiObject.actions, apiObject.options);
+
+                    // Make the call...
+                    resourceObject[method](params,
 
                         // SUCCESS
                         function (response)

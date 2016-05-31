@@ -110,6 +110,24 @@ md-input-container {
             display: none;
         }
     }
+
+    .input-hint {
+        position: absolute;
+        right: auto;
+        bottom: 7px;
+        left: 2px;
+        font-size: 12px;
+        line-height: 14px;
+        transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    &.md-icon-left {
+
+        .input-hint {
+            left: 38px;
+        }
+    }
 }
 
 // Lists
@@ -185,6 +203,51 @@ md-select {
                     top: 1px;
                 }
             }
+        }
+    }
+
+    &[multiple] {
+
+        md-select-value {
+
+            & > *:first-child {
+                display: flex;
+
+                & > *:first-child {
+                    flex: 0;
+                }
+
+                .md-container {
+                    padding-right: 6px;
+
+                    &:first-of-type {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Select element contents
+md-select-menu {
+
+    md-select-header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: auto;
+        height: 48px;
+        padding-left: 10.667px;
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+
+        input[type="search"] {
+            border: none;
+            outline: none;
+            height: 100%;
+            width: 100%;
+            padding: 0;
         }
     }
 }

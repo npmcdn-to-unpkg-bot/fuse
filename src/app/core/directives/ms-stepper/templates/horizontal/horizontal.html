@@ -5,12 +5,12 @@
                        ng-class="{'current': MsStepper.isStepCurrent(step.stepNumber), 'valid': MsStepper.isStepValid(step.stepNumber), 'disabled': MsStepper.isStepDisabled(step.stepNumber), 'optional': MsStepper.isStepOptional(step.stepNumber)}"
                        ng-click="MsStepper.gotoStep(step.stepNumber)"
                        ng-disabled="MsStepper.isStepDisabled(step.stepNumber)"
-                       ng-repeat="step in MsStepper.steps" layout="row" layout-align="start center">
+                       ng-repeat="step in MsStepper.steps | filter:MsStepper.filterHiddenStep" layout="row" layout-align="start center">
 
                 <div class="step md-accent-bg"
                      layout="row" layout-align="center center">
                 <span ng-if="!MsStepper.isStepValid(step.stepNumber) || MsStepper.isStepOptional(step.stepNumber)">
-                    {{step.stepNumber}}
+                    {{$index + 1}}
                 </span>
                 <span ng-if="MsStepper.isStepValid(step.stepNumber) && !MsStepper.isStepOptional(step.stepNumber)">
                     <i class="icon icon-check s18"></i>
@@ -36,6 +36,7 @@
 
         <div class="ms-stepper-dots">
             <span ng-repeat="step in MsStepper.steps"
+                  ng-hide="MsStepper.isStepHidden(step.stepNumber)"
                   ng-class="{'selected md-accent-bg':MsStepper.currentStepNumber === $index + 1}">
             </span>
         </div>
