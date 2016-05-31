@@ -121,9 +121,8 @@
           end: vm.dialogData.end
         };
 
-
-            vm.date = dialogData.start._d;
-            console.log(vm.date);
+        //the date that is set when we click the dialog must be in local time for the md-datepicker
+        vm.date = utcToLocalDate(dialogData.start._d);
 
       }
     }
@@ -180,9 +179,6 @@
           .success(function(appoint) {
 
             var calId = vm.dialogData.calendarEvent._id;
-          //  var residentGoing = vm.dialogData.calendarEvent.residentGoing;
-
-
 
             vm.calendarEvent = appoint;
             vm.calendarEvent.source = srcEvents;
@@ -208,7 +204,7 @@
 
         console.log("Time added " + vm.calendarEvent.time);
 
-        vm.calendarEvent.time =  vm.calendarEvent.time.toISOString();
+       vm.calendarEvent.date = vm.calendarEvent.time;
 
         apilaData.addAppointment(vm.calendarEvent)
           .success(function(appoint) {
@@ -232,8 +228,8 @@
 
 
 
-          //checks what fields changed in the updates
-        function checkChangedFields(oldData, newData) {
+    //checks what fields changed in the updates
+    function checkChangedFields(oldData, newData) {
               var d1 = new Date(oldData.date);
               var d2 = newData.date;
 
@@ -265,16 +261,6 @@
                 });
               }
 
-              /* if(oldData["residentGoing"].firstName !== newData["residentGoing"].firstName) {
-                   diff.push({
-                       "field": "residentGoing",
-                       "old": oldData["residentGoing"].firstName,
-                       "new": newData["residentGoing"].firstName
-                   });
-               }*/
-
-
-
               return diff;
           }
 
@@ -283,6 +269,14 @@
      */
     function closeDialog() {
       $mdDialog.cancel();
+    }
+
+    /**
+     * Converts utc date to the local date
+     */
+    function utcToLocalDate(date)
+    {
+      return new Date(date.getTime() + date.getTimezoneOffset()*60*1000);
     }
   }
 })();
