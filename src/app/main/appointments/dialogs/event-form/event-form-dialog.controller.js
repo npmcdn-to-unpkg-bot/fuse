@@ -122,7 +122,10 @@
         };
 
         //the date that is set when we click the dialog must be in local time for the md-datepicker
-        vm.date = utcToLocalDate(dialogData.start._d);
+        if(dialogData.start._d !== undefined) {
+          vm.date = utcToLocalDate(dialogData.start._d);
+        }
+
 
       }
     }
