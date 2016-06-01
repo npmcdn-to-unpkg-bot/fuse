@@ -20,17 +20,30 @@
 
         var username = authentication.currentUser().name;
 
-        apilaData.openIssuesCount(username)
-          .success(function(count) {
-            msNavigationService.saveItem('fuse.issues', {
-              badge: {
-                content:  count,
-                color  : '#F44336'
-              }
+        apilaData.userCommunity(username)
+        .success(function(d) {
+          vm.myCommunity = d;
+
+          issueList(vm.myCommunity._id);
+          issuesCount(vm.myCommunity._id);
+          listByUsername(vm.myCommunity._id);
+
+        });
+
+        function issuesCount(id) {
+          apilaData.openIssuesCount(username, id)
+            .success(function(count) {
+              msNavigationService.saveItem('fuse.issues', {
+                badge: {
+                  content:  count,
+                  color  : '#F44336'
+                }
+              });
+            })
+            .error(function(count) {
             });
-          })
-          .error(function(count) {
-          })
+        }
+
 
         vm.issueList = BoardService.getIssueByUsername(username);
 
@@ -157,19 +170,23 @@
           }
 
 
-        //add our first list of issues for our current user
-        apilaData.listIssueByUsername(username, status)
-            .success(function(issues) {
-              //add card to first list
-              var currUserIssues = _.filter(issues, {"responsibleParty" : username})
+        function listByUsername(id)
+        {
+          //add our first list of issues for our current user
+          apilaData.listIssueByUsername(username, status, id)
+              .success(function(issues) {
+                //add card to first list
+                var currUserIssues = _.filter(issues, {"responsibleParty" : username})
 
-              vm.board.labels =  _.flatten(_.map(issues, "labels"));
+                vm.board.labels =  _.flatten(_.map(issues, "labels"));
 
-              addCardsToList(currUserIssues, vm.board.lists[0]);
-            })
-            .error(function(issues) {
-                console.log("Error while loading list of issues for: " + username);
-            });
+                addCardsToList(currUserIssues, vm.board.lists[0]);
+              })
+              .error(function(issues) {
+                  console.log("Error while loading list of issues for: " + username);
+              });
+        }
+
 
 
           function populateIssues() {
@@ -208,8 +225,9 @@
             }
 
 
+            function issueList(id){
               //add all the other issues assigned to users
-              apilaData.issuesList(status)
+              apilaData.issuesList(status, id)
                     .success(function(issues) {
 
                     //  console.log(issues);
@@ -247,6 +265,8 @@
                     .error(function(issues) {
                         console.log("Error while loading list of issues for: " + username);
                     });
+
+            }
 
 
         init();

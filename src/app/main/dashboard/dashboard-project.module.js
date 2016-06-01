@@ -508,12 +508,6 @@
                 },
             ],
             "rows": [
-                [
-                    "james.jpg",
-                    "Jack Gilbert",
-                    "Design Manager",
-                    "Johor Bahru",
-                ]
             ]
         }
     },

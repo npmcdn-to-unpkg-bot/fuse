@@ -21,24 +21,35 @@
 
         var username = authentication.currentUser().name;
 
-        apilaData.openIssuesCount(username)
-          .success(function(count) {
-            msNavigationService.saveItem('fuse.issues', {
-              badge: {
-                content:  count,
-                color  : '#F44336'
-              }
+        function openIssuesCount(id)
+        {
+          apilaData.openIssuesCount(username, id)
+            .success(function(count) {
+              msNavigationService.saveItem('fuse.issues', {
+                badge: {
+                  content:  count,
+                  color  : '#F44336'
+                }
+              });
+            })
+            .error(function(count) {
             });
-          })
-          .error(function(count) {
-          })
+        }
 
-      var loadAppoitnments = function() {
+
+          apilaData.userCommunity(username)
+            .success(function(d) {
+              vm.community = d;
+              loadAppoitnments(vm.community._id);
+              openIssuesCount(vm.community._id);
+            });
+
+      var loadAppoitnments = function(id) {
 
         var appointList = [];
 
         //load all the events and show them on the callendar
-        apilaData.appointmentsList()
+        apilaData.appointmentsList(id)
                .success(function(data) {
                  appointments = data;
                  var i = 1;
@@ -98,7 +109,6 @@
 
              };
 
-               loadAppoitnments();
 
         vm.events = [[]];
 

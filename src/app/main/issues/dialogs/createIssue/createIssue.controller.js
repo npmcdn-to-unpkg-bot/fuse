@@ -11,6 +11,8 @@
 
       var vm = this;
 
+        var username = authentication.currentUser().name;
+
       //Functions
       vm.closeDialog = closeDialog;
       vm.addIssue = addIssue;
@@ -20,6 +22,11 @@
                            display: name
                              };
       }
+
+      apilaData.userCommunity(username)
+      .success(function(d) {
+        vm.myCommunity = d;
+      });
 
       function closeDialog()
       {
@@ -56,6 +63,7 @@
       function addIssue() {
 
         vm.form.responsibleParty = vm.selectedItem.value;
+        vm.form.community = vm.myCommunity;
 
         apilaData.addIssue(vm.form)
             .success(function(issue) {

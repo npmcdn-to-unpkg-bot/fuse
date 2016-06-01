@@ -28,16 +28,18 @@
 
         /***************** ISSUES RESOURCES ***************/
 
-        var issuesList = function(status) {
-            return $http.get(apiUrl + '/api/issues/list/' + status, authHeader);
+        var issuesList = function(status, communityid) {
+            return $http.get(apiUrl + '/api/issues/list/' + status + "/id/" + communityid
+            , authHeader);
         };
 
         var issueById = function(issueid) {
             return $http.get(apiUrl + '/api/issues/' + issueid, authHeader);
         };
 
-        var listIssueByUsername = function(username, status) {
-          return $http.get(apiUrl + '/api/issues/' + username + "/s/" + status, authHeader);
+        var listIssueByUsername = function(username, status, communityid) {
+          return $http.get(apiUrl + '/api/issues/' + username + "/s/" + status +
+           "/id/" + communityid, authHeader);
         }
 
         var addIssue = function(data) {
@@ -86,23 +88,24 @@
           return $http.put(apiUrl + '/api/issues/' + issueid, data, authHeader);
         }
 
-        var openIssuesCount = function(username) {
-          return $http.get(apiUrl + '/api/issues/count/' + username, authHeader);
+        var openIssuesCount = function(username, communityId) {
+          return $http.get(apiUrl + '/api/issues/count/' + username + '/id/'
+           + communityId, authHeader);
         }
 
         var deleteIssue = function(issueid) {
           return $http.delete(apiUrl + '/api/issues/' + issueid, authHeader);
         }
 
-        var issuesCount = function() {
-          return $http.get(apiUrl + '/api/issues/issuescount/count', authHeader);
+        var issuesCount = function(communityId) {
+          return $http.get(apiUrl + '/api/issues/issuescount/' + communityId, authHeader);
         }
 
 
         /***************** APPOINTMENTS RESOURCES ***************/
 
-        var appointmentsList = function() {
-            return $http.get(apiUrl + '/api/appointments', authHeader);
+        var appointmentsList = function(communityid) {
+            return $http.get(apiUrl + '/api/appointments/' + communityid, authHeader);
         };
 
         var appointmentsListByMonth = function(month) {
@@ -128,16 +131,16 @@
             return $http.post(apiUrl + '/api/appointments/' + appointmentid + '/comments/', data, authHeader);
         };
 
-        var appointmentsToday = function() {
-          return $http.get(apiUrl + '/api/appointments/today/today', authHeader);
+        var appointmentsToday = function(communityId) {
+          return $http.get(apiUrl + '/api/appointments/today/' + communityId, authHeader);
         }
 
         /*********************************************************/
 
         /***************** RESIDENTS RESOURCES ******************/
 
-        var residentsList = function() {
-            return $http.get(apiUrl + '/api/residents', authHeader);
+        var residentsList = function(communityId) {
+            return $http.get(apiUrl + '/api/residents/list/' + communityId, authHeader);
         };
 
         var addResident = function(data) {
@@ -154,8 +157,8 @@
 
         };
 
-        var residentCount = function() {
-            return $http.get(apiUrl + '/api/residents/count/count', authHeader);
+        var residentCount = function(communityid) {
+            return $http.get(apiUrl + '/api/residents/count/' + communityid, authHeader);
         };
 
         /**************************************************************/

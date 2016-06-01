@@ -41,6 +41,8 @@
           console.log(d);
           vm.myCommunity = d;
 
+          loadStats(vm.myCommunity._id);
+
           communityMemberTable = _.map(vm.myCommunity.communityMembers, function(v) {
             return ["james.jpg", v.name, v.email];
           });
@@ -61,29 +63,31 @@
         });
 
         // Setting stats data
-
-        apilaData.appointmentsToday()
-        .success(function(d) {
-          vm.appointmentsToday = d;
-        })
-        .error(function(d) {
-          console.log("Error loading appointments today count");
-        });
-
-        apilaData.residentCount()
-        .success(function(d) {
-          vm.residentCount = d;
-        })
-        .error(function(d) {
-          console.log("Error loading resident count");
-        });
-
-        apilaData.issuesCount()
-          .success(function(count) {
-            vm.issuesCount = count;
+        function loadStats(id) {
+          apilaData.appointmentsToday(id)
+          .success(function(d) {
+            vm.appointmentsToday = d;
           })
-          .error(function(count) {
+          .error(function(d) {
+            console.log("Error loading appointments today count");
+          });
+
+          apilaData.residentCount(id)
+          .success(function(d) {
+            vm.residentCount = d;
           })
+          .error(function(d) {
+            console.log("Error loading resident count");
+          });
+
+          apilaData.issuesCount(id)
+            .success(function(count) {
+              vm.issuesCount = count;
+            })
+            .error(function(count) {
+            });
+
+        }
 
 
         // Widget 2
@@ -603,7 +607,7 @@
                       },
                       {
                           width  : '20%',
-                          targets: [1, 2, 3, 4, 5]
+                          targets: [1, 2, 3]
                       }
                   ]
               }

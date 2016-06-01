@@ -20,6 +20,11 @@
 
     init();
 
+    apilaData.userCommunity(authentication.currentUser().name)
+      .success(function(d) {
+        vm.community = d;
+      });
+
     //////////
 
     vm.dayTimeSwitch = "AM";
@@ -208,6 +213,7 @@
         console.log("Time added " + vm.calendarEvent.time);
 
        vm.calendarEvent.date = vm.calendarEvent.time;
+       vm.calendarEvent.community = vm.community;
 
         apilaData.addAppointment(vm.calendarEvent)
           .success(function(appoint) {

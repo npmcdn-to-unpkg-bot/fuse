@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-                  $mdSidenav, Inbox, apilaData)
+                  $mdSidenav, Inbox, apilaData, authentication)
     {
         var vm = this;
 
@@ -42,14 +42,24 @@
                            "Sleep",
                            "Vitals"];
 
-        //loading the list of residents
-        apilaData.residentsList()
-        .success(function(d) {
-            vm.residentList = d;
-            })
-            .error(function(d) {
-              console.log("Error retriving the list of residents");
-          });
+      apilaData.userCommunity(authentication.currentUser().name)
+      .success(function(d) {
+          vm.community = d;
+          residentList(vm.community._id);
+        });
+
+
+        function residentList(id){
+          //loading the list of residents
+          apilaData.residentsList(id)
+          .success(function(d) {
+              vm.residentList = d;
+              })
+              .error(function(d) {
+                console.log("Error retriving the list of residents");
+            });
+        }
+
 
         // Methods
         vm.checkAll = checkAll;
