@@ -30,6 +30,14 @@
 
         });
 
+        function inCommunity(name){
+          var result = _.find(vm.myCommunity.communityMembers, function(v){
+            return v.name === name;
+          });
+
+          return result;
+        }
+
         function issuesCount(id) {
           apilaData.openIssuesCount(username, id)
             .success(function(count) {
@@ -197,23 +205,25 @@
                 //foreach user make them a list
                 angular.forEach(d, function(v, k) {
 
-                    var inList = false;
-                    angular.forEach(vm.board.lists, function(value, key) {
-                      if(value.name === v.name) {
-                        inList = true;
-                      }
-                    });
-                    if(inList === false) {
-                      var currList = {
-                        id: msUtils.guidGenerator(),
-                        name: v.name,
-                        idCards: []
-                      };
+                    if(inCommunity(v.name) !== undefined){
+                        var inList = false;
+                        angular.forEach(vm.board.lists, function(value, key) {
+                          if(value.name === v.name) {
+                            inList = true;
+                          }
+                        });
+                        if(inList === false) {
+                          var currList = {
+                            id: msUtils.guidGenerator(),
+                            name: v.name,
+                            idCards: []
+                          };
 
-                      if(currList.name !== username) {
-                          vm.board.lists.push(currList);
+                          if(currList.name !== username) {
+                              vm.board.lists.push(currList);
+                            }
                         }
-                    }
+                  }
 
 
                 });

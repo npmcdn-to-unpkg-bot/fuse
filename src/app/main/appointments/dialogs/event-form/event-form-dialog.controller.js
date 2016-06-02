@@ -23,6 +23,7 @@
     apilaData.userCommunity(authentication.currentUser().name)
       .success(function(d) {
         vm.community = d;
+        residentsList(vm.community._id);
       });
 
     //////////
@@ -53,16 +54,19 @@
     vm.residentList = [];
     vm.selectedUser = {};
 
-    apilaData.residentsList()
-      .success(function(residentList) {
-        //console.log(residentList);
-        vm.residentList = residentList.map(function(elem) {
-          return {value: elem._id, display: elem.firstName + " " + elem.lastName};
+    function residentsList(id){
+      apilaData.residentsList(id)
+        .success(function(residentList) {
+          //console.log(residentList);
+          vm.residentList = residentList.map(function(elem) {
+            return {value: elem._id, display: elem.firstName + " " + elem.lastName};
+          });
+        })
+        .error(function(residentList) {
+          console.log("Error retriving the list of residents");
         });
-      })
-      .error(function(residentList) {
-        console.log("Error retriving the list of residents");
-      });
+
+    }
 
 
       //if we are in the update model set fields value
