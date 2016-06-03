@@ -58,9 +58,9 @@
                      var dateObj = new Date(value.time);
 
                      var timeSwitch = false;
-                     var hours = dateObj.getHours();
+                     var hours = dateObj.getUTCHours();
 
-                     if(dateObj.getHours() > 12) {
+                     if(dateObj.getUTCHours() > 12) {
                        timeSwitch = true;
                        hours -= 12;
                      }
@@ -345,13 +345,13 @@
 
                     for ( var i = 0; i < vm.events[0].length; i++ )
                     {
+
                         // Update
-                        if ( vm.events[0][i]._id === response.calendarEvent.calId )
+                        if ( vm.events[0][i]._id == response.calendarEvent.calId )
                         {
-                          console.log("Updejtovo");
 
                             var currEvent = {
-                              title: response.title,
+                              title: formatTitle,
                               start: response.calendarEvent.time,
                               end  : null,
                               transportation: response.calendarEvent.transportation,

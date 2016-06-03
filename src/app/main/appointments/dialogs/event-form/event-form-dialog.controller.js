@@ -106,7 +106,14 @@
 
         vm.calendarEvent.reason = vm.calendarEvent.reason;
         vm.isCancel = vm.calendarEvent.cancel;
-        vm.date = new Date(vm.calendarEvent.date);
+
+        console.log(vm.calendarEvent.date);
+
+        vm.date = utcToLocalDate(new Date(vm.calendarEvent.date));
+
+        console.log(vm.calendarEvent.hours);
+        console.log(utcToLocalDate(new Date(vm.calendarEvent.date)));
+
         //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));
         vm.transportation = vm.calendarEvent.transportation;
 
