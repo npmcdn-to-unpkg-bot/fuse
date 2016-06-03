@@ -35,7 +35,7 @@
 
     vm.exportAppointment = function() {
 
-        console.log("export");
+        console.log(vm.calendarEvent);
 
          var name = vm.calendarEvent.residentGoing.firstName + " to " + vm.calendarEvent.locationName;
          //vm.calendarEvent.appointment = vm.calendarEvent;

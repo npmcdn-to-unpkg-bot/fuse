@@ -172,8 +172,11 @@
                 name = d.residentGoing.firstName + " " + d.residentGoing.lastName;
               }
 
+              console.log(d.date);
+              console.log(moment.utc(d.date).format("MM/DD hh:mm A"));
+
               arr.push(name);
-              arr.push(moment(d.date).locale('en').format("MM/DD hh:mm A"));
+              arr.push(moment.utc(d.date).format("MM/DD hh:mm A"));
               arr.push(d.reason);
               arr.push(d.locationName);
               arr.push(d.locationDoctor);

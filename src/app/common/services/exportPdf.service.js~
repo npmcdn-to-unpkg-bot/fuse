@@ -37,7 +37,7 @@
 
             var appointmentDate = new Date(data.date);
 
-	    appointmentDate.setHours(appointmentDate.getUTCHours());
+	    appointmentDate.setHours(appointmentDate.getUTCHours()));
 
 	    var commentLength = 90;
 
