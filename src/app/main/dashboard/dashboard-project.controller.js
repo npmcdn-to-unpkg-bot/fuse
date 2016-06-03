@@ -594,23 +594,23 @@
               title    : vm.dashboardData.widget11.title,
               table    : vm.dashboardData.widget11.table,
               dtOptions: {
-                  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-                  pagingType: 'simple',
-                  autoWidth : false,
-                  responsive: true,
-                  order     : [1, 'asc'],
-                  columnDefs: [
-                      {
-                          width    : '40',
-                          orderable: false,
-                          targets  : [0]
-                      },
-                      {
-                          width  : '20%',
-                          targets: [1, 2, 3]
-                      }
-                  ]
-              }
+               dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+               pagingType: 'simple',
+               autoWidth : false,
+               responsive: true,
+               order     : [1, 'asc'],
+               columnDefs: [
+                   {
+                       width    : '40',
+                       orderable: false,
+                       targets  : [0]
+                   },
+                   {
+                       width  : '33%',
+                       targets: [1, 2, 3]
+                   }
+               ]
+           }
           };
 
 
@@ -618,23 +618,23 @@
               title    : vm.dashboardData.pendingMemberWidget.title,
               table    : vm.dashboardData.pendingMemberWidget.table,
               dtOptions: {
-                  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-                  pagingType: 'simple',
-                  autoWidth : false,
-                  responsive: true,
-                  order     : [1, 'asc'],
-                  columnDefs: [
-                      {
-                          width    : '40',
-                          orderable: false,
-                          targets  : [0]
-                      },
-                      {
-                          width  : '20%',
-                          targets: [1, 2, 3, 4, 5]
-                      }
-                  ]
-              }
+              //  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+              //  pagingType: 'simple',
+              //  autoWidth : false,
+              //  responsive: true,
+              //  order     : [1, 'asc'],
+              //  columnDefs: [
+              //      {
+              //          width    : '40',
+              //          orderable: false,
+              //          targets  : [0]
+              //      },
+              //      {
+              //          width  : '20%',
+              //          targets: [1, 2, 3, 4, 5]
+              //      }
+              //  ]
+           }
           };
         }
 

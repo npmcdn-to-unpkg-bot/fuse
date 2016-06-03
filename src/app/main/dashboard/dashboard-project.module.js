@@ -498,7 +498,7 @@
         "table": {
             "columns": [
                 {
-                    "title": ""
+                    "title": "  "
                 },
                 {
                     "title": "Name"
