@@ -39,7 +39,7 @@
 
          vm.getMatches = function (text) {
            if(text === null) {
-             return;
+             return vm.residentList;
            }
            var textLower = text.toLowerCase();
 
