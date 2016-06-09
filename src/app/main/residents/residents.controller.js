@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-                  $mdSidenav, Inbox, apilaData, authentication)
+                  $mdSidenav, apilaData, authentication)
     {
         var vm = this;
 
@@ -25,8 +25,6 @@
 
         vm.scrollPos = 0;
         vm.scrollEl = angular.element('#content');
-
-        vm.inbox = Inbox.data;
 
         vm.selectedMailShowDetails = false;
 
@@ -77,11 +75,6 @@
         vm.switchCategory = function(category) {
           vm.selectedCategory = category;
         }
-
-      //  residentsService.getResidentsList().then(function(d) {
-      //    vm.residentList = d.data;
-      //  });
-
 
         //////////
 

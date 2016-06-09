@@ -27,7 +27,7 @@
         $translatePartialLoaderProvider.addPart('app/main/appointments');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('fuse.appointments', {
+        msNavigationServiceProvider.saveItem('fuse.residents.appointments', {
             title : 'Appointments',
             icon  : 'icon-calendar-today',
             state : 'app.appointments',
