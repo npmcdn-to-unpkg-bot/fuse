@@ -17,6 +17,11 @@
                   {{ temperature }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+             <div class="card md-whiteframe-4dp">
+                 <nvd3 options="vm.lineChart.options" data="vm.lineChart.data"></nvd3>
+             </div>
+
               <h4>Blood Pressure Systolic :
                 <span ng-repeat="bloodPressureSystolic in vm.selectedResident.bloodPressureSystolic">
                   {{ bloodPressureSystolic }} <span ng-if="!$last">,</span>

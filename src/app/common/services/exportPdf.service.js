@@ -7,6 +7,7 @@
 
   function exportPdf($filter, imageData) {
 
+    //deprecated
     var exportAppointments = function(name, printable, header) {
       var doc = new jsPDF('p', 'pt', 'letter');
 
@@ -105,8 +106,22 @@
     }
 
     function exportCarePlan(data) {
-      //get the first and the last name of selected residents
-      // community id and his vitals
+
+      var doc = new jsPDF('p', 'pt', 'letter');
+      var fileName = data.firstName + ' ' + data.lastName + '.pdf';
+
+      var logoPosX = 25, logoPosY = 25;
+      var logoWidth = 205, logoHeight = 100;
+
+      doc.addImage(imageData.getApilaLogo(), 'JPEG', logoPosX, logoPosY,
+                  logoPosX + logoWidth, logoPosY + logoHeight);
+
+      doc.text(50, 186, data.communityName);
+      doc.text(50, 226, "Resident : " + data.firstName + " " + data.lastName);
+
+      doc.text(50, 266, "Vitals");
+
+      doc.save(fileName);
     }
 
     return {

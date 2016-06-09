@@ -13,6 +13,29 @@
         var vm = this;
 
         // Data
+
+        vm.lineChart = {
+            options: {
+                chart   : {
+                    type                   : 'lineChart',
+                    useInteractiveGuideline: true,
+                    xAxis                  : {
+                        axisLabel: 'Days ()'
+                    },
+                    yAxis                  : {
+                        axisLabel        : 'Temperature (f)',
+                    }
+                },
+                title   : {
+                    enable: true,
+                    text  : 'Temperature'
+                },
+
+            },
+            data : toGraphData([14, 22, 23, 28], [60, 63, 67, 23])
+        };
+
+
         vm.checked = [];
         vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
         vm.selectedAccount = 'creapond';
@@ -128,7 +151,29 @@
 
         function exportCarePlan()
         {
-          exportPdf.exportCarePlan(data);
+          var carePlanData = {};
+          carePlanData.firstName = vm.selectedResident.firstName;
+          carePlanData.lastName = vm.selectedResident.lastName;
+          carePlanData.temperature = vm.selectedResident.temperature;
+          carePlanData.communityName = vm.community.name;
+
+          exportPdf.exportCarePlan(carePlanData);
+        }
+
+        function toGraphData(time, data)
+        {
+          var values = [];
+          var graphData = [{"color":"#a215af"}];
+
+          for(var i = 0; i < time.length; ++i) {
+            values.push({"x" : time[i], "y" : data[i]});
+          }
+
+          graphData[0].values = values;
+
+          console.log(graphData);
+
+          return graphData;
         }
 
         /**
