@@ -13,28 +13,6 @@
         var vm = this;
 
         // Data
-
-        vm.lineChart = {
-          options: {
-              title:{
-                text: "Simple Date-Time Chart"
-            },
-            axisX:{
-                title: "timeline",
-                gridThickness: 2
-            },
-            axisY: {
-                title: "Downloads"
-            }},
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          series: ['Temperature', 'Date'],
-          data  : [
-              [65, 59],
-              [new Date(2012, 1, 1), new Date(2012, 1, 3)]
-          ]
-      };
-
-
         vm.checked = [];
         vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
         vm.selectedAccount = 'creapond';
@@ -127,9 +105,9 @@
          */
         function selectResident(resident)
         {
-            console.log(resident);
-
             vm.selectedResident = resident;
+
+            drawGraphs(resident);
 
             $timeout(function ()
             {
@@ -148,9 +126,42 @@
             });
         }
 
+        function createGraphData(vitalType, name)
+        {
+          var dataValues = _.map(vitalType, "data")
+          var timeFrame = _.map(vitalType, function(d) {
+            return moment(d.date).format("MMM Do YY");
+          });
+
+           var chartData =  {
+            labels: timeFrame,
+            series: [name],
+            data  : [dataValues]
+          };
+
+          return chartData;
+
+        }
+
+
+        function drawGraphs(resident)
+        {
+
+          vm.vitalsCharts = [];
+
+          vm.vitalsCharts.push(createGraphData(resident.temperature, 'Temperature'));
+          vm.vitalsCharts.push(createGraphData(resident.bloodPressureSystolic, 'Blood Pressure Systolic'));
+          vm.vitalsCharts.push(createGraphData(resident.bloodPressureDiastolic, 'Blood Pressure Diastolic'));
+          vm.vitalsCharts.push(createGraphData(resident.oxygenSaturation, 'Oxygen Saturation'));
+          vm.vitalsCharts.push(createGraphData(resident.pulse, 'Pulse'));
+          vm.vitalsCharts.push(createGraphData(resident.vitalsPain, 'Vitals Pain'));
+          vm.vitalsCharts.push(createGraphData(resident.respiration, 'Respiration'));
+
+        }
+
         function exportCarePlan()
         {
-          var canvas = angular.element("#linecanvas")[0];
+          var canvas = angular.element("#temperaturecanvas")[0];
 
           var carePlanData = {};
           carePlanData.firstName = vm.selectedResident.firstName;
@@ -159,22 +170,6 @@
           carePlanData.communityName = vm.community.name;
 
           exportPdf.exportCarePlan(carePlanData);
-        }
-
-        function toGraphData(time, data)
-        {
-          var values = [];
-          var graphData = [{"color":"#a215af"}];
-
-          for(var i = 0; i < time.length; ++i) {
-            values.push({"x" : time[i], "y" : data[i]});
-          }
-
-          graphData[0].values = values;
-
-          console.log(graphData);
-
-          return graphData;
         }
 
         /**

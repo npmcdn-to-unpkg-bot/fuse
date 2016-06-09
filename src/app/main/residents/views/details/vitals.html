@@ -18,9 +18,10 @@
                 </span>
               </h4>
 
+            <!--  Temperature canvas -->
             <div class="card md-whiteframe-4dp">
-             <canvas id="linecanvas" class="chart chart-line" chart-data="vm.lineChart.data"
-                     chart-labels="vm.lineChart.labels" chart-legend="true" chart-series="vm.lineChart.series">
+             <canvas id="temperaturecanvas" class="chart chart-line" chart-data="vm.vitalsCharts[0].data"
+                     chart-labels="vm.vitalsCharts[0].labels" chart-legend="true" chart-series="vm.vitalsCharts[0].series">
              </canvas>
            </div>
 
@@ -29,31 +30,78 @@
                   {{ bloodPressureSystolic.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+              <!--  Blood Pressure Systolic canvas -->
+              <div class="card md-whiteframe-4dp">
+               <canvas id="bloodPressureSystolicCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[1].data"
+                       chart-labels="vm.vitalsCharts[1].labels" chart-legend="true" chart-series="vm.vitalsCharts[1].series">
+               </canvas>
+             </div>
+
               <h4>Blood Pressure Diastolic :
                 <span ng-repeat="bloodPressureDiastolic in vm.selectedResident.bloodPressureDiastolic">
                   {{ bloodPressureDiastolic.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+              <!--  Blood Pressure Diastolic canvas -->
+              <div class="card md-whiteframe-4dp">
+               <canvas id="bloodPressureDiastolicCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[2].data"
+                       chart-labels="vm.vitalsCharts[2].labels" chart-legend="true" chart-series="vm.vitalsCharts[2].series">
+               </canvas>
+             </div>
+
               <h4>Oxygen Saturation :
                 <span ng-repeat="oxygenSaturation in vm.selectedResident.oxygenSaturation">
                   {{ oxygenSaturation.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+              <!--  Oxygen Saturation canvas -->
+              <div class="card md-whiteframe-4dp">
+               <canvas id="oxygenSaturationCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[3].data"
+                       chart-labels="vm.vitalsCharts[3].labels" chart-legend="true" chart-series="vm.vitalsCharts[3].series">
+               </canvas>
+             </div>
+
               <h4>Pulse :
                 <span ng-repeat="pulse in vm.selectedResident.pulse">
                   {{ pulse.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+              <!--  Pulse canvas -->
+              <div class="card md-whiteframe-4dp">
+               <canvas id="plusCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[4].data"
+                       chart-labels="vm.vitalsCharts[4].labels" chart-legend="true" chart-series="vm.vitalsCharts[4].series">
+               </canvas>
+             </div>
+
               <h4>Vitals Pain :
                 <span ng-repeat="vitalsPain in vm.selectedResident.vitalsPain">
                   {{ vitalsPain.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+              <!--  Vitals Pain canvas -->
+              <div class="card md-whiteframe-4dp">
+               <canvas id="vitalsPainCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[5].data"
+                       chart-labels="vm.vitalsCharts[5].labels" chart-legend="true" chart-series="vm.vitalsCharts[5].series">
+               </canvas>
+             </div>
+
               <h4>Respiration :
                 <span ng-repeat="resp in vm.selectedResident.respiration">
                   {{ resp.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
+
+              <!--  Respiration canvas -->
+              <div class="card md-whiteframe-4dp">
+               <canvas id="respirationCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[6].data"
+                       chart-labels="vm.vitalsCharts[6].labels" chart-legend="true" chart-series="vm.vitalsCharts[6].series">
+               </canvas>
+             </div>
         </div>
 
     </div>
