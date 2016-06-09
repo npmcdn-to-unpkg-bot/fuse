@@ -8,11 +8,9 @@
 
     /** @ngInject */
     function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-                  $mdSidenav, apilaData, authentication)
+                  $mdSidenav, apilaData, authentication, exportPdf)
     {
         var vm = this;
-
-
 
         // Data
         vm.checked = [];
@@ -52,6 +50,7 @@
         vm.toggleStarred = toggleStarred;
         vm.toggleCheck = toggleCheck;
         vm.updateResident = updateResident;
+        vm.exportCarePlan = exportCarePlan;
 
         vm.selectedCategory = "Administrative";
 
@@ -125,6 +124,11 @@
                 // Scroll to the top
                 vm.scrollEl.scrollTop(0);
             });
+        }
+
+        function exportCarePlan()
+        {
+          exportPdf.exportCarePlan(data);
         }
 
         /**
