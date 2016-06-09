@@ -17,30 +17,32 @@
             </md-checkbox>
           </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Pain Location</label>
-              <input ng-model="vm.form.painLocation" type="text">
-          </md-input-container>
+          <span ng-if="vm.form.hasPain">
+            <md-input-container class="md-block">
+                <label>Pain Location</label>
+                <input ng-model="vm.form.painLocation" type="text">
+            </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Pain Description</label>
-              <input ng-model="vm.form.painDescription" type="text">
-          </md-input-container>
+            <md-input-container class="md-block">
+                <label>Pain Description</label>
+                <input ng-model="vm.form.painDescription" type="text">
+            </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Time of Max Pain</label>
-              <input ng-model="vm.form.maxPainTime" type="text">
-          </md-input-container>
+            <md-input-container class="md-block">
+                <label>Time of Max Pain</label>
+                <input ng-model="vm.form.maxPainTime" type="text">
+            </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Pain Increased By</label>
-              <input ng-model="vm.form.painIncreasedBy" type="text">
-          </md-input-container>
+            <md-input-container class="md-block">
+                <label>Pain Increased By</label>
+                <input ng-model="vm.form.painIncreasedBy" type="text">
+            </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Pain Decreased By</label>
-              <input ng-model="vm.form.painDecreasedBy" type="text">
-          </md-input-container>
+            <md-input-container class="md-block">
+                <label>Pain Decreased By</label>
+                <input ng-model="vm.form.painDecreasedBy" type="text">
+            </md-input-container>
+        </span>
 
         </md-dialog-content>
 

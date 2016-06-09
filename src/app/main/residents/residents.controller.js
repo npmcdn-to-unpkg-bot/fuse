@@ -12,6 +12,8 @@
     {
         var vm = this;
 
+
+
         // Data
         vm.checked = [];
         vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
@@ -40,6 +42,24 @@
                            "Sleep",
                            "Vitals"];
 
+        // Methods
+        vm.checkAll = checkAll;
+        vm.closeReadPane = closeReadPane;
+        vm.composeDialog = composeDialog;
+        vm.isChecked = isChecked;
+        vm.replyDialog = replyDialog;
+        vm.selectResident = selectResident;
+        vm.toggleStarred = toggleStarred;
+        vm.toggleCheck = toggleCheck;
+        vm.updateResident = updateResident;
+
+        vm.selectedCategory = "Administrative";
+
+        vm.switchCategory = function(category) {
+          vm.selectedCategory = category;
+        }
+
+
       apilaData.userCommunity(authentication.currentUser().name)
       .success(function(d) {
           vm.community = d;
@@ -58,23 +78,6 @@
             });
         }
 
-
-        // Methods
-        vm.checkAll = checkAll;
-        vm.closeReadPane = closeReadPane;
-        vm.composeDialog = composeDialog;
-        vm.isChecked = isChecked;
-        vm.replyDialog = replyDialog;
-        vm.selectResident = selectResident;
-        vm.toggleStarred = toggleStarred;
-        vm.toggleCheck = toggleCheck;
-        vm.updateResident = updateResident;
-
-        vm.selectedCategory = "Administrative";
-
-        vm.switchCategory = function(category) {
-          vm.selectedCategory = category;
-        }
 
         //////////
 
@@ -255,7 +258,7 @@
 
         function updateResident(ev)
         {
-
+          //switch form based on category selected
           var cat = vm.selectedCategory;
 
           if(vm.selectedCategory === "Physical condition") {

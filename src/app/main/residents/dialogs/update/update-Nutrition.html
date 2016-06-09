@@ -27,7 +27,7 @@
             </md-checkbox>
           </md-input-container>
 
-          <md-input-container class="md-block">
+          <md-input-container class="md-block" ng-if="vm.form.diabetic">
               <label>Diabetic Type</label>
               <input ng-model="vm.form.diabeticType" type="text">
           </md-input-container>
