@@ -121,6 +121,9 @@
 
       doc.text(50, 266, "Vitals");
 
+      doc.addImage(data.temperature, 'PNG', 50 , 300,
+                  50 + 200, 300 + 40);
+
       doc.save(fileName);
     }
 

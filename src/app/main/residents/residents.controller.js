@@ -15,25 +15,24 @@
         // Data
 
         vm.lineChart = {
-            options: {
-                chart   : {
-                    type                   : 'lineChart',
-                    useInteractiveGuideline: true,
-                    xAxis                  : {
-                        axisLabel: 'Days ()'
-                    },
-                    yAxis                  : {
-                        axisLabel        : 'Temperature (f)',
-                    }
-                },
-                title   : {
-                    enable: true,
-                    text  : 'Temperature'
-                },
-
+          options: {
+              title:{
+                text: "Simple Date-Time Chart"
             },
-            data : toGraphData([14, 22, 23, 28], [60, 63, 67, 23])
-        };
+            axisX:{
+                title: "timeline",
+                gridThickness: 2
+            },
+            axisY: {
+                title: "Downloads"
+            }},
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          series: ['Temperature', 'Date'],
+          data  : [
+              [65, 59],
+              [new Date(2012, 1, 1), new Date(2012, 1, 3)]
+          ]
+      };
 
 
         vm.checked = [];
@@ -151,10 +150,12 @@
 
         function exportCarePlan()
         {
+          var canvas = angular.element("#linecanvas")[0];
+
           var carePlanData = {};
           carePlanData.firstName = vm.selectedResident.firstName;
           carePlanData.lastName = vm.selectedResident.lastName;
-          carePlanData.temperature = vm.selectedResident.temperature;
+          carePlanData.temperature = canvas.toDataURL();
           carePlanData.communityName = vm.community.name;
 
           exportPdf.exportCarePlan(carePlanData);

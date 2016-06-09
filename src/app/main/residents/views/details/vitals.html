@@ -14,42 +14,44 @@
               <!-- Add details content here -->
               <h4>Temperature :
                 <span ng-repeat="temperature in vm.selectedResident.temperature">
-                  {{ temperature }} <span ng-if="!$last">,</span>
+                  {{ temperature.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
 
-             <div class="card md-whiteframe-4dp">
-                 <nvd3 options="vm.lineChart.options" data="vm.lineChart.data"></nvd3>
-             </div>
+            <div class="card md-whiteframe-4dp">
+             <canvas id="linecanvas" class="chart chart-line" chart-data="vm.lineChart.data"
+                     chart-labels="vm.lineChart.labels" chart-legend="true" chart-series="vm.lineChart.series">
+             </canvas>
+           </div>
 
               <h4>Blood Pressure Systolic :
                 <span ng-repeat="bloodPressureSystolic in vm.selectedResident.bloodPressureSystolic">
-                  {{ bloodPressureSystolic }} <span ng-if="!$last">,</span>
+                  {{ bloodPressureSystolic.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
               <h4>Blood Pressure Diastolic :
                 <span ng-repeat="bloodPressureDiastolic in vm.selectedResident.bloodPressureDiastolic">
-                  {{ bloodPressureDiastolic }} <span ng-if="!$last">,</span>
+                  {{ bloodPressureDiastolic.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
               <h4>Oxygen Saturation :
                 <span ng-repeat="oxygenSaturation in vm.selectedResident.oxygenSaturation">
-                  {{ oxygenSaturation }} <span ng-if="!$last">,</span>
+                  {{ oxygenSaturation.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
               <h4>Pulse :
                 <span ng-repeat="pulse in vm.selectedResident.pulse">
-                  {{ pulse }} <span ng-if="!$last">,</span>
+                  {{ pulse.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
               <h4>Vitals Pain :
                 <span ng-repeat="vitalsPain in vm.selectedResident.vitalsPain">
-                  {{ vitalsPain }} <span ng-if="!$last">,</span>
+                  {{ vitalsPain.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
               <h4>Respiration :
                 <span ng-repeat="resp in vm.selectedResident.respiration">
-                  {{ resp }} <span ng-if="!$last">,</span>
+                  {{ resp.data }} <span ng-if="!$last">,</span>
                 </span>
               </h4>
         </div>
