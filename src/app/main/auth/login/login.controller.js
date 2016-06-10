@@ -26,11 +26,19 @@
             authentication
                 .login(vm.form)
                 .error(function(err) {
-                    vm.formError = err;
+                  console.log(err);
+                    vm.usernameError = "";
+                    vm.passwordError = "";
+                    if(err.message === "Incorrect username.") {
+                      vm.usernamError = "Incorrect username.";
+                      vm.passwordError = "";
+                    } else {
+                      vm.passwordError = "Incorrect password.";
+                    }
                 })
                 .then(function() {
-                    console.log("success login: " + authentication.currentUser().name);
-                    console.log(authentication.getToken());
+                  vm.usernameError = "";
+                  vm.passwordError = "";
 
                     $location.path('/appointments');
                 });

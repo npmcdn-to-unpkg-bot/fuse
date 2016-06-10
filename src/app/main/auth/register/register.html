@@ -34,13 +34,16 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="password" name="password" ng-model="vm.form.password" placeholder="Password"
+                    <input type="password" name="password" ng-model="vm.form.password" placeholder="Password" minlength="6"
                            translate translate-attr-placeholder="REGISTER.PASSWORD"
                            required>
                     <div ng-messages="registerForm.password.$error" role="alert">
                         <div ng-message="required">
                             <span translate="REGISTER.ERRORS.PASSWORD_REQUIRED">Password field is required</span>
                         </div>
+                         <div ng-message="minlength">
+                          <span> The password should be at least 6 charactes long </span>
+                         </div>
                     </div>
                 </md-input-container>
 
@@ -49,6 +52,9 @@
                            placeholder="Password (Confirm)"
                            translate translate-attr-placeholder="REGISTER.PASSWORD_CONFIRM"
                            required>
+                    <div ng-messages="true">
+                               {{  vm.notSamePass }}
+                    </div>
                     <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
                         <div ng-message="required">
                             <span translate="REGISTER.ERRORS.PASSWORD_CONFIRM_REQUIRED">Password (Confirm) field is required</span>

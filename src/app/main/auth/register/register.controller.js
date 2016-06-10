@@ -32,6 +32,13 @@
         }
 
         vm.doRegister = function() {
+
+          vm.notSamePass = "asds";
+          if(vm.form.passwordConfirm !== vm.form.password) {
+            vm.notSamePass = "The passwords don't match";
+            return;
+          }
+
             authentication
                 .register(vm.credentials)
                 .error(function(err) {
