@@ -86,6 +86,11 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
         <md-input-container class="md-block">
           <label>Hours: </label>
           <input name="hours" ng-model="vm.calendarEvent.hours" required>
+          <div ng-messages="eventForm.hours.$error" ng-show="eventForm.hours.$touched" role="alert">
+            <div ng-message="required">
+              <span translate="CALENDAR.ERRORS.HOURS_REQUIRED">Doctor field is required</span>
+            </div>
+          </div>
         </md-input-container>
 
         <!-- Minutes -->
