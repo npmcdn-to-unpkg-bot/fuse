@@ -591,9 +591,9 @@
 
         msNavigationServiceProvider.saveItem('fuse.dashboard', {
             title    : 'Dashboard',
-            icon     : 'icon-trello',
+            icon     : 'icon-tile-four',
             state    : 'app.dashboard',
-            weight   : 1
+            weight   : 0
         });
 
     }

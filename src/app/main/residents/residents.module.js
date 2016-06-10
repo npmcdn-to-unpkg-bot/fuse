@@ -34,7 +34,7 @@
 
         msNavigationServiceProvider.saveItem('fuse.residents', {
             title    : 'Residents',
-            icon     : 'icon-home',
+            icon     : 'icon-account-multiple',
             state    : 'app.residents',
             weight   : 1
         });
