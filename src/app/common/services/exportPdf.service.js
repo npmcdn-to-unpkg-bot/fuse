@@ -121,8 +121,35 @@
 
       doc.text(50, 266, "Vitals");
 
-      doc.addImage(data.temperature, 'PNG', 50 , 300,
-                  50 + 180, 300 + 80);
+      doc.setFontSize(10);
+
+      doc.text(50, 305, "Temperature");
+      doc.addImage(data.temperature, 'PNG', 50 , 320,
+                    150, 150);
+
+      doc.text(210, 305, "Blood Pressure Systolic");
+      doc.addImage(data.bloodSys, 'PNG', 250 , 320,
+                    150, 150);
+
+      doc.text(410, 305, "Blood Pressure Diastolic");
+      doc.addImage(data.bloodDias, 'PNG', 410 , 320,
+                    150, 150);
+
+      doc.text(50, 490, "Oxygen Saturation");
+      doc.addImage(data.oxygen, 'PNG', 50 , 490,
+                    150, 150);
+
+      doc.text(210, 490, "Pulse");
+      doc.addImage(data.pulse, 'PNG', 250 , 490,
+                    150, 150);
+
+      doc.text(410, 490, "Vitals Pain");
+      doc.addImage(data.vitals, 'PNG', 410 , 490,
+                    150, 150);
+
+      doc.text(50, 635, "Respiration");
+      doc.addImage(data.resp, 'PNG', 50 , 635,
+                    150, 150);
 
       doc.save(fileName);
     }

@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-                  $mdSidenav, apilaData, authentication, exportPdf)
+                  $mdSidenav, $mdToast,apilaData, authentication, exportPdf)
     {
         var vm = this;
 
@@ -161,15 +161,46 @@
 
         function exportCarePlan()
         {
-          var canvas = angular.element("#temperaturecanvas")[0];
 
-          var carePlanData = {};
-          carePlanData.firstName = vm.selectedResident.firstName;
-          carePlanData.lastName = vm.selectedResident.lastName;
-          carePlanData.temperature = canvas.toDataURL();
-          carePlanData.communityName = vm.community.name;
+          if(vm.selectedResident === null) {
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent("Please selecte a resident to export a care plan")
+                .position("top right")
+                .hideDelay(2000)
+            );
+            return;
+          }
 
-          exportPdf.exportCarePlan(carePlanData);
+          vm.selectedCategory = "Vitals";
+
+          $timeout(function ()
+          {
+            var tempCanvas = angular.element("#temperaturecanvas")[0];
+            var bloodSysCanvas = angular.element("#bloodPressureSystolicCanvas")[0];
+            var bloodDiasCanvas = angular.element("#bloodPressureDiastolicCanvas")[0];
+            var oxygenCanvas = angular.element("#oxygenSaturationCanvas")[0];
+            var pulseCanvas = angular.element("#plusCanvas")[0];
+            var vitalsCanvas = angular.element("#vitalsPainCanvas")[0];
+            var respCanvas = angular.element("#respirationCanvas")[0];
+
+            var carePlanData = {};
+
+            carePlanData.temperature = tempCanvas.toDataURL();
+            carePlanData.bloodSys = bloodSysCanvas.toDataURL();
+            carePlanData.bloodDias = bloodDiasCanvas.toDataURL();
+            carePlanData.oxygen = oxygenCanvas.toDataURL();
+            carePlanData.pulse = pulseCanvas.toDataURL();
+            carePlanData.vitals = vitalsCanvas.toDataURL();
+            carePlanData.resp = respCanvas.toDataURL();
+
+            carePlanData.firstName = vm.selectedResident.firstName;
+            carePlanData.lastName = vm.selectedResident.lastName;
+
+            carePlanData.communityName = vm.community.name;
+
+            exportPdf.exportCarePlan(carePlanData);
+          }, 500);
         }
 
         /**
