@@ -23,6 +23,9 @@
                     <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
                            translate translate-attr-placeholder="REGISTER.EMAIL"
                            ng-pattern="/^.+@.+\..+$/" required>
+                   <div ng-messages>
+                    {{  vm.emailExists }}
+                    </div>
                     <div ng-messages="registerForm.email.$error" role="alert" multiple>
                         <div ng-message="required">
                             <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
@@ -52,7 +55,7 @@
                            placeholder="Password (Confirm)"
                            translate translate-attr-placeholder="REGISTER.PASSWORD_CONFIRM"
                            required>
-                    <div ng-messages="true">
+                    <div ng-messages>
                                {{  vm.notSamePass }}
                     </div>
                     <div ng-messages="registerForm.passwordConfirm.$error" role="alert">

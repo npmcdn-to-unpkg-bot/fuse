@@ -13,7 +13,7 @@
                            translate translate-attr-placeholder="LOGIN.EMAIL"
                            ng-pattern="/^.+@.+\..+$/" required>
 
-                    <div ng-messages="true">
+                    <div ng-messages>
                         {{  vm.usernamError }}
                     </div>
                     <div ng-messages="loginForm.email.$error" role="alert" multiple>
@@ -30,7 +30,7 @@
                     <input type="password" name="password" ng-model="vm.form.password" placeholder="Password"
                            translate translate-attr-placeholder="LOGIN.PASSWORD"
                            required>
-                    <div ng-messages="true">
+                    <div ng-messages>
                         {{  vm.passwordError }}
                     </div>
                     <div ng-messages="loginForm.password.$error" role="alert">
