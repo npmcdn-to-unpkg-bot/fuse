@@ -138,16 +138,22 @@
         "newmedicationAllergies",
         "newpsychosocialStatus",
         "newtemperature",
-        "newtemperature"
+        "newinternationalNormalizedRatio"
       ];
 
       for (var i = 0; i < arrayFields.length; ++i) {
 
         if (oldData[arrayFields[i]] !== newData[arrayFields[i]]) {
 
+          //handeling when the value is an object with a data field
+          var newValue = newData[arrayFields[i]];
+          if(newValue.data != undefined) {
+            newValue = newData[arrayFields[i]].data;
+          }
+
           diff.push({
             "field": arrayFields[i],
-            "value": newData[arrayFields[i]]
+            "new": newValue
           });
         }
       }
@@ -279,6 +285,7 @@
       vm.form.newbloodPressureDiastolic = "";
       vm.form.newbloodPressureSystolic = "";
       vm.form.newtemperature = "";
+      vm.form.newinternationalNormalizedRatio = "";
 
       vm.form.newpsychosocialStatus = "";
       vm.form.newmedicationAllergies = "";
@@ -295,6 +302,7 @@
       addToArray(vm.form.bloodPressureDiastolic, vm.form.newbloodPressureDiastolic);
       addToArray(vm.form.bloodPressureSystolic, vm.form.newbloodPressureSystolic);
       addToArray(vm.form.temperature, vm.form.newtemperature);
+      addToArray(vm.form.internationalNormalizedRatio, vm.form.newinternationalNormalizedRatio);
 
       addToArray(vm.form.foodAllergies, vm.form.newfoodAllergies);
       addToArray(vm.form.medicationAllergies, vm.form.newmedicationAllergies);
