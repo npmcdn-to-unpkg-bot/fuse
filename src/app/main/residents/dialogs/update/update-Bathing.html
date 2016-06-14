@@ -1,44 +1,71 @@
 <md-dialog class="compose-dialog" aria-label="Update">
-    <form class="md-inline-form">
-        <md-toolbar class="md-accent md-hue-2">
-            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Bathing</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
-                    <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update resident - Bathing</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content ms-scroll>
+    <md-dialog-content ms-scroll>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <label>Type of Bathing</label>
+          <md-select ng-model="vm.form.typeOfBathing">
+            <md-option>Shower</md-option>
+            <md-option>Bathtub</md-option>
+            <md-option>Spit Bath</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Type of Bathing</label>
-              <input ng-model="vm.form.typeOfBathing" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Time of Bathing</label>
+          <md-select ng-model="vm.form.timeOfBathing">
+            <md-option>Morning</md-option>
+            <md-option>Evening</md-option>
+            <md-option>Before Breakfast</md-option>
+            <md-option>After Breakfast</md-option>
+            <md-option>Before Supper</md-option>
+            <md-option>After Supper</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+<br>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <label>Frequency of Bathing</label>
+          <md-select ng-model="vm.form.frequencyOfBathing">
+            <md-option>Once per Week</md-option>
+            <md-option>Twice per Week</md-option>
+            <md-option>Everyday</md-option>
+            <md-option>By Outside Agency</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Time of Bathing</label>
-              <input ng-model="vm.form.timeOfBathing" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Acceptance of Bathing</label>
+          <md-select ng-model="vm.form.acceptanceOfBathing">
+            <md-option>Likes</md-option>
+            <md-option>Dislikes</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
 
-          <md-input-container class="md-block">
-              <label>Frequency of Bathing</label>
-              <input ng-model="vm.form.frequencyOfBathing" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Why Dislikes Bathing</label>
+        <textarea ng-model="vm.form.dislikesBathingDescribe" rows="5"></textarea>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Acceptance of Bathing</label>
-              <input ng-model="vm.form.acceptanceOfBathing" type="text">
-          </md-input-container>
+    </md-dialog-content>
 
-        </md-dialog-content>
-
-        <md-dialog-actions layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-                    UPDATE
-                </md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

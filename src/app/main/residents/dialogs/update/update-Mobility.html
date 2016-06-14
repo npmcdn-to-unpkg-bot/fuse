@@ -1,70 +1,96 @@
 <md-dialog class="compose-dialog" aria-label="Update">
-    <form class="md-inline-form">
-        <md-toolbar class="md-accent md-hue-2">
-            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update Resident - Mobility</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
-                    <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update Resident - Mobility</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content ms-scroll>
+    <md-dialog-content ms-scroll>
 
-          <md-input-container class="md-block">
-              <label>Use of Assistive Device</label>
-              <input ng-model="vm.form.insideApartment.useOfAssistiveDevice" type="text">
-          </md-input-container>
+      <h4>Inside Apartment</h4>
+      <md-input-container>
+        <label>Use of Assistive Device</label>
+        <md-select ng-model="vm.form.insideApartment.useOfAssistiveDevice">
+          <md-option>No Device</md-option>
+          <md-option>Walker</md-option>
+          <md-option>Cane</md-option>
+          <md-option>Wheelchair</md-option>
+          <md-option>Electric Wheelchair</md-option>
+        </md-select>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Assitance with Device</label>
-              <input ng-model="vm.form.insideApartment.assitanceWithDevice" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Assitance with Device</label>
+        <input ng-model="vm.form.insideApartment.assitanceWithDevice" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Special Ambulation Needs</label>
-              <input ng-model="vm.form.insideApartment.specialAmbulationNeeds" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Special Ambulation Needs</label>
+        <input ng-model="vm.form.insideApartment.specialAmbulationNeeds" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Use of Assistive Device</label>
-              <input ng-model="vm.form.outsideApartment.useOfAssistiveDevice" type="text">
-          </md-input-container>
+      <h4>Outside Apartment</h4>
+      <md-input-container>
+        <label>Use of Assistive Device</label>
+        <md-select ng-model="vm.form.outsideApartment.useOfAssistiveDevice">
+          <md-option>No Device</md-option>
+          <md-option>Walker</md-option>
+          <md-option>Cane</md-option>
+          <md-option>Wheelchair</md-option>
+          <md-option>Electric Wheelchair</md-option>
+        </md-select>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Assitance with Device</label>
-              <input ng-model="vm.form.outsideApartment.assitanceWithDevice" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Assitance with Device</label>
+        <input ng-model="vm.form.outsideApartment.assitanceWithDevice" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Special Ambulation Needs</label>
-              <input ng-model="vm.form.outsideApartment.specialAmbulationNeeds" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Special Ambulation Needs</label>
+        <input ng-model="vm.form.outsideApartment.specialAmbulationNeeds" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Transfers</label>
-              <input ng-model="vm.form.transfers" type="text">
-          </md-input-container>
+      <md-input-container>
+        <label>Transfers</label>
+        <md-select ng-model="vm.form.transfers">
+          <md-option>Standby</md-option>
+          <md-option>Independent</md-option>
+          <md-option>Full Assist</md-option>
+          <md-option>Transfer Pole</md-option>
+          <md-option>Gait Belt</md-option>
+        </md-select>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Fall Risk</label>
-              <input ng-model="vm.form.fallRisk" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.bedReposition" aria-label="">
+          Bed Reposition
+        </md-checkbox>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Bed Reposition</label>
-              <input ng-model="vm.form.bedReposition" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.fallRisk" ng-hide="vm.showCancel" aria-label="">
+          Fall Risk
+        </md-checkbox>
+      </md-input-container>
 
+      <md-input-container class="md-block" ng-if="vm.form.fallRisk">
+        <label>Describe the Fall Risk</label>
+        <textarea ng-model="vm.form.fallRiskDescribe" rows="5"></textarea>
+      </md-input-container>
 
-        </md-dialog-content>
+    </md-dialog-content>
 
-        <md-dialog-actions layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-                    UPDATE
-                </md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

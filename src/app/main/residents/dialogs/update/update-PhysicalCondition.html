@@ -1,86 +1,170 @@
 <md-dialog class="compose-dialog" aria-label="Update">
-    <form class="md-inline-form">
-        <md-toolbar class="md-accent md-hue-2">
-            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update Resident - Physical Condition</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
-                    <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update Resident - Physical Condition</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content ms-scroll>
+    <md-dialog-content ms-scroll>
 
-          <md-input-container class="md-block">
-              <label>Height</label>
-              <input ng-model="vm.form.height" type="text">
-          </md-input-container>
+      <md-input-container>
+        <label>Skin Condition</label>
+        <md-select ng-model="vm.form.skinCondition">
+          <md-option>Hydrated</md-option>
+          <md-option>Dry</md-option>
+        </md-select>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Skin Condition</label>
-              <input ng-model="vm.form.skinCondition" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.hasWound" ng-hide="vm.showCancel">
+          Has Wound
+        </md-checkbox>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Wears Hearing Aid</label>
-              <input ng-model="vm.form.wearsHearingAid" type="text">
-          </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.hasWound">
+        <label>Wound Description</label>
+        <input ng-model="vm.form.hasWoundDescribe" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Hearing in Right Ear</label>
-              <input ng-model="vm.form.hearing.rightEar" type="text">
-          </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.hasWound">
+        <label>Wound Amount</label>
+        <input ng-model="vm.form.woundAmount" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Hearing in Left Ear</label>
-              <input ng-model="vm.form.hearing.leftEar" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.wearsHearingAid" ng-hide="vm.showCancel">
+          Wears Hearing Aid
+        </md-checkbox>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Vision in Right Eye</label>
-              <input ng-model="vm.form.vision.rightEye" type="text">
-          </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.wearsHearingAid">
+        <md-checkbox ng-model="vm.form.helpWithHearingAid" ng-hide="vm.showCancel">
+          Help with Hearing Aid
+        </md-checkbox>
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Vision in Left Eye</label>
-              <input ng-model="vm.form.vision.leftEye" type="text">
-          </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.helpWithHearingAid">
+        <label>Help With Hearing Aid Description</label>
+        <input ng-model="vm.form.helpWithHearingAidDescribe" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-            <md-checkbox ng-model="vm.form.teeth.upperDentureFit" ng-hide="vm.showCancel" aria-label="Upper Denture Fit">
-             Upper Denture Fit
-            </md-checkbox>
-          </md-input-container>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <label>Left Ear</label>
+          <md-select ng-model="vm.form.leftEar">
+            <md-option>Adequate</md-option>
+            <md-option>Adequate with Aid</md-option>
+            <md-option>Poor</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Upper Teeth Status</label>
-              <input ng-model="vm.form.teeth.upperTeeth" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Right Ear</label>
+          <md-select ng-model="vm.form.rightEar">
+            <md-option>Adequate</md-option>
+            <md-option>Adequate with Aid</md-option>
+            <md-option>Poor</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
 
-          <md-input-container class="md-block">
-            <md-checkbox ng-model="vm.form.teeth.lowerDentureFit" ng-hide="vm.showCancel" aria-label="Lower Denture Fit">
-             Lower Denture Fit
-            </md-checkbox>
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Hearing Notes</label>
+        <input ng-model="vm.form.hearingNotes" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Lower Teeth Status</label>
-              <input ng-model="vm.form.teeth.lowerTeeth" type="text">
-          </md-input-container>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <label>Left Eye</label>
+          <md-select ng-model="vm.form.leftEye">
+            <md-option>Adequate</md-option>
+            <md-option>Adequate with Aid</md-option>
+            <md-option>Poor</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Teeth Condition</label>
-              <input ng-model="vm.form.teethCondition" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Right Eye</label>
+          <md-select ng-model="vm.form.rightEye">
+            <md-option>Adequate</md-option>
+            <md-option>Adequate with Aid</md-option>
+            <md-option>Poor</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
 
-        </md-dialog-content>
+      <md-input-container class="md-block">
+        <label>Vision Notes</label>
+        <input ng-model="vm.form.visionNotes" type="text">
+      </md-input-container>
 
-        <md-dialog-actions layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-                    UPDATE
-                </md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+      <md-input-container class="md-block">
+        <label>Dentist's Name</label>
+        <input ng-model="vm.form.dentistName" type="text">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.upperDentureFit" ng-hide="vm.showCancel" aria-label="Upper Denture Fit">
+          Upper Denture Does Not Fit
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-if="vm.form.upperDentureFit">
+        <label>Why Doesn't Upper Denture Fit</label>
+        <input ng-model="vm.form.upperDentureFitDescribe" type="text">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Upper Teeth</label>
+        <md-select ng-model="vm.form.upperTeeth">
+          <md-option>Has Own</md-option>
+          <md-option>Has Dentures</md-option>
+          <md-option>Has Partial</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.lowerDentureFit" ng-hide="vm.showCancel" aria-label="Upper Denture Fit">
+          Lower Denture Does Not Fit
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-if="vm.form.lowerDentureFit">
+        <label>Why Doesn't Lower Denture Fit</label>
+        <input ng-model="vm.form.lowerDentureFitDescribe" type="text">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Lower Teeth</label>
+        <md-select ng-model="vm.form.lowerTeeth">
+          <md-option>Has Own</md-option>
+          <md-option>Has Dentures</md-option>
+          <md-option>Has Partial</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Teeth Condition</label>
+        <md-select ng-model="vm.form.teethCondition">
+          <md-option>Poor</md-option>
+          <md-option>Fair</md-option>
+          <md-option>Good</md-option>
+          <md-option>Excellent</md-option>
+        </md-select>
+      </md-input-container>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

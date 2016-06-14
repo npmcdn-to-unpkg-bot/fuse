@@ -1,57 +1,76 @@
 <md-dialog class="compose-dialog" aria-label="Update">
-    <form class="md-inline-form">
-        <md-toolbar class="md-accent md-hue-2">
-            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update Resident - Pain</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
-                    <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update Resident - Pain</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content ms-scroll>
+    <md-dialog-content ms-scroll>
 
-          <md-input-container class="md-block">
-            <md-checkbox ng-model="vm.form.hasPain" ng-hide="vm.showCancel" aria-label="Has Pain">
-             Has Pain
-            </md-checkbox>
-          </md-input-container>
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.hasPain" ng-hide="vm.showCancel" aria-label="Has Pain">
+          Has Pain
+        </md-checkbox>
+      </md-input-container>
 
-          <span ng-if="vm.form.hasPain">
-            <md-input-container class="md-block">
-                <label>Pain Location</label>
-                <input ng-model="vm.form.painLocation" type="text">
-            </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.hasPain">
+        <label>Pain Location</label>
+        <input ng-model="vm.form.painLocation" type="text">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>Pain Description</label>
-                <input ng-model="vm.form.painDescription" type="text">
-            </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.hasPain">
+        <label>Pain Description</label>
+        <input ng-model="vm.form.painDescription" type="text">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>Time of Max Pain</label>
-                <input ng-model="vm.form.maxPainTime" type="text">
-            </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.hasPain">
+        <label>Time of Max Pain</label>
+        <input ng-model="vm.form.maxPainTime" type="text">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>Pain Increased By</label>
-                <input ng-model="vm.form.painIncreasedBy" type="text">
-            </md-input-container>
+      <md-input-container class="md-block" ng-if="vm.form.hasPain">
+        <label>Pain Increased By</label>
+        <input ng-model="vm.form.painIncreasedBy" type="text">
+      </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>Pain Decreased By</label>
-                <input ng-model="vm.form.painDecreasedBy" type="text">
-            </md-input-container>
-        </span>
+      <md-input-container class="md-block" ng-if="vm.form.hasPain">
+        <label>Pain Decreased By</label>
+        <input ng-model="vm.form.painDecreasedBy" type="text">
+      </md-input-container>
 
-        </md-dialog-content>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container ng-if="vm.form.hasPain">
+          <label>Pain Managed By</label>
+          <md-select ng-model="vm.form.painManagedBy">
+            <md-option>Medication</md-option>
+            <md-option>Hot Pack</md-option>
+            <md-option>Cold Pack</md-option>
+            <md-option>Positioning</md-option>
+            <md-option>Topicals</md-option>
+          </md-select>
+        </md-input-container>
 
-        <md-dialog-actions layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-                    UPDATE
-                </md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+        <md-input-container ng-if="vm.form.hasPain">
+          <label>How Long Endured Pain</label>
+          <md-select ng-model="vm.form.painLength">
+            <md-option>New Onset</md-option>
+            <md-option>Chronic</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

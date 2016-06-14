@@ -1,60 +1,98 @@
 <md-dialog class="compose-dialog" aria-label="Update">
-    <form class="md-inline-form">
-        <md-toolbar class="md-accent md-hue-2">
-            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update resident - Continent</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
-                    <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update resident - Continent</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content ms-scroll>
+    <md-dialog-content ms-scroll>
 
-          <md-input-container class="md-block">
-              <label>Bowel Continent</label>
-              <input ng-model="vm.form.bowelContinent" type="text">
-          </md-input-container>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <label>Bowel Continent</label>
+          <md-select ng-model="vm.form.bowelContinent">
+            <md-option>Never</md-option>
+            <md-option>Sometimes</md-option>
+            <md-option>Always</md-option>
+            <md-option>Colostomy</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Constipated</label>
-              <input ng-model="vm.form.constipated" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Constipated</label>
+          <md-select ng-model="vm.form.constipated">
+            <md-option>Never</md-option>
+            <md-option>Sometimes</md-option>
+            <md-option>Always</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Laxative</label>
-              <input ng-model="vm.form.laxative" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Laxative</label>
+          <md-select ng-model="vm.form.laxative">
+            <md-option>Never</md-option>
+            <md-option>Sometimes</md-option>
+            <md-option>Always</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
 
-          <md-input-container class="md-block">
-              <label>Bladder Continent</label>
-              <input ng-model="vm.form.bladderContinent" type="text">
-          </md-input-container>
+      <br>
 
-          <md-input-container class="md-block">
-              <label>Dribbles</label>
-              <input ng-model="vm.form.dribbles" type="text">
-          </md-input-container>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container>
+          <label>Bladder Continent</label>
+          <md-select ng-model="vm.form.bladderContinent">
+            <md-option>Never</md-option>
+            <md-option>Sometimes</md-option>
+            <md-option>Always</md-option>
+            <md-option>Colostomy</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Catheter</label>
-              <input ng-model="vm.form.catheter" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Dribbles</label>
+          <md-select ng-model="vm.form.dribbles">
+            <md-option>Never</md-option>
+            <md-option>Sometimes</md-option>
+            <md-option>Always</md-option>
+          </md-select>
+        </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Toileting Device</label>
-              <input ng-model="vm.form.toiletingDevice" type="text">
-          </md-input-container>
+        <md-input-container>
+          <label>Toileting Device</label>
+          <md-select ng-model="vm.form.toiletingDevice">
+            <md-option>Urnal</md-option>
+            <md-option>Seat Riser</md-option>
+            <md-option>Bedside Comod</md-option>
+            <md-option>None</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
 
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.catheter" ng-hide="vm.showCancel" aria-label="">
+          Catheter
+        </md-checkbox>
+      </md-input-container>
 
-        </md-dialog-content>
+      <md-input-container class="md-block" ng-if="vm.form.catheter">
+        <label>Describe Catheter</label>
+        <textarea ng-model="vm.form.catheterDescribe" rows="5"></textarea>
+      </md-input-container>
 
-        <md-dialog-actions layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-                    UPDATE
-                </md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
 </md-dialog>

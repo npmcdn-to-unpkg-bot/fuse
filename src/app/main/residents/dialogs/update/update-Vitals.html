@@ -1,59 +1,91 @@
 <md-dialog class="compose-dialog" aria-label="Update">
-    <form class="md-inline-form">
-        <md-toolbar class="md-accent md-hue-2">
-            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <span class="title" >Update Resident - Vitals</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
-                    <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update Resident - Vitals</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-        <md-dialog-content ms-scroll>
+    <md-dialog-content ms-scroll>
 
-          <md-input-container class="md-block">
-              <label>Temperature</label>
-              <input ng-model="vm.form.newtemperature.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Temperature</label>
+        <input ng-model="vm.form.newtemperature.data" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Blood Pressure Systolic</label>
-              <input ng-model="vm.form.newbloodPressureSystolic.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Blood Pressure Systolic</label>
+        <input ng-model="vm.form.newbloodPressureSystolic.data" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Blood Pressure Diastolic</label>
-              <input ng-model="vm.form.newbloodPressureDiastolic.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Blood Pressure Diastolic</label>
+        <input ng-model="vm.form.newbloodPressureDiastolic.data" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Oxygen Saturation</label>
-              <input ng-model="vm.form.newoxygenSaturation.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Oxygen Saturation</label>
+        <input ng-model="vm.form.newoxygenSaturation.data" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Pulse</label>
-              <input ng-model="vm.form.newpulse.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Pulse</label>
+        <input ng-model="vm.form.newpulse.data" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Vitals Pain</label>
-              <input ng-model="vm.form.newvitalsPain.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Vitals Pain</label>
+        <input ng-model="vm.form.newvitalsPain.data" type="text">
+      </md-input-container>
 
-          <md-input-container class="md-block">
-              <label>Respiration</label>
-              <input ng-model="vm.form.newrespiration.data" type="text">
-          </md-input-container>
+      <md-input-container class="md-block">
+        <label>Respiration</label>
+        <input ng-model="vm.form.newrespiration.data" type="text">
+      </md-input-container>
 
-        </md-dialog-content>
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.tracksINR" ng-hide="vm.showCancel">
+          Tracks INR
+        </md-checkbox>
+      </md-input-container>
 
-        <md-dialog-actions layout="row" layout-align="space-between center">
-            <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-                    UPDATE
-                </md-button>
-            </div>
-        </md-dialog-actions>
-    </form>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container ng-if="vm.form.tracksINR">
+          <label>How Often</label>
+          <md-select ng-model="vm.form.howOftenINR">
+            <md-option>Daily</md-option>
+            <md-option>Weekly</md-option>
+            <md-option>Monthly</md-option>
+            <md-option>Yearly</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container ng-if="vm.form.tracksINR">
+          <label>By Whom</label>
+          <md-select ng-model="vm.form.byWhomINR">
+            <md-option>Self</md-option>
+            <md-option>Clinic</md-option>
+            <md-option>Outside Agency</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+
+      <md-input-container class="md-block" ng-if="vm.form.tracksINR">
+        <label>INR Value</label>
+        <input ng-model="vm.form.internationalNormalizedRatio.data" type="text">
+      </md-input-container>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
 </md-dialog>
