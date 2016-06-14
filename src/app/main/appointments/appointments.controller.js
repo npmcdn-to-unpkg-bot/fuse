@@ -56,16 +56,24 @@
             var timeSwitch = false;
             var hours = dateObj.getUTCHours();
 
-            if (dateObj.getUTCHours() > 12) {
+            //handle when user is at 12 o clock
+            if(hours == 0) {
+              hours = 12;
+              timeSwitch = true;
+            }
+
+            if (hours > 12) {
               timeSwitch = true;
               hours -= 12;
             }
+
+            dateObj.setHours(dateObj.getUTCHours());
 
             var calEvent = {
               id: i,
               title: value.residentGoing.firstName + " " + value.residentGoing.lastName +
                 " to " + value.locationName,
-              start: value.time,
+              start: dateObj,
               end: null,
               transportation: value.transportation,
               reason: value.reason,
@@ -80,7 +88,8 @@
               cancel: value.cancel,
               appointmentComment: value.appointmentComment,
               residentGoing: value.residentGoing,
-              stick: true
+              stick: true,
+              currentTimezone: 'America/Chicago'
             }
 
             if (value.cancel === true) {

@@ -12,10 +12,22 @@
     //filling in old data dor the update
     vm.form = currAppointment;
 
+    vm.status = [];
+    vm.status.push({active: false, title:"Alert"});
+    vm.status.push({active: false, title:"Friendly"});
+    vm.status.push({active: false, title:"Disoriented"});
+    vm.status.push({active: false, title:"Withdrawn"});
+    vm.status.push({active: false, title:"Lonely"});
+    vm.status.push({active: false, title:"Happy"});
+    vm.status.push({active: false, title:"Confused"});
+    vm.status.push({active: false, title:"Uncooperative"});
+
     //needed unchanged values to compare for updateField
     vm.copyResident = angular.copy(currAppointment);
 
     console.log(currAppointment);
+
+    //setSelectedStatuses(currAppointment.psychosocialStatus);
 
     vm.form.birthDate = new Date(currAppointment.birthDate);
     vm.form.admissionDate = new Date(currAppointment.admissionDate);
@@ -39,15 +51,19 @@
       var changedFields =
         checkChangedFields(vm.copyResident, vm.form);
 
+      addToStatusArray();
+
       if (changedFields.length > 0) {
         vm.form.updateField = changedFields;
       }
 
     }
 
+
     function updateResident() {
 
       formatData();
+
 
       apilaData.updateResident(currAppointment._id, vm.form)
         .success(function(resident) {
@@ -65,6 +81,31 @@
         });
       return false;
     };
+
+    function addToStatusArray()
+    {
+      vm.form.newpsychosocialStatus = [];
+
+      for(var i  = 0; i < vm.status.length; ++i)
+      {
+        if(vm.status[i].active == true) {
+          vm.form.newpsychosocialStatus.push(vm.status[i].title);
+        }
+
+      }
+    }
+
+    function setSelectedStatuses(arr)
+    {
+
+      for(var i  = 0; i < vm.status.length; ++i)
+      {
+        if(arr[i].active == true) {
+          vm.status[i].active = true;
+        }
+
+      }
+    }
 
     //checks what fields changed in the updates
     function checkChangedFields(oldData, newData) {
@@ -289,7 +330,6 @@
       vm.form.newtemperature = "";
       vm.form.newinternationalNormalizedRatio = "";
 
-      vm.form.newpsychosocialStatus = "";
       vm.form.newmedicationAllergies = "";
       vm.form.newfoodAllergies = "";
       vm.form.newfoodLikes = "";

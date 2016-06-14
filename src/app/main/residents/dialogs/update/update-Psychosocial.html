@@ -11,9 +11,39 @@
 
     <md-dialog-content ms-scroll>
 
-      <md-input-container class="md-block">
+      <!-- <md-input-container class="md-block">
         <label>Psychosocial Status</label>
         <input ng-model="vm.form.newpsychosocialStatus" type="text">
+      </md-input-container> -->
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.status[0].active">
+          {{ vm.status[0].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[1].active">
+          {{ vm.status[1].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[2].active">
+          {{ vm.status[2].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[3].active">
+          {{ vm.status[3].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[4].active">
+          {{ vm.status[4].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[5].active">
+          {{ vm.status[5].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[6].active">
+          {{ vm.status[6].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[7].active">
+          {{ vm.status[7].title}}
+        </md-checkbox>
+        <md-checkbox ng-model="vm.status[8].active">
+          {{ vm.status[8].title}}
+        </md-checkbox>
       </md-input-container>
 
       <md-input-container class="md-block">
@@ -31,14 +61,14 @@
       </md-input-container>
 
       <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.smokes" ng-hide="vm.showCancel" aria-label="Smokes">
+        <md-checkbox ng-model="vm.status[0].active" ng-hide="vm.showCancel" aria-label="Smokes">
           Smokes
         </md-checkbox>
       </md-input-container>
 
-      <md-input-container class="md-block" ng-if="vm.form.smokes">
+      <md-input-container class="md-block" ng-if="vm.status[0].active">
         <label>Smoke Description</label>
-        <input ng-model="vm.form.smokesDescribe" type="text">
+        <input ng-model="vm.status[0].activeDescribe" type="text">
       </md-input-container>
 
       <md-input-container class="md-block">
