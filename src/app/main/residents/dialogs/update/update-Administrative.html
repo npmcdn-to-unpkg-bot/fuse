@@ -63,22 +63,21 @@
           </md-select>
         </md-input-container>
 
-        <md-input-container>
-          <label>Moved Out To</label>
-          <md-select ng-model="vm.form.movedOutTo">
-            <md-option>Nursing Home</md-option>
-            <md-option>Another Assited Living</md-option>
-            <md-option>Home</md-option>
-            <md-option>Other</md-option>
-          </md-select>
+          <md-input-container ng-if="vm.form.buildingStatus == 'Moved Out'">
+            <label>Moved Out To</label>
+            <md-select ng-model="vm.form.movedOutTo">
+              <md-option>Nursing Home</md-option>
+              <md-option>Another Assited Living</md-option>
+              <md-option>Home</md-option>
+              <md-option>Other</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+
+        <md-input-container class="md-block" ng-if="vm.form.buildingStatus == 'Moved Out'">
+          <label>Reason of Move Out</label>
+          <input ng-model="vm.form.movedOutDescribe" type="text">
         </md-input-container>
-      </div>
-
-      <md-input-container class="md-block">
-        <label>Reason of Move Out</label>
-        <input ng-model="vm.form.MovedOutDescribe" type="text">
-      </md-input-container>
-
 
     </md-dialog-content>
 

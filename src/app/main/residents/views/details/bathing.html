@@ -16,6 +16,9 @@
               <h4>Time of Bathing : {{ vm.selectedResident.timeOfBathing }}</h4>
               <h4>Frequency of Bathing : {{ vm.selectedResident.frequencyOfBathing }}</h4>
               <h4>Acceptance of Bathing : {{ vm.selectedResident.acceptanceOfBathing }}</h4>
+              <h4 ng-if="vm.selectedResident.acceptanceOfBathing == 'Dislikes'">
+                Why dislikes bathing : {{ vm.selectedResident.dislikesBathingDescribe }}
+              </h4>
         </div>
 
     </div>

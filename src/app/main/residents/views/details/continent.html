@@ -18,6 +18,9 @@
               <h4>Bladder Continent : {{ vm.selectedResident.bladderContinent }}</h4>
               <h4>Dribbles : {{ vm.selectedResident.dribbles }}</h4>
               <h4>Catheter : {{ vm.selectedResident.catheter }}</h4>
+              <h4 ng-if="vm.selectedResident.catheter">
+                Describe Catheter : {{ vm.selectedResident.catheterDescribe }}
+              </h4>
               <h4>Toileting Device : {{ vm.selectedResident.toiletingDevice }}</h4>
         </div>
 

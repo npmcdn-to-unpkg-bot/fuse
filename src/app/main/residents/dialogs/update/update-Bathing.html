@@ -53,7 +53,7 @@
         </md-input-container>
       </div>
 
-      <md-input-container class="md-block">
+      <md-input-container class="md-block" ng-if="vm.form.acceptanceOfBathing == 'Dislikes'">
         <label>Why Dislikes Bathing</label>
         <textarea ng-model="vm.form.dislikesBathingDescribe" rows="5"></textarea>
       </md-input-container>

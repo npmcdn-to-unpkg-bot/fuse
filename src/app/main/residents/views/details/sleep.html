@@ -15,9 +15,12 @@
               <h4>Usual Bedtime : {{ vm.selectedResident.usualBedtime }}</h4>
               <h4>Usual Arising Time : {{ vm.selectedResident.usualArisingTime }}</h4>
               <h4>Nap : {{ vm.selectedResident.nap }}</h4>
+                  <h4 ng-if="vm.selectedResident.nap">
+                    Nap Notes : {{ vm.selectedResident.napDescribe }}
+                  </h4>
               <h4>Assistance to Bed : {{ vm.selectedResident.assistanceToBed }}</h4>
-              <h4>Sleeps Through Night : {{ vm.selectedResident.sleepsThroughNight }}</h4>
-              <h4>Sleep Disturbance : {{ vm.selectedResident.sleepDisturbance }}</h4>
+              <h4>Cannot Sleep Through Night : {{ vm.selectedResident.sleepsThroughNight }}</h4>
+              <h4>Can Call for Assistance : {{ vm.selectedResident.canCallForAssistance }}</h4>
         </div>
 
     </div>

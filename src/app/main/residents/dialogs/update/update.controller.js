@@ -15,6 +15,8 @@
     //needed unchanged values to compare for updateField
     vm.copyResident = angular.copy(currAppointment);
 
+    console.log(currAppointment);
+
     vm.form.birthDate = new Date(currAppointment.birthDate);
     vm.form.admissionDate = new Date(currAppointment.admissionDate);
 
