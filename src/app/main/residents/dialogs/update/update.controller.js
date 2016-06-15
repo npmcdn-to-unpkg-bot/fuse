@@ -27,7 +27,7 @@
 
     console.log(currAppointment);
 
-    //setSelectedStatuses(currAppointment.psychosocialStatus);
+    setSelectedStatuses(currAppointment.psychosocialStatus);
 
     vm.form.birthDate = new Date(currAppointment.birthDate);
     vm.form.admissionDate = new Date(currAppointment.admissionDate);
@@ -100,10 +100,14 @@
 
       for(var i  = 0; i < vm.status.length; ++i)
       {
-        if(arr[i].active == true) {
-          vm.status[i].active = true;
-        }
+         var checkedElem = _.find(vm.status, function(d) {
+            if(d.title == arr[i]){
+              return d;
+            }});
 
+        if(checkedElem != undefined) {
+          checkedElem.active = true;
+        }
       }
     }
 
@@ -349,7 +353,8 @@
       addToArray(vm.form.foodAllergies, vm.form.newfoodAllergies);
       addToArray(vm.form.medicationAllergies, vm.form.newmedicationAllergies);
 
-      addToArray(vm.form.psychosocialStatus, vm.form.newpsychosocialStatus);
+      //addToArray(vm.form.psychosocialStatus, vm.form.newpsychosocialStatus);
+      vm.form.psychosocialStatus = vm.form.newpsychosocialStatus;
 
       addToArray(vm.form.foodLikes, vm.form.newfoodLikes);
       addToArray(vm.form.foodDislikes, vm.form.newfoodDislikes);

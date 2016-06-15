@@ -57,10 +57,10 @@
             var hours = dateObj.getUTCHours();
 
             //handle when user is at 12 o clock
-            if(hours == 0) {
-              hours = 12;
-              timeSwitch = true;
-            }
+            // if(hours == 0) {
+            //   hours = 12;
+            //   timeSwitch = true;
+            // }
 
             if (hours > 12) {
               timeSwitch = true;
@@ -73,7 +73,7 @@
               id: i,
               title: value.residentGoing.firstName + " " + value.residentGoing.lastName +
                 " to " + value.locationName,
-              start: dateObj,
+              start: value.time,
               end: null,
               transportation: value.transportation,
               reason: value.reason,
@@ -89,7 +89,6 @@
               appointmentComment: value.appointmentComment,
               residentGoing: value.residentGoing,
               stick: true,
-              currentTimezone: 'America/Chicago'
             }
 
             if (value.cancel === true) {
