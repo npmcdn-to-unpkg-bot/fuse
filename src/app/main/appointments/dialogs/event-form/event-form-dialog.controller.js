@@ -17,6 +17,7 @@
     // Methods
     vm.saveEvent = saveEvent;
     vm.closeDialog = closeDialog;
+    vm.updateIssue = updateIssue;
 
     init();
 
@@ -32,7 +33,7 @@
     vm.showCancel = false;
 
     //If we are in the add dialog
-    if (!vm.dialogData.calendarEvent) {
+    if (!inUpdate()) {
           vm.transportation = "We are transporting";
           vm.showCancel = true;
       }
@@ -90,6 +91,19 @@
         vm.selectedUser = vm.calendarEvent.currentUser;
 
       }
+
+    function updateIssue()
+    {
+      if (inUpdate())
+      {
+        if(vm.selectedItem){
+          saveEvent();
+        }
+
+      }
+
+    }
+
 
     /**
      * Initialize
@@ -290,6 +304,17 @@
      */
     function closeDialog() {
       $mdDialog.cancel();
+    }
+
+
+    function inUpdate()
+    {
+      if (!vm.dialogData.calendarEvent){
+        return false;
+      }
+      else {
+        return true;
+      }
     }
 
     /**

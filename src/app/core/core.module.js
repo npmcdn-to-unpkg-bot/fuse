@@ -26,6 +26,7 @@
                 'ng-sortable',
                 'xeditable',
                 'moment-picker',
-                'ngFileUpload'
+                'ngFileUpload',
+                'duScroll'
             ]);
 })();

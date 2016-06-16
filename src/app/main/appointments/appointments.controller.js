@@ -6,7 +6,8 @@
     .controller('AppoitmentsController', AppoitmentsController);
 
   /** @ngInject */
-  function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService, authentication, exportPdf, $state) {
+  function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService,
+                                 authentication, exportPdf, $state) {
     var vm = this;
 
     // Data
@@ -128,7 +129,11 @@
         dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         viewRender: function(view) {
+          console.log(view);
 
+          if(view.name === "agendaDay") {
+            //$document.scrollTop(1000, 1000);;
+          }
 
           vm.calendarView = view;
           vm.calendar = vm.calendarView.calendar;
@@ -142,7 +147,7 @@
           week: 'ddd D',
           day: 'ddd M'
         },
-        eventClick: eventDetail,
+        eventClick: editEvent,
         selectable: true,
         selectHelper: true,
         select: select
@@ -264,6 +269,11 @@
           event: e
         }
       });
+    }
+
+    function editEvent(calendarEvent)
+    {
+        showEventFormDialog('edit', calendarEvent, false, false, event);
     }
 
     /**

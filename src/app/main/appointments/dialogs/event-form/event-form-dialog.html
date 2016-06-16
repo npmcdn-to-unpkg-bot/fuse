@@ -15,7 +15,7 @@
       <!-- Reason -->
       <md-input-container class="md-block">
         <label translate="CALENDAR.REASON">Reason</label>
-        <input name="reason" ng-model="vm.calendarEvent.reason" required>
+        <input name="reason" ng-model="vm.calendarEvent.reason" ng-blur="vm.updateIssue()" required>
         <div ng-messages="eventForm.reason.$error" ng-show="eventForm.reason.$touched" role="alert">
           <div ng-message="required">
             <span translate="CALENDAR.ERRORS.REASON_REQUIRED">Reason field is required</span>
@@ -42,7 +42,9 @@
       </md-autocomplete> -->
 
       <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="searchText"
-            md-items="item in vm.getMatches(searchText)" md-item-text="item.display"
+            md-items="item in vm.getMatches(searchText)"
+            md-item-text="item.display"
+            md-selected-item-change="vm.updateIssue()"
             md-min-length="0" placeholder="Select a resident">
         <md-item-template> <span md-highlight-text="searchText">{{item.display}}</span>
 
@@ -57,7 +59,7 @@
       <!-- Location name -->
       <md-input-container class="md-block">
         <label translate="CALENDAR.LOCATION">Location</label>
-        <input name="location" ng-model="vm.calendarEvent.locationName" required>
+        <input name="location" ng-model="vm.calendarEvent.locationName" ng-blur="vm.updateIssue()" required>
         <div ng-messages="eventForm.location.$error" ng-show="eventForm.location.$touched" role="alert">
           <div ng-message="required">
             <span translate="CALENDAR.ERRORS.LOCATION_REQUIRED">Location field is required</span>
@@ -68,7 +70,7 @@
       <!-- Doctor -->
       <md-input-container class="md-block">
         <label translate="CALENDAR.DOCTOR">Reason</label>
-        <input name="doctor" ng-model="vm.calendarEvent.locationDoctor">
+        <input name="doctor" ng-model="vm.calendarEvent.locationDoctor" ng-blur="vm.updateIssue()">
         <div ng-messages="eventForm.doctor.$error" ng-show="eventForm.doctor.$touched" role="alert">
           <div ng-message="required">
             <span translate="CALENDAR.ERRORS.DOCTOR_REQUIRED">Doctor field is required</span>
@@ -80,12 +82,12 @@
       <div layout="row" class="date-row">
         <!-- <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime"
 placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
-        <md-datepicker ng-model="vm.date" md-placeholder="Appointment Date"></md-datepicker>
+        <md-datepicker ng-model="vm.date" md-placeholder="Appointment Date" ng-blur="vm.updateIssue()"></md-datepicker>
 
         <!-- Hours -->
         <md-input-container class="md-block">
           <label>Hours: </label>
-          <input name="hours" ng-model="vm.calendarEvent.hours" required>
+          <input name="hours" ng-model="vm.calendarEvent.hours" ng-blur="vm.updateIssue()" required>
           <div ng-messages="eventForm.hours.$error" ng-show="eventForm.hours.$touched" role="alert">
             <div ng-message="required">
               <span translate="CALENDAR.ERRORS.HOURS_REQUIRED">Doctor field is required</span>
@@ -96,11 +98,11 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
         <!-- Minutes -->
         <md-input-container class="md-block">
           <label>Minutes: </label>
-          <input name="minutes" ng-model="vm.calendarEvent.minutes" required>
+          <input name="minutes" ng-model="vm.calendarEvent.minutes" ng-blur="vm.updateIssue()" required>
         </md-input-container>
 
         <!-- AM/PM -->
-        <md-switch ng-model="vm.dayTimeSwitch" ng-true-value="'AM'" ng-false-value="'PM'">
+        <md-switch ng-model="vm.dayTimeSwitch" ng-true-value="'AM'" ng-change="vm.updateIssue()" ng-false-value="'PM'">
           {{ vm.dayTimeSwitch }}
         </md-switch>
       </div>
@@ -109,7 +111,7 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
       <div layout="row" layout-align="space-between center">
         <md-input-container class="md-block flex-66">
           <label translate="CALENDAR.TRANSPORTATION">Transporation</label>
-          <input name="transportation" placeholder="We are transporting" ng-model="vm.transportation" required>
+          <input name="transportation" placeholder="We are transporting" ng-blur="vm.updateIssue()"  ng-model="vm.transportation" required>
           <div ng-messages="eventForm.transportation.$error" ng-show="eventForm.transportation.$touched" role="alert">
             <div ng-message="required">
               <span translate="CALENDAR.ERRORS.TRANSPORTATION_REQUIRED">Transporation field is required</span>
@@ -118,18 +120,18 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
         </md-input-container>
 
         <!-- Cancel -->
-        <md-checkbox ng-model="vm.isCancel" ng-hide="vm.showCancel" aria-label="Cancel Appointment">
+        <md-checkbox ng-model="vm.isCancel" ng-hide="vm.showCancel" ng-change="vm.updateIssue()"  aria-label="Cancel Appointment">
           Cancel Appointment
         </md-checkbox>
       </div>
 
 
-      <md-dialog-actions layout="row" layout-align="space-between center">
+      <!-- <md-dialog-actions layout="row" layout-align="space-between center">
         <md-button ng-click="vm.saveEvent()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
           SAVE
         </md-button>
 
-      </md-dialog-actions>
+      </md-dialog-actions> -->
     </md-dialog-content>
   </form>
 </md-dialog>

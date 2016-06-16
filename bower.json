@@ -46,7 +46,8 @@
     "jspdf": "^1.2.61",
     "jspdf-autotable": "^2.0.26",
     "ng-file-upload": "^12.0.4",
-    "ng-file-upload-shim": "^12.0.4"
+    "ng-file-upload-shim": "^12.0.4",
+    "angular-scroll": "^1.0.0"
   },
   "devDependencies": {
     "angular-mocks": "1.5.5"
