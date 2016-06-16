@@ -20,6 +20,7 @@
     vm.updateIssue = updateIssue;
     vm.exportAppointment = exportAppointment;
     vm.inUpdate = inUpdate;
+    vm.submitComment = submitComment;
 
     init();
 
@@ -210,6 +211,7 @@
           vm.calendarEvent.source.events.length = 0;
         }
 
+        vm.calendarEvent.date = vm.calendarEvent.time;
 
         apilaData.updateAppointment(vm.calendarEvent.appointId, vm.calendarEvent)
           .success(function(appoint) {
@@ -301,6 +303,19 @@
               return diff;
           }
 
+
+    function submitComment() {
+            apilaData.addAppointmentCommentById(vm.calendarEvent.appointId, vm.formData)
+                .success(function(data) {
+                    console.log("Comment has been aded");
+                    vm.calendarEvent.appointmentComment.push(data);
+                      vm.dialogData.calendarEvent.appointmentComment.push(data);
+                    vm.formData.commentText = "";
+                })
+                .error(function(data) {
+                    console.log("Error while adding comments");
+                });
+          }
 
 
     function exportAppointment() {

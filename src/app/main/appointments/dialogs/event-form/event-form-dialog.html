@@ -132,6 +132,31 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
       </div>
 
 
+      <!-- Comments input -->
+      <div ng-if="vm.inUpdate()">
+        <md-input-container>
+          <label>Comments</label>
+          <textarea ng-model="vm.formData.commentText"></textarea>
+
+
+        <md-button ng-click="vm.submitComment()"  aria-label="Add Comment">
+            <md-icon md-font-icon="icon-comment"></md-icon>
+            <md-tooltip><span>Submit</span></md-tooltip>
+        </md-button>
+      </md-input-container>
+
+      <!-- Comments list -->
+      <md-list>
+              <md-list-item class="md-3-line" ng-repeat="item in vm.calendarEvent.appointmentComment">
+                <div class="md-list-item-text" layout="column">
+                  <h4>{{ item.author}}</h4>
+                  <p>{{ item.commentText }}</p>
+                </div>
+              </md-list-item>
+
+      </md-list>
+    </div>
+
       <md-dialog-actions layout="row" layout-align="space-between center" ng-if="!vm.inUpdate()">
         <md-button ng-click="vm.saveEvent()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
           SAVE
