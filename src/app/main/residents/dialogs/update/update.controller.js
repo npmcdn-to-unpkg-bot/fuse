@@ -65,6 +65,7 @@
       formatData();
 
 
+
       apilaData.updateResident(currAppointment._id, vm.form)
         .success(function(resident) {
 

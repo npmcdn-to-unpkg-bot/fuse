@@ -107,7 +107,7 @@
         {
             vm.selectedResident = resident;
 
-            drawGraphs(resident);
+            drawGraphs(vm.selectedResident);
 
             $timeout(function ()
             {

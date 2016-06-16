@@ -18,12 +18,12 @@
 
           //if we go to login and we are already logged in, switch to appointments
           if(toState.name === "app.pages_auth_login" && authentication.isLoggedIn()) {
-            $location.path('/appointments');
+            $location.path('/dashboard');
           }
 
           //if we go to homepage and we are already logged in, switch to appointments
           if(toState.name === "app.homepage" && authentication.isLoggedIn()) {
-            $location.path('/appointments');
+            $location.path('/dashboard');
           }
 
           //if we are not logged in and it's a restricted url, switch page
