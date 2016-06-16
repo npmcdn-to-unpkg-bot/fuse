@@ -12,6 +12,12 @@
     <!-- Reason -->
     <md-dialog-content ms-scroll>
 
+      <md-button ng-click="vm.exportAppointment()"
+                 class="md-fab" ng-if="vm.inUpdate()">
+            <md-icon md-font-icon="icon-export"></md-icon>
+            <md-tooltip><span>Export Appointment</span></md-tooltip>
+      </md-button>
+
       <!-- Reason -->
       <md-input-container class="md-block">
         <label translate="CALENDAR.REASON">Reason</label>
@@ -126,12 +132,12 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
       </div>
 
 
-      <!-- <md-dialog-actions layout="row" layout-align="space-between center">
+      <md-dialog-actions layout="row" layout-align="space-between center" ng-if="!vm.inUpdate()">
         <md-button ng-click="vm.saveEvent()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
           SAVE
         </md-button>
 
-      </md-dialog-actions> -->
+      </md-dialog-actions>
     </md-dialog-content>
   </form>
 </md-dialog>
