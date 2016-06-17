@@ -56,7 +56,7 @@
 
           setWidget();
 
-          vm.title = "Welcome to " + vm.myCommunity.name + " community";
+          vm.title = "Welcome to " + vm.myCommunity.name + " Community";
         })
         .error(function(d) {
 

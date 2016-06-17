@@ -110,14 +110,30 @@
       var doc = new jsPDF('p', 'pt', 'letter');
       var fileName = data.firstName + ' ' + data.lastName + '.pdf';
 
-      var logoPosX = 25, logoPosY = 25;
-      var logoWidth = 205, logoHeight = 100;
+      var logoPosX = 15, logoPosY = 15;
+      var logoWidth = 130, logoHeight = 55;
 
       doc.addImage(imageData.getApilaLogo(), 'JPEG', logoPosX, logoPosY,
                   logoPosX + logoWidth, logoPosY + logoHeight);
 
-      doc.text(50, 186, data.communityName);
-      doc.text(50, 226, "Resident : " + data.firstName + " " + data.lastName);
+      doc.text(200, 80, data.communityName + " - Care Plan");
+
+      doc.setFontSize(10);
+      doc.text(200, 30, "3407 Carroll St");
+      doc.text(200, 42, "Alamosa CO, 81101");
+      doc.text(200, 54, "AlamosaBridge.com");
+
+      doc.text(350, 30, "Phone:");
+      doc.text(350, 42, "Fax:");
+      doc.text(350, 54, "Clinical Services Fax:");
+
+      doc.text(450, 30, "(719) 587-3514");
+      doc.text(450, 42, "(719) 589-3614");
+      doc.text(450, 54, "(719) 589-7424");
+
+      doc.roundedRect(30, 90, 550, 200, 10, 10);
+      doc.text(35, 102, "Name: " + data.firstName + " " + data.middleName + " " + data.lastName);
+      doc.text(35, 114, "Maiden Name: " + data.maidenName);
 
       doc.text(50, 266, "Vitals");
 
