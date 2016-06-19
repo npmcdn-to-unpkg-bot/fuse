@@ -186,6 +186,7 @@
 
             var carePlanData = {};
 
+            // vitals graphing
             carePlanData.temperature = tempCanvas.toDataURL();
             carePlanData.bloodSys = bloodSysCanvas.toDataURL();
             carePlanData.bloodDias = bloodDiasCanvas.toDataURL();
@@ -194,8 +195,66 @@
             carePlanData.vitals = vitalsCanvas.toDataURL();
             carePlanData.resp = respCanvas.toDataURL();
 
+            // admin
             carePlanData.firstName = vm.selectedResident.firstName;
+            carePlanData.middleName = vm.selectedResident.middleName;
             carePlanData.lastName = vm.selectedResident.lastName;
+            carePlanData.maidenName = vm.selectedResident.maidenName;
+            carePlanData.birthDate = vm.selectedResident.birthDate;
+            carePlanData.admissionDate = vm.selectedResident.admissionDate;
+            carePlanData.sex = vm.selectedResident.sex;
+            carePlanData.buildingStatus = vm.selectedResident.buildingStatus;
+            carePlanData.movedOutDescribe = vm.selectedResident.movedOutDescribe;
+            carePlanData.movedOutTo = vm.selectedResident.movedOutTo;
+
+            // Bathing
+            carePlanData.typeOfBathing = vm.selectedResident.typeOfBathing;
+            carePlanData.timeOfBathing = vm.selectedResident.timeOfBathing;
+            carePlanData.frequencyOfBathing = vm.selectedResident.frequencyOfBathing;
+            carePlanData.acceptanceOfBathing = vm.selectedResident.acceptanceOfBathing;
+            carePlanData.dislikesBathingDescribe = vm.selectedResident.dislikesBathingDescribe;
+
+            // Mobility
+            carePlanData.insideApartment.useOfAssistiveDevice = vm.selectedResident.insideApartment.useOfAssistiveDevice;
+            carePlanData.insideApartment.assitanceWithDevice = vm.selectedResident.insideApartment.assitanceWithDevice;
+            carePlanData.insideApartment.specialAmbulationNeeds = vm.selectedResident.insideApartment.specialAmbulationNeeds;
+
+            carePlanData.outsideApartment.useOfAssistiveDevice = vm.selectedResident.outsideApartment.useOfAssistiveDevice;
+            carePlanData.outsideApartment.assitanceWithDevice = vm.selectedResident.outsideApartment.assitanceWithDevice;
+            carePlanData.outsideApartment.specialAmbulationNeeds = vm.selectedResident.outsideApartment.specialAmbulationNeeds;
+
+            carePlanData.transfers = vm.selectedResident.transfers;
+            carePlanData.fallRisk = vm.selectedResident.fallRisk;
+            carePlanData.fallRiskDescribe = vm.selectedResident.fallRiskDescribe;
+            carePlanData.bedReposition = vm.selectedResident.bedReposition;
+
+            // Allergy
+            carePlanData.hasFoodAllergies = vm.selectedResident.hasFoodAllergies;
+            carePlanData.foodAllergies = vm.selectedResident.foodAllergies;
+            carePlanData.hasMedicationAllergies = vm.selectedResident.hasMedicationAllergies;
+            carePlanData.medicationAllergies = vm.selectedResident.medicationAllergies;
+
+            // sleep
+            carePlanData.usualBedtime = vm.selectedResident.usualBedtime;
+            carePlanData.usualArisingTime = vm.selectedResident.usualArisingTime;
+            carePlanData.nap = vm.selectedResident.nap;
+            carePlanData.napDescribe = vm.selectedResident.napDescribe;
+            carePlanData.assistanceToBed = vm.selectedResident.assistanceToBed;
+            carePlanData.sleepsThroughNight = vm.selectedResident.sleepsThroughNight;
+            carePlanData.canCallForAssistance = vm.selectedResident.canCallForAssistance;
+
+            // Continent
+            carePlanData.bowelContinent = vm.selectedResident.bowelContinent;
+            carePlanData.constipated = vm.selectedResident.constipated;
+            carePlanData.laxative = vm.selectedResident.laxative;
+            carePlanData.bladderContinent = vm.selectedResident.bladderContinent;
+            carePlanData.dribbles = vm.selectedResident.dribbles;
+            carePlanData.catheter = vm.selectedResident.catheter;
+            carePlanData.catheterDescribe = vm.selectedResident.catheterDescribe;
+            carePlanData.toiletingDevice = vm.selectedResident.toiletingDevice;
+
+            // Nutrition
+            
 
             carePlanData.communityName = vm.community.name;
 
