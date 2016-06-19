@@ -40,7 +40,7 @@
                   vm.usernameError = "";
                   vm.passwordError = "";
 
-                    $location.path('/appointments');
+                    $location.path('/dashboard');
                 });
         };
 

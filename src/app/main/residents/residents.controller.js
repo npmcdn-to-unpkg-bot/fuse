@@ -149,8 +149,23 @@
 
           vm.vitalsCharts = [];
 
+          var bloodDiasValues = _.map(resident.bloodPressureDiastolic, "data")
+          var timeFrame = _.map(resident.bloodPressureDiastolic, function(d) {
+            return moment(d.date).format("MMM Do YY");
+          });
+
+          var bloodSysValues = _.map(resident.bloodPressureSystolic, "data")
+
+          vm.bloodPresureChart = {
+             labels: timeFrame,
+             series: ['Blood Pressure Diastolic', 'Blood Pressure Systolic'],
+             data  : [
+                 bloodDiasValues, bloodSysValues
+             ]
+         };
+
           vm.vitalsCharts.push(createGraphData(resident.temperature, 'Temperature'));
-          vm.vitalsCharts.push(createGraphData(resident.bloodPressureSystolic, 'Blood Pressure Systolic'));
+          vm.vitalsCharts.push(vm.bloodPresureChart);
           vm.vitalsCharts.push(createGraphData(resident.bloodPressureDiastolic, 'Blood Pressure Diastolic'));
           vm.vitalsCharts.push(createGraphData(resident.oxygenSaturation, 'Oxygen Saturation'));
           vm.vitalsCharts.push(createGraphData(resident.pulse, 'Pulse'));
