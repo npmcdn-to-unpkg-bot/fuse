@@ -32,11 +32,16 @@
               </h4>
 
               <!--  Blood Pressure Systolic canvas -->
-              <div class="card md-whiteframe-4dp">
+              <!-- <div class="card md-whiteframe-4dp">
                <canvas id="bloodPressureSystolicCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[1].data"
                        chart-labels="vm.vitalsCharts[1].labels" chart-legend="true" chart-series="vm.vitalsCharts[1].series">
                </canvas>
-             </div>
+             </div> -->
+             <div class="card md-whiteframe-4dp">
+              <canvas id="bloodPressureCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[1].data"
+                      chart-labels="vm.vitalsCharts[1].labels" chart-legend="true" chart-series="vm.vitalsCharts[1].series">
+              </canvas>
+          </div>
 
               <h4>Blood Pressure Diastolic :
                 <span ng-repeat="bloodPressureDiastolic in vm.selectedResident.bloodPressureDiastolic">

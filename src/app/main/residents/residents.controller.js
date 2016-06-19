@@ -149,8 +149,23 @@
 
           vm.vitalsCharts = [];
 
+          var bloodDiasValues = _.map(resident.bloodPressureDiastolic, "data")
+          var timeFrame = _.map(resident.bloodPressureDiastolic, function(d) {
+            return moment(d.date).format("MMM Do YY");
+          });
+
+          var bloodSysValues = _.map(resident.bloodPressureSystolic, "data")
+
+          vm.bloodPresureChart = {
+             labels: timeFrame,
+             series: ['Blood Pressure Diastolic', 'Blood Pressure Systolic'],
+             data  : [
+                 bloodDiasValues, bloodSysValues
+             ]
+         };
+
           vm.vitalsCharts.push(createGraphData(resident.temperature, 'Temperature'));
-          vm.vitalsCharts.push(createGraphData(resident.bloodPressureSystolic, 'Blood Pressure Systolic'));
+          vm.vitalsCharts.push(vm.bloodPresureChart);
           vm.vitalsCharts.push(createGraphData(resident.bloodPressureDiastolic, 'Blood Pressure Diastolic'));
           vm.vitalsCharts.push(createGraphData(resident.oxygenSaturation, 'Oxygen Saturation'));
           vm.vitalsCharts.push(createGraphData(resident.pulse, 'Pulse'));
@@ -177,8 +192,7 @@
           $timeout(function ()
           {
             var tempCanvas = angular.element("#temperaturecanvas")[0];
-            var bloodSysCanvas = angular.element("#bloodPressureSystolicCanvas")[0];
-            var bloodDiasCanvas = angular.element("#bloodPressureDiastolicCanvas")[0];
+            var bloodCanvas = angular.element("#bloodPressureCanvas")[0];
             var oxygenCanvas = angular.element("#oxygenSaturationCanvas")[0];
             var pulseCanvas = angular.element("#plusCanvas")[0];
             var vitalsCanvas = angular.element("#vitalsPainCanvas")[0];
@@ -188,8 +202,7 @@
 
             // vitals graphing
             carePlanData.temperature = tempCanvas.toDataURL();
-            carePlanData.bloodSys = bloodSysCanvas.toDataURL();
-            carePlanData.bloodDias = bloodDiasCanvas.toDataURL();
+            carePlanData.bloodCanvas = bloodCanvas.toDataURL();
             carePlanData.oxygen = oxygenCanvas.toDataURL();
             carePlanData.pulse = pulseCanvas.toDataURL();
             carePlanData.vitals = vitalsCanvas.toDataURL();
