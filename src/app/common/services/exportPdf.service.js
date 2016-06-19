@@ -267,12 +267,8 @@
       doc.addImage(data.temperature, 'PNG', 50, 320,
         150, 150);
 
-      doc.text(210, 305, "Blood Pressure Systolic");
-      doc.addImage(data.bloodSys, 'PNG', 250, 320,
-        150, 150);
-
-      doc.text(410, 305, "Blood Pressure Diastolic");
-      doc.addImage(data.bloodDias, 'PNG', 410, 320,
+      doc.text(210, 305, "Blood Pressure ");
+      doc.addImage(data.bloodCanvas, 'PNG', 250, 320,
         150, 150);
 
       doc.text(50, 490, "Oxygen Saturation");

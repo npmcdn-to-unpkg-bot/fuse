@@ -192,8 +192,7 @@
           $timeout(function ()
           {
             var tempCanvas = angular.element("#temperaturecanvas")[0];
-            var bloodSysCanvas = angular.element("#bloodPressureSystolicCanvas")[0];
-            var bloodDiasCanvas = angular.element("#bloodPressureDiastolicCanvas")[0];
+            var bloodCanvas = angular.element("#bloodPressureCanvas")[0];
             var oxygenCanvas = angular.element("#oxygenSaturationCanvas")[0];
             var pulseCanvas = angular.element("#plusCanvas")[0];
             var vitalsCanvas = angular.element("#vitalsPainCanvas")[0];
@@ -202,8 +201,7 @@
             var carePlanData = {};
 
             carePlanData.temperature = tempCanvas.toDataURL();
-            carePlanData.bloodSys = bloodSysCanvas.toDataURL();
-            carePlanData.bloodDias = bloodDiasCanvas.toDataURL();
+            carePlanData.bloodCanvas = bloodCanvas.toDataURL();
             carePlanData.oxygen = oxygenCanvas.toDataURL();
             carePlanData.pulse = pulseCanvas.toDataURL();
             carePlanData.vitals = vitalsCanvas.toDataURL();
