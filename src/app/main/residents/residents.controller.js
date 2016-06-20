@@ -227,14 +227,14 @@
             carePlanData.acceptanceOfBathing = vm.selectedResident.acceptanceOfBathing;
             carePlanData.dislikesBathingDescribe = vm.selectedResident.dislikesBathingDescribe;
 
-            // Mobility
-            carePlanData.insideApartment.useOfAssistiveDevice = vm.selectedResident.insideApartment.useOfAssistiveDevice;
-            carePlanData.insideApartment.assitanceWithDevice = vm.selectedResident.insideApartment.assitanceWithDevice;
-            carePlanData.insideApartment.specialAmbulationNeeds = vm.selectedResident.insideApartment.specialAmbulationNeeds;
+            // Mobility - throws an error because nesting
+            // carePlanData.insideApartment.useOfAssistiveDevice = vm.selectedResident.insideApartment.useOfAssistiveDevice;
+            // carePlanData.insideApartment.assitanceWithDevice = vm.selectedResident.insideApartment.assitanceWithDevice;
+            // carePlanData.insideApartment.specialAmbulationNeeds = vm.selectedResident.insideApartment.specialAmbulationNeeds;
 
-            carePlanData.outsideApartment.useOfAssistiveDevice = vm.selectedResident.outsideApartment.useOfAssistiveDevice;
-            carePlanData.outsideApartment.assitanceWithDevice = vm.selectedResident.outsideApartment.assitanceWithDevice;
-            carePlanData.outsideApartment.specialAmbulationNeeds = vm.selectedResident.outsideApartment.specialAmbulationNeeds;
+            // carePlanData.outsideApartment.useOfAssistiveDevice = vm.selectedResident.outsideApartment.useOfAssistiveDevice;
+            // carePlanData.outsideApartment.assitanceWithDevice = vm.selectedResident.outsideApartment.assitanceWithDevice;
+            // carePlanData.outsideApartment.specialAmbulationNeeds = vm.selectedResident.outsideApartment.specialAmbulationNeeds;
 
             carePlanData.transfers = vm.selectedResident.transfers;
             carePlanData.fallRisk = vm.selectedResident.fallRisk;
@@ -267,7 +267,79 @@
             carePlanData.toiletingDevice = vm.selectedResident.toiletingDevice;
 
             // Nutrition
-            
+            carePlanData.overallNutrition = vm.selectedResident.overallNutrition;
+            carePlanData.poorNutritionDescribe = vm.selectedResident.poorNutritionDescribe;
+            carePlanData.diabetic = vm.selectedResident.diabetic;
+            carePlanData.diabeticType = vm.selectedResident.diabeticType;
+            carePlanData.bloodSugarMonitoring = vm.selectedResident.bloodSugarMonitoring;
+            carePlanData.bedtimeSnack = vm.selectedResident.bedtimeSnack;
+            carePlanData.adaptiveEquipment = vm.selectedResident.adaptiveEquipment;
+            carePlanData.needsFoodInSmallPeices = vm.selectedResident.needsFoodInSmallPeices;
+            carePlanData.typeOfDiet = vm.selectedResident.typeOfDiet;
+            carePlanData.foodLikes = vm.selectedResident.foodLikes;
+            carePlanData.foodDislikes = vm.selectedResident.foodDislikes;
+            carePlanData.fingerFoods = vm.selectedResident.fingerFoods;
+
+            // physical condition information
+            carePlanData.skinCondition = vm.selectedResident.skinCondition;
+            carePlanData.hasWound = vm.selectedResident.hasWound;
+            carePlanData.hasWoundDescribe = vm.selectedResident.hasWoundDescribe;
+            carePlanData.woundAmount = vm.selectedResident.woundAmount;
+            carePlanData.rightEar = vm.selectedResident.rightEar;
+            carePlanData.leftEar = vm.selectedResident.leftEar;
+            carePlanData.hearingNotes = vm.selectedResident.hearingNotes;
+            carePlanData.wearsHearingAid = vm.selectedResident.wearsHearingAid;
+            carePlanData.helpWithHearingAid = vm.selectedResident.helpWithHearingAid;
+            carePlanData.helpWithHearingAidDescribe = vm.selectedResident.helpWithHearingAidDescribe;
+            carePlanData.rightEye = vm.selectedResident.rightEye;
+            carePlanData.leftEye = vm.selectedResident.leftEye;
+            carePlanData.visionNotes = vm.selectedResident.visionNotes;
+            carePlanData.dentistName = vm.selectedResident.dentistName;
+            carePlanData.upperDentureFit = vm.selectedResident.upperDentureFit;
+            carePlanData.upperDentureFitDescribe = vm.selectedResident.upperDentureFitDescribe;
+            carePlanData.upperTeeth = vm.selectedResident.upperTeeth;
+            carePlanData.lowerDentureFit = vm.selectedResident.lowerDentureFit;
+            carePlanData.lowerDentureFitDescribe = vm.selectedResident.lowerDentureFitDescribe;
+            carePlanData.lowerTeeth = vm.selectedResident.lowerTeeth;
+            carePlanData.teethCondition = vm.selectedResident.teethCondition;
+
+            // psychosocial
+            carePlanData.psychosocialStatus = vm.selectedResident.psychosocialStatus;
+            carePlanData.psychosocialStatusDescribe = vm.selectedResident.psychosocialStatusDescribe;
+            carePlanData.comprehension = vm.selectedResident.comprehension;
+            carePlanData.smokes = vm.selectedResident.smokes;
+            carePlanData.smokesDescribe = vm.selectedResident.smokesDescribe;
+            carePlanData.alcohol = vm.selectedResident.alcohol;
+            carePlanData.alcoholDescribes = vm.selectedResident.alcoholDescribes;
+            carePlanData.sexualActive = vm.selectedResident.sexualActive;
+            carePlanData.sexualActiveDescribe = vm.selectedResident.sexualActiveDescribe;
+            carePlanData.otherHabits = vm.selectedResident.otherHabits;
+            carePlanData.generalActivityParticipation = vm.selectedResident.generalActivityParticipation;
+            carePlanData.diningRoomParticipation = vm.selectedResident.diningRoomParticipation;
+            carePlanData.busRideParticipation = vm.selectedResident.busRideParticipation;
+            carePlanData.fitnessClassParticipation = vm.selectedResident.fitnessClassParticipation;
+            carePlanData.bingoParticipation = vm.selectedResident.bingoParticipation;
+            carePlanData.communityParticipation = vm.selectedResident.communityParticipation;
+            carePlanData.timeInRoom = vm.selectedResident.timeInRoom;
+            carePlanData.drivesCar = vm.selectedResident.drivesCar;
+            carePlanData.licensePlateNumber = vm.selectedResident.licensePlateNumber;
+            carePlanData.spareKeyLocation = vm.selectedResident.spareKeyLocation;
+            carePlanData.drivingNeeds = vm.selectedResident.drivingNeeds;
+            carePlanData.preferedActivites = vm.selectedResident.preferedActivites;
+            carePlanData.useFitnessEquipmentIndependently = vm.selectedResident.useFitnessEquipmentIndependently;
+            carePlanData.familyInvolvement = vm.selectedResident.familyInvolvement;
+            carePlanData.highMaintenance = vm.selectedResident.highMaintenance;
+
+            // pain
+            carePlanData.hasPain = vm.selectedResident.hasPain;
+            carePlanData.painLocation = vm.selectedResident.painLocation;
+            carePlanData.painDescription = vm.selectedResident.painDescription;
+            carePlanData.maxPainTime = vm.selectedResident.maxPainTime;
+            carePlanData.painIncreasedBy = vm.selectedResident.painIncreasedBy;
+            carePlanData.painDecreasedBy = vm.selectedResident.painDecreasedBy;
+            carePlanData.painManagedBy = vm.selectedResident.painManagedBy;
+            carePlanData.painLength = vm.selectedResident.painLength;
+
 
             carePlanData.communityName = vm.community.name;
 

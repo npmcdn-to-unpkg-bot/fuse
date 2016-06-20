@@ -82,8 +82,6 @@
         if (comment.commentText.length > commentLength) {
           var numTimes = Math.floor(comment.commentText.length / commentLength);
 
-
-
           for (var j = 0; j < numTimes; ++j) {
             var txt = "";
             if (j === 0) {
@@ -110,6 +108,9 @@
       var dateFilter = $filter('date');
       var residentFiltedBirthDate = dateFilter(residentBirthDate, 'MMM d, yyyy');
       var residentFiltedAdmissionDate = dateFilter(residentAdmissionDate, 'MMM d, yyyy');
+
+      var arrayLengthOffset = 0;
+      var adminOffset = 250;
 
       var logoPosX = 15,
         logoPosY = 15;
@@ -170,55 +171,130 @@
       doc.text(37, 103, "WEB");
       doc.text(300, 103, "AlamosaBridge.com");
 
-      // allergy line
+      // allergy
       doc.setDrawColor(0,150,136);
-      doc.line(0, 175, 650, 175);
-      doc.text(300, 178, "ALLERGY");
+      doc.line(0, 150, 650, 150);
+      doc.text(300, 153, "ALLERGY");
+
+      if (data.hasFoodAllergies === true || data.hasMedicationAllergies === true){
+
+        arrayLengthOffset = 174;
+
+        if (data.hasFoodAllergies === true) {
+          doc.text(295, arrayLengthOffset, "Food Allergies:");
+          doc.text(430, arrayLengthOffset, data.foodAllergies);
+          arrayLengthOffset = (data.foodAllergies.length * 12) + arrayLengthOffset;
+        }
+
+        if (data.hasMedicationAllergies === true) {
+          doc.text(295, arrayLengthOffset, "Medication Allergies:");
+          doc.text(430, arrayLengthOffset, data.medicationAllergies);
+          arrayLengthOffset = (data.medicationAllergies.length * 12) + arrayLengthOffset;
+        }
+
+        arrayLengthOffset = arrayLengthOffset + 25;
+
+      } else {
+        doc.text(295, 174, data.firstName + " has no known allergies");
+        arrayLengthOffset = 174 + 35;
+      }
 
       // bathing line
       doc.setDrawColor(3,169,244);
-      doc.line(0, 275, 650, 275);
-      doc.text(300, 278, "BATHING");
+      doc.line(0, arrayLengthOffset, 650, arrayLengthOffset);
+      doc.text(300, arrayLengthOffset + 3, "BATHING");
 
-      // sleep line
+      doc.text(295, arrayLengthOffset + 24, "Type:");
+      doc.text(430, arrayLengthOffset + 24, data.typeOfBathing + " ");
+
+      doc.text(295, arrayLengthOffset + 36, "Time:");
+      doc.text(430, arrayLengthOffset + 36, data.timeOfBathing + " ");
+
+      doc.text(295, arrayLengthOffset + 48, "Frequency:");
+      doc.text(430, arrayLengthOffset + 48, data.frequencyOfBathing + " ");
+
+      arrayLengthOffset = arrayLengthOffset + 60;
+
+      doc.text(295, arrayLengthOffset, "Acceptance:");
+      doc.text(430, arrayLengthOffset, data.acceptanceOfBathing + " ");
+
+      if (data.acceptanceOfBathing == "Dislikes") {
+        doc.text(295, arrayLengthOffset + 12, "Why Dislikes:");
+        doc.text(430, arrayLengthOffset + 12, data.dislikesBathingDescribe + " ");
+        arrayLengthOffset = arrayLengthOffset + 12;
+      }
+
+      // continent line
       doc.setDrawColor(121,85,72);
-      doc.line(0, 375, 650, 375);
-      doc.text(300, 378, "CONTINENT");
+      doc.line(0, arrayLengthOffset + 38, 650, arrayLengthOffset + 38);
+      doc.text(300, arrayLengthOffset + 41, "CONTINENT");
+
+      doc.text(295, arrayLengthOffset + 62, "Bowel Continent:");
+      doc.text(430, arrayLengthOffset + 62, data.bowelContinent + " ");
+
+      doc.text(295, arrayLengthOffset + 74, "Constipated:");
+      doc.text(430, arrayLengthOffset + 74, data.constipated + " ");
+
+      doc.text(295, arrayLengthOffset + 86, "Laxative:");
+      doc.text(430, arrayLengthOffset + 86, data.laxative + " ");
+
+      doc.text(295, arrayLengthOffset + 110, "Bladder Continent:");
+      doc.text(430, arrayLengthOffset + 110, data.bladderContinent + " ");
+
+      doc.text(295, arrayLengthOffset + 122, "Dribbles:");
+      doc.text(430, arrayLengthOffset + 122, data.dribbles + " ");
+
+      if (data.catheter == true) {
+        doc.text(295, arrayLengthOffset + 134, "Catheter Description:");
+        doc.text(430, arrayLengthOffset + 134, data.catheterDescribe + " ");
+        arrayLengthOffset = arrayLengthOffset + 12;
+      }
+
+      arrayLengthOffset = arrayLengthOffset + 134;
+
+      doc.text(295, arrayLengthOffset, "Toileting Device:");
+      doc.text(430, arrayLengthOffset, data.toiletingDevice + " ");
 
       // mobility line
       doc.setDrawColor(255,235,59);
-      doc.line(0, 475, 650, 475);
-      doc.text(300, 478, "MOBILITY");
+      doc.line(0, arrayLengthOffset + 38, 650, arrayLengthOffset + 38);
+      doc.text(300, arrayLengthOffset + 41, "MOBILITY");
 
-      // nutrition line
-      doc.setDrawColor(139,195,74);
-      doc.line(0, 575, 650, 575);
-      doc.text(300, 578, "NUTRITION");
+      doc.text(295, arrayLengthOffset + 62, "Inside Apartment:");
+      doc.text(295, arrayLengthOffset + 74, "Use of Assistive Device:");
+      doc.text(450, arrayLengthOffset + 74, data.toiletingDevice + " ");
 
-      // pain line
-      doc.setDrawColor(244,67,54);
-      doc.line(0, 600, 650, 600);
-      doc.text(300, 603, "PAIN");
+      doc.text(295, arrayLengthOffset + 86, "Assitance with Device:");
+      doc.text(450, arrayLengthOffset + 86, data.toiletingDevice + " ");
 
-      // physical condition line
-      doc.setDrawColor(33,150,243);
-      doc.line(0, 625, 650, 625);
-      doc.text(300, 628, "PHYSICAL");
+      doc.text(295, arrayLengthOffset + 98, "Special Ambulation Needs:");
+      doc.text(450, arrayLengthOffset + 98, data.toiletingDevice + " ");
 
-      // psychosocial line
-      doc.setDrawColor(156,39,176);
-      doc.line(0, 650, 650, 650);
-      doc.text(300, 653, "PSYCHOSOCIAL");
+      doc.text(295, arrayLengthOffset + 122, "Outside Apartment:");
+      doc.text(295, arrayLengthOffset + 134, "Use of Assistive Device:");
+      doc.text(450, arrayLengthOffset + 134, data.toiletingDevice + " ");
 
-      // sleep line
-      doc.setDrawColor(233,30,99);
-      doc.line(0, 675, 650, 675);
-      doc.text(300, 678, "SLEEP");
+      doc.text(295, arrayLengthOffset + 146, "Assitance with Device:");
+      doc.text(450, arrayLengthOffset + 146, data.toiletingDevice + " ");
 
-      // vitals line
-      doc.setDrawColor(205,220,57);
-      doc.line(0, 700, 650, 700);
-      doc.text(300, 703, "VITALS");
+      doc.text(295, arrayLengthOffset + 158, "Special Ambulation Needs:");
+      doc.text(450, arrayLengthOffset + 158, data.toiletingDevice + " ");
+
+      doc.text(295, arrayLengthOffset + 182, "Transfers:");
+      doc.text(450, arrayLengthOffset + 182, data.transfers + " ");
+
+      if (data.fallRisk == true) {
+        doc.text(295, arrayLengthOffset + 194, "Fall Risk Description:");
+        doc.text(450, arrayLengthOffset + 194, data.fallRiskDescribe + " ");
+        arrayLengthOffset = arrayLengthOffset + 12;
+      }
+
+      doc.text(295, arrayLengthOffset + 194, "Bed Reposition:");
+      doc.text(450, arrayLengthOffset + 194, data.bedReposition + " ");
+
+      arrayLengthOffset = arrayLengthOffset + 202
+
+      doc.text(450, arrayLengthOffset, arrayLengthOffset + " ");
 
       // big vertical line
       doc.setDrawColor(120,144,156);
@@ -246,17 +322,81 @@
       doc.setFontSize(16.6);
       doc.text(135, 220, "Care Plan");
       doc.text(164, 235, "for");
-      doc.text(75, 250, data.firstName);
-      doc.text(75, 265, data.middleName + " ");
-      doc.text(75, 280, data.lastName);
+      doc.text(75, adminOffset, data.firstName);
+
+      if (data.middleName !== "") {
+        adminOffset = adminOffset + 15;
+        doc.text(75, adminOffset, data.middleName);
+      }
+
+      doc.text(75, adminOffset + 15, data.lastName);
 
       // admin info
       doc.setFontSize(10);
-      doc.text(99, 300, "Maiden Name: " + data.maidenName);
-      doc.text(147, 312, "Sex: " + data.sex);
-      doc.text(87, 324, "Date of Birth: " + residentFiltedBirthDate);
-      doc.text(81, 336, "Admission Date: " + residentFiltedAdmissionDate);
-      doc.text(75, 348, "Building Status: " + data.buildingStatus);
+      doc.text(99, adminOffset + 30, "Maiden Name: " + data.maidenName);
+      doc.text(147, adminOffset + 42, "Sex: " + data.sex);
+      doc.text(87, adminOffset + 54, "Date of Birth: " + residentFiltedBirthDate);
+      doc.text(81, adminOffset + 66, "Admission Date: " + residentFiltedAdmissionDate);
+      doc.text(75, adminOffset + 78, "Building Status: " + data.buildingStatus);
+
+      doc.addPage();
+      doc.setLineWidth(25);
+
+      // nutrition line
+      doc.setDrawColor(139,195,74);
+      doc.line(0, 575, 650, 575);
+      doc.text(300, 578, "NUTRITION");
+
+      // pain line
+      doc.setDrawColor(244,67,54);
+      doc.line(0, 600, 650, 600);
+      doc.text(300, 603, "PAIN");
+
+      // physical condition line
+      doc.setDrawColor(33,150,243);
+      doc.line(0, 625, 650, 625);
+      doc.text(300, 628, "PHYSICAL");
+
+      // psychosocial line
+      doc.setDrawColor(156,39,176);
+      doc.line(0, 650, 650, 650);
+      doc.text(300, 653, "PSYCHOSOCIAL");
+
+      // sleep line
+      doc.setDrawColor(233,30,99);
+      doc.line(0, 675, 650, 675);
+      doc.text(300, 678, "SLEEP");
+
+      doc.text(295, arrayLengthOffset + 62, "Usual Bedtime:");
+      doc.text(430, arrayLengthOffset + 62, data.usualBedtime + " ");
+
+      doc.text(295, arrayLengthOffset + 74, "Usual Arising Time:");
+      doc.text(430, arrayLengthOffset + 74, data.usualArisingTime + " ");
+
+      if (data.nap == true) {
+        doc.text(295, arrayLengthOffset + 86, "Nap Description:");
+        doc.text(430, arrayLengthOffset + 86, data.napDescribe + " ");
+        arrayLengthOffset = arrayLengthOffset + 12;
+      }
+
+      doc.text(295, arrayLengthOffset + 86, "Assistance to Bed:");
+      doc.text(430, arrayLengthOffset + 86, data.assistanceToBed + " ");
+
+      arrayLengthOffset = arrayLengthOffset + 98;
+
+      doc.text(295, arrayLengthOffset, "Assistance to Bed:");
+      doc.text(430, arrayLengthOffset, data.assistanceToBed + " ");
+
+      if (data.sleepsThroughNight == true) {
+        doc.text(295, arrayLengthOffset + 12, "Can Call for Assistance:");
+        doc.text(430, arrayLengthOffset + 12, data.canCallForAssistance + " ");
+        arrayLengthOffset = arrayLengthOffset + 12;
+      }
+
+      // vitals line
+      doc.setDrawColor(205,220,57);
+      doc.line(0, 700, 650, 700);
+      doc.text(300, 703, "VITALS");
 
 
 /* comment out graphs for now
