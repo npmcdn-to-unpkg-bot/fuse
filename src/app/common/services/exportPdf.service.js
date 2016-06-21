@@ -254,6 +254,7 @@
 
       doc.text(295, arrayLengthOffset, "Toileting Device:");
       doc.text(430, arrayLengthOffset, data.toiletingDevice + " ");
+      doc.text(430, arrayLengthOffset + 12, arrayLengthOffset + " ");
 
       // mobility line
       doc.setDrawColor(255,235,59);
@@ -341,27 +342,183 @@
 
       doc.addPage();
       doc.setLineWidth(25);
+      var offset2 = 0;
 
       // nutrition line
       doc.setDrawColor(139,195,74);
-      doc.line(0, 575, 650, 575);
-      doc.text(300, 578, "NUTRITION");
+      doc.line(0, 25, 650, 25);
+      doc.text(300, 28, "NUTRITION");
+
+      doc.text(20, 49, "Overall Nutrition:");
+      doc.text(220, 49, data.overallNutrition + " ");
+
+      if (data.overallNutrition == "Poor") {
+        doc.text(20, 61, "Poor Nutrition Description:");
+        doc.text(220, 61, data.poorNutritionDescribe + " ");
+        offset2 = 12;
+      }
+
+      if (data.diabetic == true) {
+        doc.text(20, 61 + offset2, "Diabetic Type:");
+        doc.text(220, 61 + offset2, data.diabeticType + " ");
+
+        doc.text(20, 73 + offset2, "Blood Sugar Monitoring:");
+        doc.text(220, 73 + offset2, data.bloodSugarMonitoring + " ");
+        offset2 = 12 + offset2;
+      } else {
+        doc.text(20, 61 + offset2, data.firstName + " is not diabetic");
+      }
+
+      doc.text(20, 73 + offset2, "Bedtime Snack:");
+      doc.text(220, 73 + offset2, data.bedtimeSnack + " ");
+
+      doc.text(20, 85 + offset2, "Adaptive Equipment:");
+      doc.text(220, 85 + offset2, data.adaptiveEquipment + " ");
+
+      doc.text(20, 97 + offset2, "Needs Food in Small Peices:");
+      doc.text(220, 97 + offset2, data.needsFoodInSmallPeices + " ");
+
+      doc.text(20, 109 + offset2, "Type of Diet:");
+      doc.text(220, 109 + offset2, data.typeOfDiet + " ");
+
+      doc.text(20, 121 + offset2, "Finger Foods:");
+      doc.text(220, 121 + offset2, data.fingerFoods + " ");
+
+      if (data.foodLikes.length !== 0) {
+        doc.text(20, 133 + offset2, "Food Likes:");
+        doc.text(220, 133 + offset2, data.foodLikes + " ");
+        doc.text(400, 133 + offset2, "likes length: " + data.foodLikes.length + " | offset2: " + offset2);
+        offset2 = (data.foodLikes.length * 12) + offset2;
+      }
+
+      if (data.foodDislikes.length !== 0) {
+        doc.text(20, 133 + offset2, "Food Dislikes:");
+        doc.text(220, 133 + offset2, data.foodDislikes + " ");
+        doc.text(400, 133 + offset2, "dislikes length: " + data.foodDislikes.length + " | offset2: " + offset2);
+        offset2 = (data.foodDislikes.length * 12) + offset2;
+      }
 
       // pain line
       doc.setDrawColor(244,67,54);
-      doc.line(0, 600, 650, 600);
-      doc.text(300, 603, "PAIN");
+      doc.line(0, 159 + offset2, 650, 159 + offset2);
+      doc.text(300, 162 + offset2, "PAIN");
+      doc.text(400, 162 + offset2, "offset2: " + offset2);
+
+      if (data.hasPain == true) {
+        doc.text(20, 186 + offset2, "Pain Location:");
+        doc.text(220, 186 + offset2, data.painLocation + " ");
+
+        doc.text(20, 198 + offset2, "Pain Description:");
+        doc.text(220, 198 + offset2, data.painDescription + " ");
+
+        doc.text(20, 210 + offset2, "Max Pain Time:");
+        doc.text(220, 210 + offset2, data.maxPainTime + " ");
+
+        doc.text(20, 222 + offset2, "Pain Increased By:");
+        doc.text(220, 222 + offset2, data.painIncreasedBy + " ");
+
+        doc.text(20, 234 + offset2, "Pain Decreased By:");
+        doc.text(220, 234 + offset2, data.painDecreasedBy + " ");
+
+        doc.text(20, 246 + offset2, "Pain Managed By:");
+        doc.text(220, 246 + offset2, data.painManagedBy + " ");
+
+        doc.text(20, 258 + offset2, "Pain Length:");
+        doc.text(220, 258 + offset2, data.painLength + " ");
+
+        offset2 = offset2 + 84;
+
+      } else {
+        doc.text(20, 186 + offset2, data.firstName + " has not mentioned pain");
+      }
 
       // physical condition line
       doc.setDrawColor(33,150,243);
-      doc.line(0, 625, 650, 625);
-      doc.text(300, 628, "PHYSICAL");
+      doc.line(0, 212 + offset2, 650, 212 + offset2);
+      doc.text(300, 215 + offset2, "PHYSICAL");
+
+      doc.text(20, 236 + offset2, "Skin Condition:");
+      doc.text(220, 236 + offset2, data.skinCondition + " ");
+
+      if (data.hasWound == true) {
+        doc.text(20, 248 + offset2, "Wound Description:");
+        doc.text(220, 248 + offset2, data.hasWoundDescribe + " ");
+
+        doc.text(20, 260 + offset2, "Wound Amount:");
+        doc.text(220, 260 + offset2, data.woundAmount + " ");
+
+        offset2 = offset2 + 24;
+      }
+
+      doc.text(20, 248 + offset2, "Right Ear:");
+      doc.text(220, 248 + offset2, data.rightEar + " ");
+
+      doc.text(20, 260 + offset2, "Left Ear:");
+      doc.text(220, 260 + offset2, data.leftEar + " ");
+
+      doc.text(20, 272 + offset2, "Hearing Notes:");
+      doc.text(220, 272 + offset2, data.hearingNotes + " ");
+
+      if (data.wearsHearingAid == true) {
+        if (data.helpWithHearingAid == true) {
+          doc.text(20, 284 + offset2, "Hearing Aid Help:");
+          doc.text(220, 284 + offset2, data.helpWithHearingAidDescribe + " ");
+
+          offset2 = offset2 + 12;
+        }
+      }
+
+      doc.text(20, 284 + offset2, "Right Eye:");
+      doc.text(220, 284 + offset2, data.rightEye + " ");
+
+      doc.text(20, 296 + offset2, "Left Eye:");
+      doc.text(220, 296 + offset2, data.leftEye + " ");
+
+      doc.text(20, 308 + offset2, "Vision Notes:");
+      doc.text(220, 308 + offset2, data.visionNotes + " ");
+
+      doc.text(20, 320 + offset2, "Dentist Name:");
+      doc.text(220, 320 + offset2, data.dentistName + " ");
+
+      if (data.upperDentureFit == true) {
+        doc.text(20, 332 + offset2, "Upper Denture Fit:");
+        doc.text(220, 332 + offset2, data.upperDentureFitDescribe + " ");
+
+        offset2 = offset2 + 12;
+      }
+
+      doc.text(20, 332 + offset2, "Upper Teeth:");
+      doc.text(220, 332 + offset2, data.upperTeeth + " ");
+
+      if (data.lowerDentureFit == true) {
+        doc.text(20, 344 + offset2, "Lower Denture Fit:");
+        doc.text(220, 344 + offset2, data.lowerDentureFitDescribe + " ");
+
+        offset2 = offset2 + 12;
+      }
+
+      doc.text(20, 344 + offset2, "Lower Teeth:");
+      doc.text(220, 344 + offset2, data.lowerTeeth + " ");
+
+      doc.text(20, 356 + offset2, "Teeth Condition:");
+      doc.text(220, 356 + offset2, data.teethCondition + " ");
 
       // psychosocial line
       doc.setDrawColor(156,39,176);
-      doc.line(0, 650, 650, 650);
-      doc.text(300, 653, "PSYCHOSOCIAL");
+      doc.line(0, 382 + offset2, 650, 382 + offset2);
+      doc.text(300, 385 + offset2, "PSYCHOSOCIAL");
 
+      if (data.psychosocialStatus.length !== 0) {
+        doc.text(20, 406 + offset2, "Psychosocial Status:");
+        doc.text(220, 406 + offset2, data.psychosocialStatus);
+        offset2 = offset2 + (data.psychosocialStatus.length * 12);
+      }
+
+      doc.text(20, 406 + offset2, "Psychosocial Status Description:");
+      doc.text(220, 406 + offset2, data.psychosocialStatusDescribe + " ");
+
+
+/*
       // sleep line
       doc.setDrawColor(233,30,99);
       doc.line(0, 675, 650, 675);
@@ -397,7 +554,7 @@
       doc.setDrawColor(205,220,57);
       doc.line(0, 700, 650, 700);
       doc.text(300, 703, "VITALS");
-
+*/
 
 /* comment out graphs for now
       doc.text(50, 266, "Vitals");
