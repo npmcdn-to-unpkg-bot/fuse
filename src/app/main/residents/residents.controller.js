@@ -217,13 +217,16 @@
         carePlanData.dislikesBathingDescribe = vm.selectedResident.dislikesBathingDescribe;
 
         // Mobility - throws an error because nesting
-        // carePlanData.insideApartment.useOfAssistiveDevice = vm.selectedResident.insideApartment.useOfAssistiveDevice;
-        // carePlanData.insideApartment.assitanceWithDevice = vm.selectedResident.insideApartment.assitanceWithDevice;
-        // carePlanData.insideApartment.specialAmbulationNeeds = vm.selectedResident.insideApartment.specialAmbulationNeeds;
+        carePlanData.insideApartment = {};
+        carePlanData.outsideApartment = {};
 
-        // carePlanData.outsideApartment.useOfAssistiveDevice = vm.selectedResident.outsideApartment.useOfAssistiveDevice;
-        // carePlanData.outsideApartment.assitanceWithDevice = vm.selectedResident.outsideApartment.assitanceWithDevice;
-        // carePlanData.outsideApartment.specialAmbulationNeeds = vm.selectedResident.outsideApartment.specialAmbulationNeeds;
+        carePlanData.insideApartment.useOfAssistiveDevice = vm.selectedResident.insideApartment.useOfAssistiveDevice;
+        carePlanData.insideApartment.assitanceWithDevice = vm.selectedResident.insideApartment.assitanceWithDevice;
+        carePlanData.insideApartment.specialAmbulationNeeds = vm.selectedResident.insideApartment.specialAmbulationNeeds;
+
+        carePlanData.outsideApartment.useOfAssistiveDevice = vm.selectedResident.outsideApartment.useOfAssistiveDevice;
+        carePlanData.outsideApartment.assitanceWithDevice = vm.selectedResident.outsideApartment.assitanceWithDevice;
+        carePlanData.outsideApartment.specialAmbulationNeeds = vm.selectedResident.outsideApartment.specialAmbulationNeeds;
 
         carePlanData.transfers = vm.selectedResident.transfers;
         carePlanData.fallRisk = vm.selectedResident.fallRisk;
