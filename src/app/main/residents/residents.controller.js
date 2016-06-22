@@ -216,9 +216,11 @@
         carePlanData.acceptanceOfBathing = vm.selectedResident.acceptanceOfBathing;
         carePlanData.dislikesBathingDescribe = vm.selectedResident.dislikesBathingDescribe;
 
-        // Mobility - throws an error because nesting
+        // Mobility
         carePlanData.insideApartment = {};
         carePlanData.outsideApartment = {};
+        vm.selectedResident.insideApartment = {};
+        vm.selectedResident.outsideApartment = {};
 
         carePlanData.insideApartment.useOfAssistiveDevice = vm.selectedResident.insideApartment.useOfAssistiveDevice;
         carePlanData.insideApartment.assitanceWithDevice = vm.selectedResident.insideApartment.assitanceWithDevice;

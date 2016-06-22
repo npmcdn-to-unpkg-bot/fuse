@@ -263,13 +263,13 @@
 
       doc.text(295, arrayLengthOffset + 62, "Inside Apartment:");
       doc.text(295, arrayLengthOffset + 74, "Use of Assistive Device:");
-      doc.text(450, arrayLengthOffset + 74, data.toiletingDevice + " ");
+      doc.text(450, arrayLengthOffset + 74, data.insideApartment.useOfAssistiveDevice + " ");
 
       doc.text(295, arrayLengthOffset + 86, "Assitance with Device:");
-      doc.text(450, arrayLengthOffset + 86, data.toiletingDevice + " ");
+      doc.text(450, arrayLengthOffset + 86, data.insideApartment.assitanceWithDevice + " ");
 
       doc.text(295, arrayLengthOffset + 98, "Special Ambulation Needs:");
-      doc.text(450, arrayLengthOffset + 98, data.toiletingDevice + " ");
+      doc.text(450, arrayLengthOffset + 98, data.insideApartment.specialAmbulationNeeds + " ");
 
       doc.text(295, arrayLengthOffset + 122, "Outside Apartment:");
       doc.text(295, arrayLengthOffset + 134, "Use of Assistive Device:");
@@ -386,14 +386,14 @@
 
       if (data.foodLikes.length !== 0) {
         doc.text(20, 133 + offset2, "Food Likes:");
-        doc.text(220, 133 + offset2, data.foodLikes + " ");
+        doc.text(220, 133 + offset2, data.foodLikes);
         doc.text(400, 133 + offset2, "likes length: " + data.foodLikes.length + " | offset2: " + offset2);
         offset2 = (data.foodLikes.length * 12) + offset2;
       }
 
       if (data.foodDislikes.length !== 0) {
         doc.text(20, 133 + offset2, "Food Dislikes:");
-        doc.text(220, 133 + offset2, data.foodDislikes + " ");
+        doc.text(220, 133 + offset2, data.foodDislikes);
         doc.text(400, 133 + offset2, "dislikes length: " + data.foodDislikes.length + " | offset2: " + offset2);
         offset2 = (data.foodDislikes.length * 12) + offset2;
       }
@@ -503,19 +503,93 @@
       doc.text(20, 356 + offset2, "Teeth Condition:");
       doc.text(220, 356 + offset2, data.teethCondition + " ");
 
+      doc.addPage();
+      doc.setLineWidth(25);
+      var offset3 = 0;
+
       // psychosocial line
       doc.setDrawColor(156,39,176);
-      doc.line(0, 382 + offset2, 650, 382 + offset2);
-      doc.text(300, 385 + offset2, "PSYCHOSOCIAL");
+      doc.line(0, 25, 650, 25);
+      doc.text(300, 28, "PSYCHOSOCIAL");
 
       if (data.psychosocialStatus.length !== 0) {
-        doc.text(20, 406 + offset2, "Psychosocial Status:");
-        doc.text(220, 406 + offset2, data.psychosocialStatus);
-        offset2 = offset2 + (data.psychosocialStatus.length * 12);
+        doc.text(20, 49, "Psychosocial Status:");
+        doc.text(220, 49, data.psychosocialStatus);
+        offset3 = offset3 + (data.psychosocialStatus.length * 12) - 12;
       }
 
-      doc.text(20, 406 + offset2, "Psychosocial Status Description:");
-      doc.text(220, 406 + offset2, data.psychosocialStatusDescribe + " ");
+      doc.text(20, 61 + offset3, "Psychosocial Status Description:");
+      doc.text(220, 61 + offset3, data.psychosocialStatusDescribe + " ");
+
+      doc.text(20, 73 + offset3, "Comprehension:");
+      doc.text(220, 73 + offset3, data.comprehension + " ");
+
+      if (data.smokes == true) {
+        doc.text(20, 85 + offset3, "Smokes:");
+        doc.text(220, 85 + offset3, data.smokesDescribe);
+        offset3 = offset3 + 12;
+      }
+
+      if (data.alcohol == true) {
+        doc.text(20, 85 + offset3, "Alcohol:");
+        doc.text(220, 85 + offset3, data.alcoholDescribes);
+        offset3 = offset3 + 12;
+      }
+
+      if (data.sexualActive == true) {
+        doc.text(20, 85 + offset3, "Sexual Activity:");
+        doc.text(220, 85 + offset3, data.sexualActiveDescribe);
+        offset3 = offset3 + 12;
+      }
+
+      doc.text(20, 85 + offset3, "Other Habits:");
+      doc.text(220, 85 + offset3, data.otherHabits + " ");
+
+      doc.text(20, 97 + offset3, "Activity Participation:");
+      doc.text(220, 97 + offset3, data.generalActivityParticipation + " ");
+
+      doc.text(20, 109 + offset3, "Dining Room Participation:");
+      doc.text(220, 109 + offset3, data.diningRoomParticipation + " ");
+
+      doc.text(20, 121 + offset3, "Bus Ride Participation:");
+      doc.text(220, 121 + offset3, data.busRideParticipation + " ");
+
+      doc.text(20, 133 + offset3, "Fitness Class Participation:");
+      doc.text(220, 133 + offset3, data.fitnessClassParticipation + " ");
+
+      doc.text(20, 145 + offset3, "Bingo Participation:");
+      doc.text(220, 145 + offset3, data.bingoParticipation + " ");
+
+      doc.text(20, 157 + offset3, "Community Participation:");
+      doc.text(220, 157 + offset3, data.communityParticipation + " ");
+
+      doc.text(20, 169 + offset3, "Time in Room:");
+      doc.text(220, 169 + offset3, data.timeInRoom + " ");
+
+      if (data.drivesCar == true) {
+        doc.text(20, 181 + offset3, "License Plate Number:");
+        doc.text(220, 181 + offset3, data.licensePlateNumber + " ");
+
+        doc.text(20, 193 + offset3, "Spare Key Location:");
+        doc.text(220, 193 + offset3, data.spareKeyLocation);
+
+        doc.text(20, 205 + offset3, "Driving Needs:");
+        doc.text(220, 205 + offset3, data.drivingNeeds);
+
+        offset3 = offset3 + 36;
+      }
+
+      doc.text(20, 181 + offset3, "Prefered Activites:");
+      doc.text(220, 181 + offset3, data.preferedActivites + " ");
+
+      doc.text(20, 193 + offset3, "Uses Fitness Equipment Alone:");
+      doc.text(220, 193 + offset3, data.useFitnessEquipmentIndependently + " ");
+
+      doc.text(20, 205 + offset3, "Family Involvement:");
+      doc.text(220, 205 + offset3, data.familyInvolvement + " ");
+
+      doc.text(20, 217 + offset3, "High Maintenance:");
+      doc.text(220, 217 + offset3, data.highMaintenance + " ");
 
 
 /*
