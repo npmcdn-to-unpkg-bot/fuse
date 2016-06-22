@@ -591,73 +591,61 @@
       doc.text(20, 217 + offset3, "High Maintenance:");
       doc.text(220, 217 + offset3, data.highMaintenance + " ");
 
-
-/*
       // sleep line
       doc.setDrawColor(233,30,99);
-      doc.line(0, 675, 650, 675);
-      doc.text(300, 678, "SLEEP");
+      doc.line(0, 255 + offset3, 650, 255 + offset3);
+      doc.text(300, 258 + offset3, "SLEEP");
 
-      doc.text(295, arrayLengthOffset + 62, "Usual Bedtime:");
-      doc.text(430, arrayLengthOffset + 62, data.usualBedtime + " ");
+      doc.text(20, 279 + offset3, "Usual Bedtime:");
+      doc.text(220, 279 + offset3, data.usualBedtime + " ");
 
-      doc.text(295, arrayLengthOffset + 74, "Usual Arising Time:");
-      doc.text(430, arrayLengthOffset + 74, data.usualArisingTime + " ");
+      doc.text(20, 291 + offset3, "Usual Arising Time:");
+      doc.text(220, 291 + offset3, data.usualArisingTime + " ");
 
       if (data.nap == true) {
-        doc.text(295, arrayLengthOffset + 86, "Nap Description:");
-        doc.text(430, arrayLengthOffset + 86, data.napDescribe + " ");
-        arrayLengthOffset = arrayLengthOffset + 12;
+        doc.text(20, 303 + offset3, "Nap Description:");
+        doc.text(220, 303 + offset3, data.napDescribe + " ");
+
+        offset3 = offset3 + 12;
       }
 
-      doc.text(295, arrayLengthOffset + 86, "Assistance to Bed:");
-      doc.text(430, arrayLengthOffset + 86, data.assistanceToBed + " ");
-
-      arrayLengthOffset = arrayLengthOffset + 98;
-
-      doc.text(295, arrayLengthOffset, "Assistance to Bed:");
-      doc.text(430, arrayLengthOffset, data.assistanceToBed + " ");
+      doc.text(20, 303 + offset3, "Assistance to Bed:");
+      doc.text(220, 303 + offset3, data.assistanceToBed + " ");
 
       if (data.sleepsThroughNight == true) {
-        doc.text(295, arrayLengthOffset + 12, "Can Call for Assistance:");
-        doc.text(430, arrayLengthOffset + 12, data.canCallForAssistance + " ");
-        arrayLengthOffset = arrayLengthOffset + 12;
+        doc.text(20, 315 + offset3, "Can Call for Assistance:");
+        doc.text(220, 315 + offset3, data.canCallForAssistance + " ");
+
+        offset3 = offset3 + 12;
       }
+
+      doc.addPage();
+      doc.setLineWidth(25);
+      var offset4 = 0;
 
       // vitals line
       doc.setDrawColor(205,220,57);
-      doc.line(0, 700, 650, 700);
-      doc.text(300, 703, "VITALS");
-*/
+      doc.line(0, 25, 650, 25);
+      doc.text(300, 28, "VITALS");
 
-/* comment out graphs for now
-      doc.text(50, 266, "Vitals");
-      doc.setFontSize(10);
+      doc.text(50, 100, "Temperature");
+      doc.addImage(data.temperature, 'PNG', 50, 120, 150, 150);
 
-      doc.text(50, 305, "Temperature");
-      doc.addImage(data.temperature, 'PNG', 50, 320,
-        150, 150);
+      doc.text(210, 100, "Blood Pressure ");
+      doc.addImage(data.bloodCanvas, 'PNG', 250, 120, 150, 150);
 
-      doc.text(210, 305, "Blood Pressure ");
-      doc.addImage(data.bloodCanvas, 'PNG', 250, 320,
-        150, 150);
+      doc.text(410, 100, "Respiration");
+      doc.addImage(data.resp, 'PNG', 410, 120, 150, 150);
 
-      doc.text(50, 490, "Oxygen Saturation");
-      doc.addImage(data.oxygen, 'PNG', 50, 490,
-        150, 150);
 
-      doc.text(210, 490, "Pulse");
-      doc.addImage(data.pulse, 'PNG', 250, 490,
-        150, 150);
+      doc.text(50, 300, "Oxygen Saturation");
+      doc.addImage(data.oxygen, 'PNG', 50, 320, 150, 150);
 
-      doc.text(410, 490, "Vitals Pain");
-      doc.addImage(data.vitals, 'PNG', 410, 490,
-        150, 150);
+      doc.text(210, 300, "Pulse");
+      doc.addImage(data.pulse, 'PNG', 250, 320, 150, 150);
 
-      doc.text(50, 635, "Respiration");
-      doc.addImage(data.resp, 'PNG', 50, 635,
-        150, 150);
-*/
+      doc.text(410, 300, "Vitals Pain");
+      doc.addImage(data.vitals, 'PNG', 410, 320, 150, 150);
 
       doc.save(fileName);
     }
