@@ -8,9 +8,7 @@
 
     function authentication($http, $window) {
 
-       var apiUrl = "http://localhost:3300";
-
-      //  apiUrl = "";
+       var apiUrl="http://localhost:3300";
 
 
         // create a saveToken method to read a value from localStorage

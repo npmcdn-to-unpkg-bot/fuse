@@ -10,9 +10,7 @@
 
         ////////////////////////////////////////////////
 
-        var apiUrl = "http://localhost:3300";
-
-      //  apiUrl = "";
+        var apiUrl="http://localhost:3300";
 
        var authHeader = {
          "headers": {
