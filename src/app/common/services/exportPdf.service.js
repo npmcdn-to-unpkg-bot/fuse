@@ -254,7 +254,6 @@
 
       doc.text(295, arrayLengthOffset, "Toileting Device:");
       doc.text(430, arrayLengthOffset, data.toiletingDevice + " ");
-      doc.text(430, arrayLengthOffset + 12, arrayLengthOffset + " ");
 
       // mobility line
       doc.setDrawColor(255,235,59);
@@ -295,8 +294,6 @@
 
       arrayLengthOffset = arrayLengthOffset + 202
 
-      doc.text(450, arrayLengthOffset, arrayLengthOffset + " ");
-
       // big vertical line
       doc.setDrawColor(120,144,156);
       doc.setLineWidth(220);
@@ -327,7 +324,7 @@
 
       if (data.middleName !== "") {
         adminOffset = adminOffset + 15;
-        doc.text(75, adminOffset, data.middleName);
+        doc.text(75, adminOffset, data.middleName + " ");
       }
 
       doc.text(75, adminOffset + 15, data.lastName);
@@ -339,6 +336,8 @@
       doc.text(87, adminOffset + 54, "Date of Birth: " + residentFiltedBirthDate);
       doc.text(81, adminOffset + 66, "Admission Date: " + residentFiltedAdmissionDate);
       doc.text(75, adminOffset + 78, "Building Status: " + data.buildingStatus);
+      doc.text(81, adminOffset + 104, "Story about " + data.firstName + " " + data.lastName);
+      doc.text(81, adminOffset + 116, "could go here");
 
       doc.addPage();
       doc.setLineWidth(25);
@@ -402,7 +401,6 @@
       doc.setDrawColor(244,67,54);
       doc.line(0, 159 + offset2, 650, 159 + offset2);
       doc.text(300, 162 + offset2, "PAIN");
-      doc.text(400, 162 + offset2, "offset2: " + offset2);
 
       if (data.hasPain == true) {
         doc.text(20, 186 + offset2, "Pain Location:");
