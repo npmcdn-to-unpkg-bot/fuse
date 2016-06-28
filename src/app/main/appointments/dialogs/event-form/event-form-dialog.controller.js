@@ -32,6 +32,7 @@
 
     //////////
 
+    //This will only be set when the add part is active
     vm.dayTimeSwitch = "AM";
     vm.showCancel = false;
 
@@ -76,9 +77,11 @@
       //if we are in the update model set fields value
       if (vm.dialogData.calendarEvent) {
 
-        vm.dayTimeSwitch = vm.calendarEvent.dayTimeSwitch;
+        vm.dayTimeSwitch = vm.calendarEvent.isAm;
 
-        if(vm.dayTimeSwitch == true) {
+        console.log(vm.calendarEvent);
+
+        if(vm.dayTimeSwitch == false) {
           vm.dayTimeSwitch = "PM";
         } else {
           vm.dayTimeSwitch = "AM";
@@ -126,10 +129,7 @@
 
         console.log(vm.calendarEvent.date);
 
-        vm.date = utcToLocalDate(new Date(vm.calendarEvent.date));
-
-        console.log(vm.calendarEvent.hours);
-        console.log(utcToLocalDate(new Date(vm.calendarEvent.date)));
+        vm.date = new Date(vm.calendarEvent.start);
 
         //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));
         vm.transportation = vm.calendarEvent.transportation;
@@ -176,6 +176,13 @@
 
       var parseDate = new Date(vm.calendarEvent.date);
 
+      //setting timeSwith stuff
+      if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
+        vm.calendarEvent.isAm = false;
+      } else {
+        vm.calendarEvent.isAm = true;
+      }
+
       //converting date to am/pm format
       if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
         parseDate.setUTCHours(parseInt(vm.calendarEvent.hours) + 12);
@@ -193,6 +200,9 @@
 
       // Update
       if (vm.dialogData.calendarEvent) {
+
+        vm.calendarEvent.appointmentDate = vm.date;
+        vm.calendarEvent.timezone = vm.date.getTimezoneOffset() / 60;
 
         //update info
         vm.calendarEvent.modifiedBy = authentication.currentUser().name;
@@ -213,11 +223,13 @@
 
         vm.calendarEvent.date = vm.calendarEvent.time;
 
+
         apilaData.updateAppointment(vm.calendarEvent.appointId, vm.calendarEvent)
           .success(function(appoint) {
 
             var calId = vm.dialogData.calendarEvent._id;
 
+            console.log(appoint);
             vm.calendarEvent = appoint;
             vm.calendarEvent.source = srcEvents;
             vm.calendarEvent.residentGoing = appoint.residentGoing;
@@ -244,6 +256,10 @@
 
        vm.calendarEvent.date = vm.calendarEvent.time;
        vm.calendarEvent.community = vm.community;
+
+       vm.calendarEvent.appointmentDate = vm.date;
+       vm.calendarEvent.timezone = vm.date.getTimezoneOffset() / 60;
+
 
         apilaData.addAppointment(vm.calendarEvent)
           .success(function(appoint) {

@@ -16,6 +16,8 @@
     var m = date.getMonth();
     var y = date.getFullYear();
 
+    var appointList = [];
+
     var appointments = null;
 
     var username = authentication.currentUser().name;
@@ -43,7 +45,7 @@
 
     var loadAppoitnments = function(id) {
 
-      var appointList = [];
+
 
       //load all the events and show them on the callendar
       apilaData.appointmentsList(id)
@@ -51,54 +53,8 @@
           appointments = data;
           var i = 1;
           angular.forEach(data, function(value, key) {
-
-            var dateObj = new Date(value.time);
-
-            var timeSwitch = false;
-            var hours = dateObj.getUTCHours();
-
-            //handle when user is at 12 o clock
-            // if(hours == 0) {
-            //   hours = 12;
-            //   timeSwitch = true;
-            // }
-
-            if (hours > 12) {
-              timeSwitch = true;
-              hours -= 12;
-            }
-
-            dateObj.setHours(dateObj.getUTCHours());
-
-            var calEvent = {
-              id: i,
-              title: value.residentGoing.firstName + " " + value.residentGoing.lastName +
-                " to " + value.locationName,
-              start: value.time,
-              end: null,
-              transportation: value.transportation,
-              reason: value.reason,
-              dayTimeSwitch: timeSwitch,
-              minutes: dateObj.getMinutes(),
-              hours: hours,
-              locationDoctor: value.locationDoctor,
-              locationName: value.locationName,
-              date: value.time,
-              currentUser: value.residentGoing,
-              appointId: value._id,
-              cancel: value.cancel,
-              appointmentComment: value.appointmentComment,
-              residentGoing: value.residentGoing,
-              stick: true,
-            }
-
-            if (value.cancel === true) {
-              calEvent.color = "#f24438";
-            }
-
-            i++;
-
-            appointList.push(calEvent);
+            var currAppoint = addAppointment(value);
+            appointList.push(currAppoint);
 
           });
 
@@ -203,46 +159,22 @@
       doc.save(month + '-Appointments.pdf');
     }
 
-    /**
-     * Go to next on current view (week, month etc.)
-     */
     function next() {
       vm.calendarView.calendar.next();
     }
 
-    /**
-     * Go to previous on current view (week, month etc.)
-     */
     function prev() {
       vm.calendarView.calendar.prev();
     }
 
-    /**
-     * Show event detail
-     *
-     * @param calendarEvent
-     * @param e
-     */
     function eventDetail(calendarEvent, e) {
       showEventDetailDialog(calendarEvent, e);
     }
 
-    /**
-     * Add new event in between selected dates
-     *
-     * @param start
-     * @param end
-     * @param e
-     */
     function select(start, end, e) {
       showEventFormDialog('add', false, start, end, e);
     }
 
-    /**
-     * Add event
-     *
-     * @param e
-     */
     function addEvent(e) {
       var start = new Date().getUTCDate(),
         end = new Date();
@@ -250,11 +182,7 @@
       showEventFormDialog('add', false, start, end, e);
     }
 
-    /**
-     * Show event detail dialog
-     * @param calendarEvent
-     * @param e
-     */
+
     function showEventDetailDialog(calendarEvent, e) {
       $mdDialog.show({
         controller: 'EventDetailDialogController',
@@ -276,15 +204,70 @@
         showEventFormDialog('edit', calendarEvent, false, false, event);
     }
 
-    /**
-     * Show event add/edit form dialog
-     *
-     * @param type
-     * @param calendarEvent
-     * @param start
-     * @param end
-     * @param e
-     */
+    function addAppointment(appointemnt) {
+      return createAppointemnt(appointemnt, "add");
+    }
+
+    function updateAppointment(appointemnt) {
+      return createAppointemnt(appointemnt, "update");
+    }
+
+    function createAppointemnt(appointment, type) {
+      var hours = appointment.hours;
+
+      if (!appointment.isAm) {
+        appointment.hours += 12;
+      }
+
+
+      //if it's 12 am we need it to 00 for the ISO format thing
+      if(appointment.hours == 12 && appointment.isAm) {
+        appointment.hours = 0;
+      }
+
+      //if it's 12 pm it will be 24 but we need to set 12 in ISO format
+      if(appointment.hours == 24) {
+        appointment.hours = 12;
+      }
+
+
+      var startDate = new Date(appointment.appointmentDate);
+      startDate.setHours(appointment.hours);
+      startDate.setMinutes(appointment.minutes);
+
+      var calEvent = {
+        title: appointment.residentGoing.firstName + " " + appointment.residentGoing.lastName +
+          " to " + appointment.locationName,
+        start: startDate,
+        end: null,
+        transportation: appointment.transportation,
+        reason: appointment.reason,
+        isAm: appointment.isAm,
+        minutes: appointment.minutes,
+        hours: hours,
+        timezone: appointment.timezone,
+        locationDoctor: appointment.locationDoctor,
+        locationName: appointment.locationName,
+        date: appointment.time,
+        currentUser: appointment.residentGoing,
+        appointId: appointment._id,
+        cancel: appointment.cancel,
+        appointmentComment: appointment.appointmentComment,
+        residentGoing: appointment.residentGoing,
+        stick: true,
+      }
+
+      if(type === "add") {
+        calEvent.id = appointment._id;
+      }
+
+      if (appointment.cancel === true) {
+        calEvent.color = "#f24438";
+      }
+
+      return calEvent;
+    }
+
     function showEventFormDialog(type, calendarEvent, start, end, e) {
       var dialogData = {
         type: type,
@@ -305,44 +288,9 @@
         }
       }).then(function(response) {
 
-        var dateObj = new Date(response.calendarEvent.time);
-
-        var timeSwitch = false;
-        var hours = dateObj.getUTCHours();
-
-        if (dateObj.getUTCHours() > 12) {
-          timeSwitch = true;
-          hours -= 12;
-        }
-
-        var resident = response.calendarEvent.residentGoing;
-
-        var formatTitle = resident.firstName + " " + resident.lastName +
-          " going to " + response.calendarEvent.locationName;
-
         if (response.type === 'add') {
-          // Add new
-          vm.events[0].push({
-            id: vm.events[0].length + 80,
-            title: formatTitle,
-            start: response.calendarEvent.time,
-            end: null,
-            transportation: response.calendarEvent.transportation,
-            reason: response.calendarEvent.reason,
-            dayTimeSwitch: timeSwitch,
-            minutes: dateObj.getMinutes(),
-            hours: hours,
-            locationDoctor: response.calendarEvent.locationDoctor,
-            locationName: response.calendarEvent.locationName,
-            date: response.calendarEvent.time,
-            currentUser: response.calendarEvent.residentGoing,
-            appointId: response.calendarEvent.appointId,
-            cancel: response.calendarEvent.cancel,
-            appointmentComment: response.calendarEvent.appointmentComment,
-            residentGoing: response.calendarEvent.residentGoing,
-            stick: true
+          vm.events[0].push(addAppointment(response.calendarEvent));
 
-          });
         } else {
 
           for (var i = 0; i < vm.events[0].length; i++) {
@@ -350,31 +298,7 @@
             // Update
             if (vm.events[0][i]._id == response.calendarEvent.calId) {
 
-              var currEvent = {
-                title: formatTitle,
-                start: response.calendarEvent.time,
-                end: null,
-                transportation: response.calendarEvent.transportation,
-                reason: response.calendarEvent.reason,
-                dayTimeSwitch: timeSwitch,
-                minutes: dateObj.getMinutes(),
-                hours: hours,
-                locationDoctor: response.calendarEvent.locationDoctor,
-                locationName: response.calendarEvent.locationName,
-                date: response.calendarEvent.time,
-                currentUser: response.calendarEvent.currentUser,
-                appointId: response.calendarEvent.appointId,
-                cancel: response.calendarEvent.cancel,
-                appointmentComment: response.calendarEvent.appointmentComment,
-                residentGoing: response.calendarEvent.residentGoing,
-                stick: true
-              };
-
-              if (currEvent.cancel === true) {
-                currEvent.color = "#f00";
-              }
-
-              vm.events[0][i] = currEvent;
+              console.log(updateAppointment(response.calendarEvent));
 
               break;
             }
