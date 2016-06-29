@@ -25,6 +25,7 @@
 
 
       vm.uploadFiles = function(file, errFiles) {
+        console.log(file);
         $scope.f = file;
         $scope.errFile = errFiles && errFiles[0];
 
