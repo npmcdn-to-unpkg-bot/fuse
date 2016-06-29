@@ -28,6 +28,7 @@
 
     vm.categoryList = [
       "Administrative",
+      "Life",
       "Allergy",
       "Bathing",
       "Continent",
@@ -162,7 +163,7 @@
       vm.vitalsCharts.push(createGraphData(resident.pulse, 'Pulse'));
       vm.vitalsCharts.push(createGraphData(resident.vitalsPain, 'Vitals Pain'));
       vm.vitalsCharts.push(createGraphData(resident.respiration, 'Respiration'));
-
+      vm.vitalsCharts.push(createGraphData(resident.weight, 'Weight'));
     }
 
     function exportCarePlan() {
@@ -170,7 +171,7 @@
       if (vm.selectedResident === null) {
         $mdToast.show(
           $mdToast.simple()
-          .textContent("Please selecte a resident to export a care plan")
+          .textContent("Please select a resident to export a care plan")
           .position("top right")
           .hideDelay(2000)
         );
@@ -186,6 +187,7 @@
         var pulseCanvas = angular.element("#plusCanvas")[0];
         var vitalsCanvas = angular.element("#vitalsPainCanvas")[0];
         var respCanvas = angular.element("#respirationCanvas")[0];
+        var weightCanvas = angular.element("#weightCanvas")[0];
 
         var carePlanData = {};
 
@@ -196,6 +198,7 @@
         carePlanData.pulse = pulseCanvas.toDataURL();
         carePlanData.vitals = vitalsCanvas.toDataURL();
         carePlanData.resp = respCanvas.toDataURL();
+        carePlanData.weight = weightCanvas.toDataURL();
 
         // admin
         carePlanData.firstName = vm.selectedResident.firstName;
@@ -208,6 +211,11 @@
         carePlanData.buildingStatus = vm.selectedResident.buildingStatus;
         carePlanData.movedOutDescribe = vm.selectedResident.movedOutDescribe;
         carePlanData.movedOutTo = vm.selectedResident.movedOutTo;
+
+        // Life
+        carePlanData.religion = vm.selectedResident.religion;
+        carePlanData.education = vm.selectedResident.education;
+        carePlanData.occupation = vm.selectedResident.occupation;
 
         // Bathing
         carePlanData.typeOfBathing = vm.selectedResident.typeOfBathing;
@@ -334,7 +342,7 @@
         carePlanData.painManagedBy = vm.selectedResident.painManagedBy;
         carePlanData.painLength = vm.selectedResident.painLength;
 
-
+        // community
         carePlanData.communityName = vm.community.name;
 
         exportPdf.exportCarePlan(carePlanData);

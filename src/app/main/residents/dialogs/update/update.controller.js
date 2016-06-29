@@ -117,16 +117,23 @@
 
       var diff = [];
       var attributeArr = [
+
+        // administrative
         "firstName",
+        "aliasName",
         "lastName",
         "middleName",
         "maidenName",
         "sex",
         "buildingStatus",
+
+        // bathing
         "typeOfBathing",
         "timeOfBathing",
         "frequencyOfBathing",
         "acceptanceOfBathing",
+
+        // continent
         "bowelContinent",
         "constipated",
         "laxative",
@@ -180,6 +187,7 @@
         "newbloodPressureDiastolic",
         "newoxygenSaturation",
         "newpulse",
+        "newweight"
         "newvitalsPain",
         "newrespiration",
         "newfoodAllergies",
@@ -329,6 +337,7 @@
       vm.form.newrespiration = "";
       vm.form.newvitalsPain = "";
       vm.form.newpulse = "";
+      vm.form.newweight = "";
       vm.form.newoxygenSaturation = "";
       vm.form.newbloodPressureDiastolic = "";
       vm.form.newbloodPressureSystolic = "";
@@ -345,6 +354,7 @@
       addToArray(vm.form.respiration, vm.form.newrespiration);
       addToArray(vm.form.vitalsPain, vm.form.newvitalsPain);
       addToArray(vm.form.pulse, vm.form.newpulse);
+      addToArray(vm.form.weight, vm.form.newweight);
       addToArray(vm.form.oxygenSaturation, vm.form.newoxygenSaturation);
       addToArray(vm.form.bloodPressureDiastolic, vm.form.newbloodPressureDiastolic);
       addToArray(vm.form.bloodPressureSystolic, vm.form.newbloodPressureSystolic);

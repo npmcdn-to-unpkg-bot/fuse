@@ -16,6 +16,11 @@
       </md-input-container>
 
       <md-input-container class="md-block">
+        <label>Prefered Name</label>
+        <input ng-model="vm.form.aliasName" type="text" required="">
+      </md-input-container>
+
+      <md-input-container class="md-block">
         <label>Middle Name</label>
         <input ng-model="vm.form.middleName" type="text">
       </md-input-container>
@@ -23,11 +28,6 @@
       <md-input-container class="md-block">
         <label>Last Name</label>
         <input ng-model="vm.form.lastName" type="text" required="">
-      </md-input-container>
-
-      <md-input-container class="md-block">
-        <label>Maiden Name</label>
-        <input ng-model="vm.form.maidenName" type="text">
       </md-input-container>
 
       <div layout="row" layout-align="space-around start">
@@ -50,6 +50,11 @@
             <md-option>Female</md-option>
             <md-option>Other</md-option>
           </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" ng-if="vm.form.sex == 'Female'">
+          <label>Maiden Name</label>
+          <input ng-model="vm.form.maidenName" type="text">
         </md-input-container>
 
         <md-input-container>
