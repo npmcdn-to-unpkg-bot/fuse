@@ -219,7 +219,6 @@
         appointment.hours += 12;
       }
 
-
       //if it's 12 am we need it to 00 for the ISO format thing
       if(appointment.hours == 12 && appointment.isAm) {
         appointment.hours = 0;
@@ -229,7 +228,6 @@
       if(appointment.hours == 24) {
         appointment.hours = 12;
       }
-
 
       var startDate = new Date(appointment.appointmentDate);
       startDate.setHours(appointment.hours);
@@ -259,6 +257,7 @@
 
       if(type === "add") {
         calEvent.id = appointment._id;
+        calEvent._id = appointment._id;
       }
 
       if (appointment.cancel === true) {
@@ -296,10 +295,9 @@
           for (var i = 0; i < vm.events[0].length; i++) {
 
             // Update
-            if (vm.events[0][i]._id == response.calendarEvent.calId) {
+            if (vm.events[0][i].appointId == response.calendarEvent.appointId) {
 
-              console.log(updateAppointment(response.calendarEvent));
-
+              vm.events[0][i] = updateAppointment(response.calendarEvent);
               break;
             }
           }
