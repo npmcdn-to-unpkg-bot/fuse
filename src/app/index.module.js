@@ -38,6 +38,9 @@
             // Forgot passoword
             'app.pages.auth.forgot-password',
 
+            // Reset password
+            'app.pages.auth.reset-password',
+
             // Homepage
             'app.homepage',
 

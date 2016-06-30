@@ -11,14 +11,14 @@
     {
         // State
         $stateProvider.state('app.pages_auth_reset-password', {
-            url      : '/pages/auth/reset-password',
+            url      : '/auth/reset-password/:token',
             views    : {
                 'main@'                                : {
                     templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_reset-password': {
-                    templateUrl: 'app/main/pages/auth/reset-password/reset-password.html',
+                    templateUrl: 'app/main/auth/reset-password/reset-password.html',
                     controller : 'ResetPasswordController as vm'
                 }
             },
@@ -26,14 +26,8 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/auth/reset-password');
+        $translatePartialLoaderProvider.addPart('app/main/auth/reset-password');
 
-        // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.reset-password', {
-            title : 'Reset Password',
-            state : 'app.pages_auth_reset-password',
-            weight: 6
-        });
     }
 
 })();
