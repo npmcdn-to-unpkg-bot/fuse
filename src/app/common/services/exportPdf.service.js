@@ -112,6 +112,14 @@
       var arrayLengthOffset = 0;
       var adminOffset = 250;
 
+      if(data.insideApartment === undefined) {
+        data.insideApartment = {};
+      }
+
+      if(data.outApartment === undefined) {
+        data.outApartment = {};
+      }
+
       var logoPosX = 15,
         logoPosY = 15;
       var logoWidth = 130,

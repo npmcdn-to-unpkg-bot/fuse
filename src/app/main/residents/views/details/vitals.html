@@ -107,6 +107,19 @@
                        chart-labels="vm.vitalsCharts[6].labels" chart-legend="true" chart-series="vm.vitalsCharts[6].series">
                </canvas>
              </div>
+
+             <h4>Weight :
+               <span ng-repeat="w in vm.selectedResident.weight">
+                 {{ w.data }} <span ng-if="!$last">,</span>
+               </span>
+             </h4>
+
+             <!--  Respiration canvas -->
+             <div class="card md-whiteframe-4dp">
+              <canvas id="weightCanvas" class="chart chart-line" chart-data="vm.vitalsCharts[7].data"
+                      chart-labels="vm.vitalsCharts[7].labels" chart-legend="true" chart-series="vm.vitalsCharts[7].series">
+              </canvas>
+            </div>
         </div>
 
     </div>

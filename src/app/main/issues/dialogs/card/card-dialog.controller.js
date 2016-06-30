@@ -25,7 +25,6 @@
 
 
        vm.removeCheckItem = function(checklist, i) {
-         console.log("pls" + i);
          checklist.checkItems.splice(i, 1);
          vm.updateIssue();
        }
