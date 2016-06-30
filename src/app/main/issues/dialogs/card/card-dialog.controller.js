@@ -34,23 +34,21 @@
          vm.updateIssue();
        }
 
-       $scope.openLightboxModal = function () {
-         var confirm = $mdDialog.confirm({
-             title              : 'Remove List',
-             parent             : $document.find('#issues'),
-             textContent        : 'Are you sure want to remove list?',
-             ariaLabel          : 'remove list',
-             ok                 : 'Remove',
-             cancel             : 'Cancel'
-         });
-         $mdDialog.show(confirm).then(function ()
-         {
-
-         }, function ()
-         {
-             // Canceled
-         });
-       };
+       vm.openImage = function(url){
+         $mdDialog.show({
+               controllerAs: 'vm',
+               controller: 'ImageViewController',
+               preserveScope: true,
+               autoWrap: true,
+               skipHide: true,
+               templateUrl: 'app/main/issues/dialogs/card/imageView.html',
+               resolve: {
+                 imgUrl: function() {
+                   return url;
+                 }
+               }
+             });
+       }
 
       vm.uploadFiles = function(file, errFiles) {
         console.log(file);
