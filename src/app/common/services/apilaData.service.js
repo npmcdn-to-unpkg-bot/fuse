@@ -175,6 +175,10 @@
           return $http.post(apiUrl + '/api/users/forgotpassowrd/' + email);
         }
 
+        var resetPassword = function(token, data) {
+          return $http.post(apiUrl + '/api/users/reset/' + token, data);
+        }
+
 
         /***************** COMMUNITY RESOURCES ***************/
 
@@ -241,6 +245,7 @@
             usersList : usersList,
             userCommunity : userCommunity,
             forgotPassword : forgotPassword,
+            resetPassword : resetPassword,
 
             //community
             addCommunity : addCommunity,

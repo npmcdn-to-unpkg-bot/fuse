@@ -15,8 +15,6 @@
         // Methods
 
         vm.login = function() {
-            console.log("in login method");
-            console.log(vm.form);
 
             vm.doLogin();
 

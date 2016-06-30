@@ -7,7 +7,7 @@
         .controller('ForgotPasswordController', ForgotPasswordController);
 
     /** @ngInject */
-    function ForgotPasswordController(apilaData, $mdToast)
+    function ForgotPasswordController(apilaData, $mdToast, $state, $interval)
     {
         // Data
         var vm = this;
@@ -24,9 +24,18 @@
             );
 
             vm.form.email = "";
+
+            $interval(function () {
+              $state.go('app.pages_auth_login');
+            }, 1500);
           })
           .error(function(response) {
-            console.log("Email password reset not sent");
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent("Email not found")
+              .position("top right")
+              .hideDelay(2000)
+            );
           });
         }
 
