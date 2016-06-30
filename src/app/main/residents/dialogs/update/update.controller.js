@@ -187,7 +187,7 @@
         "newbloodPressureDiastolic",
         "newoxygenSaturation",
         "newpulse",
-        "newweight"
+        "newweight",
         "newvitalsPain",
         "newrespiration",
         "newfoodAllergies",
