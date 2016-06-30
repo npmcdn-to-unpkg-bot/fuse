@@ -53,6 +53,7 @@
         login = function(user) {
             return $http.post(apiUrl + '/api/login', user).success(function(data) {
                 saveToken(data.token);
+                console.log(data.token);
             });
         };
 
