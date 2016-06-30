@@ -35,6 +35,9 @@
             // Register
             'app.pages.auth.register',
 
+            // Forgot passoword
+            'app.pages.auth.forgot-password',
+
             // Homepage
             'app.homepage',
 
