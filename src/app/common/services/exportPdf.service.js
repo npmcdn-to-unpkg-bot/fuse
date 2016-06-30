@@ -314,6 +314,7 @@
       doc.setFontSize(10);
       doc.setTextColor(250,250,250);
       doc.text(130, 170, "transparent logo");
+      doc.addImage(imageData.getTransparentLogo(), 'PNG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
 
       // admin header
       doc.setTextColor(33,33,33);
