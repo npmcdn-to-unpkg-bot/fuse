@@ -24,6 +24,35 @@
         vm.labels = vm.board.labels;
 
 
+       vm.removeCheckItem = function(checklist, i) {
+         console.log("pls" + i);
+         checklist.checkItems.splice(i, 1);
+         vm.updateIssue();
+       }
+
+       vm.updateCheckItem = function(checklist, checkitemId, text) {
+         checklist.checkItems[checkitemId] = text;
+         vm.updateIssue();
+       }
+
+       $scope.openLightboxModal = function () {
+         var confirm = $mdDialog.confirm({
+             title              : 'Remove List',
+             parent             : $document.find('#issues'),
+             textContent        : 'Are you sure want to remove list?',
+             ariaLabel          : 'remove list',
+             ok                 : 'Remove',
+             cancel             : 'Cancel'
+         });
+         $mdDialog.show(confirm).then(function ()
+         {
+
+         }, function ()
+         {
+             // Canceled
+         });
+       };
+
       vm.uploadFiles = function(file, errFiles) {
         console.log(file);
         $scope.f = file;

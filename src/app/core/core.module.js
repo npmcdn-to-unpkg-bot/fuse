@@ -27,6 +27,8 @@
                 'xeditable',
                 'moment-picker',
                 'ngFileUpload',
-                'duScroll'
+                'duScroll',
+                'bootstrapLightbox',
+                'xeditable'
             ]);
 })();

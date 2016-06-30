@@ -1,6 +1,6 @@
-<!-- CARD DIALOG -->
-<md-dialog class="card-dialog" aria-label="Card Dialog" ng-cloak>
 
+<!-- CARD DIALOG -->
+<md-dialog class="card-dialog" aria-label="Card Dialog" ng-cloak id="issueModal">
 
 
   <!-- DIALOG TOOLBAR -->
@@ -356,6 +356,9 @@
           </md-chips>
         </div>
 
+
+
+
         <!-- ATTACHMENTS SECTION -->
         <div class="section">
           <div class="attachments">
@@ -378,7 +381,7 @@
 
                 <div layout="row">
 
-                  <div class="attachment-preview md-whiteframe-2dp" ng-style="{'background-image': 'url({{item.url}})'}">
+                  <div ng-click="openLightboxModal()" class="attachment-preview md-whiteframe-2dp" ng-style="{'background-image': 'url({{item.url}})'}">
                   </div>
 
                   <div class="attachment-content" layout="column">
@@ -494,8 +497,11 @@
               <div class="check-items">
                 <div class="check-item" ng-repeat="checkItem in checklist.checkItems">
                   <md-checkbox ng-model="checkItem.checked" ng-change="vm.updateCheckedCount(checklist)" aria-label="{{checkItem.name}}">
-                    {{checkItem.name}}
                   </md-checkbox>
+
+                   <a ng-if="checkItem.checked" href="#" style="text-decoration: line-through;" editable-text="checkItem.name" onaftersave="vm.updateCheckItem(checklist, $index, checkItem)">{{checkItem.name}}</a>
+
+                    <a ng-if="!checkItem.checked" href="#"  editable-text="checkItem.name" onaftersave="vm.updateCheckItem(checklist, $index, checkItem)">{{checkItem.name}}</a>
                 </div>
               </div>
 

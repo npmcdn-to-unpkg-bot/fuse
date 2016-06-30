@@ -7,7 +7,7 @@
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock(msUtils, fuseGenerator, fuseConfig)
+    function runBlock(msUtils, fuseGenerator, fuseConfig, editableOptions, editableThemes)
     {
         /**
          * Generate extra classes based on registered themes so we
@@ -32,6 +32,11 @@
         {
             angular.element('html').addClass('is-mobile');
         }
+
+        editableOptions.theme = 'default';
+        //editableOptions.theme = 'default';
+        editableThemes['default'].cancelTpl = '<button type="submit" ng-click="vm.removeCheckItem(checklist, $index)">Remove</button>';
+        editableThemes['default'].submitTpl = '<button type="submit">Save</button>';
 
         /**
          * Put browser information to the html as a class
