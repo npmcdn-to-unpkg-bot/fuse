@@ -92,7 +92,7 @@
         vm.rgba = fuseGenerator.rgba;
         vm.toggleInArray = msUtils.toggleInArray;
         vm.exists = msUtils.exists;
-        vm.existsMembers = msUtils.existsMembers;
+        vm.existsMembers = msUtils.exists;
         vm.closeDialog = closeDialog;
         vm.getCardList = getCardList;
         vm.removeCard = removeCard;
@@ -410,7 +410,7 @@
 
           console.log("Dodo");
 
-            msUtils.toggleInMembersArray(item, array);
+            msUtils.toggleInArray(item, array);
 
             updateIssue();
 
