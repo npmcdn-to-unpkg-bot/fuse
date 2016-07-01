@@ -7,6 +7,13 @@
 
         <div class="list md-whiteframe-1dp" layout="column">
 
+          <!-- CARD COVER -->
+          <div ng-if="vm.board.settings.cardCoverImages && vm.board.cards.getById(cardId).idAttachmentCover"
+               class="list-card-cover">
+              <img ng-src="{{vm.board.cards.getById(cardId).attachments.getById(vm.board.cards.getById(cardId).idAttachmentCover).url}}">
+          </div>
+          <!-- / CARD COVER -->
+
             <!-- LIST HEADER -->
             <div class="list-header" layout="row" layout-align="space-between center">
 
@@ -82,14 +89,24 @@
                             <div ng-if="vm.board.cards.getById(cardId).submitDate || vm.board.cards.getById(cardId).resolutionTimeframe"
                                  class="list-card-badges" layout="row" layout-align="start center">
 
+                                 <!-- CARD DUE -->
+                                 <!-- <span class="badge due-date"
+                                       ng-class="{'overdue': vm.isOverdue(vm.board.cards.getById(cardId).due)}"
+                                       ng-if="vm.board.cards.getById(cardId).due" layout="row"
+                                       layout-align="start center">
+                                     <i class="icon-clock s16"></i>
+                                     <span>{{vm.board.cards.getById(cardId).due | date:'mediumDate'}}</span>
+                                 </span> -->
+                                 <!-- / CARD DUE -->
+
                                 <!-- CARD submitDate -->
-                                <span class="badge due-date"
+                                <!-- <span class="badge due-date"
                                       ng-class="{'overdue': vm.isOverdue(vm.board.cards.getById(cardId).submitDate)}"
                                       ng-if="vm.board.cards.getById(cardId).submitDate" layout="row"
                                       layout-align="start center">
                                     <i class="icon-clock s16"></i>
                                     <span>{{vm.board.cards.getById(cardId).submitDate | date:'mediumDate'}}</span>
-                                </span>
+                                </span> -->
                                 <!-- / CARD submitDate -->
 
                                 <!-- CARD CHECK ITEMS STATUS -->

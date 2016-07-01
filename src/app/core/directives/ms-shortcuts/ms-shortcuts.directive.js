@@ -56,12 +56,15 @@
 
         function init()
         {
+
             // Load the shortcuts
             vm.loadShortcuts().then(
                 // Success
                 function (response)
                 {
                     vm.shortcuts = response;
+
+
 
                     // Add shortcuts as results by default
                     if ( vm.shortcuts.length > 0 )
@@ -168,6 +171,8 @@
                 {
                     results = vm.shortcuts;
                 }
+
+
             }
 
             // Reset the selected result
@@ -203,16 +208,17 @@
             {
                 shortcuts = [
                     {
-                        'title'      : 'Sample',
+                        'title'      : 'Dashboard',
                         'icon'       : 'icon-tile-four',
-                        'state'      : 'app.sample',
+                        'state'      : 'app.dashboard',
                         'weight'     : 1,
                         'children'   : [],
-                        '_id'        : 'sample',
-                        '_path'      : 'apps.sample',
-                        'uisref'     : 'app.sample',
+                        '_id'        : 'dashboard',
+                        '_path'      : 'app.dashboard',
+                        'uisref'     : 'app.dashboard',
                         'hasShortcut': true
                     }
+
                 ];
 
                 $cookies.put('FUSE.shortcuts', angular.toJson(shortcuts));
