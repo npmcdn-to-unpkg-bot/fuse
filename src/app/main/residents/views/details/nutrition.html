@@ -3,40 +3,40 @@
 </div>
 
 <div ng-if="vm.selectedResident !== null">
-<div class="mail-header">
+  <div class="mail-header">
     <div class="subject" flex>{{vm.selectedCategory}}</div>
-</div>
+  </div>
 
-<div class="mail-content">
+  <div class="mail-content">
     <div class="info" layout="row" layout-align="space-between start">
 
-        <div layout="column" layout-align="start start">
-              <!-- Add details content here -->
-              <h4>Overall Nutrition : {{ vm.selectedResident.overallNutrition }}</h4>
-              <h4>Poor Nutrition Describtion : {{ vm.selectedResident.poorNutritionDescribe }}</h4>
-              <h4>Diabetic : {{ vm.selectedResident.diabetic }}</h4>
-              <h4>Diabetic Type : {{ vm.selectedResident.diabeticType }}</h4>
-              <h4>Blood Sugar Monitoring : {{ vm.selectedResident.bloodSugarMonitoring }}</h4>
-              <h4>Bedtime Snack : {{ vm.selectedResident.bedtimeSnack }}</h4>
-              <h4>Adaptive Equipment : {{ vm.selectedResident.adaptiveEquipment }}</h4>
-              <h4>Needs Food In Small Peices : {{ vm.selectedResident.needsFoodInSmallPeices }}</h4>
-              <h4>Type of Diet : {{ vm.selectedResident.typeOfDiet }}</h4>
-              <h4>Finger foods : {{ vm.selectedResident.fingerFoods }}</h4>
+      <div layout="column" layout-align="start start">
 
-              <h4>Food Likes :
-                <span ng-repeat="food in vm.selectedResident.foodLikes">
-                  {{ food }} <span ng-if="!$last">,</span>
-                </span>
-              </h4>
+        <!-- Add details content here -->
+        <h4>Overall Nutrition: {{ vm.selectedResident.overallNutrition }}</h4>
+        <h4>Poor Nutrition Describtion: {{ vm.selectedResident.poorNutritionDescribe }}</h4>
+        <h4>Diabetic: {{ vm.selectedResident.diabetic }}</h4>
+        <h4>Diabetic Type: {{ vm.selectedResident.diabeticType }}</h4>
+        <h4>Blood Sugar Monitoring: {{ vm.selectedResident.bloodSugarMonitoring }}</h4>
+        <h4>Bedtime Snack: {{ vm.selectedResident.bedtimeSnack }}</h4>
+        <h4>Adaptive Equipment: {{ vm.selectedResident.adaptiveEquipment }}</h4>
+        <h4>Needs Food in Small Peices: {{ vm.selectedResident.needsFoodInSmallPeices }}</h4>
+        <h4>Type of Diet: {{ vm.selectedResident.typeOfDiet }}</h4>
+        <h4>Finger Foods: {{ vm.selectedResident.fingerFoods }}</h4>
 
-              <h4>Food Dislikes :
-                <span ng-repeat="food in vm.selectedResident.foodDislikes">
-                  {{ food }} <span ng-if="!$last">,</span>
-                </span>
-              </h4>
-        </div>
+        <h4>Food Likes:
+          <span ng-repeat="food in vm.selectedResident.foodLikes">
+            {{ food }} <span ng-if="!$last">,</span>
+          </span>
+        </h4>
 
+        <h4>Food Dislikes :
+          <span ng-repeat="food in vm.selectedResident.foodDislikes">
+            {{ food }} <span ng-if="!$last">,</span>
+          </span>
+        </h4>
+
+      </div>
     </div>
-
-</div>
+  </div>
 </div>

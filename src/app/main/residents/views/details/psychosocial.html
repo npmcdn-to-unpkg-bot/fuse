@@ -3,69 +3,66 @@
 </div>
 
 <div ng-if="vm.selectedResident !== null">
-<div class="mail-header">
+  <div class="mail-header">
     <div class="subject" flex>{{vm.selectedCategory}}</div>
-</div>
+  </div>
 
-<div class="mail-content">
+  <div class="mail-content">
     <div class="info" layout="row" layout-align="space-between start">
 
-        <div layout="column" layout-align="start start">
-              <!-- Add details content here -->
+      <div layout="column" layout-align="start start">
+        <!-- Add details content here -->
 
-              <h4>Psychosocial Status :
-                <span ng-repeat="psychosocialStatus in vm.selectedResident.psychosocialStatus">
-                  {{ psychosocialStatus }} <span ng-if="!$last">,</span>
-                </span>
-              </h4>
+        <h4>Psychosocial Status:
+          <span ng-repeat="psychosocialStatus in vm.selectedResident.psychosocialStatus">
+            {{ psychosocialStatus }} <span ng-if="!$last">,</span>
+          </span>
+        </h4>
+        <h4>Describe the Psychosocial Status: {{ vm.selectedResident.psychosocialStatusDescribe}}</h4>
+        <h4>Comprehension: {{ vm.selectedResident.comprehension }}</h4>
 
-              <h4>Describe the Psychosocial Status : {{ vm.selectedResident.psychosocialStatusDescribe}}</h4>
-              <h4>Comprehension : {{ vm.selectedResident.comprehension }}</h4>
-              <h4>Smokes : {{ vm.selectedResident.smokes }}</h4>
-                  <h4 ng-if="vm.selectedResident.smokes">
-                    Smoke Description : {{ vm.selectedResident.smokesDescribe }}
-                  </h4>
+        <h4>Smokes: {{ vm.selectedResident.smokes }}</h4>
+        <h4 ng-if="vm.selectedResident.smokes">
+          Smoke Description: {{ vm.selectedResident.smokesDescribe }}
+        </h4>
 
+        <h4>Alcohol: {{ vm.selectedResident.alcohol }}</h4>
+        <h4 ng-if="vm.selectedResident.alcohol">
+          Alcohol Description: {{ vm.selectedResident.alcoholDescribes }}
+        </h4>
 
-              <h4>Alcohol : {{ vm.selectedResident.alcohol }}</h4>
-                  <h4 ng-if="vm.selectedResident.alcohol">
-                    Alcohol Description : {{ vm.selectedResident.alcoholDescribes }}
-                  </h4>
+        <h4>Sexual Active: {{ vm.selectedResident.sexualActive }}</h4>
+        <h4 ng-if="vm.selectedResident.sexualActive">
+          Sexual Description: {{ vm.selectedResident.sexualActiveDescribe }}
+        </h4>
 
-              <h4>Sexual Active : {{ vm.selectedResident.sexualActive }}</h4>
-                  <h4 ng-if="vm.selectedResident.sexualActive">
-                    Sexual Description : {{ vm.selectedResident.sexualActiveDescribe }}
-                  </h4>
+        <h4>Other Habits: {{ vm.selectedResident.otherHabits }}</h4>
+        <h4>General Activity Participation: {{ vm.selectedResident.generalActivityParticipation }}</h4>
+        <h4>Dining Room Participation: {{ vm.selectedResident.diningRoomParticipation }}</h4>
+        <h4>Bus Ride Participation: {{ vm.selectedResident.busRideParticipation }}</h4>
+        <h4>Fitness Class Participation: {{ vm.selectedResident.fitnessClassParticipation }}</h4>
+        <h4>Bingo Participation: {{ vm.selectedResident.bingoParticipation }}</h4>
+        <h4>Community Participation: {{ vm.selectedResident.communityParticipation }}</h4>
 
-              <h4>Other Habits : {{ vm.selectedResident.otherHabits }}</h4>
+        <h4>Has Car: {{ vm.selectedResident.drivesCar }}</h4>
+        <h4 ng-if="vm.selectedResident.drivesCar">
+          License Plate Number: {{ vm.selectedResident.licensePlateNumber }}
+        </h4>
+        <h4 ng-if="vm.selectedResident.drivesCar">
+          Spare Key Location: {{ vm.selectedResident.spareKeyLocation }}
+        </h4>
+        <h4 ng-if="vm.selectedResident.drivesCar">
+          Driving Needs: {{ vm.selectedResident.drivingNeeds }}
+        </h4>
 
-              <h4>General Activity Participation : {{ vm.selectedResident.generalActivityParticipation }}</h4>
-              <h4>Dining Room Participation : {{ vm.selectedResident.diningRoomParticipation }}</h4>
-              <h4>Bus Ride Participation : {{ vm.selectedResident.busRideParticipation }}</h4>
-              <h4>Fitness Class Participation : {{ vm.selectedResident.fitnessClassParticipation }}</h4>
-              <h4>Bingo Participation : {{ vm.selectedResident.bingoParticipation }}</h4>
-              <h4>Community Participation : {{ vm.selectedResident.communityParticipation }}</h4>
+        <h4>Time In Room: {{ vm.selectedResident.timeInRoom }}</h4>
+        <h4>Prefered Activites: {{ vm.selectedResident.preferedActivites }}</h4>
+        <h4>Use Fitness Equipment Independently: {{ vm.selectedResident.useFitnessEquipmentIndependently }}</h4>
 
-              <h4>Has Car : {{ vm.selectedResident.drivesCar }}</h4>
-                  <h4 ng-if="vm.selectedResident.drivesCar">
-                    License Plate Number : {{ vm.selectedResident.licensePlateNumber }}
-                  </h4>
-                  <h4 ng-if="vm.selectedResident.drivesCar">
-                    Spare Key Location : {{ vm.selectedResident.spareKeyLocation }}
-                  </h4>
-                  <h4 ng-if="vm.selectedResident.drivesCar">
-                    Driving Needs : {{ vm.selectedResident.drivingNeeds }}
-                  </h4>
+        <h4>High Maintenance: {{ vm.selectedResident.highMaintenance }}</h4>
+        <h4>Family Involvement: {{ vm.selectedResident.familyInvolvement }}</h4>
 
-              <h4>Time In Room : {{ vm.selectedResident.timeInRoom }}</h4>
-              <h4>Prefered Activites : {{ vm.selectedResident.preferedActivites }}</h4>
-              <h4>Use Fitness Equipment Independently : {{ vm.selectedResident.useFitnessEquipmentIndependently }}</h4>
-
-              <h4>High Maintenance : {{ vm.selectedResident.highMaintenance }}</h4>
-              <h4>Family Involvement : {{ vm.selectedResident.familyInvolvement }}</h4>
-        </div>
-
+      </div>
     </div>
-
-</div>
+  </div>
 </div>

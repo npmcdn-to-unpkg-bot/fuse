@@ -28,10 +28,10 @@
 
     vm.categoryList = [
       "Administrative",
-      "Life",
       "Allergy",
       "Bathing",
       "Continent",
+      "Life",
       "Mobility",
       "Nutrition",
       "Pain",
