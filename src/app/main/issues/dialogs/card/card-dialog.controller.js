@@ -23,6 +23,8 @@
 
         vm.labels = vm.board.labels;
 
+        vm.newCheckListTitle = "Checklist";
+
 
        vm.removeCheckItem = function(checklist, i) {
          checklist.checkItems.splice(i, 1);
@@ -541,7 +543,7 @@
             .success(function(d) {
                 vm.card.checklists.push(d);
                 vm.card.updateInfo.push(data.updateInfo);
-                console.log(vm.card.checklists);
+                vm.newCheckListTitle = "Checklist";
             })
             .error(function(d) {
               console.log("Error while adding checklist");
