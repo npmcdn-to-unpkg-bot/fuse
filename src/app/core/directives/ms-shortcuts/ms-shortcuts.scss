@@ -11,7 +11,6 @@
 
         .shortcuts {
             position: relative;
-            max-width: 480px;
             overflow-x: scroll;
 
             > div {
@@ -33,11 +32,7 @@
                 }
 
                 .shortcut {
-                    width: 48px;
-                    height: 48px;
-                    line-height: 48px;
-                    padding: 0 8px;
-                    margin: 0;
+                    margin: 2px;
 
                     .first-letter {
                         display: inline-block;
@@ -47,6 +42,35 @@
                         color: rgba(0, 0, 0, 0.54);
                     }
                 }
+            }
+        }
+
+        .shortcut-menu {
+            margin: 0;
+        }
+
+        &.mobile-bar-active {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: #FFFFFF;
+            z-index: 99;
+            max-width: none !important;
+
+            .shortcuts,
+            .shortcut-menu,
+            .toggle-mobile-menu {
+                display: flex !important;
+            }
+
+            .toggle-mobile-menu {
+                margin-left: 14px;
+            }
+
+            > div {
+                border-right: 1px solid rgba(0, 0, 0, 0.12);
             }
         }
     }
@@ -73,6 +97,10 @@
             width: 40px;
             height: 40px;
             line-height: 48px;
+        }
+
+        .shortcut-loader {
+            padding: 10px;
         }
 
         input {
@@ -128,41 +156,12 @@
 
 // RESPONSIVE
 
-@media screen and (max-width: $layout-breakpoint-md) {
-
-    .ms-shortcuts {
-
-        .shortcuts-container {
-
-            .shortcuts {
-                max-width: 336px;
-            }
-        }
-    }
-}
-
 @media screen and (max-width: $layout-breakpoint-sm) {
 
     .ms-shortcuts {
 
         .shortcuts-container {
-
-            .shortcuts {
-                max-width: 192px;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: $layout-breakpoint-xs) {
-
-    .ms-shortcuts {
-
-        .shortcuts-container {
-
-            .shortcuts {
-                max-width: 96px;
-            }
+            max-width: 400px;
         }
     }
 }
