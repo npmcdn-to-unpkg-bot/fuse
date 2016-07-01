@@ -48,7 +48,8 @@
     "ng-file-upload": "^12.0.4",
     "ng-file-upload-shim": "^12.0.4",
     "angular-scroll": "^1.0.0",
-    "angular-bootstrap-lightbox": "^0.12.0"
+    "angular-bootstrap-lightbox": "^0.12.0",
+    "mdPickers": "^0.7.5"
   },
   "devDependencies": {
     "angular-mocks": "1.5.5"

@@ -24,6 +24,11 @@
 
     init();
 
+
+    vm.testDate = function() {
+      console.log(vm.currentTime);
+    }
+
     apilaData.userCommunity(authentication.currentUser().name)
       .success(function(d) {
         vm.community = d;
@@ -40,6 +45,7 @@
     if (!inUpdate()) {
           vm.transportation = "We are transporting";
           vm.showCancel = true;
+          vm.currentTime =  new Date();
       }
 
          vm.getMatches = function (text) {
@@ -80,6 +86,16 @@
         vm.dayTimeSwitch = vm.calendarEvent.isAm;
 
         console.log(vm.calendarEvent);
+
+        vm.currentTime = new Date();
+
+        if(vm.calendarEvent.isAm) {
+          vm.currentTime.setHours(vm.calendarEvent.hours);
+        } else {
+          vm.currentTime.setHours(vm.calendarEvent.hours + 12);
+        }
+
+        vm.currentTime.setMinutes(vm.calendarEvent.minutes);
 
         if(vm.dayTimeSwitch == false) {
           vm.dayTimeSwitch = "PM";
@@ -177,11 +193,11 @@
       var parseDate = new Date(vm.calendarEvent.date);
 
       //setting timeSwith stuff
-      if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
-        vm.calendarEvent.isAm = false;
-      } else {
-        vm.calendarEvent.isAm = true;
-      }
+      // if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
+      //   vm.calendarEvent.isAm = false;
+      // } else {
+      //   vm.calendarEvent.isAm = true;
+      // }
 
       //converting date to am/pm format
       if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
@@ -191,6 +207,8 @@
       }
 
       parseDate.setMinutes(vm.calendarEvent.minutes);
+
+      setTime();
 
 
       console.log("The current date is:" + parseDate);
@@ -339,13 +357,27 @@
       exportPdf.exportAppointmentDetail(name, vm.calendarEvent);
     }
 
-    /**
-     * Close the dialog
-     */
     function closeDialog() {
       $mdDialog.cancel();
     }
 
+
+    function setTime() {
+      var hours = vm.currentTime.getHours();
+      var minutes = vm.currentTime.getMinutes();
+      var isAm = true;
+
+      console.log(vm.currentTime);
+
+      if(hours > 12) {
+        hours -= 12;
+        isAm = false;
+      }
+
+      vm.calendarEvent.hours = hours;
+      vm.calendarEvent.minutes = minutes;
+      vm.calendarEvent.isAm = isAm;
+    }
 
     function inUpdate()
     {
@@ -357,9 +389,7 @@
       }
     }
 
-    /**
-     * Converts utc date to the local date
-     */
+
     function utcToLocalDate(date)
     {
       return new Date(date.getTime() + date.getTimezoneOffset()*60*1000);
