@@ -33,7 +33,7 @@
     var exportAppointmentDetail = function(name, data) {
       var doc = new jsPDF('p', 'pt', 'letter');
 
-      doc.addImage(imageData.getApilaForm(), 'JPEG', 15, 15, 580, 760);
+      doc.addImage(imageData.getImage('apila_form'), 'JPEG', 15, 15, 580, 760);
 
       var appointmentDate = new Date(data.date);
 
@@ -322,7 +322,7 @@
       doc.setFontSize(10);
       doc.setTextColor(250,250,250);
       doc.text(130, 170, "transparent logo");
-      doc.addImage(imageData.getTransparentLogo(), 'PNG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
+      doc.addImage(imageData.getImage('transperent_logo'), 'PNG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
 
       // admin header
       doc.setTextColor(33,33,33);
