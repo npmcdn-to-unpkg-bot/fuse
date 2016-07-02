@@ -44,7 +44,7 @@
                     <div class="results" ng-if="MsShortcuts.results" ms-scroll>
                         <div class="no-results" ng-if="MsShortcuts.results.length === 0">No Results!</div>
 
-                        <div class="result" ng-repeat="result in MsShortcuts.results"
+                         <div class="result" ng-repeat="result in MsShortcuts.results"
                              ng-click="MsShortcuts.handleResultClick(result)"
                              ng-mouseenter="MsShortcuts.handleMouseenter($index)"
                              ng-mousedown="MsShortcuts.absorbEvent($event)"
@@ -64,7 +64,7 @@
                                 <md-icon md-font-icon="icon-pin" class="icon s18"
                                          ng-class="{'fade-text': !result.hasShortcut}"></md-icon>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </md-menu-content>

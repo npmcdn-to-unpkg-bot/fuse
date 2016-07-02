@@ -54,6 +54,19 @@
 
         init();
 
+        function addDefaultFields() {
+          var fields = msNavigationService.getFlatNavigation();
+          fields.splice(0, 1); // we dont want the first Apila care
+
+          if(vm.results == null) {
+            vm.results = [];
+          }
+
+          vm.results = vm.results.concat(fields);
+
+          vm.results = _.uniqBy(vm.results, "title");
+        }
+
         function init()
         {
 
@@ -71,6 +84,9 @@
                     {
                         vm.results = response;
                     }
+
+                    addDefaultFields();
+
                 }
             );
 
