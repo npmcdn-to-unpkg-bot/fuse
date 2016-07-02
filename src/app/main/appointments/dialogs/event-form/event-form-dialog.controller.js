@@ -367,9 +367,7 @@
       var minutes = vm.currentTime.getMinutes();
       var isAm = true;
 
-      console.log(vm.currentTime);
-
-      if(hours > 12) {
+      if(hours >= 12) {
         hours -= 12;
         isAm = false;
       }
