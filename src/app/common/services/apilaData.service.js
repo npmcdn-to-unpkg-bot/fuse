@@ -102,6 +102,10 @@
           return $http.get(apiUrl + '/api/issues/issuescount/' + communityId, getAuth());
         }
 
+        var dueIssuesList = function(communityId) {
+          return $http.get(apiUrl + '/api/issues/due/' + communityId, getAuth());
+        }
+
 
         /***************** APPOINTMENTS RESOURCES ***************/
 
@@ -233,6 +237,7 @@
             openIssuesCount : openIssuesCount,
             deleteIssue : deleteIssue,
             issuesCount : issuesCount,
+            dueIssuesList: dueIssuesList,
 
             //residents
             residentsList : residentsList,

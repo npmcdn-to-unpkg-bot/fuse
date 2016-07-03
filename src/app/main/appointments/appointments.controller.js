@@ -41,11 +41,10 @@
         vm.community = d;
         loadAppoitnments(vm.community._id);
         openIssuesCount(vm.community._id);
+        loadIssues(vm.community._id);
       });
 
     var loadAppoitnments = function(id) {
-
-
 
       //load all the events and show them on the callendar
       apilaData.appointmentsList(id)
@@ -65,10 +64,31 @@
           console.log("error loading appointments");
         });
 
-
-
-
     };
+
+    var loadIssues = function(id) {
+      apilaData.dueIssuesList(id)
+      .success(function(response) {
+        angular.forEach(response, function(value, key) {
+
+          var dueDate =  new Date(value.due);
+
+          var calEvent = {
+            title: value.title,
+            start: dueDate,
+            end: null,
+            stick: true,
+            color: "#228B22"
+          };
+
+          appointList.push(calEvent);
+
+        });
+      })
+      .error(function(response) {
+
+      });
+    }
 
 
     vm.events = [
