@@ -9,7 +9,7 @@
 
       <!-- DUE DATE -->
       <div class="due-date">
-          <div ng-if="!vm.card.due" moment-picker="vm.card.due" format="x" min-view="year"
+          <div ng-if="!vm.card.currdue" moment-picker="vm.card.currdue" format="x" min-view="year"
                max-view="hour"
                start-view="month">
               <md-button class="md-icon-button" aria-label="Due date" translate
@@ -275,24 +275,24 @@
   <md-dialog-content ms-scroll>
 
     <!-- DUE DATE -->
-    <div ng-if="vm.card.due" class="due-date" layout="row" layout-align="start center">
-        <div class="picker day-picker" moment-picker="vm.card.due" format="x" min-view="year" max-view="month"
-             start-view="month">
+    <div ng-if="vm.card.currdue" class="due-date" layout="row" layout-align="start center">
+        <!-- <div class="picker day-picker" moment-picker="vm.card.currdue" format="x" min-view="year" max-view="month"
+             start-view="month"> -->
             <div layout="row" layout-align="start center">
                 <i class="s18 icon icon-calendar"></i>
-                <span>{{vm.card.due | date:'mediumDate'}}</span>
+                <span>{{vm.card.currdue | date:'mediumDate'}}</span>
             </div>
-        </div>
+        <!-- </div> -->
 
-        <div class="picker hour-picker" moment-picker="vm.card.due" format="x" min-view="day" max-view="hour"
-             start-view="day">
+        <!-- <div class="picker hour-picker" moment-picker="vm.card.currdue" format="x" min-view="day" max-view="hour"
+             start-view="day"> -->
             <div layout="row" layout-align="start center">
                 <i class="s18 icon icon-clock"></i>
-                <span>{{vm.card.due | date:'shortTime'}}</span>
+                <span>{{vm.card.currdue | date:'shortTime'}}</span>
             </div>
-        </div>
+        <!-- </div> -->
 
-        <div class="remove-due-date" layout="row" layout-align="center center" ng-click="vm.card.due = ''">
+        <div class="remove-due-date" layout="row" layout-align="center center" ng-click="vm.card.currdue = ''">
             <i class="s16 icon icon-close"></i>
         </div>
     </div>

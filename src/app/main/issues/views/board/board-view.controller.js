@@ -259,7 +259,7 @@
                               value.id = msUtils.guidGenerator();
                               value.name = value.title;
 
-                              value.due = value.submitDate;
+                              value.due = value.due;
 
                               vm.board.cards.push(value);
                               currList.idCards.push(value.id);

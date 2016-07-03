@@ -16,6 +16,8 @@
         vm.board = BoardService.data.data;
         vm.card = vm.board.cards.getById(cardId);
 
+        vm.card.currdue = vm.card.due;
+
         vm.card.labels.map(function(d){d.id = d._id; return d;});
 
         vm.newLabelColor = 'red';
@@ -25,6 +27,20 @@
 
         vm.newCheckListTitle = "Checklist";
 
+        var unchangedDueDate = angular.copy(vm.card.due);
+
+        $scope.$watch('vm.card.currdue', function() {
+          if(unchangedDueDate !== vm.card.currdue) {
+
+            if(vm.card.currdue != null) {
+              if(vm.card.currdue !== "2016") {
+                vm.card.due = vm.card.currdue;
+                vm.updateIssue();
+              }
+            }
+
+          }
+        });
 
        vm.removeCheckItem = function(checklist, i) {
          checklist.checkItems.splice(i, 1);
