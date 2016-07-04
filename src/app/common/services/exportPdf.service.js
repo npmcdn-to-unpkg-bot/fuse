@@ -97,6 +97,73 @@
       doc.save(name);
     }
 
+    // // 50, 325, data.appointmentComment
+    // function printComments(x, y, commentData, doc) {
+    //
+    //   var leftofPoint = 0;
+    //   var commentLength = 30;
+    //
+    //   for (var i = 0; i < commentData.length; ++i) {
+    //     var comment = commentData[i];
+    //
+    //     doc.text(x, y + i * 35 + leftofPoint, "Author: " + comment.author);
+    //
+    //     if (comment.commentText.length > commentLength) {
+    //       var numTimes = Math.floor(comment.commentText.length / commentLength);
+    //
+    //       console.log(numTimes);
+    //
+    //       for (var j = 0; j < numTimes; ++j) {
+    //         var txt = "";
+    //         if (j === 0) {
+    //           txt = "Text: ";
+    //         }
+    //         doc.text(x, y + i * 35 + j * 15 + leftofPoint, txt + comment.commentText.substr(j * (commentLength), commentLength));
+    //       }
+    //       leftofPoint = numTimes * 15;
+    //     } else {
+    //       doc.text(x, y + i * 35 + leftofPoint, "Text: " + comment.commentText);
+    //     }
+    //   }
+    // }
+
+    function exportIssue(data) {
+      var doc = new jsPDF('p', 'pt', 'letter');
+
+      var fileName = "Issue_" + data.title + ".pdf";
+
+      var dateFilter = $filter('date');
+      if(data.due) {
+        var dueDate = dateFilter(new Date(data.due), 'MMM d, yyyy');
+      }
+
+      doc.text(40, 40, "Title: ");
+      doc.text(80, 40, data.title);
+
+      doc.text(40, 60, "Submited by: ");
+      doc.text(140, 60, data.submitBy);
+
+      doc.text(40, 80, "Responsible party: ");
+      doc.text(200, 80, data.responsibleParty);
+
+      doc.text(40, 100, "Description: ");
+      doc.text(160, 100, data.description);
+
+      doc.text(40, 120, "Resolution timeframe: ");
+      doc.text(220, 120, data.resolutionTimeframe);
+
+      doc.text(40, 140, "Issue status: ");
+      doc.text(160, 140, data.status);
+
+      // if due date exists
+      if(data.due) {
+        doc.text(40, 160, "Due date: ");
+        doc.text(130, 160, dueDate);
+      }
+
+      doc.save(fileName);
+    }
+
     function exportCarePlan(data) {
 
       var doc = new jsPDF('p', 'pt', 'letter');
@@ -659,6 +726,7 @@
 
     return {
       exportAppointments: exportAppointments,
+      exportIssue: exportIssue,
       exportAppointmentDetail: exportAppointmentDetail,
       exportCarePlan: exportCarePlan
     };

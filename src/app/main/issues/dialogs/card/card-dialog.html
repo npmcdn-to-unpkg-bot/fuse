@@ -88,10 +88,15 @@
       <!-- OPTIONS -->
       <md-menu md-offset="0 48px" class="options">
         <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options" translate translate-attr-aria-label="SB.OPTIONS">
-          <md-icon md-menu-origin md-font-icon="icon-dots-horizontal"></md-icon>
+          <md-icon md-menu-origin md-font-icon="icon-export"></md-icon>
         </md-button>
         <md-menu-content class="options-menu-content" width="4">
           <md-menu-item>
+
+            <md-button ng-click="vm.exportIssue()" aria-label="Export Issue">
+                <md-icon md-font-icon="icon-export" md-menu-align-target></md-icon>
+                <span>Export Issue</span>
+            </md-button>
 
             <!-- commenting out the ability to remove issues
                    <md-button ng-click="vm.removeCard()" aria-label="Remove Card"

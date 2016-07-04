@@ -7,7 +7,7 @@
         .controller('ScrumboardCardDialogController', ScrumboardCardDialogController);
 
     /** @ngInject */
-    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout,
+    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout, exportPdf,
       fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, Upload, msNavigationService)
     {
         var vm = this;
@@ -135,6 +135,7 @@
 
         vm.formatUpdateArray = formatUpdateArray;
         vm.changeStatus = changeStatus;
+        vm.exportIssue = exportIssue;
 
         //deleting a member
         vm.memberUpdate = function(selectedMember) {
@@ -507,6 +508,12 @@
               console.log("Error while updateing checklist");
             });
 
+        }
+
+        function exportIssue() {
+          console.log(vm.card);
+
+          exportPdf.exportIssue(vm.card);
         }
 
         /**
