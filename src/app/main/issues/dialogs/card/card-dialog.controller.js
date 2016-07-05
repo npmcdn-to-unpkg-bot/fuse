@@ -30,6 +30,8 @@
 
         var username = authentication.currentUser().name;
 
+        vm.now = new Date();
+
         apilaData.userCommunity(username)
         .success(function(d) {
           //load member list
@@ -50,6 +52,7 @@
             if(vm.card.currdue != null) {
               if(vm.card.currdue !== "2016") {
                 vm.card.due = vm.card.currdue;
+                vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.due, ""));
                 vm.updateIssue();
               }
             }
@@ -119,8 +122,10 @@
         vm.addNewComment = addNewComment;
         vm.updateIssue = updateIssue;
 
-        vm.formatUpdateArray = function(updateField, updateBy) {
-          return UpdateInfoService.formatUpdateArray(updateField, updateBy);
+        vm.createdIssue = vm.card.submitBy + " created " + vm.card.title + " " + UpdateInfoService.timeDiff(vm.card.submitDate)
+
+        vm.formatUpdateArray = function(updateField, updateBy, updateDate) {
+          return UpdateInfoService.formatUpdateArray(updateField, updateBy, updateDate);
         }
         vm.changeStatus = changeStatus;
         vm.exportIssue = exportIssue;
@@ -615,6 +620,8 @@
               commentText: newCommentText,
               author: authentication.currentUser().name
             };
+
+            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('comments', commentData.commentText, ""));
 
             apilaData.addIssueCommentById(issueid, commentData)
             .success(function(data) {
