@@ -174,6 +174,10 @@
           return $http.get(apiUrl + '/api/users', getAuth());
         }
 
+        var usersInCommunity = function(communityId) {
+          return $http.get(apiUrl + '/api/users/list/' + communityId, getAuth());
+        }
+
         var userCommunity = function(username) {
           return $http.get(apiUrl + '/api/users/community/' + username, getAuth());
         }
@@ -251,6 +255,7 @@
 
             //users
             usersList : usersList,
+            usersInCommunity: usersInCommunity,
             userCommunity : userCommunity,
             forgotPassword : forgotPassword,
             resetPassword : resetPassword,

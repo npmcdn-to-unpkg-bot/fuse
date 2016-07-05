@@ -28,6 +28,20 @@
 
         vm.newCheckListTitle = "Checklist";
 
+        var username = authentication.currentUser().name;
+
+        apilaData.userCommunity(username)
+        .success(function(d) {
+          //load member list
+          apilaData.usersInCommunity(d)
+              .success(function(d) {
+                vm.members = d;
+              })
+              .error(function(d) {
+                console.log("error while loading users");
+              });
+        });
+
         var unchangedDueDate = angular.copy(vm.card.due);
 
         $scope.$watch('vm.card.currdue', function() {
@@ -144,15 +158,6 @@
             updateIssue();
           }
         }
-
-        //load member list
-        apilaData.usersList()
-            .success(function(d) {
-              vm.members = d;
-            })
-            .error(function(d) {
-              console.log("error while loading users");
-            });
 
 
         //////////
