@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout, exportPdf,
-      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, msNavigationService, ImageUploadService)
+      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, msNavigationService, ImageUploadService, UpdateInfoService)
     {
         var vm = this;
 
@@ -105,12 +105,14 @@
         vm.addNewComment = addNewComment;
         vm.updateIssue = updateIssue;
 
-        vm.formatUpdateArray = formatUpdateArray;
+        vm.formatUpdateArray = function(updateField, updateBy) {
+          return UpdateInfoService.formatUpdateArray(updateField, updateBy);
+        }
         vm.changeStatus = changeStatus;
         vm.exportIssue = exportIssue;
 
         vm.uploadFiles = function(file, invalidFiles, card) {
-          ImageUploadService.uploadFiles(file, invalidFiles, card, setUpdateInfo);
+          ImageUploadService.uploadFiles(file, invalidFiles, card, UpdateInfoService.setUpdateInfo);
         }
 
         //deleting a member
@@ -266,7 +268,7 @@
                 vm.card.idAttachmentCover = '';
             }
 
-            var updateInfo = setUpdateInfo('attachments', "" , item.name);
+            var updateInfo = UpdateInfoService.setUpdateInfo('attachments', "" , item.name);
 
             apilaData.deleteAttachment(vm.card._id, item._id, vm.card)
             .success(function(d) {
@@ -361,7 +363,7 @@
                 author: authentication.currentUser().name
             };
 
-            label.updateInfo = setUpdateInfo('labels', label.name, "");
+            label.updateInfo = UpdateInfoService.setUpdateInfo('labels', label.name, "");
 
             //send data to the api
             apilaData.addIssueLabelById(vm.card._id, label)
@@ -389,7 +391,7 @@
 
             console.log(id);
 
-            var updateInfo = setUpdateInfo('labels', "", id.name);
+            var updateInfo = UpdateInfoService.setUpdateInfo('labels', "", id.name);
 
             apilaData.deleteIssueLabelById(vm.card._id, id._id)
             .success(function(d) {
@@ -513,7 +515,7 @@
             checkList.checkItems.push(newCheckItem);
             console.log(checkList);
 
-            checkList.updateInfo = setUpdateInfo('checkitem', newCheckItem.name, "");
+            checkList.updateInfo = UpdateInfoService.setUpdateInfo('checkitem', newCheckItem.name, "");
 
             apilaData.updateCheckList(vm.card._id, checkList._id, checkList)
             .success(function(d) {
@@ -542,7 +544,7 @@
         function removeChecklist(item)
         {
 
-           var updateInfo = setUpdateInfo("checklists", "", item.checklistName);
+           var updateInfo = UpdateInfoService.setUpdateInfo("checklists", "", item.checklistName);
 
             //send remove request to the api
             apilaData.deleteCheckList(vm.card._id, item._id)
@@ -576,7 +578,7 @@
                 checkItems       : []
             };
 
-            data.updateInfo = setUpdateInfo('checklists', data.name, "");
+            data.updateInfo = UpdateInfoService.setUpdateInfo('checklists', data.name, "");
 
             vm.newCheckListTitle = '';
 
@@ -638,7 +640,7 @@
           vm.card.modifiedBy = authentication.currentUser().name;
           vm.card.modifiedDate = new Date();
 
-          vm.card.updateField = checkChangedFields(oldData, vm.card, deletedMember);
+          vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);
 
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(data) {
@@ -650,113 +652,6 @@
           });
         }
 
-
-        function checkChangedFields(oldData, newData, selectedMember) {
-
-          console.log(oldData);
-          console.log(newData);
-
-           var diff = [];
-           var attributeArr = ["title", "resolutionTimeframe", "description"];
-
-           for (var i = 0; i < attributeArr.length; ++i) {
-
-               if (oldData[attributeArr[i]] !== newData[attributeArr[i]]) {
-
-                   diff.push({
-                       "field": attributeArr[i],
-                       "old": oldData[attributeArr[i]],
-                       "new": newData[attributeArr[i]]
-                   });
-               }
-           }
-
-           var memDiff = null;
-
-           //member updates, deleted
-           if(selectedMember !== undefined) {
-
-               diff.push({
-                 "field" : "idMemebers",
-                 "old" : selectedMember,
-                 "new" : ""
-               });
-           }
-           //added some member
-           else if(oldData.idMembers.length < newData.idMembers.length) {
-             memDiff = _.differenceBy(newData.idMembers,
-                  oldData.idMembers, "name");
-
-             if(memDiff.length > 0) {
-               diff.push({
-                 "field" : "idMemebers",
-                 "old" : "",
-                 "new" : newData.idMembers[newData.idMembers.length-1].name
-               });
-             }
-         }
-
-           return diff;
-       }
-
-
-       /**
-       * Gets an array of updateFields and formates them from proper display
-       */
-       function formatUpdateArray(updateInfo, updatedBy) {
-         _.forEach(updateInfo, function(v, k) {
-           v.infoFormated = updatedBy + " changed " + v.field
-                            + " from " + v.old + " to " + v.new;
-
-          //formating for members
-          if(v.field === "idMemebers") {
-            if(v.old === "") {
-              v.infoFormated = updatedBy + " added member " + v.new;
-            } else {
-              v.infoFormated = updatedBy + " removed member " + v.old;
-            }
-          }
-
-          //formating for attachemnts
-          if(v.field === "attachments") {
-            if(v.old === "") {
-              v.infoFormated = updatedBy + " uploaded attachment " + v.new;
-            } else {
-              v.infoFormated = updatedBy + " removed attachment " + v.old;
-            }
-          }
-
-          //formating for labels
-          if(v.field === "labels") {
-            if(v.old === "") {
-              v.infoFormated = updatedBy + " added label " + v.new;
-            } else {
-              v.infoFormated = updatedBy + " removed label " + v.old;
-            }
-          }
-
-          //formating for checklists
-          if(v.field === "checklists") {
-            if(v.old === "") {
-              v.infoFormated = updatedBy + " added checklist " + v.new;
-            } else {
-              v.infoFormated = updatedBy + " removed checklist " + v.old;
-            }
-          }
-
-          //formating for checklists item
-          if(v.field === "checkitem") {
-            if(v.old === "") {
-              v.infoFormated = updatedBy + " added checklist item " + v.new;
-            } else {
-              v.infoFormated = updatedBy + " removed checklist item" + v.old;
-            }
-          }
-
-         });
-
-         return updateInfo;
-       }
 
         /**
          * Filter for chips
@@ -774,24 +669,7 @@
         }
 
 
-        /**
-        * Private function the set the update info for updating label/attachemnts/checklists
-        */
 
-        function setUpdateInfo(fieldName, newField, oldField) {
-          var updateInfo = {};
-
-          updateInfo.updateBy = authentication.currentUser().name;
-          updateInfo.updateDate = new Date();
-          updateInfo.updateField = [];
-          updateInfo.updateField.push({
-            "field": fieldName,
-            "new": newField,
-            "old": oldField
-          });
-
-          return updateInfo;
-        }
 
         function changeStatus() {
           vm.updateIssue();
