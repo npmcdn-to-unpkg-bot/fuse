@@ -27,6 +27,8 @@
 
         vm.newCheckListTitle = "Checklist";
 
+        console.log(vm.card);
+
         var unchangedDueDate = angular.copy(vm.card.due);
 
         $scope.$watch('vm.card.currdue', function() {
