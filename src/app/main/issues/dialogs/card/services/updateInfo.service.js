@@ -123,7 +123,6 @@
            }
          }
 
-
          v.infoFormated += " " + timeDiff(updateDate);
 
         });
@@ -137,7 +136,7 @@
       function setUpdateInfo(fieldName, newField, oldField) {
         var updateInfo = {};
 
-        console.log("update");
+        console.log("update info");
 
         updateInfo.updateBy = authentication.currentUser().name;
         updateInfo.updateDate = new Date();
@@ -157,12 +156,10 @@
 
         var duration = moment.duration(end.diff(start));
 
-        console.log(duration);
-
         if(duration.asSeconds() < 60) {
-          return Math.floor(duration.asSeconds) + " seconds ago";
+          return Math.floor(duration.asSeconds()) + " seconds ago";
         } else if(duration.asMinutes() < 60) {
-          return Math.floor(duration.asMinutes) + " minutes ago";
+          return Math.floor(duration.asMinutes()) + " minutes ago";
         } else if(duration.asHours() < 24) {
           return Math.floor(duration.asHours()) + " hours ago";
         } else if(duration.asDays() < 31) {
