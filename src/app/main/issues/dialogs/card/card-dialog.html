@@ -56,7 +56,7 @@
         </md-button>
         <md-menu-content class="options-menu-content" width="4">
           <md-menu-item>
-            <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+            <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles, vm.card)" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
               <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
               <span>Add attachment</span>
             </md-button>
@@ -484,7 +484,7 @@
                            </div>
                        </div>  -->
 
-              <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
+              <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles, vm.card)" class="add-attachment-button" aria-label="add attachment" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
 
                 <div layout="row" layout-align="start center">
                   <i class="icon-plus s20"></i>

@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout, exportPdf,
-      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, Upload, msNavigationService)
+      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, msNavigationService, ImageUploadService)
     {
         var vm = this;
 
@@ -25,8 +25,6 @@
         vm.members = vm.board.members;
 
         vm.labels = vm.board.labels;
-
-        console.log(vm.card);
 
         vm.newCheckListTitle = "Checklist";
 
@@ -69,42 +67,8 @@
                  }
                }
              });
-       }
-
-      vm.uploadFiles = function(file, errFiles) {
-        console.log(file);
-        $scope.f = file;
-        $scope.errFile = errFiles && errFiles[0];
-
-        var uploadUrl = apilaData.getApiUrl() + '/api/issues/'+ vm.card._id + '/attachments/new';
-
-        var updateInfo = setUpdateInfo('attachments',file.name , "");
-
-        if (file) {
-            file.upload = Upload.upload({
-                url: uploadUrl,
-                data: {file: file, updateInfo: updateInfo},
-                headers: {
-                    Authorization: 'Bearer ' + authentication.getToken()
-                }
-            });
-
-            file.upload.then(function (response) {
-                $timeout(function () {
-                    file.result = response.data;
-                    vm.card.attachments.push(response.data);
-                    console.log(response.data);
-                    vm.card.updateInfo.push(updateInfo);
-                });
-            }, function (response) {
-                if (response.status > 0)
-                    $scope.errorMsg = response.status + ': ' + response.data;
-            }, function (evt) {
-                file.progress = Math.min(100, parseInt(100.0 *
-                                         evt.loaded / evt.total));
-            });
         }
-  }
+
 
         // Methods
         vm.palettes = fuseTheming.getRegisteredPalettes();
@@ -145,6 +109,10 @@
         vm.changeStatus = changeStatus;
         vm.exportIssue = exportIssue;
 
+        vm.uploadFiles = function(file, invalidFiles, card) {
+          ImageUploadService.uploadFiles(file, invalidFiles, card, setUpdateInfo);
+        }
+
         //deleting a member
         vm.memberUpdate = function(selectedMember) {
 
@@ -166,14 +134,6 @@
 
           vm.updateIssue();
 
-          // apilaData.updateIssueLabelById(vm.card._id, labelid,
-          // vm.card.labels.getById(labelid))
-          // .success(function(d) {
-          //
-          // })
-          // .error(function(d) {
-          //   console.log("Error updating label");
-          // });
         }
 
         vm.selectedItemChange = function(selectedMember) {
