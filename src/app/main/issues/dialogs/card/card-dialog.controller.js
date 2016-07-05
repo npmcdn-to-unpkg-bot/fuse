@@ -19,15 +19,16 @@
         vm.card.currdue = vm.card.due;
 
         vm.card.labels.map(function(d){d.id = d._id; return d;});
+        vm.board.labels.map(function(d){d.id = d._id; return d;});
 
         vm.newLabelColor = 'red';
         vm.members = vm.board.members;
 
         vm.labels = vm.board.labels;
 
-        vm.newCheckListTitle = "Checklist";
-
         console.log(vm.card);
+
+        vm.newCheckListTitle = "Checklist";
 
         var unchangedDueDate = angular.copy(vm.card.due);
 
@@ -122,6 +123,11 @@
         vm.filterLabel = filterLabel;
         vm.addNewLabel = addNewLabel;
         vm.removeLabel = removeLabel;
+        vm.removeLabelFromCard = removeLabelFromCard;
+        vm.editLabel = editLabel;
+        vm.addLabelToCard = addLabelToCard;
+        vm.isLabelInCard = isLabelInCard;
+
         /* Members */
         vm.memberQuerySearch = memberQuerySearch;
         vm.filterMember = filterMember;
@@ -152,14 +158,22 @@
 
         vm.updateLabel = function(labelid) {
 
-          apilaData.updateIssueLabelById(vm.card._id, labelid,
-          vm.card.labels.getById(labelid))
-          .success(function(d) {
+          for(var i = 0; i < vm.card.labels.length; ++i) {
+            if(vm.card.labels[i].id === labelid) {
+              console.log(vm.card.labels[i]);
+            }
+          }
 
-          })
-          .error(function(d) {
-            console.log("Error updating label");
-          });
+          vm.updateIssue();
+
+          // apilaData.updateIssueLabelById(vm.card._id, labelid,
+          // vm.card.labels.getById(labelid))
+          // .success(function(d) {
+          //
+          // })
+          // .error(function(d) {
+          //   console.log("Error updating label");
+          // });
         }
 
         vm.selectedItemChange = function(selectedMember) {
@@ -333,6 +347,48 @@
             return angular.lowercase(label.name).indexOf(angular.lowercase(vm.labelSearchText)) >= 0;
         }
 
+        function editLabel(id) {
+          vm.labelTabIndex = 2
+          vm.editLabelId = id;
+        }
+
+        function addLabelToCard(id) {
+          if(!isLabelInCard(id)) {
+            vm.card.labels.push(vm.board.labels.getById(id));
+          } else {
+            removeLabelFromCard(id);
+          }
+
+          updateIssue();
+
+        }
+
+        function isLabelInCard(id) {
+          for(var i = 0; i < vm.card.labels.length; ++i) {
+            if(vm.card.labels[i].id === id) {
+              return true;
+            }
+          }
+
+          return false;
+        }
+
+        function removeLabelFromCard(id) {
+
+          var index = null;
+          for(var i = 0; i < vm.card.labels.length; ++i) {
+            if(vm.card.labels[i].id === id) {
+              index = i;
+              break;
+            }
+          }
+
+          if(index != null) {
+            vm.card.labels.splice(index, 1);
+          }
+
+        }
+
         /**
          * Add new label
          */
@@ -351,7 +407,7 @@
             apilaData.addIssueLabelById(vm.card._id, label)
             .success(function(data) {
               data.id = data._id;
-              vm.card.labels.push(data);
+              vm.board.labels.push(data);
               vm.card.updateInfo.push(label.updateInfo);
 
               vm.newLabelName = '';

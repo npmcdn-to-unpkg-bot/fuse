@@ -70,13 +70,13 @@
                             <!-- /CARD SORT HANDLE -->
 
                             <!-- CARD LABELS -->
-                            <div ng-if="vm.board.cards.getById(cardId).idLabels.length > 0" class="list-card-labels"
+                            <div  class="list-card-labels"
                                  layout="row" layout-wrap>
                                 <span class="list-card-label"
-                                      ng-class="'md-'+vm.board.labels.getById(labelId).color+'-bg'"
-                                      ng-repeat="labelId in vm.board.cards.getById(cardId).idLabels">
+                                      ng-class="'md-'+labelId.color+'-bg'"
+                                      ng-repeat="labelId in vm.board.cards.getById(cardId).labels">
                                     <md-tooltip>
-                                        {{vm.board.labels.getById(labelId).name}}
+                                        {{labelId.name}}
                                     </md-tooltip>
                                 </span>
                             </div>
