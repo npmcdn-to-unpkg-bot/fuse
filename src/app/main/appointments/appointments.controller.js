@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService,
-                                 authentication, exportPdf, $state) {
+                                 authentication, exportPdf, $state, $scope, SearchService) {
     var vm = this;
 
     // Data
@@ -21,6 +21,7 @@
     var appointments = null;
 
     var username = authentication.currentUser().name;
+
 
     function openIssuesCount(id) {
       apilaData.openIssuesCount(username, id)
@@ -58,6 +59,16 @@
           });
 
           vm.events[0] = appointList;
+
+          console.log(appointList);
+
+          SearchService.setData(vm.events[0]);
+
+          SearchService.subscribe($scope, function() {
+            console.log("Search changed");
+            console.log(SearchService.getResult());
+            vm.events[0] = SearchService.getResult();
+          });
 
         })
         .error(function(e) {
