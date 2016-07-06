@@ -74,7 +74,7 @@
 
         <div class="toolbar-separator"></div>
 
-        <ms-search-bar></ms-search-bar>
+        <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)" debounce="300"></ms-search-bar>
 
         <div class="toolbar-separator"></div>
 

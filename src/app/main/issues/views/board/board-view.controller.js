@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, $stateParams,
-       BoardService, CardFilters, DialogService, authentication, apilaData, msNavigationService)
+       BoardService, CardFilters, DialogService, authentication, apilaData, msNavigationService, $scope)
     {
         var vm = this;
 
@@ -17,6 +17,10 @@
         vm.board = BoardService.data.data;
         vm.board.lists = [];
         vm.board.cards = [];
+
+        $scope.$watch('vm.board.lists', function() {
+          console.log(vm.board.lists);
+        });
 
         var username = authentication.currentUser().name;
 
