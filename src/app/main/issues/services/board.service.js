@@ -58,30 +58,24 @@
                 "members": [
                 ],
                 "labels": [
-
-                    {
-                        "id": "63021cfdbe1x72wcf1fc451v",
-                        "name": "Checklist",
-                        "checkItemsChecked": 1,
-                        "checkItems": [
-                            {
-                                "name": "Implement a calendar library",
-                                "checked": false
-                            },
-                            {
-                                "name": "Replace event colors with Material Design colors",
-                                "checked": true
-                            },
-                            {
-                                "name": "Replace icons with Material Design icons",
-                                "checked": false
-                            },
-                            {
-                                "name": "Use moment.js",
-                                "checked": false
-                            }
-                        ]
-                    }
+                  // {
+                  //   name: "High Priority",
+                  //   color: "red",
+                  //   _id: "d8fbnssffasdif",
+                  //   id: "n9sd8fbnsdif"
+                  // },
+                  // {
+                  //   name: "Caution",
+                  //   color: "orange",
+                  //   _id: "8shdnfiosdbnsdif",
+                  //   id: "n9sd8fbnsdif"
+                  // },
+                  // {
+                  //   name: "Low Priority",
+                  //   color: "green",
+                  //   _id: "n9sd8fbnsdif",
+                  //   id: "n9sd8fbnsdif"
+                  // }
                 ]
             }
         };

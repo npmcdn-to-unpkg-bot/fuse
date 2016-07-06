@@ -186,7 +186,7 @@
                 //add card to first list
                 var currUserIssues = _.filter(issues, {"responsibleParty" : username})
 
-                vm.board.labels =  _.flatten(_.map(issues, "labels"));
+                vm.board.labels = vm.board.labels.concat(_.flatten(_.map(issues, "labels")));
 
                 addCardsToList(currUserIssues, vm.board.lists[0]);
               })
