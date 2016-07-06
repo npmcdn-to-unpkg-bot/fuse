@@ -625,18 +625,17 @@
 
               <div class="activity" layout="row" layout-align="start center" ng-repeat="update in vm.card.updateInfo">
 
-                <div class="activity-member-name">{{ update.updateBy }}</div>
-                <div class="activity-message">{{ update.updateDate | date}}</div>
+                <!-- <div class="activity-member-name">{{ update.updateBy }}</div> -->
+                <!-- <div class="activity-message">{{ update.updateDate | date}}</div> -->
 
 
+                <ul>
 
-                <h5 ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy, update.updateDate) ">
-                              <div layout="row" layout-align="space-between center">
-                                <p>
-                                    <span>{{ f.infoFormated }} </span>
-                                </p>
-                              </div>
-                            </h5>
+                <li ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy, update.updateDate) ">
+                  <span>{{ f.infoFormated }} </span>
+                </li>
+
+                </ul>
               </div>
             </div>
 

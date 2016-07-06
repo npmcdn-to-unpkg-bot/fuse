@@ -52,7 +52,7 @@
             if(vm.card.currdue != null) {
               if(vm.card.currdue !== "2016") {
                 vm.card.due = vm.card.currdue;
-                vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.due, ""));
+                //vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.due, ""));
                 vm.updateIssue();
               }
             }
@@ -327,13 +327,12 @@
         function addLabelToCard(id) {
           if(!isLabelInCard(id)) {
             vm.card.labels.push(vm.board.labels.getById(id));
-            console.log(UpdateInfoService.setUpdateInfo('labels', vm.board.labels.getById(id).name, ""));
+
             vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('labels', vm.board.labels.getById(id).name, ""));
           } else {
             removeLabelFromCard(id);
           }
 
-          console.log(vm.card);
           updateIssue();
 
         }
@@ -656,7 +655,7 @@
           vm.card.modifiedDate = new Date();
 
           if(deletedMember) {
-            vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);
+            //vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);
           }
 
           apilaData.updateIssue(vm.card._id, vm.card)
