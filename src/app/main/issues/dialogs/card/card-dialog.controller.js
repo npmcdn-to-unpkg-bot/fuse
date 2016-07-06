@@ -52,7 +52,10 @@
             if(vm.card.currdue != null) {
               if(vm.card.currdue !== "2016") {
                 vm.card.due = vm.card.currdue;
-                //vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.due, ""));
+                if(vm.card.due !== "") {
+                  vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.currdue, ""));
+                }
+
                 vm.updateIssue();
               }
             }
@@ -134,12 +137,25 @@
           ImageUploadService.uploadFiles(file, invalidFiles, card, UpdateInfoService.setUpdateInfo);
         }
 
+        vm.removeDueDate = function() {
+          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', "" , vm.card.currdue));
+          vm.card.currdue = '';
+
+          updateIssue();
+        }
+
+        vm.updateTextFields = function(type) {
+          console.log("dvaput");
+          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo(type, vm.card[type], ""));
+          vm.updateIssue();
+        }
+
         //deleting a member
         vm.memberUpdate = function(selectedMember) {
 
-          console.log(vm.card.idMembers);
-
           vm.card.deletedMember = selectedMember;
+
+          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('idMembers', "" , selectedMember));
 
           updateIssue(selectedMember);
 
@@ -457,9 +473,9 @@
 
         function addMembers(item, array) {
 
-          console.log("Dodo");
-
             msUtils.toggleInArray(item, array);
+
+            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('idMembers', item.name, ""));
 
             updateIssue();
 
@@ -654,9 +670,9 @@
           vm.card.modifiedBy = authentication.currentUser().name;
           vm.card.modifiedDate = new Date();
 
-          if(deletedMember) {
-            //vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);
-          }
+
+          vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);
+
 
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(data) {
@@ -688,6 +704,9 @@
 
 
         function changeStatus() {
+
+          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('status', vm.card.status, ""));
+
           vm.updateIssue();
 
           // delete card

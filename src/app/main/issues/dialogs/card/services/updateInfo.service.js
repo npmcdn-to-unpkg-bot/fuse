@@ -70,7 +70,7 @@
                            + " from " + v.old + " to " + v.new;
 
          //formating for members
-         if(v.field === "idMemebers") {
+         if(v.field === "idMembers") {
            if(v.old === "") {
              v.infoFormated = updatedBy + " added a member " + v.new ;
            } else {
@@ -121,6 +121,22 @@
            } else {
              v.infoFormated = updatedBy + " removed  a comment" + v.old ;
            }
+         }
+
+         if(v.field === "due") {
+           if(v.old === "") {
+             v.infoFormated = updatedBy + " added a due date " + moment(+v.new).format('MMMM Do YYYY, h:mm:ss a') ;
+           } else {
+             v.infoFormated = updatedBy + " removed  a due date " + moment(+v.old).format('MMMM Do YYYY, h:mm:ss a') ;
+           }
+         }
+
+         if(v.field === "status") {
+           v.infoFormated = updatedBy + " changed the issue status to " + v.new ;
+         }
+
+         if(v.field === "description") {
+           v.infoFormated = updatedBy + " changed " + v.field + " to " + v.new;
          }
 
          v.infoFormated += " " + timeDiff(updateDate);

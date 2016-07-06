@@ -195,20 +195,19 @@
       <!-- / LABELS -->
 
       <!-- OPTIONS -->
-      <md-menu md-offset="0 48px" class="options">
+      <!-- <md-menu md-offset="0 48px" class="options">
         <md-button class="md-icon-button" ng-click="vm.exportIssue()" aria-label="Options" translate translate-attr-aria-label="SB.OPTIONS">
           <md-icon md-menu-origin md-font-icon="icon-export"></md-icon>
         </md-button>
 
-        <!-- commenting out the ability to remove issues
                    <md-button ng-click="vm.removeCard()" aria-label="Remove Card"
                               translate translate-attr-aria-label="SB.REMOVE_CARD">
                        <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
                        <span translate="SB.REMOVE_CARD">Remove Card</span>
                    </md-button>
-                -->
 
-      </md-menu>
+
+      </md-menu> -->
       <!-- / OPTIONS -->
 
 
@@ -245,7 +244,7 @@
           <span>{{vm.card.currdue | date:'shortTime'}}</span>
         </div>
 
-        <div class="remove-due-date" layout="row" layout-align="center center" ng-click="vm.card.currdue = ''">
+        <div class="remove-due-date" layout="row" layout-align="center center" ng-click="vm.removeDueDate()">
           <i class="s16 icon icon-close"></i>
         </div>
       </div>
@@ -265,7 +264,7 @@
         <md-input-container class="md-block">
           <label translate="SB.DESCRIPTION">Description</label>
           <md-icon md-font-icon="icon-note-text s18" class="name"></md-icon>
-          <textarea ng-model="vm.card.description" columns="1" max-rows="4"></textarea>
+          <textarea ng-model="vm.card.description" ng-blur="vm.updateIssue()" columns="1" max-rows="4"></textarea>
         </md-input-container>
         <!-- / DESCRIPTION -->
 
