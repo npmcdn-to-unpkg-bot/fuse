@@ -187,11 +187,6 @@
         data.outApartment = {};
       }
 
-      var logoPosX = 15,
-        logoPosY = 15;
-      var logoWidth = 130,
-        logoHeight = 55;
-
       // doc.addImage(imageData.getApilaLogo(), 'JPEG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
 
       /* rounded box attempt
@@ -378,17 +373,11 @@
       doc.setFontSize(16.6);
       doc.text(75, 40, data.communityName);
 
-      // logo placeholder
-      doc.setDrawColor(33,33,33);
-      doc.setLineWidth(10);
-      doc.triangle(
-        180, 80, // (x,y) of point 1
-        90, 200, // (x,y) of point 2
-        270, 200, // (x,y) of point 3
-        'FD');
-      doc.setFontSize(10);
-      doc.setTextColor(250,250,250);
-      doc.text(130, 170, "transparent logo");
+      // logo
+      var logoPosX = 55,
+        logoPosY = 55;
+      var logoWidth = 190,
+        logoHeight = 75;
       doc.addImage(imageData.getImage('transperent_logo'), 'PNG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
 
       // admin header
@@ -407,11 +396,21 @@
 
       // admin info
       doc.setFontSize(10);
-      doc.text(99, adminOffset + 30, "Maiden Name: " + data.maidenName);
-      doc.text(147, adminOffset + 42, "Sex: " + data.sex);
-      doc.text(87, adminOffset + 54, "Date of Birth: " + residentFiltedBirthDate);
-      doc.text(81, adminOffset + 66, "Admission Date: " + residentFiltedAdmissionDate);
-      doc.text(75, adminOffset + 78, "Building Status: " + data.buildingStatus);
+
+      doc.text(147, adminOffset + 30, "Sex: " + data.sex);
+      if (data.sex == "Female") {
+        doc.text(99, adminOffset + 30, "Maiden Name: " + data.maidenName);
+        adminOffset = adminOffset + 12;
+      }
+      doc.text(87, adminOffset + 42, "Date of Birth: " + residentFiltedBirthDate);
+      doc.text(81, adminOffset + 54, "Admission Date: " + residentFiltedAdmissionDate);
+      if (data.buildingStatus == "Moved Out") {
+        doc.text(87, 42 + adminOffset, "Moved Out: " + movedOutTo);
+        doc.text(87, 42 + adminOffset, "Reason: " + movedOutDescribe);
+        adminOffset = adminOffset + 24;
+      } else {
+        doc.text(75, 66 + adminOffset, "Building Status: " + buildingStatus);
+      }
       doc.text(81, adminOffset + 104, "Story about " + data.firstName + " " + data.lastName);
       doc.text(81, adminOffset + 116, "could go here");
 
