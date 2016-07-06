@@ -559,11 +559,7 @@
 
               <h5>{{ vm.createdIssue }}</h5>
 
-              <div class="activity" layout="row" layout-align="start center" ng-repeat="update in vm.card.updateInfo">
-
-                <!-- <div class="activity-member-name">{{ update.updateBy }}</div> -->
-                <!-- <div class="activity-message">{{ update.updateDate | date}}</div> -->
-
+              <div class="activity" layout="row" layout-align="start center" ng-repeat="update in vm.card.updateInfo.slice().reverse()">
 
                 <ul>
 

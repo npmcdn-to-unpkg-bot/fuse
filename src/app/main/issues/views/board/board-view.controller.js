@@ -7,7 +7,7 @@
         .controller('BoardViewController', BoardViewController);
 
     /** @ngInject */
-    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, $stateParams,
+    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, $stateParams, SearchService,
        BoardService, CardFilters, DialogService, authentication, apilaData, msNavigationService, $scope)
     {
         var vm = this;
@@ -18,10 +18,6 @@
         vm.board.lists = [];
         vm.board.cards = [];
 
-        $scope.$watch('vm.board.lists', function() {
-          console.log(vm.board.lists);
-        });
-
         var username = authentication.currentUser().name;
 
         apilaData.userCommunity(username)
@@ -31,6 +27,24 @@
           issueList(vm.myCommunity._id);
           issuesCount(vm.myCommunity._id);
           listByUsername(vm.myCommunity._id);
+
+          SearchService.setData(vm.board.cards);
+
+          console.log(vm.board.lists[0].idCards);
+
+          SearchService.subscribe($scope, function() {
+            vm.board.cards = SearchService.getResult();
+
+            // var kek = _.map(vm.board.cards, "id");
+            //
+            // console.log(kek);
+            //
+            // angular.forEach(vm.board.lists[0].idCards, function(v, i) {
+            //   if(kek.indexOf(v) !== -1){
+            //     vm.board.lists[0].idCards.splice(kek.indexOf(v), 1);
+              // }
+            // });
+          });
 
         });
 
