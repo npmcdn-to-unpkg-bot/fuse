@@ -8,32 +8,34 @@
 
     function SearchService(msNavigationService, $q, $rootScope) {
 
+      // The data that is being set through filter/search
       var data = [];
-      var srcData = [];
+
+      // The resulting data from the filter/search function
+      var resultData = [];
+
 
       function setData(d) {
         data = d;
       }
 
       function getResult() {
-        return srcData;
+        return resultData;
       }
 
-
       function subscribe(scope, callback) {
-            var handler = $rootScope.$on('notifying-service-event', callback);
-            scope.$on('$destroy', handler);
-          }
+        var handler = $rootScope.$on('notifying-service-event', callback);
+        scope.$on('$destroy', handler);
+      }
 
       function search(query)
       {
 
-          var flatNavigation = data,
-              deferred = $q.defer();
+          var deferred = $q.defer();
 
           if ( query )
           {
-              srcData = flatNavigation.filter(function (item)
+              resultData = data.filter(function (item)
               {
                   if ( angular.lowercase(item.title).search(angular.lowercase(query)) > -1 )
                   {
@@ -41,22 +43,33 @@
                   }
               });
           } else if(query == "") {
-            srcData = flatNavigation;
+            resultData = data;
           }
 
+          // notify the controller to update their data
           $rootScope.$emit('notifying-service-event');
 
-          deferred.resolve(srcData);
-
+          deferred.resolve(resultData);
 
           return deferred.promise;
+      }
+
+      function collapseSearch() {
+        resultData = data;
+        $rootScope.$emit('notifying-service-event');
+      }
+
+      function searchResultClick(item) {
+
       }
 
       return {
         setData : setData,
         getResult : getResult,
         search : search,
-        subscribe : subscribe
+        subscribe : subscribe,
+        searchResultClick : searchResultClick,
+        collapseSearch : collapseSearch
       }
 
     }

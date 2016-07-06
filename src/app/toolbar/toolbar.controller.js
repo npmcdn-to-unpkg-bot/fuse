@@ -78,6 +78,7 @@
         vm.openProfile = openProfile;
         vm.search = search;
         vm.searchResultClick = searchResultClick;
+        vm.onCollapse = onCollapse;
 
         //////////
 
@@ -148,27 +149,14 @@
            return SearchService.search(query);
        }
 
-       /**
-        * Search result click action
-        *
-        * @param item
-        */
        function searchResultClick(item)
        {
-           // If item has a link
-           if ( item.uisref )
-           {
-               // If there are state params,
-               // use them...
-               if ( item.stateParams )
-               {
-                   $state.go(item.state, item.stateParams);
-               }
-               else
-               {
-                   $state.go(item.state);
-               }
-           }
+         SearchService.searchResultClick(item);
+
+       }
+
+       function onCollapse() {
+         SearchService.collapseSearch();
        }
 
 

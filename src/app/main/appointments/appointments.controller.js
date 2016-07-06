@@ -60,13 +60,9 @@
 
           vm.events[0] = appointList;
 
-          console.log(appointList);
-
           SearchService.setData(vm.events[0]);
 
           SearchService.subscribe($scope, function() {
-            console.log("Search changed");
-            console.log(SearchService.getResult());
             vm.events[0] = SearchService.getResult();
           });
 
