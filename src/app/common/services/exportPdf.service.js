@@ -133,36 +133,90 @@
       var fileName = "Issue_" + data.title + ".pdf";
 
       var dateFilter = $filter('date');
-      if(data.due) {
+      var submitDate = dateFilter(new Date(data.submitDate), 'MMM d, yyyy');
+      if (data.due) {
         var dueDate = dateFilter(new Date(data.due), 'MMM d, yyyy');
       }
 
+      doc.setFontSize(10);
+      doc.setTextColor(33, 33, 33);
+      doc.setFont("courier");
+      doc.setFontType("bold");
+      doc.setLineWidth(25);
+
+      doc.setFillColor(33, 150, 243);
+      doc.rect(200, 200, 200, 18, 'F');
+      doc.triangle(200, 200,
+        200, 218,
+        190, 209, 'F');
+      doc.triangle(400, 200,
+        400, 218,
+        410, 209, 'F');
+      doc.ellipse(180, 209, 2, 2, 'F');
+
+      doc.roundedRect(200, 250, 200, 18, 4, 4, 'F');
+      doc.triangle(202, 251, // top point
+        200, 268, // bottom point
+        190, 259, 'F'); // middle point
+      doc.triangle(400, 250,
+        400, 268,
+        410, 259, 'F');
+
+
       doc.text(40, 40, "Title: ");
-      doc.text(80, 40, data.title);
+      doc.text(200, 40, data.title);
 
-      doc.text(40, 60, "Submited by: ");
-      doc.text(140, 60, data.submitBy);
+      doc.text(40, 52, "Submited by: ");
+      doc.text(200, 52, data.submitBy);
 
-      doc.text(40, 80, "Responsible party: ");
-      doc.text(200, 80, data.responsibleParty);
+      doc.text(40, 64, "Submited On: ");
+      doc.text(200, 64, submitDate);
 
-      doc.text(40, 100, "Description: ");
-      doc.text(160, 100, data.description);
+      doc.text(40, 76, "Responsible party: ");
+      doc.text(200, 76, data.responsibleParty);
 
-      doc.text(40, 120, "Resolution timeframe: ");
-      doc.text(220, 120, data.resolutionTimeframe);
+      doc.text(40, 88, "Description: ");
+      doc.text(200, 88, data.description);
 
-      doc.text(40, 140, "Issue status: ");
-      doc.text(160, 140, data.status);
+      doc.text(40, 100, "Resolution timeframe: ");
+      doc.text(200, 100, data.resolutionTimeframe);
+
+      doc.text(40, 112, "Issue status: ");
+      doc.text(200, 112, data.status);
 
       // if due date exists
-      if(data.due) {
-        doc.text(40, 160, "Due date: ");
-        doc.text(130, 160, dueDate);
+      if (data.due) {
+        doc.text(40, 124, "Due date: ");
+        doc.text(200, 124, dueDate);
+      }
+
+      var commentLength = 70;
+      var leftofPoint = 0;
+      for (var i = 0; i < data.comments.length; ++i) {
+        var comment = data.comments[i];
+
+        doc.text(40, 310 + i * 36 + leftofPoint, "Author: " + comment.author);
+
+        if (comment.commentText.length > commentLength) {
+          var numTimes = Math.floor(comment.commentText.length / commentLength);
+
+          for (var j = 0; j < numTimes; ++j) {
+            var txt = "";
+            if (j === 0) {
+              txt = "Text: ";
+            }
+            doc.text(40, 325 + i * 36 + j * 12 + leftofPoint, txt + comment.commentText.substr(j * (commentLength), commentLength));
+          }
+          leftofPoint = numTimes * 12;
+        } else {
+          doc.text(40, 325 + i * 36 + leftofPoint, "Text: " + comment.commentText);
+        }
       }
 
       doc.save(fileName);
     }
+
+
 
     function exportCarePlan(data) {
 
@@ -179,11 +233,11 @@
       var arrayLengthOffset = 0;
       var adminOffset = 250;
 
-      if(data.insideApartment === undefined) {
+      if (data.insideApartment === undefined) {
         data.insideApartment = {};
       }
 
-      if(data.outApartment === undefined) {
+      if (data.outApartment === undefined) {
         data.outApartment = {};
       }
 
@@ -212,41 +266,41 @@
 
       // font setup
       doc.setFontSize(10);
-      doc.setTextColor(33,33,33);
+      doc.setTextColor(33, 33, 33);
       doc.setFont("courier");
       doc.setFontType("bold");
       doc.setLineWidth(25);
 
       // address line
-      doc.setDrawColor(236,239,241);
+      doc.setDrawColor(236, 239, 241);
       doc.line(0, 25, 650, 25);
       doc.text(14, 28, "ADDRESS");
       doc.text(300, 28, "3407 Carroll St Alamosa CO, 81101");
 
       // phone line
-      doc.setDrawColor(207,216,220);
+      doc.setDrawColor(207, 216, 220);
       doc.line(0, 50, 650, 50);
       doc.text(25, 53, "PHONE");
       doc.text(300, 53, "(719) 587-3514");
 
       // fax line
-      doc.setDrawColor(176,190,197);
+      doc.setDrawColor(176, 190, 197);
       doc.line(0, 75, 650, 75);
       doc.text(36, 78, "FAX");
       doc.text(300, 78, "(719) 589-3614");
 
       // web line
-      doc.setDrawColor(144,164,174);
+      doc.setDrawColor(144, 164, 174);
       doc.line(0, 100, 650, 100);
       doc.text(37, 103, "WEB");
       doc.text(300, 103, "AlamosaBridge.com");
 
       // allergy
-      doc.setDrawColor(0,150,136);
+      doc.setDrawColor(0, 150, 136);
       doc.line(0, 150, 650, 150);
       doc.text(300, 153, "ALLERGY");
 
-      if (data.hasFoodAllergies === true || data.hasMedicationAllergies === true){
+      if (data.hasFoodAllergies === true || data.hasMedicationAllergies === true) {
 
         arrayLengthOffset = 174;
 
@@ -270,7 +324,7 @@
       }
 
       // bathing line
-      doc.setDrawColor(3,169,244);
+      doc.setDrawColor(3, 169, 244);
       doc.line(0, arrayLengthOffset, 650, arrayLengthOffset);
       doc.text(300, arrayLengthOffset + 3, "BATHING");
 
@@ -295,7 +349,7 @@
       }
 
       // continent line
-      doc.setDrawColor(121,85,72);
+      doc.setDrawColor(121, 85, 72);
       doc.line(0, arrayLengthOffset + 38, 650, arrayLengthOffset + 38);
       doc.text(300, arrayLengthOffset + 41, "CONTINENT");
 
@@ -326,7 +380,7 @@
       doc.text(430, arrayLengthOffset, data.toiletingDevice + " ");
 
       // mobility line
-      doc.setDrawColor(255,235,59);
+      doc.setDrawColor(255, 235, 59);
       doc.line(0, arrayLengthOffset + 38, 650, arrayLengthOffset + 38);
       doc.text(300, arrayLengthOffset + 41, "MOBILITY");
 
@@ -365,7 +419,7 @@
       arrayLengthOffset = arrayLengthOffset + 202
 
       // big vertical line
-      doc.setDrawColor(120,144,156);
+      doc.setDrawColor(120, 144, 156);
       doc.setLineWidth(220);
       doc.line(180, 0, 180, 800);
 
@@ -381,7 +435,7 @@
       doc.addImage(imageData.getImage('transperent_logo'), 'PNG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
 
       // admin header
-      doc.setTextColor(33,33,33);
+      doc.setTextColor(33, 33, 33);
       doc.setFontSize(16.6);
       doc.text(135, 220, "Care Plan");
       doc.text(164, 235, "for");
@@ -419,7 +473,7 @@
       var offset2 = 0;
 
       // nutrition line
-      doc.setDrawColor(139,195,74);
+      doc.setDrawColor(139, 195, 74);
       doc.line(0, 25, 650, 25);
       doc.text(300, 28, "NUTRITION");
 
@@ -473,7 +527,7 @@
       }
 
       // pain line
-      doc.setDrawColor(244,67,54);
+      doc.setDrawColor(244, 67, 54);
       doc.line(0, 159 + offset2, 650, 159 + offset2);
       doc.text(300, 162 + offset2, "PAIN");
 
@@ -506,7 +560,7 @@
       }
 
       // physical condition line
-      doc.setDrawColor(33,150,243);
+      doc.setDrawColor(33, 150, 243);
       doc.line(0, 212 + offset2, 650, 212 + offset2);
       doc.text(300, 215 + offset2, "PHYSICAL");
 
@@ -581,7 +635,7 @@
       var offset3 = 0;
 
       // psychosocial line
-      doc.setDrawColor(156,39,176);
+      doc.setDrawColor(156, 39, 176);
       doc.line(0, 25, 650, 25);
       doc.text(300, 28, "PSYCHOSOCIAL");
 
@@ -665,7 +719,7 @@
       doc.text(220, 217 + offset3, data.highMaintenance + " ");
 
       // sleep line
-      doc.setDrawColor(233,30,99);
+      doc.setDrawColor(233, 30, 99);
       doc.line(0, 255 + offset3, 650, 255 + offset3);
       doc.text(300, 258 + offset3, "SLEEP");
 
@@ -697,7 +751,7 @@
       var offset4 = 0;
 
       // vitals line
-      doc.setDrawColor(205,220,57);
+      doc.setDrawColor(205, 220, 57);
       doc.line(0, 25, 650, 25);
       doc.text(300, 28, "VITALS");
 

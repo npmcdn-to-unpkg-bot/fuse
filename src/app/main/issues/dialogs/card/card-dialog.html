@@ -184,31 +184,18 @@
                     </div>
                   </div>
                 </div>
-
               </md-tab-body>
             </md-tab>
-
-
           </md-tabs>
         </md-menu-content>
       </md-menu>
       <!-- / LABELS -->
 
-      <!-- OPTIONS -->
-      <!-- <md-menu md-offset="0 48px" class="options">
+      <!-- EXPORT -->
         <md-button class="md-icon-button" ng-click="vm.exportIssue()" aria-label="Options" translate translate-attr-aria-label="SB.OPTIONS">
           <md-icon md-menu-origin md-font-icon="icon-export"></md-icon>
         </md-button>
-
-                   <md-button ng-click="vm.removeCard()" aria-label="Remove Card"
-                              translate translate-attr-aria-label="SB.REMOVE_CARD">
-                       <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
-                       <span translate="SB.REMOVE_CARD">Remove Card</span>
-                   </md-button>
-
-
-      </md-menu> -->
-      <!-- / OPTIONS -->
+      <!-- / EXPORT -->
 
 
       <span flex></span>
@@ -563,9 +550,9 @@
 
                 <ul>
 
-                <li ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy, update.updateDate) ">
-                  <span>{{ f.infoFormated }} </span>
-                </li>
+                  <li ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy, update.updateDate) ">
+                    <span>{{ f.infoFormated }} </span>
+                  </li>
 
                 </ul>
               </div>
