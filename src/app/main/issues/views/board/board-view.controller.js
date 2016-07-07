@@ -28,7 +28,10 @@
           issuesCount(vm.myCommunity._id);
           listByUsername(vm.myCommunity._id);
 
-          SearchService.setData(vm.board.cards);
+          var searchParams = ["title", "responsibleParty", "resolutionTimeframe", "submitBy", "description",
+                              "status"];
+
+          SearchService.setData(vm.board.cards, searchParams);
 
           console.log(vm.board.lists[0].idCards);
 

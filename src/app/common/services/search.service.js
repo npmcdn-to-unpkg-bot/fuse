@@ -14,9 +14,11 @@
       // The resulting data from the filter/search function
       var resultData = [];
 
+      var searchBy = [];
 
-      function setData(d) {
+      function setData(d, searchParams) {
         data = d;
+        searchBy = searchParams;
       }
 
       function getResult() {
@@ -37,13 +39,27 @@
           {
               resultData = data.filter(function (item)
               {
-                  if ( angular.lowercase(item.title).search(angular.lowercase(query)) > -1 )
-                  {
-                      return true;
+
+                  for(var i = 0; i < searchBy.length; ++i) {
+                    if(item[searchBy[i]] !== undefined) {
+                      if ( angular.lowercase(item[searchBy[i]].toString()).search(angular.lowercase(query)) > -1 ) {
+                        return true;
+                      }
+                    }
                   }
+
+                  // searching of nested fields
+                  if(item.residentGoing !== undefined) {
+                    if ( angular.lowercase(item.residentGoing.firstName + item.residentGoing.lastname).search(angular.lowercase(query)) > -1 ) {
+                      return true;
+                    }
+                  }
+
+
               });
           } else if(query == "") {
             resultData = data;
+
           }
 
           // notify the controller to update their data

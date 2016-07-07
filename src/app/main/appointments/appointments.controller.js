@@ -43,6 +43,18 @@
         loadAppoitnments(vm.community._id);
         openIssuesCount(vm.community._id);
         loadIssues(vm.community._id);
+
+        var searchParams = ["title", "transportation", "locationDoctor", "reason", "locationName",
+                            "cancel", "appointmentDate"];
+
+        SearchService.setData(appointList, searchParams);
+
+        SearchService.subscribe($scope, function() {
+          vm.events[0] = SearchService.getResult();
+
+          console.log(vm.events[0]);
+        });
+
       });
 
     var loadAppoitnments = function(id) {
@@ -59,12 +71,6 @@
           });
 
           vm.events[0] = appointList;
-
-          SearchService.setData(vm.events[0]);
-
-          SearchService.subscribe($scope, function() {
-            vm.events[0] = SearchService.getResult();
-          });
 
         })
         .error(function(e) {
