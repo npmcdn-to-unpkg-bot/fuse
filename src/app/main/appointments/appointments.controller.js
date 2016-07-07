@@ -50,6 +50,7 @@
         SearchService.setData(appointList, searchParams);
 
         SearchService.subscribe($scope, function() {
+          
           vm.events[0] = SearchService.getResult();
 
           console.log(vm.events[0]);

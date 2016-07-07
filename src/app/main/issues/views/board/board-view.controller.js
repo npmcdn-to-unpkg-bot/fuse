@@ -33,19 +33,19 @@
 
           SearchService.setData(vm.board.cards, searchParams);
 
-          console.log(vm.board.lists[0].idCards);
 
           SearchService.subscribe($scope, function() {
             vm.board.cards = SearchService.getResult();
 
-            // var kek = _.map(vm.board.cards, "id");
+            // console.log(SearchService.getUnfiltered());
             //
-            // console.log(kek);
+            // var kek = SearchService.getUnfiltered();
             //
-            // angular.forEach(vm.board.lists[0].idCards, function(v, i) {
-            //   if(kek.indexOf(v) !== -1){
-            //     vm.board.lists[0].idCards.splice(kek.indexOf(v), 1);
-              // }
+            // angular.forEach(kek, function(v, i) {
+            //   if(vm.board.lists[0].idCards.indexOf(v) !== -1){
+            //
+            //     vm.board.lists[0].idCards.splice(vm.board.lists[0].idCards.indexOf(v), 1);
+            //   }
             // });
           });
 

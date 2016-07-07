@@ -16,9 +16,15 @@
 
       var searchBy = [];
 
+      var unfiltered = [];
+
       function setData(d, searchParams) {
         data = d;
         searchBy = searchParams;
+      }
+
+      function getUnfiltered() {
+        return unfiltered;
       }
 
       function getResult() {
@@ -33,6 +39,7 @@
       function search(query)
       {
 
+          unfiltered = [];
           var deferred = $q.defer();
 
           if ( query )
@@ -55,11 +62,13 @@
                     }
                   }
 
+                //  unfiltered.push(item.id);
+
 
               });
           } else if(query == "") {
-            resultData = data;
 
+            resultData = removeDueDate();
           }
 
           // notify the controller to update their data
@@ -70,8 +79,20 @@
           return deferred.promise;
       }
 
+      //remove due date, temp function while the calendar is sorted out
+      function removeDueDate() {
+        var tmp = [];
+        for(var i = 0; i  < data.length; ++i) {
+          if(data[i].color === undefined) {
+            tmp.push(data[i]);
+          }
+        }
+
+        return tmp;
+      }
+
       function collapseSearch() {
-        resultData = data;
+        resultData = removeDueDate();
         $rootScope.$emit('notifying-service-event');
       }
 
@@ -82,6 +103,7 @@
       return {
         setData : setData,
         getResult : getResult,
+        getUnfiltered : getUnfiltered,
         search : search,
         subscribe : subscribe,
         searchResultClick : searchResultClick,
