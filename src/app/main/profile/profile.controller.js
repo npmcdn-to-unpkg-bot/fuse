@@ -16,6 +16,8 @@
         // Data
         vm.username = authentication.currentUser().name;
 
+        vm.changedUsername = angular.copy(vm.username);
+
         // Methods
         vm.sendRequest = sendRequest;
         vm.saveUserSettings = saveUserSettings;
@@ -57,7 +59,18 @@
 
 
         function saveUserSettings() {
-          
+
+          var data= {"username" : vm.changedUsername}
+
+          console.log(data);
+
+          // apilaData.changeUsername(vm.username, data)
+          // .success(function(response) {
+          //   console.log("username updated");
+          // })
+          // .error(function(response) {
+          //
+          // });
         }
 
         function sendRequest()
