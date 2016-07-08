@@ -524,7 +524,7 @@
                   <div class="comment-member-name">
                     {{comment.author}}
                   </div>
-                  <div class="comment-bubble">{{comment.commentText}}</div>
+                  <div class="comment-bubble" ng-bind-html="comment.commentText | addHtmlLineBreaks"></div>
                 </div>
               </div>
             </div>

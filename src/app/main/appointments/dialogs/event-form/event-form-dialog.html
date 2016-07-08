@@ -159,7 +159,7 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
               <md-list-item class="md-3-line" ng-repeat="item in vm.calendarEvent.appointmentComment" layout-wrap >
                 <div class="md-list-item-text" layout="column">
                   <h4>{{ item.author}}</h4>
-                  <p ng-bind-html="item.commentText | addHtmlLineBreaks"></p>
+                  <p  ng-bind-html="item.commentText | addHtmlLineBreaks"></p>
                 </div>
               </md-list-item>
 
