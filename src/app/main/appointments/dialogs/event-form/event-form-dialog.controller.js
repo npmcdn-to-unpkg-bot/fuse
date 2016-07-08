@@ -339,6 +339,19 @@
 
 
     function submitComment() {
+
+          // var tmpText = '';
+          // for(var i = 0; i < vm.formData.commentText.length;++i) {
+          //   if(i % 40 == 0) {
+          //     tmpText += '\n';
+          //   }
+          //   tmpText += vm.formData.commentText[i];
+          // }
+          //
+          // console.log(tmpText);
+          //
+          // vm.formData.commentText = tmpText;
+
             apilaData.addAppointmentCommentById(vm.calendarEvent.appointId, vm.formData)
                 .success(function(data) {
                     console.log("Comment has been aded");
