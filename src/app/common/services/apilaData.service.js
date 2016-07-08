@@ -162,6 +162,10 @@
 
         };
 
+        var residentBirthday = function(communityId) {
+          return $http.get(apiUrl + "/api/residents/birthday/" + communityId, getAuth());
+        }
+
         var residentCount = function(communityid) {
             return $http.get(apiUrl + '/api/residents/count/' + communityid, getAuth());
         };
@@ -253,6 +257,7 @@
             residentById : residentById,
             updateResident: updateResident,
             residentCount : residentCount,
+            residentBirthday : residentBirthday,
 
             //api url
             getApiUrl   : getApiUrl,

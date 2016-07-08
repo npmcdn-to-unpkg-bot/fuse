@@ -43,6 +43,7 @@
         loadAppoitnments(vm.community._id);
         openIssuesCount(vm.community._id);
         loadIssues(vm.community._id);
+        loadBirthdays(vm.community._id);
 
         var searchParams = ["title", "transportation", "locationDoctor", "reason", "locationName",
                             "cancel", "appointmentDate"];
@@ -50,7 +51,7 @@
         SearchService.setData(appointList, searchParams);
 
         SearchService.subscribe($scope, function() {
-          
+
           vm.events[0] = SearchService.getResult();
 
           console.log(vm.events[0]);
@@ -93,6 +94,30 @@
             end: null,
             stick: true,
             color: "#228B22"
+          };
+
+          appointList.push(calEvent);
+
+        });
+      })
+      .error(function(response) {
+
+      });
+    }
+
+    var loadBirthdays = function(id) {
+      apilaData.residentBirthday(id)
+      .success(function(response) {
+        angular.forEach(response, function(value, key) {
+
+          var birthDate =  new Date(value.birthDate);
+
+          var calEvent = {
+            title: value.firstName + " " + value.lastName + "' birthday",
+            start: birthDate,
+            end: null,
+            stick: true,
+            color: "#551A8B"
           };
 
           appointList.push(calEvent);
