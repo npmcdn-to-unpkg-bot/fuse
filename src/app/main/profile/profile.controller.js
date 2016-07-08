@@ -18,6 +18,7 @@
 
         // Methods
         vm.sendRequest = sendRequest;
+        vm.saveUserSettings = saveUserSettings;
 
         //Autofield selectbox setup
         vm.residentList = [];
@@ -53,6 +54,11 @@
           })
           .error(function(d) {
           });
+
+
+        function saveUserSettings() {
+          
+        }
 
         function sendRequest()
         {
