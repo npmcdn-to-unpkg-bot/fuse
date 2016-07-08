@@ -20,6 +20,8 @@
 
         var username = authentication.currentUser().name;
 
+        var listCopy = null;
+
         apilaData.userCommunity(username)
         .success(function(d) {
           vm.myCommunity = d;
@@ -27,6 +29,9 @@
           issueList(vm.myCommunity._id);
           issuesCount(vm.myCommunity._id);
           listByUsername(vm.myCommunity._id);
+
+
+          listCopy = angular.copy(vm.board.lists);
 
           var searchParams = ["title", "responsibleParty", "resolutionTimeframe", "submitBy", "description",
                               "status"];
@@ -36,17 +41,6 @@
 
           SearchService.subscribe($scope, function() {
             vm.board.cards = SearchService.getResult();
-
-            // console.log(SearchService.getUnfiltered());
-            //
-            // var kek = SearchService.getUnfiltered();
-            //
-            // angular.forEach(kek, function(v, i) {
-            //   if(vm.board.lists[0].idCards.indexOf(v) !== -1){
-            //
-            //     vm.board.lists[0].idCards.splice(vm.board.lists[0].idCards.indexOf(v), 1);
-            //   }
-            // });
           });
 
         });
@@ -72,7 +66,6 @@
             .error(function(count) {
             });
         }
-
 
         vm.issueList = BoardService.getIssueByUsername(username);
 

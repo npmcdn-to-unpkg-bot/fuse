@@ -1,5 +1,5 @@
 <!-- BOARD -->
-<div id="board" ng-class="vm.board.settings.color+'-100-bg'" ui-sortable="vm.sortableListOptions"
+<div id="board" ng-class="vm.board.settings.color+'-100-bg'"
      ng-model="vm.board.lists" layout="row">
 
     <!-- LIST -->
@@ -46,7 +46,7 @@
             <!-- LIST CONTENT -->
             <div class="list-content" layout="column">
 
-                <div class="list-cards" ui-sortable="vm.sortableCardOptions" ng-model="list.idCards" ms-scroll>
+                <div class="list-cards" ng-model="list.idCards" ms-scroll>
 
                     <!-- CARD -->
                     <div ng-if="cardId" class="list-card md-whiteframe-2dp"
