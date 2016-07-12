@@ -10,6 +10,7 @@
 
        var apiUrl="http://localhost:3300";
 
+       var userImage = "";
 
         // create a saveToken method to read a value from localStorage
         var saveToken = function(token) {
@@ -44,6 +45,14 @@
             }
         };
 
+        var getUserImage = function() {
+          return userImage;
+        }
+
+        var setUserImage = function(image) {
+          userImage = image;
+        }
+
         register = function(user) {
             return $http.post(apiUrl + '/api/register', user).success(function(data) {
                 saveToken(data.token);
@@ -61,6 +70,17 @@
             $window.localStorage.removeItem('apila-token');
         };
 
+
+        if (isLoggedIn()) {
+          $http.get(apiUrl + '/api/users/' + currentUser().name + "/image")
+          .success(function(response) {
+            userImage = response;
+          })
+          .error(function(response) {
+            console.log("Unable to load user image")
+          });
+        }
+
         // expose methods to application
         return {
             currentUser: currentUser,
@@ -69,7 +89,9 @@
             isLoggedIn: isLoggedIn,
             register: register,
             login: login,
-            logout: logout
+            logout: logout,
+            getUserImage: getUserImage,
+            setUserImage: setUserImage
         };
     }
 

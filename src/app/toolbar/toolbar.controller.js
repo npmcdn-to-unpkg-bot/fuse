@@ -18,6 +18,8 @@
         };
 
 
+        vm.userImage = authentication.getUserImage();
+
         vm.username = authentication.currentUser().name;
 
         vm.bodyEl = angular.element('body');

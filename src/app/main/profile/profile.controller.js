@@ -7,7 +7,7 @@
         .controller('ProfileController', ProfileController);
 
     /** @ngInject */
-    function ProfileController(authentication, apilaData, $mdToast)
+    function ProfileController(authentication, apilaData, Upload, $mdToast, $timeout)
     {
         var vm = this;
 
@@ -21,10 +21,13 @@
         // Methods
         vm.sendRequest = sendRequest;
         vm.saveUserSettings = saveUserSettings;
+        vm.uploadFiles = uploadFiles;
 
         //Autofield selectbox setup
         vm.residentList = [];
         vm.selectedCommunity = {};
+
+        vm.userImage = authentication.getUserImage();
 
         apilaData.communityList()
           .success(function(residentList) {
@@ -99,6 +102,34 @@
           .error(function(d) {
 
           });
+        }
+
+        function uploadFiles(file, errFiles) {
+
+          var uploadUrl = apilaData.getApiUrl() + '/api/users/'+ vm.username + '/upload';
+
+          console.log("Fik");
+
+          if (file) {
+              file.upload = Upload.upload({
+                  url: uploadUrl,
+                  data: {file: file},
+                  headers: {
+                      Authorization: 'Bearer ' + authentication.getToken()
+                  }
+              });
+
+              file.upload.then(function (response) {
+                  $timeout(function () {
+                      file.result = response.data;
+
+                      authentication.setUserImage(response.data);
+                      vm.userImage = response.data;
+
+                  });
+
+              });
+          }
         }
 
         //////////
