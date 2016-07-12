@@ -28,6 +28,7 @@
         vm.appointmentsToday = 0;
         vm.residentCount = 0;
         vm.issuesCount = 0;
+        vm.isCreator = false;
 
         vm.title = "Join or create a new community";
 
@@ -38,8 +39,13 @@
 
         apilaData.userCommunity(username)
         .success(function(d) {
-          console.log(d);
+
           vm.myCommunity = d;
+
+          // check if we are creator of the community
+          if(vm.myCommunity.creator.name === username) {
+            vm.isCreator = true;
+          }
 
           loadStats(vm.myCommunity._id);
 
