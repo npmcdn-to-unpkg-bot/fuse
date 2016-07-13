@@ -225,6 +225,10 @@
           return $http.put(apiUrl + '/api/communities/decline/' + communityid, data, getAuth());
         }
 
+        var addRole = function(communitid, userid, data) {
+          return $http.post(apiUrl + '/api/communites/' + communitid + "/role/" + userid, data, getAuth());
+        }
+
         return {
             //appointments
             appointmentsList : appointmentsList,
@@ -264,7 +268,7 @@
             residentBirthday : residentBirthday,
 
             //api url
-            getApiUrl   : getApiUrl,
+            getApiUrl : getApiUrl,
 
             //users
             usersList : usersList,
@@ -280,7 +284,8 @@
             communityList : communityList,
             acceptMember : acceptMember,
             addPendingMember : addPendingMember,
-            declineMember : declineMember
+            declineMember : declineMember,
+            addRole : addRole
         };
     }
 

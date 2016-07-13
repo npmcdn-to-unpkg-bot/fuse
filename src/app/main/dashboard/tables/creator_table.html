@@ -32,13 +32,13 @@
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
                       <td>
-                        <md-button class="md-raised md-primary">Set Boss</md-button>
+                        <md-button class="md-raised md-primary" ng-click="vm.addRole(row[3], 'boss')">Set Boss</md-button>
                       </td>
 
                         <td ng-repeat="cell in row">
                             <img class="avatar" ng-if="$index === 0"
                                  ng-src="{{cell}}">
-                            <span ng-if="$index != 0">
+                            <span ng-if="$index != 0 && $index != 3">
                                 {{cell}}
                             </span>
                         </td>

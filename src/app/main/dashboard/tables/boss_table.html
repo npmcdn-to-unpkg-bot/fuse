@@ -47,13 +47,25 @@
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
                       <td>
-                        <md-button class="md-raised md-primary">Set Boss</md-button>
+                        <md-button class="md-raised md-primary">Recover</md-button>
+                      </td>
+
+                      <td>
+                        <md-button class="md-raised md-primary">Remove</md-button>
+                      </td>
+
+                      <td>
+                        <input type="radio" name="group {{ $index}}" value="Director"> Director<br>
+                      </td>
+
+                      <td>
+                        <input type="radio" name="group {{ $index}}" value="Minion"> Minoin<br>
                       </td>
 
                         <td ng-repeat="cell in row">
                             <img class="avatar" ng-if="$index === 0"
                                  ng-src="{{cell}}">
-                            <span ng-if="$index != 0">
+                            <span ng-if="$index != 0 && $index != 3">
                                 {{cell}}
                             </span>
                         </td>
