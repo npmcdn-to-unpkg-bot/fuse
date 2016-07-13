@@ -493,7 +493,7 @@
             ]
         }
     },
-    "widget11": {
+    "communityMemberWidget": {
         "title": "Community Members",
         "table": {
             "columns": [
@@ -506,6 +506,9 @@
                 {
                     "title": "Email"
                 },
+                {
+                  "title" : ""
+                }
             ],
             "rows": [
             ]

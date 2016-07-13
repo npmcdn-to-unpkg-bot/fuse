@@ -320,52 +320,27 @@
 
                 <md-tab label="Community Members">
 
-                  <!-- WIDGET GROUP -->
-                  <div class="widget-group" layout="row" flex="100" layout-wrap>
+                  <div ng-switch on="vm.userRole">
 
-                      <!-- WIDGET 11 -->
-                      <ms-widget layout="row" flex="100">
+                    <div ng-switch-when="creator">
+                      <div class="widget-group" layout="row" flex="100" layout-wrap ng-include="'app/main/dashboard/tables/creator_table.html'">
+                      </div>
+                    </div>
 
-                          <!-- Front -->
-                          <ms-widget-front class="white-bg">
+                    <div ng-switch-when="boss">
+                      <div class="widget-group" layout="row" flex="100" layout-wrap ng-include="'app/main/dashboard/tables/boss_table.html'">
+                      </div>
+                    </div>
 
-                              <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
-                                  <div class="h2">{{vm.widget11.title}}</div>
-                                  <div class="text-boxed red-bg white-fg m-0">{{vm.widget11.table.rows.length}}
-                                      members
-                                  </div>
-                              </div>
+                    <div ng-switch-when="directors">
+                      <div class="widget-group" layout="row" flex="100" layout-wrap ng-include="'app/main/dashboard/tables/directors_table.html'">
+                      </div>
+                    </div>
 
-                              <table class="row-border hover">
-                                  <thead>
-                                      <tr>
-                                          <th class="secondary-text"
-                                              ng-repeat="column in  vm.widget11.table.columns">
-                                              <div class="table-header">
-                                                  <span class="column-title">{{column.title}}</span>
-                                              </div>
-                                          </th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr ng-repeat="row in  vm.widget11.table.rows">
-                                          <td ng-repeat="cell in row">
-                                              <img class="avatar" ng-if="$index === 0"
-                                                   ng-src="assets/images/avatars/{{cell}}">
-                                              <span ng-if="$index != 0">
-                                                  {{cell}}
-                                              </span>
-                                          </td>
-
-                                      </tr>
-                                  </tbody>
-                              </table>
-
-                          </ms-widget-front>
-                          <!-- / Front -->
-
-                      </ms-widget>
-                      <!-- / WIDGET 11 -->
+                    <div ng-switch-when="minions">
+                      <div class="widget-group" layout="row" flex="100" layout-wrap ng-include="'app/main/dashboard/tables/minions_table.html'">
+                      </div>
+                    </div>
 
                   </div>
                   <!-- / WIDGET GROUP -->

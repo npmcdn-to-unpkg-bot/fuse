@@ -1,0 +1,55 @@
+
+    <!-- WIDGET 11 -->
+    <ms-widget layout="row" flex="100">
+
+        <!-- Front -->
+        <ms-widget-front class="white-bg">
+
+            <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
+                <div class="h2">{{vm.communityMemberWidget.title}}</div>
+                <div class="text-boxed red-bg white-fg m-0">{{vm.communityMemberWidget.table.rows.length}}
+                    members
+                </div>
+            </div>
+
+            <table class="row-border hover">
+                <thead>
+                    <tr>
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Boss</span>
+                          </div>
+                      </th>
+                        <th class="secondary-text"
+                            ng-repeat="column in  vm.communityMemberWidget.table.columns">
+                            <div class="table-header">
+                                <span class="column-title">{{column.title}}</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <md-radio-group ng-model="data.group1">
+                    <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
+                      <td>
+                        <md-button class="md-raised md-primary">Set Boss</md-button>
+                      </td>
+
+                        <td ng-repeat="cell in row">
+                            <img class="avatar" ng-if="$index === 0"
+                                 ng-src="{{cell}}">
+                            <span ng-if="$index != 0">
+                                {{cell}}
+                            </span>
+                        </td>
+
+                    </tr>
+                  </md-radio-group>
+                </tbody>
+            </table>
+
+        </ms-widget-front>
+        <!-- / Front -->
+
+    </ms-widget>
+    <!-- / WIDGET 11 -->

@@ -29,6 +29,7 @@
         vm.residentCount = 0;
         vm.issuesCount = 0;
         vm.isCreator = false;
+        vm.userRole = "";
 
         vm.title = "Join or create a new community";
 
@@ -45,19 +46,22 @@
           // check if we are creator of the community
           if(vm.myCommunity.creator.name === username) {
             vm.isCreator = true;
+            vm.userRole = "creator";
+          } else if(vm.myCommunity.boss.name === username) {
+            vm.userRole = "boss";
           }
 
           loadStats(vm.myCommunity._id);
 
           communityMemberTable = _.map(vm.myCommunity.communityMembers, function(v) {
-            return ["james.jpg", v.name, v.email];
+            return [v.userImage, v.name, v.email, v._id];
           });
 
           pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
-            return ["james.jpg", v.name, v.email, v._id];
+            return [v.userImage, v.name, v.email, v._id];
           });
 
-          vm.dashboardData.widget11.table.rows = communityMemberTable;
+          vm.dashboardData.communityMemberWidget.table.rows = communityMemberTable;
           vm.dashboardData.pendingMemberWidget.table.rows = pendingMemberTable;
 
           setWidget();
@@ -596,26 +600,26 @@
         // // Widget 11
 
         function setWidget() {
-          vm.widget11 = {
-              title    : vm.dashboardData.widget11.title,
-              table    : vm.dashboardData.widget11.table,
+          vm.communityMemberWidget = {
+              title    : vm.dashboardData.communityMemberWidget.title,
+              table    : vm.dashboardData.communityMemberWidget.table,
               dtOptions: {
-               dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-               pagingType: 'simple',
-               autoWidth : false,
-               responsive: true,
-               order     : [1, 'asc'],
-               columnDefs: [
-                   {
-                       width    : '40',
-                       orderable: false,
-                       targets  : [0]
-                   },
-                   {
-                       width  : '33%',
-                       targets: [1, 2, 3]
-                   }
-               ]
+              //  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+              //  pagingType: 'simple',
+              //  autoWidth : false,
+              //  responsive: true,
+              //  order     : [1, 'asc'],
+              //  columnDefs: [
+              //      {
+              //          width    : '40',
+              //          orderable: false,
+              //          targets  : [0]
+              //      },
+              //      {
+              //          width  : '33%',
+              //          targets: [1, 2, 3]
+              //      }
+              //  ]
            }
           };
 
