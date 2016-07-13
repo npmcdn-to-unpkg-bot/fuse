@@ -387,8 +387,8 @@
                                                     {{cell}}
                                                 </span>
                                             </td>
-                                          <td><md-button ng-disabled="!vm.isCreator" class="md-raised md-primary" ng-click="vm.acceptMember($index, row)"> Accept </md-button></td>
-                                          <td><md-button ng-disabled="!vm.isCreator" class="md-raised md-warn" ng-click="vm.declineMember($index, row[3])"> Decline </md-button></td>
+                                          <td><md-button ng-disabled="vm.userRole === 'creator' || vm.userRole === 'minions'" class="md-raised md-primary" ng-click="vm.acceptMember($index, row)"> Accept </md-button></td>
+                                          <td><md-button ng-disabled="vm.userRole === 'creator' || vm.userRole === 'minions'" class="md-raised md-warn" ng-click="vm.declineMember($index, row[3])"> Decline </md-button></td>
                                         </tr>
                                     </tbody>
                                 </table>

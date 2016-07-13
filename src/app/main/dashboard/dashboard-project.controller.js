@@ -21,6 +21,7 @@
         vm.acceptMember = acceptMember;
         vm.declineMember = declineMember;
         vm.addRole = addRole;
+        vm.removeMember = removeMember;
 
         // Widget 1
         vm.widget1 = vm.dashboardData.widget1;
@@ -150,6 +151,17 @@
           })
           .error(function(d) {
 
+          });
+        }
+
+        function removeMember(userid) {
+
+          apilaData.removeMember(vm.myCommunity._id, userid)
+          .success(function(response) {
+            console.log(response);
+          })
+          .error(function(response) {
+            console.log(response);
           });
         }
 

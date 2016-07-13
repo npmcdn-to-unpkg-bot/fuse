@@ -225,8 +225,12 @@
           return $http.put(apiUrl + '/api/communities/decline/' + communityid, data, getAuth());
         }
 
-        var addRole = function(communitid, userid, data) {
-          return $http.post(apiUrl + '/api/communites/' + communitid + "/role/" + userid, data, getAuth());
+        var addRole = function(communityid, userid, data) {
+          return $http.post(apiUrl + '/api/communites/' + communityid + "/role/" + userid, data, getAuth());
+        }
+
+        var removeMember = function(communityid, userid) {
+          return $http.delete(apiUrl + '/api/communites/' + communityid + "/user/" + userid, getAuth());
         }
 
         return {
@@ -285,7 +289,8 @@
             acceptMember : acceptMember,
             addPendingMember : addPendingMember,
             declineMember : declineMember,
-            addRole : addRole
+            addRole : addRole,
+            removeMember : removeMember
         };
     }
 

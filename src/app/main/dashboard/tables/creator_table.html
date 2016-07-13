@@ -32,7 +32,7 @@
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
                       <td>
-                        <input type="radio" name="group" ng-value="row[4]" ng-model="row[4]" ng-change="vm.addRole(row[3], 'boss')"> Boss<br>
+                        <input type="radio" name="group" ng-model="row[4]" ng-change="vm.addRole(row[3], 'boss')"> Boss<br>
                       </td>
 
                         <td ng-repeat="cell in row">
