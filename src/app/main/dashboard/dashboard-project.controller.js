@@ -32,6 +32,12 @@
         vm.isCreator = false;
         vm.userRole = "";
 
+        vm.changeRole = function(type) {
+          console.log(type);
+        }
+
+        vm.checkbox = true;
+
         vm.title = "Join or create a new community";
 
         vm.myComunity = null;
@@ -61,8 +67,17 @@
           loadStats(vm.myCommunity._id);
 
           communityMemberTable = _.map(vm.myCommunity.communityMembers, function(v) {
-            return [v.userImage, v.name, v.email, v._id];
+            var boss = false;
+            if(vm.myCommunity.boss.name === v.name) {
+              boss = true;
+            }
+
+            var userImage = (v.userImage !== undefined) ? v.userImage : "";
+
+            return [userImage, v.name, v.email, v._id, boss];
           });
+
+          console.log(communityMemberTable);
 
           pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
             return [v.userImage, v.name, v.email, v._id];
@@ -164,6 +179,8 @@
 
           var data = {};
           data.type = type;
+
+          console.log("kek");
 
           apilaData.addRole(communityid, userId, data)
           .success(function(response) {
