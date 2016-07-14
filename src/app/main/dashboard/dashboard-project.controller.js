@@ -34,10 +34,6 @@
         vm.isCreator = false;
         vm.userRole = "";
 
-        vm.changeRole = function(type) {
-          console.log(type);
-        }
-
         vm.checkbox = true;
 
         vm.title = "Join or create a new community";
