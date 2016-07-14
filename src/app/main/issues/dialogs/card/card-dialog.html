@@ -243,7 +243,7 @@
         <md-input-container class="md-block">
           <label>Title</label>
           <md-icon md-font-icon="icon-tag-text-outline" class="name"></md-icon>
-          <input ng-model="vm.card.name" type="text" ng-blur="vm.updateIssue()" focus>
+          <input ng-disabled="vm.username !== vm.card.submitBy" ng-model="vm.card.name" type="text" ng-blur="vm.updateIssue()" focus>
         </md-input-container>
 
 
@@ -251,7 +251,7 @@
         <md-input-container class="md-block">
           <label translate="SB.DESCRIPTION">Description</label>
           <md-icon md-font-icon="icon-note-text s18" class="name"></md-icon>
-          <textarea ng-model="vm.card.description" ng-blur="vm.updateIssue()" columns="1" max-rows="4"></textarea>
+          <textarea ng-disabled="vm.username !== vm.card.submitBy" ng-model="vm.card.description" ng-blur="vm.updateIssue()" columns="1" max-rows="4"></textarea>
         </md-input-container>
         <!-- / DESCRIPTION -->
 
@@ -259,7 +259,7 @@
         <md-input-container class="md-block">
           <label>Resolution Time Frame</label>
           <md-icon md-font-icon="icon-timetable s18" class="name"></md-icon>
-          <md-select ng-model="vm.card.resolutionTimeframe" ng-change="vm.updateIssue()" placeholder="Time Frame" required>
+          <md-select ng-disabled="vm.username !== vm.card.submitBy" ng-model="vm.card.resolutionTimeframe" ng-change="vm.updateIssue()" placeholder="Time Frame" required>
             <md-option>Hours</md-option>
             <md-option>Days</md-option>
             <md-option>Weeks</md-option>
@@ -271,7 +271,7 @@
         <md-input-container class="md-block">
           <label>Status</label>
           <md-icon md-font-icon="icon-clipboard-check s18" class="name"></md-icon>
-          <md-select ng-disabled="vm.userRole !== 'director' && vm.userRole !== 'boss'" ng-model="vm.card.status" ng-change="vm.changeStatus()" placeholder="Issue Status" required>
+          <md-select ng-disabled="vm.userRole !== 'directors' && vm.userRole !== 'boss'" ng-model="vm.card.status" ng-change="vm.changeStatus()" placeholder="Issue Status" required>
             <md-option>Open</md-option>
             <md-option>Shelved</md-option>
             <md-option>Closed</md-option>

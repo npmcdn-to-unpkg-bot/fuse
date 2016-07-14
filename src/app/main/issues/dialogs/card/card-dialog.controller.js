@@ -18,6 +18,8 @@
 
         vm.card.currdue = vm.card.due;
 
+        console.log(vm.card);
+
         vm.card.labels.map(function(d){d.id = d._id; return d;});
         vm.board.labels.map(function(d){d.id = d._id; return d;});
 
@@ -28,22 +30,22 @@
 
         vm.newCheckListTitle = "Checklist";
 
-        var username = authentication.currentUser().name;
+        vm.username = authentication.currentUser().name;
 
         vm.now = new Date();
 
-        apilaData.userCommunity(username)
+        apilaData.userCommunity(vm.username)
         .success(function(d) {
 
           vm.myCommunity = d;
 
-          if(vm.myCommunity.creator.name === username) {
+          if(vm.myCommunity.creator.name === vm.username) {
             vm.userRole = "creator";
-          } else if(vm.myCommunity.boss.name === username) {
+          } else if(vm.myCommunity.boss.name === vm.username) {
             vm.userRole = "boss";
-          } else if(vm.myCommunity.directors.indexOf(username) !== -1) {
+          } else if(_.find(vm.myCommunity.directors, {"name" : vm.username}) !== undefined) {
             vm.userRole = "directors";
-          } else if(vm.myCommunity.minions.indexOf(username) !== -1) {
+          } else if(_.find(vm.myCommunity.minions, {"name" : vm.username}) !== undefined) {
             vm.userRole = "minions";
           }
 
@@ -254,9 +256,9 @@
                 apilaData.deleteIssue(vm.card._id)
                 .success(function(d) {
 
-                  var username = authentication.currentUser().name;
+                  vm.username = authentication.currentUser().name;
 
-                  apilaData.openIssuesCount(username)
+                  apilaData.openIssuesCount(vm.username)
                     .success(function(count) {
                       msNavigationService.saveItem('fuse.issues', {
                         badge: {
