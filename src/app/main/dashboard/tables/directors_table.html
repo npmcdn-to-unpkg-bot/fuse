@@ -17,6 +17,11 @@
                     <tr>
                       <th class="secondary-text">
                           <div class="table-header">
+                              <span class="column-title">Remove</span>
+                          </div>
+                      </th>
+                      <th class="secondary-text">
+                          <div class="table-header">
                               <span class="column-title">Boss</span>
                           </div>
                       </th>
@@ -31,8 +36,9 @@
                 <tbody>
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows track by $index">
+
                       <td>
-                        <md-button class="md-raised md-primary">Set Boss</md-button>
+                        <md-button ng-if="row[1] !== vm.username" class="md-raised md-primary" ng-click="vm.removeMember(row[3], row[1])">Remove</md-button>
                       </td>
 
                         <td ng-repeat="cell in row track by $index">
