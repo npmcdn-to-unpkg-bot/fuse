@@ -64,22 +64,36 @@
             vm.userRole = "minions";
           }
 
-          console.log(vm.userRole);
+          console.log(vm.myCommunity);
 
           loadStats(vm.myCommunity._id);
 
           communityMemberTable = _.map(vm.myCommunity.communityMembers, function(v) {
             var boss = false;
+            var director = false;
+            var minion = false;
+            var creator = false;
+
+            if(vm.myCommunity.creator.name === v.name) {
+              creator = true;
+            }
+
             if(vm.myCommunity.boss.name === v.name) {
               boss = true;
             }
 
+            if(_.find(vm.myCommunity.directors, {"name" : v.name}) !== undefined) {
+              director = true;
+            }
+
+            if(_.find(vm.myCommunity.minions, {"name" : v.name}) !== undefined) {
+              minion = true;
+            }
+
             var userImage = (v.userImage !== undefined) ? v.userImage : "";
 
-            return [userImage, v.name, v.email, v._id, boss];
+            return [userImage, v.name, v.email, v._id, boss, director, minion, creator];
           });
-
-          console.log(communityMemberTable);
 
           pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
             return [v.userImage, v.name, v.email, v._id];
@@ -155,15 +169,39 @@
           });
         }
 
-        function removeMember(userid) {
+        function removeMemberFromTable(userid) {
+          for(var i = 0; i < communityMemberTable.length; ++i) {
+            if(communityMemberTable[i][3] === userid) {
+              communityMemberTable.splice(i, 1);
+              return;
+            }
+          }
+        }
 
-          apilaData.removeMember(vm.myCommunity._id, userid)
-          .success(function(response) {
-            console.log(response);
-          })
-          .error(function(response) {
-            console.log(response);
-          });
+
+
+        function removeMember(userid, name) {
+
+          var confirm = $mdDialog.confirm()
+             .title('Are you sure you want to remove the user ' + name)
+             .ariaLabel('Lucky day')
+             .ok('Yes')
+             .cancel('Cancel');
+
+             $mdDialog.show(confirm).then(function() {
+               apilaData.removeMember(vm.myCommunity._id, userid)
+               .success(function(response) {
+                 console.log(response);
+                 removeMemberFromTable(userid);
+
+               })
+               .error(function(response) {
+                 console.log(response);
+               });
+              }, function() {
+
+              });
+
         }
 
         function declineMember(index, memberid)
@@ -192,8 +230,6 @@
 
           var data = {};
           data.type = type;
-
-          console.log("kek");
 
           apilaData.addRole(communityid, userId, data)
           .success(function(response) {

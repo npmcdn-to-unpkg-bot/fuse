@@ -45,33 +45,39 @@
                 </thead>
                 <tbody>
                     <md-radio-group ng-model="data.group1">
-                    <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
+                    <tr ng-repeat="row in  vm.communityMemberWidget.table.rows track by row[3]">
                       <span ng-if="true">
                       <td>
                         <md-button ng-if="row[1] !== vm.username" ng-click="vm.openRecoverModal()" class="md-raised md-primary">Recover</md-button>
                       </td>
 
                       <td>
-                        <md-button ng-if="row[1] !== vm.username" class="md-raised md-primary" ng-click="vm.removeMember(row[3])">Remove</md-button>
+                        <md-button ng-if="row[1] !== vm.username" class="md-raised md-primary" ng-click="vm.removeMember(row[3], row[1])">Remove</md-button>
                       </td>
 
                       <td>
-                        <span ng-if="row[1] !== vm.username">
-                          <input type="radio" name="group {{ $index}}" ng-model="nesto" ng-change="vm.changeRole()" value="Director"> Director<br>
+                        <span ng-if="row[1] !== vm.username && row[7] !== true">
+                          <input type="radio" name="group {{ $index}}" ng-model="nesto" ng-change="vm.addRole(row[3], 'directors')" value="Director"> {{row[5]}}<br>
+                       </span>
+                       <span ng-if="row[7] === true">
+                         Creator
                        </span>
                       </td>
 
                       <td>
-                        <span ng-if="row[1] !== vm.username">
-                          <input type="radio" name="group {{ $index}}" value="Minion"> Minoin<br>
+                        <span ng-if="row[1] !== vm.username && row[7] !== true">
+                          <input type="radio" name="group {{ $index}}" ng-model="nesto" ng-change="vm.addRole(row[3], 'minions')" value="Minion"> {{row[6]}}<br>
+                        </span>
+                        <span ng-if="row[7] === true">
+                          Creator
                         </span>
                       </td>
                     </span>
 
-                        <td ng-repeat="cell in row">
+                        <td ng-repeat="cell in row track by $index">
                             <img class="avatar" ng-if="$index === 0"
                                  ng-src="{{cell}}">
-                            <span ng-if="$index != 0 && $index != 3">
+                            <span ng-if="$index != 0 && $index < 3">
                                 {{cell}}
                             </span>
                         </td>

@@ -35,7 +35,7 @@
                         <input type="radio" name="group" ng-model="row[4]" ng-change="vm.addRole(row[3], 'boss')"> Boss<br>
                       </td>
 
-                        <td ng-repeat="cell in row">
+                        <td ng-repeat="cell in row track by $index">
                             <img class="avatar" ng-if="$index === 0"
                                  ng-src="{{cell}}">
                             <span ng-if="$index != 0 && $index != 3">

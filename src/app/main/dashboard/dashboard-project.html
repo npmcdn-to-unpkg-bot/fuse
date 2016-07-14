@@ -382,7 +382,7 @@
                                         <tr ng-repeat="row in vm.pendingMemberWidget.table.rows">
                                             <td ng-repeat="cell in row">
                                                 <img class="avatar" ng-if="$index === 0"
-                                                     ng-src="assets/images/avatars/{{cell}}">
+                                                     ng-src="{{cell}}">
                                                 <span ng-if="$index != 0 && $index != 3">
                                                     {{cell}}
                                                 </span>
