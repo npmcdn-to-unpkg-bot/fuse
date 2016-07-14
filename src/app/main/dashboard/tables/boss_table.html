@@ -46,21 +46,27 @@
                 <tbody>
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
+                      <span ng-if="true">
                       <td>
-                        <md-button class="md-raised md-primary">Recover</md-button>
+                        <md-button ng-if="row[1] !== vm.username" ng-click="vm.openRecoverModal()" class="md-raised md-primary">Recover</md-button>
                       </td>
 
                       <td>
-                        <md-button class="md-raised md-primary" ng-click="vm.removeMember(row[3])">Remove</md-button>
+                        <md-button ng-if="row[1] !== vm.username" class="md-raised md-primary" ng-click="vm.removeMember(row[3])">Remove</md-button>
                       </td>
 
                       <td>
-                        <input type="radio" name="group {{ $index}}" ng-model="nesto" ng-change="vm.changeRole()" value="Director"> Director<br>
+                        <span ng-if="row[1] !== vm.username">
+                          <input type="radio" name="group {{ $index}}" ng-model="nesto" ng-change="vm.changeRole()" value="Director"> Director<br>
+                       </span>
                       </td>
 
                       <td>
-                        <input type="radio" name="group {{ $index}}" value="Minion"> Minoin<br>
+                        <span ng-if="row[1] !== vm.username">
+                          <input type="radio" name="group {{ $index}}" value="Minion"> Minoin<br>
+                        </span>
                       </td>
+                    </span>
 
                         <td ng-repeat="cell in row">
                             <img class="avatar" ng-if="$index === 0"

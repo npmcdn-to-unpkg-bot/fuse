@@ -12,7 +12,7 @@
     {
         var vm = this;
 
-        var username = authentication.currentUser().name;
+        vm.username = authentication.currentUser().name;
 
         // Data
         vm.dashboardData = DashboardData;
@@ -22,6 +22,7 @@
         vm.declineMember = declineMember;
         vm.addRole = addRole;
         vm.removeMember = removeMember;
+        vm.openRecoverModal = openRecoverModal;
 
         // Widget 1
         vm.widget1 = vm.dashboardData.widget1;
@@ -46,20 +47,20 @@
         var pendingMemberTable = [];
         var communityMemberTable = [];
 
-        apilaData.userCommunity(username)
+        apilaData.userCommunity(vm.username)
         .success(function(d) {
 
           vm.myCommunity = d;
 
           // check if we are creator of the community
-          if(vm.myCommunity.creator.name === username) {
+          if(vm.myCommunity.creator.name === vm.username) {
             vm.isCreator = true;
             vm.userRole = "creator";
-          } else if(vm.myCommunity.boss.name === username) {
+          } else if(vm.myCommunity.boss.name === vm.username) {
             vm.userRole = "boss";
-          } else if(vm.myCommunity.directors.indexOf(username) !== -1) {
+          } else if(vm.myCommunity.directors.indexOf(vm.username) !== -1) {
             vm.userRole = "directors";
-          } else if(vm.myCommunity.minions.indexOf(username) !== -1) {
+          } else if(vm.myCommunity.minions.indexOf(vm.username) !== -1) {
             vm.userRole = "minions";
           }
 
@@ -209,6 +210,19 @@
               controller         : 'CreateCommunityController',
               controllerAs       : 'vm',
               templateUrl        : 'app/main/dashboard/dialogs/createCommunity.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
+
+
+        function openRecoverModal(ev)
+        {
+          $mdDialog.show({
+              controller         : 'RecoverController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
               parent             : angular.element($document.body),
               targetEvent        : ev,
               clickOutsideToClose: true
