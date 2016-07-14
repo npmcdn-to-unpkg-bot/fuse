@@ -58,12 +58,13 @@
             vm.userRole = "creator";
           } else if(vm.myCommunity.boss.name === vm.username) {
             vm.userRole = "boss";
-          } else if(vm.myCommunity.directors.indexOf(vm.username) !== -1) {
+          } else if(_.find(vm.myCommunity.directors, {"name" : vm.username}) !== undefined) {
             vm.userRole = "directors";
-          } else if(vm.myCommunity.minions.indexOf(vm.username) !== -1) {
+          } else if(_.find(vm.myCommunity.minions, {"name" : vm.username}) !== undefined) {
             vm.userRole = "minions";
           }
 
+          console.log(vm.userRole + " " + vm.username);
           console.log(vm.myCommunity);
 
           loadStats(vm.myCommunity._id);

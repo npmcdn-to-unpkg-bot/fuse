@@ -38,7 +38,7 @@
                         <td ng-repeat="cell in row track by $index">
                             <img class="avatar" ng-if="$index === 0"
                                  ng-src="{{cell}}">
-                            <span ng-if="$index != 0 && $index != 3">
+                            <span ng-if="$index != 0 && $index < 3">
                                 {{cell}}
                             </span>
                         </td>

@@ -30,6 +30,15 @@
           issuesCount(vm.myCommunity._id);
           listByUsername(vm.myCommunity._id);
 
+          if(vm.myCommunity.creator.name === vm.username) {
+            vm.userRole = "creator";
+          } else if(vm.myCommunity.boss.name === vm.username) {
+            vm.userRole = "boss";
+          } else if(vm.myCommunity.directors.indexOf(vm.username) !== -1) {
+            vm.userRole = "directors";
+          } else if(vm.myCommunity.minions.indexOf(vm.username) !== -1) {
+            vm.userRole = "minions";
+          }
 
           listCopy = angular.copy(vm.board.lists);
 

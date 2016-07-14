@@ -34,6 +34,21 @@
 
         apilaData.userCommunity(username)
         .success(function(d) {
+
+          vm.myCommunity = d;
+
+          if(vm.myCommunity.creator.name === username) {
+            vm.userRole = "creator";
+          } else if(vm.myCommunity.boss.name === username) {
+            vm.userRole = "boss";
+          } else if(vm.myCommunity.directors.indexOf(username) !== -1) {
+            vm.userRole = "directors";
+          } else if(vm.myCommunity.minions.indexOf(username) !== -1) {
+            vm.userRole = "minions";
+          }
+
+          console.log(vm.userRole);
+
           //load member list
           apilaData.usersInCommunity(d)
               .success(function(d) {

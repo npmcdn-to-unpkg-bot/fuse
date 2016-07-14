@@ -271,7 +271,7 @@
         <md-input-container class="md-block">
           <label>Status</label>
           <md-icon md-font-icon="icon-clipboard-check s18" class="name"></md-icon>
-          <md-select ng-model="vm.card.status" ng-change="vm.changeStatus()" placeholder="Issue Status" required>
+          <md-select ng-disabled="vm.userRole !== 'director' && vm.userRole !== 'boss'" ng-model="vm.card.status" ng-change="vm.changeStatus()" placeholder="Issue Status" required>
             <md-option>Open</md-option>
             <md-option>Shelved</md-option>
             <md-option>Closed</md-option>
