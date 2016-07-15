@@ -170,6 +170,10 @@
             return $http.get(apiUrl + '/api/residents/count/' + communityid, getAuth());
         };
 
+        var averageAge = function(communityid) {
+          return $http.get(apiUrl + '/api/residents/average_age/' + communityid, getAuth());
+        }
+
         /**************************************************************/
 
         /***************** USERS RESOURCES ***************/
@@ -270,6 +274,7 @@
             updateResident: updateResident,
             residentCount : residentCount,
             residentBirthday : residentBirthday,
+            averageAge : averageAge,
 
             //api url
             getApiUrl : getApiUrl,

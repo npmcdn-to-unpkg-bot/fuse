@@ -33,6 +33,7 @@
         vm.issuesCount = 0;
         vm.isCreator = false;
         vm.userRole = "";
+        vm.averageAge = 0;
 
         vm.checkbox = true;
 
@@ -47,6 +48,8 @@
         .success(function(d) {
 
           vm.myCommunity = d;
+
+          getAverageAge(vm.myCommunity._id);
 
           // check if we are creator of the community
           if(vm.myCommunity.creator.name === vm.username) {
@@ -818,6 +821,17 @@
         function selectProject(project)
         {
             vm.selectedProject = project;
+        }
+
+        function getAverageAge(id) {
+          apilaData.averageAge(id)
+          .success(function(response) {
+            vm.averageAge = response;
+            console.log(response);
+          })
+          .error(function(response) {
+            console.log(response);
+          });
         }
     }
 
