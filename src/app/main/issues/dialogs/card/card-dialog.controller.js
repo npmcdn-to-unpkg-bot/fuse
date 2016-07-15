@@ -722,6 +722,10 @@
 
         function changeStatus() {
 
+          if(vm.card.status === "Shelved") {
+            vm.card.shelvedDate = new Date();
+          }
+
           vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('status', vm.card.status, ""));
 
           vm.updateIssue();
