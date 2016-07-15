@@ -282,10 +282,22 @@
                               value.id = msUtils.guidGenerator();
                               value.name = value.title;
 
-                              value.due = value.due;
+                              var confidential = false;
 
-                              vm.board.cards.push(value);
-                              currList.idCards.push(value.id);
+                              // the issue is confidential and it's not from our user don't show it
+                              if(value.confidential !== undefined) {
+                                if(value.confidential === true && value.submitBy !== username) {
+                                  confidential = true;
+                                }
+                              }
+
+                              if(confidential === false) {
+                                value.due = value.due;
+
+                                vm.board.cards.push(value);
+                                currList.idCards.push(value.id);
+                              }
+
                             });
                               vm.board.lists.push(currList);
                           }
@@ -424,8 +436,21 @@
           angular.forEach(cards, function(v, key) {
             v.id = v._id;
             v.name = v.title;
-            vm.board.cards.push(v);
-            list.idCards.push(v.id);
+
+            var confidential = false;
+
+            // the issue is confidential and it's not from our user don't show it
+            if(v.confidential !== undefined) {
+              if(v.confidential === true && v.submitBy !== username) {
+                confidential = true;
+              }
+            }
+
+            if(confidential === false) {
+              vm.board.cards.push(v);
+              list.idCards.push(v.id);
+            }
+
           });
 
 
