@@ -1,6 +1,9 @@
 {
   "name": "fuse",
   "version": "1.4.0",
+  "description": "Apila's development of frontend code",
+  "license": "MIT",
+  "homepage": "http://apila.care",
   "dependencies": {
     "user-home": "^2.0.0"
   },
