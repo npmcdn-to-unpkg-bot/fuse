@@ -35,9 +35,10 @@
 
       doc.addImage(imageData.getImage('apila_form'), 'JPEG', 15, 15, 580, 760);
 
-      var appointmentDate = new Date(data.date);
+      var appointmentDate = new Date(data._start);
 
-      appointmentDate.setHours(appointmentDate.getUTCHours());
+      appointmentDate.setHours(data.hours);
+      appointmentDate.setMinutes(data.minutes);
 
       var commentLength = 90;
 
