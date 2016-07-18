@@ -21,13 +21,9 @@
     vm.exportAppointment = exportAppointment;
     vm.inUpdate = inUpdate;
     vm.submitComment = submitComment;
+    vm.getMatches = getMatches;
 
     init();
-
-
-    vm.testDate = function() {
-      console.log(vm.currentTime);
-    }
 
     apilaData.userCommunity(authentication.currentUser().name)
       .success(function(d) {
@@ -48,18 +44,22 @@
           vm.currentTime =  new Date();
       }
 
-         vm.getMatches = function (text) {
-           if(text === null) {
-             return vm.residentList;
-           }
-           var textLower = text.toLowerCase();
+    function getMatches(text) {
+       if(text === null) {
+         return vm.residentList;
+       }
 
-             var ret = vm.residentList.filter(function (d) {
-                 if(d.display != null)
-                 return d.display.toLowerCase().indexOf(text) > -1;
-             });
-             return ret;
-         }
+       var textLower = text.toLowerCase();
+
+       var ret = vm.residentList.filter(function (d) {
+           if(d.display != null) {
+             return d.display.toLowerCase().indexOf(textLower) > -1;
+           }
+
+       });
+
+       return ret;
+     }
 
 
     vm.residentList = [];
