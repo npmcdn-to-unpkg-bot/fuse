@@ -27,6 +27,8 @@
         <link rel='stylesheet' href='../bower_components/textAngular/dist/textAngular.css' />
         <link rel='stylesheet' href='../bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css' />
         <link rel='stylesheet' href='../bower_components/mdPickers/dist/mdPickers.min.css' />
+        <link rel='stylesheet' href='../bower_components/angular-google-places-autocomplete/src/autocomplete.css' />
+        <link rel='stylesheet' href='../bower_components/angular-google-places-autocomplete/dist/autocomplete.min.css' />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -39,6 +41,10 @@
         <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic'
               rel='stylesheet' type='text/css'>
 
+
+
+              <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBYM34SP74tkE__vs4fFnAEPKhZL8gPCAM"
+                type="text/javascript"></script>
     </head>
 
     <!--[if lt IE 10]>
@@ -163,6 +169,9 @@
         <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="../bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
         <script src="../bower_components/mdPickers/dist/mdPickers.min.js"></script>
+        <script src="../bower_components/ngPlacesAutocomplete/ngPlacesAutocomplete.min.js"></script>
+        <script src="../bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
+        <script src="../bower_components/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -171,30 +180,30 @@
         <script src="app/main/issues/issues.module.js"></script>
         <script src="app/main/issues/views/calendar/dialogs/event/event-dialog.controller.js"></script>
         <script src="app/main/issues/sidenavs/settings/menus/members/members-menu.controller.js"></script>
-        <script src="app/main/issues/sidenavs/settings/menus/color/color-menu.controller.js"></script>
         <script src="app/main/issues/sidenavs/settings/menus/labels/labels-menu.controller.js"></script>
+        <script src="app/main/issues/sidenavs/settings/menus/color/color-menu.controller.js"></script>
         <script src="app/main/ui/theme-colors/theme-colors.module.js"></script>
         <script src="app/main/ui/theme-colors/dialogs/custom-theme/custom-theme-dialog.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/tabbed/tabbed.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav-ii/right-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav-ii/right-sidenav-ii.controller.js"></script>
-        <script src="app/main/ui/page-layouts/simple/left-sidenav/left-sidenav.module.js"></script>
-        <script src="app/main/ui/page-layouts/simple/left-sidenav/left-sidenav.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav/right-sidenav.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/right-sidenav/right-sidenav.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/left-sidenav-ii/left-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/left-sidenav-ii/left-sidenav-ii.controller.js"></script>
+        <script src="app/main/ui/page-layouts/simple/left-sidenav/left-sidenav.module.js"></script>
+        <script src="app/main/ui/page-layouts/simple/left-sidenav/left-sidenav.controller.js"></script>
         <script src="app/main/ui/page-layouts/simple/fullwidth/fullwidth.module.js"></script>
         <script src="app/main/ui/page-layouts/simple/fullwidth/fullwidth.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav-ii/right-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav-ii/right-sidenav-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav/right-sidenav.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/right-sidenav/right-sidenav.controller.js"></script>
-        <script src="app/main/ui/page-layouts/carded/left-sidenav/left-sidenav.module.js"></script>
-        <script src="app/main/ui/page-layouts/carded/left-sidenav/left-sidenav.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/left-sidenav-ii/left-sidenav-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/left-sidenav-ii/left-sidenav-ii.controller.js"></script>
+        <script src="app/main/ui/page-layouts/carded/left-sidenav/left-sidenav.module.js"></script>
+        <script src="app/main/ui/page-layouts/carded/left-sidenav/left-sidenav.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/fullwidth-ii/fullwidth-ii.module.js"></script>
         <script src="app/main/ui/page-layouts/carded/fullwidth-ii/fullwidth-ii.controller.js"></script>
         <script src="app/main/ui/page-layouts/carded/fullwidth/fullwidth.module.js"></script>
@@ -256,8 +265,8 @@
         <script src="app/core/directives/ms-widget/ms-widget.directive.js"></script>
         <script src="app/core/directives/ms-timeline/ms-timeline.js"></script>
         <script src="app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
-        <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
         <script src="app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
+        <script src="app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
         <script src="app/core/directives/ms-shortcuts/ms-shortcuts.directive.js"></script>
         <script src="app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
         <script src="app/core/directives/ms-scroll/ms-scroll.directive.js"></script>

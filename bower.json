@@ -49,7 +49,9 @@
     "ng-file-upload-shim": "^12.0.4",
     "angular-scroll": "^1.0.0",
     "angular-bootstrap-lightbox": "^0.12.0",
-    "mdPickers": "^0.7.5"
+    "mdPickers": "^0.7.5",
+    "ngPlacesAutocomplete": "ng-places-autocomplete#^1.2.4",
+    "angular-google-places-autocomplete": "^0.2.7"
   },
   "devDependencies": {
     "angular-mocks": "1.5.5"

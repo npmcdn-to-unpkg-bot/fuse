@@ -11,12 +11,12 @@
     {
         // Enable debug logging
         $logProvider.debugEnabled(true);
-        
+
         // uiGmapgoogle-maps configuration
         uiGmapGoogleMapApiProvider.configure({
-            //    key: 'your api key',
+            key: 'AIzaSyBYM34SP74tkE__vs4fFnAEPKhZL8gPCAM',
             v        : '3.exp',
-            libraries: 'weather,geometry,visualization'
+            libraries: 'weather,geometry,visualization, places'
         });
 
         // angular-translate configuration

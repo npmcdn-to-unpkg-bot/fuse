@@ -24,6 +24,10 @@
 
            });
 
+       vm.autocompleteOptions = {
+                       componentRestrictions: { country: 'us' }
+        }
+
         function closeDialog()
         {
             $mdDialog.hide();
@@ -32,6 +36,10 @@
         function addResident()
         {
           vm.form.community =  vm.community;
+          console.log(vm.form.movedFrom.geometry.location.lat());
+          console.log(vm.form.movedFrom.geometry.locaction.lng());
+
+
           apilaData.addResident(vm.form)
           .success(function(data) {
                 vm.residentList.push(data);

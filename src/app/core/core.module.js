@@ -28,6 +28,7 @@
                 'moment-picker',
                 'ngFileUpload',
                 'duScroll',
-                'mdPickers'
+                'mdPickers',
+                'google.places'
             ]);
 })();

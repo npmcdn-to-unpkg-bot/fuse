@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-    $mdSidenav, $mdToast, apilaData, authentication, exportPdf) {
+    $mdSidenav, $mdToast, apilaData, authentication, exportPdf, uiGmapGoogleMapApi) {
     var vm = this;
 
     // Data
@@ -77,6 +77,21 @@
           console.log("Error retriving the list of residents");
         });
     }
+
+ vm.simpleMap = {};
+
+  uiGmapGoogleMapApi.then(function (maps) {
+
+
+           vm.simpleMap = {
+               center: {
+                   latitude : -34.397,
+                   longitude: 150.644
+               },
+               zoom  : 8
+           };
+  });
+
 
 
     //////////
