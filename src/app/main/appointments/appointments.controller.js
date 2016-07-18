@@ -110,11 +110,13 @@
       .success(function(response) {
         angular.forEach(response, function(value, key) {
 
-          var birthDate =  new Date(value.birthDate);
+          // get current year, and set that for birthday on cal
+          var currYear = moment().year();
+          var startDate = moment(value.birthDate).year(currYear);
 
           var calEvent = {
             title: value.firstName + " " + value.lastName + "' birthday",
-            start: birthDate,
+            start: startDate,
             end: null,
             stick: true,
             color: "#551A8B"
