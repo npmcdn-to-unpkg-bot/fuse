@@ -16,11 +16,8 @@
         // Data
         vm.username = authentication.currentUser().name;
 
-        vm.changedUsername = angular.copy(vm.username);
-
         // Methods
         vm.sendRequest = sendRequest;
-        vm.saveUserSettings = saveUserSettings;
         vm.uploadFiles = uploadFiles;
 
         //Autofield selectbox setup
@@ -60,21 +57,6 @@
           .error(function(d) {
           });
 
-
-        function saveUserSettings() {
-
-          var data= {"username" : vm.changedUsername}
-
-          console.log(data);
-
-          // apilaData.changeUsername(vm.username, data)
-          // .success(function(response) {
-          //   console.log("username updated");
-          // })
-          // .error(function(response) {
-          //
-          // });
-        }
 
         function sendRequest()
         {
@@ -125,6 +107,13 @@
 
                       authentication.setUserImage(response.data);
                       vm.userImage = response.data;
+
+                      $mdToast.show(
+                        $mdToast.simple()
+                          .textContent("User profile image updated!")
+                          .position("top right")
+                          .hideDelay(1000)
+                      );
 
                   });
 

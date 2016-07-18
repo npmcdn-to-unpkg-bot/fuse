@@ -8,12 +8,6 @@
 
             <div class="content">
 
-
-              <md-input-container class="md-block">
-                <h4>Username</h4>
-                <input ng-model="vm.changedUsername" type="text">
-              </md-input-container>
-
               <md-input-container class="md-block">
                 <h4>Profile image</h4>
                 <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
@@ -25,9 +19,9 @@
                 </md-button>
               </md-input-container>
 
-             <md-button ng-click="vm.saveUserSettings()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
+             <!-- <md-button ng-click="vm.saveUserSettings()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
                SAVE
-             </md-button>
+             </md-button> -->
 
             </div>
         </div>
