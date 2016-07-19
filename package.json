@@ -4,6 +4,10 @@
   "description": "Apila's development of frontend code",
   "license": "MIT",
   "homepage": "http://apila.care",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ApilaCare/fuse.git"
+  },
   "dependencies": {
     "user-home": "^2.0.0"
   },
