@@ -115,11 +115,11 @@
           var startDate = moment(value.birthDate).year(currYear);
 
           var calEvent = {
-            title: value.firstName + " " + value.lastName + "' birthday",
+            title: value.firstName + " " + value.lastName + "'s Birthday",
             start: startDate,
             end: null,
             stick: true,
-            color: "#551A8B"
+            color: "#9C27B0"
           };
 
           appointList.push(calEvent);
