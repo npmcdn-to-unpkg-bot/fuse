@@ -73,26 +73,31 @@
             var director = false;
             var minion = false;
             var creator = false;
+            var role = "";
 
             if(vm.myCommunity.creator.name === v.name) {
               creator = true;
+              role = "Creator";
             }
 
             if(vm.myCommunity.boss.name === v.name) {
               boss = true;
+              role = "Boss";
             }
 
             if(_.find(vm.myCommunity.directors, {"name" : v.name}) !== undefined) {
               director = true;
+              role = "Director";
             }
 
             if(_.find(vm.myCommunity.minions, {"name" : v.name}) !== undefined) {
               minion = true;
+              role = "Minion";
             }
 
             var userImage = (v.userImage !== undefined) ? v.userImage : "";
 
-            return [userImage, v.name, v.email, v._id, boss, director, minion, creator];
+            return [userImage, v.name, v.email, v._id, boss, director, minion, creator, role];
           });
 
           pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {

@@ -21,7 +21,7 @@
         <h4>Admission Date: {{ vm.selectedResident.admissionDate | date }} </h4>
         <h4>Sex: {{ vm.selectedResident.sex }} </h4>
         <h4>Building Status: {{ vm.selectedResident.buildingStatus }} </h4>
-        <h4>Moved from: {{ vm.selectedResident.movedFrom }} </h4>
+        <h4>Moved from: {{ vm.selectedResident.movedFrom.name }} </h4>
 
         <ui-gmap-google-map center="vm.simpleMap.center" zoom="vm.simpleMap.zoom"></ui-gmap-google-map>
 

@@ -16,17 +16,18 @@
         vm.addResident = addResident;
 
         //////////
-         vm.residentList = resList;
+        vm.residentList = resList;
+        vm.form = {};
+        vm.form.movedFrom = "Denver, CO, USA";
 
-         apilaData.userCommunity(authentication.currentUser().name)
-           .success(function(d) {
-             vm.community = d;
-
-           });
-
-       vm.autocompleteOptions = {
-                       componentRestrictions: { country: 'us' }
+        vm.autocompleteOptions = {
+          componentRestrictions: { country: 'us' }
         }
+
+        apilaData.userCommunity(authentication.currentUser().name)
+         .success(function(d) {
+           vm.community = d;
+        });
 
         function closeDialog()
         {
@@ -36,18 +37,25 @@
         function addResident()
         {
           vm.form.community =  vm.community;
-          console.log(vm.form.movedFrom.geometry.location.lat());
-          console.log(vm.form.movedFrom.geometry.locaction.lng());
 
+          setLocationData();
 
           apilaData.addResident(vm.form)
-          .success(function(data) {
-                vm.residentList.push(data);
+          .success(function(response) {
+                vm.residentList.push(response);
                 $mdDialog.hide();
           })
-          .error(function() {
+          .error(function(response) {
             console.log("Error while adding resident");
           });
+        }
+
+
+        function setLocationData() {
+          vm.form.movedFrom = {};
+          vm.form.movedFrom.name = vm.form.locationInfo.formatted_address;
+          vm.form.movedFrom.latitude = vm.form.locationInfo.geometry.location.lat();
+          vm.form.movedFrom.longitude = vm.form.locationInfo.geometry.location.lng();
         }
     }
 })();

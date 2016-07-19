@@ -9,7 +9,7 @@
 
     var vm = this;
 
-    //filling in old data dor the update
+    //filling in old data for the update
     vm.form = currAppointment;
 
     vm.status = [];
@@ -25,18 +25,19 @@
     //needed unchanged values to compare for updateField
     vm.copyResident = angular.copy(currAppointment);
 
-    console.log(currAppointment);
+    vm.autocompleteOptions = {
+      componentRestrictions: { country: 'us' }
+    }
 
     setSelectedStatuses(currAppointment.psychosocialStatus);
 
     vm.form.birthDate = new Date(currAppointment.birthDate);
     vm.form.admissionDate = new Date(currAppointment.admissionDate);
+    vm.form.locationInfo = vm.form.movedFrom.name;
 
     //Functions
     vm.closeDialog = closeDialog;
     vm.updateResident = updateResident;
-
-
 
     function closeDialog() {
       $mdDialog.hide();
@@ -52,6 +53,12 @@
         checkChangedFields(vm.copyResident, vm.form);
 
       addToStatusArray();
+
+      if(vm.form.locationInfo.geometry !== undefined) {
+        vm.form.movedFrom.name = vm.form.locationInfo.formatted_address;
+        vm.form.movedFrom.latitude = vm.form.locationInfo.geometry.location.lat();
+        vm.form.movedFrom.longitude = vm.form.locationInfo.geometry.location.lng();
+      }
 
       if (changedFields.length > 0) {
         vm.form.updateField = changedFields;

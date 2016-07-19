@@ -35,12 +35,18 @@
                               <span class="column-title">Minion</span>
                           </div>
                       </th>
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Role</span>
+                          </div>
+                      </th>
                         <th class="secondary-text"
                             ng-repeat="column in  vm.communityMemberWidget.table.columns">
                             <div class="table-header">
                                 <span class="column-title">{{column.title}}</span>
                             </div>
                         </th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -56,22 +62,18 @@
                       </td>
 
                       <td>
-                        <span ng-if="row[1] !== vm.username && row[7] !== true">
+                        <span ng-if="row[1] !== vm.username">
                           <input type="radio" ng-value="true" name="group {{ $index}}" ng-model="row[5]" ng-change="vm.addRole(row[3], 'directors')" value="Director"> Director<br>
-                       </span>
-                       <span ng-if="row[7] === true">
-                         Creator
                        </span>
                       </td>
 
                       <td>
-                        <span ng-if="row[1] !== vm.username && row[7] !== true">
+                        <span ng-if="row[1] !== vm.username">
                           <input type="radio"  ng-value="true" name="group {{ $index}}" ng-model="row[6]" ng-change="vm.addRole(row[3], 'minions')" value="Minion"> Minion<br>
                         </span>
-                        <span ng-if="row[7] === true">
-                          Creator
-                        </span>
                       </td>
+
+                      <td> {{ row[8] }}</td>
                     </span>
 
                         <td ng-repeat="cell in row track by $index">
