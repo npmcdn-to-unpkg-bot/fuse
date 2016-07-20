@@ -7,7 +7,7 @@
         .controller('DashboardProjectController', DashboardProjectController);
 
     /** @ngInject */
-    function DashboardProjectController($scope, $interval, $mdSidenav, DashboardData,
+    function DashboardProjectController($scope, $interval, $mdSidenav, $mdToast, DashboardData,
                         $mdDialog, $document, apilaData, authentication)
     {
         var vm = this;
@@ -289,13 +289,19 @@
           data.boss = vm.currUserId;
           data.recoveredMember = vm.recoveryInfo.userToRecoverId;
 
-          apilaData.createIssueRecovery(data)
+          apilaData.createIssueRecovery(data, vm.myCommunity._id)
           .success(function(response) {
             console.log(response);
             callback(response);
           })
           .error(function(response) {
             console.log(response);
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent(response.message)
+                .position("top right")
+                .hideDelay(2000)
+            );
           });
         }
 

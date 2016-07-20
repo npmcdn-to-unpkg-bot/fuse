@@ -106,8 +106,8 @@
           return $http.get(apiUrl + '/api/issues/due/' + communityId, getAuth());
         }
 
-        var createIssueRecovery = function(data) {
-          return $http.post(apiUrl + '/api/issues/recovery/', data, getAuth());
+        var createIssueRecovery = function(data, communityid) {
+          return $http.post(apiUrl + '/api/issues/recovery/' + communityid, data, getAuth());
         }
 
 
