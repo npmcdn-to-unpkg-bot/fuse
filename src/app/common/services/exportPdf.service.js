@@ -464,7 +464,7 @@
         doc.text(87, 42 + adminOffset, "Reason: " + movedOutDescribe);
         adminOffset = adminOffset + 24;
       } else {
-        doc.text(75, 66 + adminOffset, "Building Status: " + buildingStatus);
+        doc.text(75, 66 + adminOffset, "Building Status: " + data.buildingStatus);
       }
       doc.text(81, adminOffset + 104, "Story about " + data.firstName + " " + data.lastName);
       doc.text(81, adminOffset + 116, "could go here");
