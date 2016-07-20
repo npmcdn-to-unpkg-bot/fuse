@@ -3,9 +3,9 @@
         <md-toolbar class="md-accent md-hue-2">
             <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
                 <span class="title" >Recover password</span>
-                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+                <!-- <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
                     <md-icon md-font-icon="icon-close"></md-icon>
-                </md-button>
+                </md-button> -->
             </div>
         </md-toolbar>
 
@@ -18,14 +18,14 @@
 
           <md-input-container class="md-block">
               <label>Your password</label>
-              <input ng-model="vm.form.bossname" type="text">
+              <input ng-model="vm.form.password" type="password">
           </md-input-container>
 
         </md-dialog-content>
 
         <md-dialog-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <md-button ng-click="" class="send-button md-accent md-raised" aria-label="Add">
+                <md-button ng-click="vm.verifyPassword()" class="send-button md-accent md-raised" aria-label="Add">
                     SUBMIT PASSWORD
                 </md-button>
             </div>

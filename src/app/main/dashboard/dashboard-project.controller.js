@@ -266,9 +266,11 @@
           vm.recoveryInfo.userToRecoverId = userToRecoverId;
           vm.recoveryInfo.userToRecoverName = userToRecoverName;
 
-          createRecovery(function(randomUser) {
+          createRecovery(function(data) {
 
-            vm.recoveryInfo.randomUsersName = randomUser;
+            vm.recoveryInfo.randomUsersName = data.chosenMemberName;
+            vm.recoveryInfo.recoveryid = data.recoveryid;
+            vm.recoveryInfo.bossId = vm.currUserId;
 
             $mdDialog.show({
                 controller         : 'RecoverController',
@@ -276,7 +278,7 @@
                 templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
                 parent             : angular.element($document.body),
                 locals             : {recoveryInfo: vm.recoveryInfo},
-                clickOutsideToClose: true
+                clickOutsideToClose: false
             });
 
           });

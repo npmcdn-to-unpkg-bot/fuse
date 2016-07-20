@@ -110,6 +110,9 @@
           return $http.post(apiUrl + '/api/issues/recovery/' + communityid, data, getAuth());
         }
 
+        var verifyPassword = function(data, userid) {
+          return $http.post(apiUrl + '/api/issues/recovery/verify/' + userid, data, getAuth());
+        }
 
         /***************** APPOINTMENTS RESOURCES ***************/
 
@@ -271,6 +274,7 @@
             issuesCount : issuesCount,
             dueIssuesList : dueIssuesList,
             createIssueRecovery : createIssueRecovery,
+            verifyPassword : verifyPassword,
 
             //residents
             residentsList : residentsList,
