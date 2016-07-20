@@ -106,6 +106,10 @@
           return $http.get(apiUrl + '/api/issues/due/' + communityId, getAuth());
         }
 
+        var createIssueRecovery = function(data) {
+          return $http.post(apiUrl + '/api/issues/recovery/', data, getAuth());
+        }
+
 
         /***************** APPOINTMENTS RESOURCES ***************/
 
@@ -244,7 +248,7 @@
             addAppointment : addAppointment,
             updateAppointment : updateAppointment,
             addAppointmentCommentById : addAppointmentCommentById,
-            appointmentsListByMonth: appointmentsListByMonth,
+            appointmentsListByMonth : appointmentsListByMonth,
             appointmentsToday : appointmentsToday,
 
             //issues
@@ -255,17 +259,18 @@
             updateIssue : updateIssue,
             listIssueByUsername: listIssueByUsername,
             addIssueLabelById : addIssueLabelById,
-            deleteIssueLabelById: deleteIssueLabelById,
-            updateIssueLabelById: updateIssueLabelById,
+            deleteIssueLabelById : deleteIssueLabelById,
+            updateIssueLabelById : updateIssueLabelById,
             addCheckList : addCheckList,
-            updateCheckList: updateCheckList,
-            deleteCheckList: deleteCheckList,
-            deleteAttachment: deleteAttachment,
+            updateCheckList : updateCheckList,
+            deleteCheckList : deleteCheckList,
+            deleteAttachment : deleteAttachment,
             updateIssue: updateIssue,
             openIssuesCount : openIssuesCount,
             deleteIssue : deleteIssue,
             issuesCount : issuesCount,
-            dueIssuesList: dueIssuesList,
+            dueIssuesList : dueIssuesList,
+            createIssueRecovery : createIssueRecovery,
 
             //residents
             residentsList : residentsList,

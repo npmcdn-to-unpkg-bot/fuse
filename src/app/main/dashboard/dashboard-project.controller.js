@@ -17,12 +17,16 @@
         // Data
         vm.dashboardData = DashboardData;
         vm.projects = vm.dashboardData.projects;
+        vm.recoveryInfo = {};
+        vm.currUserId = null;
+
 
         vm.acceptMember = acceptMember;
         vm.declineMember = declineMember;
         vm.addRole = addRole;
         vm.removeMember = removeMember;
         vm.openRecoverModal = openRecoverModal;
+
 
         // Widget 1
         vm.widget1 = vm.dashboardData.widget1;
@@ -63,8 +67,7 @@
             vm.userRole = "minions";
           }
 
-          console.log(vm.userRole + " " + vm.username);
-          console.log(vm.myCommunity);
+          vm.currUserId = (_.find(vm.myCommunity.communityMembers, {'name' : vm.username}))._id;
 
           loadStats(vm.myCommunity._id);
 
@@ -258,15 +261,41 @@
         }
 
 
-        function openRecoverModal(ev)
+        function openRecoverModal(userToRecoverId, userToRecoverName)
         {
-          $mdDialog.show({
-              controller         : 'RecoverController',
-              controllerAs       : 'vm',
-              templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
-              parent             : angular.element($document.body),
-              targetEvent        : ev,
-              clickOutsideToClose: true
+          vm.recoveryInfo.userToRecoverId = userToRecoverId;
+          vm.recoveryInfo.userToRecoverName = userToRecoverName;
+
+          createRecovery(function(randomUser) {
+
+            vm.recoveryInfo.randomUsersName = randomUser;
+
+            $mdDialog.show({
+                controller         : 'RecoverController',
+                controllerAs       : 'vm',
+                templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
+                parent             : angular.element($document.body),
+                locals             : {recoveryInfo: vm.recoveryInfo},
+                clickOutsideToClose: true
+            });
+
+          });
+
+        }
+
+        function createRecovery(callback) {
+
+          var data = {};
+          data.boss = vm.currUserId;
+          data.recoveredMember = vm.recoveryInfo.userToRecoverId;
+
+          apilaData.createIssueRecovery(data)
+          .success(function(response) {
+            console.log(response);
+            callback(response);
+          })
+          .error(function(response) {
+            console.log(response);
           });
         }
 

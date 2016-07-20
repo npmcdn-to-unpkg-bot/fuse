@@ -9,24 +9,24 @@
             </div>
         </md-toolbar>
 
+
         <md-dialog-content ms-scroll>
+
+          <dl><dt>You have started the recovery process for {{ vm.recoveryInfo.userToRecoverName }}</dt>
+            <dd>You need to enter your password and the member <u>{{ vm.recoveryInfo.randomUsersName }} </u> will enter their password.
+              After both passwords are entered and correct you will be able to see {{ vm.recoveryInfo.userToRecoverName }} confidential issues</dd><dt>
+
           <md-input-container class="md-block">
-              <label>Boss password</label>
+              <label>Your password</label>
               <input ng-model="vm.form.bossname" type="text">
           </md-input-container>
-
-          <md-input-container class="md-block">
-                <label>User password</label>
-                <input ng-model="vm.form.username" type="text">
-          </md-input-container>
-
 
         </md-dialog-content>
 
         <md-dialog-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
                 <md-button ng-click="" class="send-button md-accent md-raised" aria-label="Add">
-                    RECOVER
+                    SUBMIT PASSWORD
                 </md-button>
             </div>
         </md-dialog-actions>

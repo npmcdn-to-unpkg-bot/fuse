@@ -7,10 +7,14 @@
         .controller('RecoverController', RecoverController);
 
     /** @ngInject */
-    function RecoverController($mdDialog) {
+    function RecoverController($mdDialog, recoveryInfo) {
 
       var vm = this;
 
+      // Data
+      vm.recoveryInfo = recoveryInfo;
+
+      // Functions 
       vm.closeDialog = closeDialog;
 
       function closeDialog()

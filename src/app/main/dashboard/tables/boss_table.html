@@ -54,7 +54,7 @@
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows track by $index">
                       <span ng-if="true">
                       <td>
-                        <md-button ng-if="row[1] !== vm.username" ng-click="vm.openRecoverModal()" class="md-raised md-primary">Recover</md-button>
+                        <md-button ng-if="row[1] !== vm.username" ng-click="vm.openRecoverModal(row[3], row[1])" class="md-raised md-primary">Recover</md-button>
                       </td>
 
                       <td>
