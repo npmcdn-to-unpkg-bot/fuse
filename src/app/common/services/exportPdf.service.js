@@ -442,10 +442,11 @@
       doc.text(164, 235, "for");
       doc.text(75, adminOffset, data.firstName);
 
-      if (data.middleName !== "") {
+/*
+      if (data.middleName !== "" || data.middleName === undefined) {
         adminOffset = adminOffset + 15;
         doc.text(75, adminOffset, data.middleName + " ");
-      }
+      } */
 
       doc.text(75, adminOffset + 15, data.lastName);
 
@@ -772,7 +773,7 @@
       doc.text(210, 300, "Pulse");
       doc.addImage(data.pulse, 'PNG', 250, 320, 150, 150);
 
-      doc.text(410, 300, "Vitals Pain");
+      doc.text(410, 300, "Pain");
       doc.addImage(data.vitals, 'PNG', 410, 320, 150, 150);
 
       doc.save(fileName);
