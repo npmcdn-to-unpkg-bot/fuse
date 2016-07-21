@@ -53,8 +53,37 @@
 
           vm.myCommunity = d;
 
+          vm.communityMembers = vm.myCommunity.communityMembers;
           console.log(vm.myCommunity.communityMembers);
 
+          // getCommunityMembers(vm.myCommunity._id, function() {
+          //   formatMembersData();
+          // });
+
+          formatMembersData();
+
+
+        })
+        .error(function(d) {
+
+        });
+
+        function getCommunityMembers(communityid, callback) {
+
+          console.log(communityid);
+
+          apilaData.usersInCommunity(communityid)
+          .success(function(response) {
+            vm.communityMembers = response;
+            console.log(response);
+            callback();
+          })
+          .error(function(response) {
+            console.log("Unable to load community members");
+          });
+        }
+
+        function formatMembersData() {
           getAverageAge(vm.myCommunity._id);
 
           // check if we are creator of the community
@@ -69,16 +98,18 @@
             vm.userRole = "minions";
           }
 
-          vm.currUserId = (_.find(vm.myCommunity.communityMembers, {'name' : vm.username}))._id;
+          console.log(vm.communityMembers);
+          vm.currUserId = (_.find(vm.communityMembers, {'name' : vm.username}))._id;
 
           loadStats(vm.myCommunity._id);
 
-          communityMemberTable = _.map(vm.myCommunity.communityMembers, function(v) {
+          communityMemberTable = _.map(vm.communityMembers, function(v) {
             var boss = false;
             var director = false;
             var minion = false;
             var creator = false;
             var role = "";
+            var recovery = "";
 
             if(vm.myCommunity.creator.name === v.name) {
               creator = true;
@@ -100,9 +131,18 @@
               role = "Minion";
             }
 
+            if(v.recovery) {
+              console.log("User that is recovered " + v.name);
+              //recovery = true;
+              if(v.recovery === vm.currUserId) {
+                console.log("You are selected for recovery");
+                recovery = true;
+              }
+            }
+
             var userImage = (v.userImage !== undefined) ? v.userImage : "";
 
-            return [userImage, v.name, v.email, v._id, boss, director, minion, creator, role];
+            return [userImage, v.name, v.email, v._id, boss, director, minion, creator, role, recovery];
           });
 
           pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
@@ -115,10 +155,7 @@
           setWidget();
 
           vm.title = "Welcome to " + vm.myCommunity.name + " Community";
-        })
-        .error(function(d) {
-
-        });
+        }
 
         // Setting stats data
         function loadStats(id) {
@@ -263,28 +300,43 @@
         }
 
 
-        function openRecoverModal(userToRecoverId, userToRecoverName)
+        function openRecoverModal(userToRecoverId, userToRecoverName, type)
         {
           vm.recoveryInfo.userToRecoverId = userToRecoverId;
           vm.recoveryInfo.userToRecoverName = userToRecoverName;
+          vm.recoveryInfo.type = type;
+
+          console.log(type);
+
+          if(type === 'randomuser') {
+            vm.recoveryInfo.bossId = vm.currUserId;
+
+            showRecoveryDialog();
+
+          } else {
 
           createRecovery(function(data) {
+
+            showRecoveryDialog();
 
             vm.recoveryInfo.randomUsersName = data.chosenMemberName;
             vm.recoveryInfo.recoveryid = data.recoveryid;
             vm.recoveryInfo.bossId = vm.currUserId;
 
-            $mdDialog.show({
-                controller         : 'RecoverController',
-                controllerAs       : 'vm',
-                templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
-                parent             : angular.element($document.body),
-                locals             : {recoveryInfo: vm.recoveryInfo},
-                clickOutsideToClose: false
-            });
-
           });
+        }
 
+        }
+
+        function showRecoveryDialog() {
+          $mdDialog.show({
+              controller         : 'RecoverController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
+              parent             : angular.element($document.body),
+              locals             : {recoveryInfo: vm.recoveryInfo},
+              clickOutsideToClose: false
+          });
         }
 
         function createRecovery(callback) {

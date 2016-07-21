@@ -28,7 +28,7 @@
         var data = {};
         data.password = vm.form.password;
         data.recoveryid = vm.recoveryInfo.recoveryid;
-        data.type = "boss";
+        data.type = vm.recoveryInfo.type;
 
         apilaData.verifyPassword(data, vm.recoveryInfo.bossId)
         .success(function(response) {

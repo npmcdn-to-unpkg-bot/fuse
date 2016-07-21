@@ -12,9 +12,12 @@
 
         <md-dialog-content ms-scroll>
 
-          <dl><dt>You have started the recovery process for {{ vm.recoveryInfo.userToRecoverName }}</dt>
+          <dl ng-if="vm.recoveryInfo.type === 'boss'"><dt>You have started the recovery process for {{ vm.recoveryInfo.userToRecoverName }}</dt>
             <dd>You need to enter your password and the member <u>{{ vm.recoveryInfo.randomUsersName }} </u> will enter their password.
-              After both passwords are entered and correct you will be able to see {{ vm.recoveryInfo.userToRecoverName }} confidential issues</dd><dt>
+              After both passwords are entered and correct you will be able to see {{ vm.recoveryInfo.userToRecoverName }} confidential issues</dd><dt></dl>
+
+            <dl ng-if="vm.recoveryInfo.type === 'randomuser'"><dt>You have been randomly choosen for the recovery process for {{ vm.recoveryInfo.userToRecoverName }}</dt>
+              <dd ng-if="vm.recoveryInfo.type === 'randomuser'">You need to enter your password so that the users confidential issues can be unlocked.</dd><dt></dl>
 
           <md-input-container class="md-block">
               <label>Your password</label>
