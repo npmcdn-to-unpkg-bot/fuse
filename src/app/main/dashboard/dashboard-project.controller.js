@@ -53,6 +53,8 @@
 
           vm.myCommunity = d;
 
+          console.log(vm.myCommunity.communityMembers);
+
           getAverageAge(vm.myCommunity._id);
 
           // check if we are creator of the community

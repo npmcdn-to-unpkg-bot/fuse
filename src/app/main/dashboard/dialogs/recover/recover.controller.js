@@ -7,7 +7,7 @@
         .controller('RecoverController', RecoverController);
 
     /** @ngInject */
-    function RecoverController($mdDialog, recoveryInfo, apilaData) {
+    function RecoverController($mdDialog, recoveryInfo, apilaData, $mdToast) {
 
       var vm = this;
 
@@ -33,10 +33,22 @@
         apilaData.verifyPassword(data, vm.recoveryInfo.bossId)
         .success(function(response) {
           closeDialog();
-          console.log(response);
+
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent("Your password has been verified")
+              .position("top right")
+              .hideDelay(2000)
+          );
         })
         .error(function(response) {
-          console.log(response);
+
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent("Your password doesn't match!")
+              .position("top right")
+              .hideDelay(2000)
+          );
         });
       }
 
