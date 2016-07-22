@@ -43,6 +43,8 @@
         })
         .error(function(response) {
 
+          console.log(response);
+
           $mdToast.show(
             $mdToast.simple()
               .textContent("Your password doesn't match!")
