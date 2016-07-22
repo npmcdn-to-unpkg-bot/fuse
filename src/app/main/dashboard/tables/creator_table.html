@@ -25,6 +25,11 @@
                               <span class="column-title">Role</span>
                           </div>
                       </th>
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title"></span>
+                          </div>
+                      </th>
                         <th class="secondary-text"
                             ng-repeat="column in  vm.communityMemberWidget.table.columns">
                             <div class="table-header">
@@ -41,7 +46,7 @@
                       </td>
 
                       <td> {{ row[8] }}</td>
-                      
+
                         <td ng-repeat="cell in row track by $index">
                             <img class="avatar" ng-if="$index === 0"
                                  ng-src="{{cell}}">

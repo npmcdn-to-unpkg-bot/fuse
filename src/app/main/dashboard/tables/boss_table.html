@@ -74,6 +74,12 @@
                       </td>
 
                       <td> {{ row[8] }}</td>
+
+                      <td>
+                        <md-button ng-if="row[9]" ng-click="vm.openRecoverModal(row[3], row[1], 'randomuser')" class="md-raised md-primary">Recover</md-button>
+
+                      </td>
+
                       <td> {{ row[9]}}</td>
                     </span>
 
