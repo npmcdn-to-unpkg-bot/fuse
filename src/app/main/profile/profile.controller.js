@@ -23,8 +23,19 @@
         //Autofield selectbox setup
         vm.residentList = [];
         vm.selectedCommunity = {};
+        vm.formatedRegister = "";
 
         vm.userImage = authentication.getUserImage();
+
+        apilaData.getUser(vm.username)
+        .success(function(response) {
+          vm.currUser = response;
+
+          vm.formatedRegister = moment(vm.currUser.registeredOn).format('LL');
+        })
+        .error(function(response) {
+          console.log(response);
+        });
 
         apilaData.communityList()
           .success(function(residentList) {

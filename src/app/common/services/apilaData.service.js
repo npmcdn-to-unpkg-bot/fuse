@@ -213,6 +213,10 @@
           return $http.put(apiUrl + '/api/users/' + username + "/upload", data, getAuth());
         }
 
+        var getUser = function(username) {
+          return $http.get(apiUrl + '/api/users/getuser/' + username, getAuth());
+        }
+
 
         /***************** COMMUNITY RESOURCES ***************/
 
@@ -296,6 +300,7 @@
             forgotPassword : forgotPassword,
             resetPassword : resetPassword,
             userImageUpload : userImageUpload,
+            getUser : getUser,
 
             //community
             addCommunity : addCommunity,
