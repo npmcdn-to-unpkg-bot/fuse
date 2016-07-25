@@ -7,7 +7,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($ariaProvider, $logProvider, msScrollConfigProvider, uiGmapGoogleMapApiProvider, $translateProvider, $provide, fuseConfigProvider)
+    function config($ariaProvider, $logProvider, msScrollConfigProvider, uiGmapGoogleMapApiProvider, $translateProvider, $provide, fuseConfigProvider, stripeProvider)
     {
         // Enable debug logging
         $logProvider.debugEnabled(true);
@@ -18,6 +18,9 @@
             v        : '3.exp',
             libraries: 'weather,geometry,visualization, places'
         });
+
+        // stripe published key (test version for now)
+        Stripe.setPublishableKey('pk_test_PDxs7SyxPARytJkKUeS6NOS8');
 
         // angular-translate configuration
         $translateProvider.useLoader('$translatePartialLoader', {

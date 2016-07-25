@@ -15,6 +15,8 @@
       vm.closeDialog = closeDialog;
       vm.addCommunity = addCommunity;
 
+      vm.form = {};
+
       vm.username = authentication.currentUser().name;
 
       function closeDialog()
@@ -22,12 +24,18 @@
           $mdDialog.hide();
       }
 
+
       function addCommunity()
       {
         vm.form.communityMembers = [];
         vm.form.pendingMembers = [];
 
         vm.form.username = vm.username;
+
+        Stripe.card.createToken(vm.cardInfo,
+          function(response) {
+            console.log(response);
+          });
 
         apilaData.addCommunity(vm.form)
         .success(function(d) {

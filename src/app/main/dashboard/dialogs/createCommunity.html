@@ -15,6 +15,26 @@
               <input ng-model="vm.form.name" type="text">
           </md-input-container>
 
+          <md-input-container class="md-block">
+              <label>Card number</label>
+              <input ng-model="vm.cardInfo.number" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Expiration (Months)</label>
+              <input ng-model="vm.cardInfo.exp_month" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>Expiration (Years)</label>
+              <input ng-model="vm.cardInfo.exp_year" type="text">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+              <label>CVC</label>
+              <input ng-model="vm.cardInfo.cvc" type="text">
+          </md-input-container>
+
 
         </md-dialog-content>
 
@@ -24,7 +44,7 @@
                     ADD COMMUNITY
                 </md-button>
             </div>
-            
+
         </md-dialog-actions>
     </form>
 </md-dialog>

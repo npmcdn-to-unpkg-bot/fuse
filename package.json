@@ -9,6 +9,7 @@
     "url": "https://github.com/ApilaCare/fuse.git"
   },
   "dependencies": {
+    "angular-stripe": "^4.2.12",
     "user-home": "^2.0.0"
   },
   "scripts": {

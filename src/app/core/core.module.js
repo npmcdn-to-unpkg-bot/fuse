@@ -29,6 +29,7 @@
                 'ngFileUpload',
                 'duScroll',
                 'mdPickers',
-                'google.places'
+                'google.places',
+                'stripe'
             ]);
 })();

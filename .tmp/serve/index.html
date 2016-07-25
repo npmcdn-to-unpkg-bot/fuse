@@ -45,6 +45,8 @@
 
               <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBYM34SP74tkE__vs4fFnAEPKhZL8gPCAM"
                 type="text/javascript"></script>
+
+
     </head>
 
     <!--[if lt IE 10]>
@@ -83,6 +85,8 @@
         <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
 
         <ms-theme-options></ms-theme-options>
+
+          <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
         <!-- build:js(src) scripts/vendor.js -->
         <!-- bower:js -->
@@ -172,6 +176,7 @@
         <script src="../bower_components/ngPlacesAutocomplete/ngPlacesAutocomplete.min.js"></script>
         <script src="../bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
         <script src="../bower_components/angular-google-places-autocomplete/dist/autocomplete.min.js"></script>
+        <script src="../bower_components/stripe-angular/stripe-angular.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -308,6 +313,7 @@
         <script src="app/core/directives/highlight.directive.js"></script>
         <script src="app/core/config/fuse-config.provider.js"></script>
         <script src="app/common/services/wordCloud.service.js"></script>
+        <script src="app/common/services/stripe.service.js"></script>
         <script src="app/common/services/search.service.js"></script>
         <script src="app/common/services/imageData.service.js"></script>
         <script src="app/common/services/exportPdf.service.js"></script>
