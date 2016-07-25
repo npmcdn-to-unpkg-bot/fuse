@@ -44,18 +44,16 @@ gulp.task('copy-api', function() {
       .pipe(gulp.dest(userHome + '/deploy/app_api'));
 });
 
-
-// gulp.task('deploy-clean', function(cb) {
-//   gulp.src([userHome + '/deploy/app_client/scripts/', userHome + '/deploy/app_client/maps/'])
-// 		.pipe(clean({force: true}));
-// });
-
 gulp.task('deploy', ['run-build'], function(cb) {
   gulp.src([conf.paths.dist + '/**/*'])
       .pipe(gulp.dest(userHome + '/deploy/app_client'));
 
   gulp.src(['!apila.js', '../api/**/*'])
       .pipe(gulp.dest(userHome + '/deploy/app_api'));
+
+  // copy api package.json to deploy package.json
+  gulp.src(['../api/package.json'])
+      .pipe(gulp.dest(userHome + '/deploy/'));
 
   gulp.src([servicesPath + 'apilaData.service.js', servicesPath + 'authentication.service.js'])
       .pipe(replace({
