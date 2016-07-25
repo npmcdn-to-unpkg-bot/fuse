@@ -26,6 +26,7 @@
         vm.addRole = addRole;
         vm.removeMember = removeMember;
         vm.openRecoverModal = openRecoverModal;
+        vm.openJoinModal = openJoinModal;
 
 
         // Widget 1
@@ -40,6 +41,7 @@
         vm.averageAge = 0;
 
         vm.checkbox = true;
+        vm.hasCommunity = false;
 
         vm.title = "Join or create a new community";
 
@@ -52,6 +54,8 @@
         .success(function(d) {
 
           vm.myCommunity = d;
+
+          vm.hasCommunity = true;
 
           vm.communityMembers = vm.myCommunity.communityMembers;
           console.log(vm.myCommunity.communityMembers);
@@ -293,6 +297,18 @@
               controller         : 'CreateCommunityController',
               controllerAs       : 'vm',
               templateUrl        : 'app/main/dashboard/dialogs/createCommunity.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
+
+        function openJoinModal(ev)
+        {
+          $mdDialog.show({
+              controller         : 'JoinCommunityController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/join_community/join_community.html',
               parent             : angular.element($document.body),
               targetEvent        : ev,
               clickOutsideToClose: true

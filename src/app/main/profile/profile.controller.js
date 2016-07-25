@@ -64,6 +64,7 @@
         apilaData.userCommunity(vm.username)
           .success(function(d) {
             vm.myCommunity = d;
+  
           })
           .error(function(d) {
           });
