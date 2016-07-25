@@ -19,7 +19,7 @@
             </div>
 
             <div layout="row">
-                <md-button ng-click="vm.openCommunityModal()" class="selected-project">{{vm.selectedProject.name}}</md-button>
+                <md-button ng-if="!vm.hasCommunity" ng-click="vm.openCommunityModal()" class="selected-project">{{vm.selectedProject.name}}</md-button>
                 <md-button ng-if="!vm.hasCommunity" ng-click="vm.openJoinModal()" class="selected-project">Join a Community</md-button>
 
                 <!-- <md-menu id="projects-menu" md-offset="0 48">

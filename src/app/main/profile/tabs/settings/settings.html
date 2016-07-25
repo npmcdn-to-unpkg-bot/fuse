@@ -19,6 +19,12 @@
                 </md-button>
               </md-input-container>
 
+            <md-input-container class="md-block" ng-if="vm.hasCommunity">
+              <h4>New community</h4>
+              <md-button ng-click="vm.openCommunityModal()" class="md-raised md-primary">Create a New Community</md-button>
+            </md-input-container>
+
+
              <!-- <md-button ng-click="vm.saveUserSettings()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
                SAVE
              </md-button> -->

@@ -7,7 +7,7 @@
         .controller('ProfileController', ProfileController);
 
     /** @ngInject */
-    function ProfileController(authentication, apilaData, Upload, $mdToast, $timeout)
+    function ProfileController(authentication, apilaData, Upload, $mdToast, $timeout, $mdDialog, $document)
     {
         var vm = this;
 
@@ -15,10 +15,12 @@
 
         // Data
         vm.username = authentication.currentUser().name;
+        vm.hasCommunity = false;
 
         // Methods
         vm.sendRequest = sendRequest;
         vm.uploadFiles = uploadFiles;
+        vm.openCommunityModal = openCommunityModal;
 
         //Autofield selectbox setup
         vm.residentList = [];
@@ -64,7 +66,7 @@
         apilaData.userCommunity(vm.username)
           .success(function(d) {
             vm.myCommunity = d;
-  
+            vm.hasCommunity = true;
           })
           .error(function(d) {
           });
@@ -95,6 +97,17 @@
           })
           .error(function(d) {
 
+          });
+        }
+
+        function openCommunityModal(ev) {
+          $mdDialog.show({
+              controller         : 'CreateCommunityController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/createCommunity.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
           });
         }
 
