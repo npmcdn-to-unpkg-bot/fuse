@@ -104,7 +104,7 @@
           $mdDialog.show({
               controller         : 'CreateCommunityController',
               controllerAs       : 'vm',
-              templateUrl        : 'app/main/dashboard/dialogs/createCommunity.html',
+              templateUrl        : 'app/main/dashboard/dialogs/create/createCommunity.html',
               parent             : angular.element($document.body),
               targetEvent        : ev,
               clickOutsideToClose: true

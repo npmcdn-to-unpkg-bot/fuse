@@ -38,9 +38,11 @@
             if (isLoggedIn()) {
                 var token = getToken();
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
+
                 return {
                     email: payload.email,
-                    name: payload.name
+                    name: payload.name,
+                    id: payload._id
                 };
             }
         };
@@ -62,7 +64,7 @@
         login = function(user) {
             return $http.post(apiUrl + '/api/login', user).success(function(data) {
                 saveToken(data.token);
-                console.log(data.token);
+        
             });
         };
 
