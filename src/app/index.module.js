@@ -57,7 +57,10 @@
             'app.profile',
 
             // Dashboard
-            'app.dashboard'
+            'app.dashboard',
+
+            // Information
+            'app.information'
 
         ]);
 })();
