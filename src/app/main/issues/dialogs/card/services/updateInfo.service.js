@@ -114,6 +114,14 @@
            }
          }
 
+         if(v.field === "checkitem_complete") {
+           if(v.old === "") {
+             v.infoFormated = updatedBy + " completed a checklist item " + v.new ;
+           } else {
+             v.infoFormated = updatedBy + " uncompleted  a checklist item" + v.old ;
+           }
+         }
+
 
          if(v.field === "comments") {
            if(v.old === "") {

@@ -351,7 +351,7 @@
               templateUrl        : 'app/main/dashboard/dialogs/recover/recover.html',
               parent             : angular.element($document.body),
               locals             : {recoveryInfo: vm.recoveryInfo},
-              clickOutsideToClose: false
+              clickOutsideToClose: true
           });
         }
 

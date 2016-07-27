@@ -87,6 +87,11 @@
 
        vm.updateCheckItem = function(checklist, checkitemId, text) {
          checklist.checkItems[checkitemId] = text;
+
+         console.log("Updated checkitem");
+
+         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_complete', "" , text));
+
          vm.updateIssue();
        }
 
@@ -530,13 +535,13 @@
 
             console.log(list);
 
-            apilaData.updateCheckList(vm.card._id, list._id, list)
-            .success(function(d) {
-
-            })
-            .error(function() {
-              console.log("Error while updateing checklist");
-            });
+            // apilaData.updateCheckList(vm.card._id, list._id, list)
+            // .success(function(d) {
+            //
+            // })
+            // .error(function() {
+            //   console.log("Error while updateing checklist");
+            // });
         }
 
         /**
