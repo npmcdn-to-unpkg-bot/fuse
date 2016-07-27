@@ -19,9 +19,6 @@
             libraries: 'weather,geometry,visualization, places'
         });
 
-        // stripe published key (test version for now)
-        Stripe.setPublishableKey('pk_test_PDxs7SyxPARytJkKUeS6NOS8');
-
         // angular-translate configuration
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: '{part}/i18n/{lang}.json'
