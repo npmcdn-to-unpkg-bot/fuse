@@ -22,7 +22,7 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/information');
+        //$translatePartialLoaderProvider.addPart('app/main/information');
 
 
         // Navigation

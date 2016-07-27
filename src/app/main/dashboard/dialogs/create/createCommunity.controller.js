@@ -51,20 +51,20 @@
             apilaData.saveCreditCard(vm.userid, response)
             .success(function(response) {
               console.log(response);
-              closeDialog();
+
+              apilaData.addCommunity(vm.form)
+              .success(function(d) {
+                closeDialog();
+              })
+              .error(function(d) {
+                console.log("Error while creating community");
+              });
             })
             .error(function(response) {
               console.log(response);
             });
           });
 
-        // apilaData.addCommunity(vm.form)
-        // .success(function(d) {
-        //   closeDialog();
-        // })
-        // .error(function(d) {
-        //   console.log("Error while creating community");
-        // });
       }
 
   }
