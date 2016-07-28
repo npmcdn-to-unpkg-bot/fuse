@@ -28,6 +28,7 @@
         vm.removeMember = removeMember;
         vm.openRecoverModal = openRecoverModal;
         vm.openJoinModal = openJoinModal;
+        vm.updateBillingModal = updateBillingModal;
         vm.cancelSubscription = cancelSubscription;
 
 
@@ -336,6 +337,19 @@
             console.log("Couldn't add a role");
           });
         }
+
+        function updateBillingModal(ev)
+        {
+          $mdDialog.show({
+              controller         : 'UpdateBillingController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/update_billing/update_billing.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
+
 
         function openCommunityModal(ev)
         {

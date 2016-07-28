@@ -406,7 +406,7 @@
 
                               <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
                                   <div class="h2">Billing informaton</div>
-                                  <button ng-if="vm.customerData.status && !vm.subscriptionCanceled" class="text-boxed red-bg white-fg m-0">Update
+                                  <button ng-click="vm.updateBillingModal()" ng-if="vm.customerData.status && !vm.subscriptionCanceled" class="text-boxed red-bg white-fg m-0">Update
                                   </button>
                               </div>
 
