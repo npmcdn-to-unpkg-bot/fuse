@@ -221,6 +221,9 @@
           return $http.post(apiUrl + '/api/users/' + userid + '/savecard', data, getAuth());
         }
 
+        var getCustomer = function(userid) {
+          return $http.get(apiUrl + '/api/users/' + userid + "/customer", getAuth());
+        }
 
         /***************** COMMUNITY RESOURCES ***************/
 
@@ -306,6 +309,7 @@
             userImageUpload : userImageUpload,
             getUser : getUser,
             saveCreditCard : saveCreditCard,
+            getCustomer : getCustomer,
 
             //community
             addCommunity : addCommunity,

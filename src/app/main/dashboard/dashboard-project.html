@@ -395,6 +395,52 @@
 
                 <md-tab label="Community Settings">
 
+                  <!-- WIDGET GROUP -->
+                  <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+                      <!-- WIDGET 11 -->
+                      <ms-widget layout="row" flex="100">
+
+                          <!-- Front -->
+                          <ms-widget-front class="white-bg">
+
+                              <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
+                                  <div class="h2">Billing informaton</div>
+                                  <button ng-if="vm.customerData.status" class="text-boxed red-bg white-fg m-0">Update
+                                  </button>
+                              </div>
+
+                              <div class="content" ng-if="vm.customerData.status">
+                                  <div class="info-line">
+                                      <h2>Credit card number: **** **** **** {{ vm.customerData.customer.sources.data[0].last4}}</h2>
+                                      <h2>Credit card holer: {{ vm.customerData.customer.description}}</h2>
+                                      <span ng-if="vm.customerData.customer.subscriptions.data[0].status === 'trialing'">
+                                        <h2> You are in the trail period </h2>
+                                        <h2>Trial ends at : {{ vm.trialEndDate }}</h2>
+                                      <span>
+
+                                      <span ng-if="vm.customerData.customer.subscriptions.data[0].status !== 'trialing'">
+                                        <h2>Next Billing date : {{ vm.billingDate }}</h2>
+                                      <span>
+
+                                  </div>
+
+                                  <md-input-container class="md-block">
+                                    <md-button ng-click="" class="md-raised md-primary">Cancel subscription</md-button>
+                                  </md-input-container>
+
+                              </div>
+
+                              <div class="content" ng-if="!vm.customerData.status">
+                                <h2>You haven't got any billing information.</h2>
+                              </div>
+
+                          </ms-widget-font>
+
+                      </ms-widget>
+
+                    </div>
+
                 </md-tab>
 
             </md-tabs>

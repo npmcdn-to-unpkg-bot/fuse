@@ -7,7 +7,7 @@
         .controller('CreateCommunityController', CreateCommunityController);
 
     /** @ngInject */
-    function CreateCommunityController($mdDialog, apilaData, authentication) {
+    function CreateCommunityController($mdDialog, apilaData, authentication, $mdToast) {
 
       var vm = this;
 
@@ -17,12 +17,12 @@
 
       vm.form = {};
 
-      vm.cardInfo = {
-        "number" : "4242424242424242",
-        "exp_month" : "11",
-        "exp_year" : "2018",
-        "cvc" : "432"
-      }
+      // vm.cardInfo = {
+      //   "number" : "4242424242424242",
+      //   "exp_month" : "11",
+      //   "exp_year" : "2018",
+      //   "cvc" : "432"
+      // }
 
       vm.username = authentication.currentUser().name;
       vm.userid = authentication.currentUser().id;
@@ -32,6 +32,15 @@
           $mdDialog.hide();
       }
 
+
+      function showErrorToast(errorMsg) {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(errorMsg)
+            .position("top right")
+            .hideDelay(3000)
+        );
+      }
 
       function addCommunity()
       {
@@ -45,8 +54,12 @@
 
         Stripe.card.createToken(vm.cardInfo,
           function(status, response) {
-            console.log(status);
+
             console.log(response);
+
+            if(status !== 200) {
+              showErrorToast(response.error.message);
+            }
 
             apilaData.saveCreditCard(vm.userid, response)
             .success(function(response) {

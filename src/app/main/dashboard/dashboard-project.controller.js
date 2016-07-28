@@ -13,6 +13,7 @@
         var vm = this;
 
         vm.username = authentication.currentUser().name;
+        vm.userid = authentication.currentUser().id;
 
         // Data
         vm.dashboardData = DashboardData;
@@ -187,6 +188,22 @@
             });
 
         }
+
+        (function getCustomerData() {
+          apilaData.getCustomer(vm.userid)
+          .success(function(response) {
+            vm.customerData = response;
+            console.log(vm.customerData);
+
+            console.log(vm.customerData.customer.subscriptions.data[0].status);
+
+            vm.billingDate = moment(vm.customerData.customer.subscriptions.data[0].current_period_end * 1000).format('MMMM Do YYYY');
+            vm.trialEndDate = moment(vm.customerData.customer.subscriptions.data[0].trial_end * 1000).format('MMMM Do YYYY');
+          })
+          .error(function(response) {
+            console.log(response);
+          })
+        })();
 
 
         // Widget 2
