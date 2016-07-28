@@ -406,11 +406,11 @@
 
                               <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
                                   <div class="h2">Billing informaton</div>
-                                  <button ng-if="vm.customerData.status" class="text-boxed red-bg white-fg m-0">Update
+                                  <button ng-if="vm.customerData.status && !vm.subscriptionCanceled" class="text-boxed red-bg white-fg m-0">Update
                                   </button>
                               </div>
 
-                              <div class="content" ng-if="vm.customerData.status">
+                              <div class="content" ng-if="vm.customerData.status && !vm.subscriptionCanceled">
                                   <div class="info-line">
                                       <h2>Credit card number: **** **** **** {{ vm.customerData.customer.sources.data[0].last4}}</h2>
                                       <h2>Credit card holer: {{ vm.customerData.customer.description}}</h2>
@@ -426,13 +426,17 @@
                                   </div>
 
                                   <md-input-container class="md-block">
-                                    <md-button ng-click="" class="md-raised md-primary">Cancel subscription</md-button>
+                                    <md-button ng-click="vm.cancelSubscription()" class="md-raised md-primary">Cancel subscription</md-button>
                                   </md-input-container>
 
                               </div>
 
                               <div class="content" ng-if="!vm.customerData.status">
                                 <h2>You haven't got any billing information.</h2>
+                              </div>
+
+                              <div class="content" ng-if="vm.subscriptionCanceled">
+                                <h2>You have cancelled your subscription</h2>
                               </div>
 
                           </ms-widget-font>

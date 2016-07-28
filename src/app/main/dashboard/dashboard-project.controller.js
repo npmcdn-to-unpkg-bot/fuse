@@ -28,6 +28,7 @@
         vm.removeMember = removeMember;
         vm.openRecoverModal = openRecoverModal;
         vm.openJoinModal = openJoinModal;
+        vm.cancelSubscription = cancelSubscription;
 
 
         // Widget 1
@@ -193,17 +194,45 @@
           apilaData.getCustomer(vm.userid)
           .success(function(response) {
             vm.customerData = response;
+
             console.log(vm.customerData);
 
-            console.log(vm.customerData.customer.subscriptions.data[0].status);
 
-            vm.billingDate = moment(vm.customerData.customer.subscriptions.data[0].current_period_end * 1000).format('MMMM Do YYYY');
-            vm.trialEndDate = moment(vm.customerData.customer.subscriptions.data[0].trial_end * 1000).format('MMMM Do YYYY');
+            if(vm.customerData.customer.subscriptions.data.length > 0) {
+              vm.subscriptionCanceled = false;
+              vm.billingDate = moment(vm.customerData.customer.subscriptions.data[0].current_period_end * 1000).format('MMMM Do YYYY');
+              vm.trialEndDate = moment(vm.customerData.customer.subscriptions.data[0].trial_end * 1000).format('MMMM Do YYYY');
+            } else {
+              vm.subscriptionCanceled = true;
+            }
           })
           .error(function(response) {
             console.log(response);
-          })
+          });
         })();
+
+        function cancelSubscription() {
+          var confirm = $mdDialog.confirm()
+           .title('Are you sure you want to cancel your subscription?')
+           .textContent('Cancelling means your community will get shut down and other community members would not be able to use it')
+           .ariaLabel('Lucky day')
+           .ok('Yes')
+           .cancel('No');
+
+
+         $mdDialog.show(confirm).then(function() {
+           apilaData.cancelSubscription(vm.userid).
+           success(function(response) {
+             console.log(response);
+             vm.subscriptionCanceled = true;
+           })
+           .error(function(response) {
+             console.log(response);
+           });
+         }, function() {
+
+         });
+        }
 
 
         // Widget 2

@@ -225,6 +225,10 @@
           return $http.get(apiUrl + '/api/users/' + userid + "/customer", getAuth());
         }
 
+        var cancelSubscription = function(userid) {
+          return $http.delete(apiUrl + '/api/users/' + userid + '/subscription', getAuth());
+        }
+
         /***************** COMMUNITY RESOURCES ***************/
 
         var addCommunity = function(data) {
@@ -310,6 +314,7 @@
             getUser : getUser,
             saveCreditCard : saveCreditCard,
             getCustomer : getCustomer,
+            cancelSubscription : cancelSubscription,
 
             //community
             addCommunity : addCommunity,
