@@ -181,6 +181,10 @@
           return $http.get(apiUrl + '/api/residents/average_age/' + communityid, getAuth());
         }
 
+        var averageStayTime = function(communityid) {
+          return $http.get(apiUrl + '/api/residents/average_stay/' + communityid, getAuth());
+        }
+
         /**************************************************************/
 
         /***************** USERS RESOURCES ***************/
@@ -299,6 +303,7 @@
             residentCount : residentCount,
             residentBirthday : residentBirthday,
             averageAge : averageAge,
+            averageStayTime : averageStayTime,
 
             //api url
             getApiUrl : getApiUrl,

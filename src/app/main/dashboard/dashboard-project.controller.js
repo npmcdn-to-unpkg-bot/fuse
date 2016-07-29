@@ -42,6 +42,7 @@
         vm.isCreator = false;
         vm.userRole = "";
         vm.averageAge = 0;
+        vm.averageStayTime = 0;
 
         vm.checkbox = true;
         vm.hasCommunity = false;
@@ -92,6 +93,7 @@
 
         function formatMembersData() {
           getAverageAge(vm.myCommunity._id);
+          getAverageStayTime(vm.myCommunity._id);
 
           // check if we are creator of the community
           if(vm.myCommunity.creator.name === vm.username) {
@@ -999,12 +1001,24 @@
           apilaData.averageAge(id)
           .success(function(response) {
             vm.averageAge = response;
-            console.log(response);
+            console.log("Average age: " + response);
           })
           .error(function(response) {
             console.log(response);
           });
         }
+
+        function getAverageStayTime(id) {
+          apilaData.averageStayTime(id)
+          .success(function(response) {
+            vm.averageStayTime = response;
+            console.log("Average stay: " + response);
+          })
+          .error(function(response) {
+            console.log(response);
+          });
+        }
+
     }
 
 })();
