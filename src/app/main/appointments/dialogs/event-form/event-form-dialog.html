@@ -9,13 +9,12 @@
       </div>
     </md-toolbar>
 
-    <!-- Reason -->
+    <!-- Export -->
     <md-dialog-content ms-scroll>
 
-      <md-button ng-click="vm.exportAppointment()"
-                 class="md-fab" ng-if="vm.inUpdate()">
-            <md-icon md-font-icon="icon-export"></md-icon>
-            <md-tooltip><span>Export Appointment</span></md-tooltip>
+      <md-button ng-click="vm.exportAppointment()" class="md-fab" ng-if="vm.inUpdate()">
+        <md-icon md-font-icon="icon-export"></md-icon>
+        <md-tooltip><span>Export Appointment</span></md-tooltip>
       </md-button>
 
       <!-- Reason -->
@@ -48,11 +47,7 @@
         </div>
       </md-autocomplete> -->
 
-      <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="searchText"
-            md-items="item in vm.getMatches(searchText)"
-            md-item-text="item.display"
-            md-selected-item-change="vm.updateIssue()"
-            md-min-length="0" placeholder="Select a resident">
+      <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="searchText" md-items="item in vm.getMatches(searchText)" md-item-text="item.display" md-selected-item-change="vm.updateIssue()" md-min-length="0" placeholder="Select a resident">
         <md-item-template> <span md-highlight-text="searchText">{{item.display}}</span>
 
         </md-item-template>
@@ -87,7 +82,7 @@
 
 
 
-        <label>Appointment time</label>
+      <label>Appointment time</label>
 
 
 
@@ -126,7 +121,7 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
       <div layout="row" layout-align="space-between center">
         <md-input-container class="md-block flex-66">
           <label translate="CALENDAR.TRANSPORTATION">Transporation</label>
-          <input name="transportation" placeholder="We are transporting" ng-blur="vm.updateIssue()"  ng-model="vm.transportation" required>
+          <input name="transportation" placeholder="We are transporting" ng-blur="vm.updateIssue()" ng-model="vm.transportation" required>
           <div ng-messages="eventForm.transportation.$error" ng-show="eventForm.transportation.$touched" role="alert">
             <div ng-message="required">
               <span translate="CALENDAR.ERRORS.TRANSPORTATION_REQUIRED">Transporation field is required</span>
@@ -135,7 +130,7 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
         </md-input-container>
 
         <!-- Cancel -->
-        <md-checkbox ng-model="vm.isCancel" ng-hide="vm.showCancel" ng-change="vm.updateIssue()"  aria-label="Cancel Appointment">
+        <md-checkbox ng-model="vm.isCancel" ng-hide="vm.showCancel" ng-change="vm.updateIssue()" aria-label="Cancel Appointment">
           Cancel Appointment
         </md-checkbox>
       </div>
@@ -148,30 +143,36 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
           <textarea ng-model="vm.formData.commentText"></textarea>
 
 
-        <md-button ng-click="vm.submitComment()"  aria-label="Add Comment">
+          <md-button ng-click="vm.submitComment()" aria-label="Add Comment">
             <md-icon md-font-icon="icon-comment"></md-icon>
             <md-tooltip><span>Submit</span></md-tooltip>
-        </md-button>
-      </md-input-container>
+          </md-button>
+        </md-input-container>
 
-      <!-- Comments list -->
-      <md-list>
-              <md-list-item class="md-3-line" ng-repeat="item in vm.calendarEvent.appointmentComment" layout-wrap >
-                <div class="md-list-item-text" layout="column">
-                  <h4>{{ item.author}}</h4>
-                  <p  ng-bind-html="item.commentText | addHtmlLineBreaks"></p>
-                </div>
-              </md-list-item>
+        <!-- Comments list -->
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="item in vm.calendarEvent.appointmentComment" layout-wrap>
+            <div class="md-list-item-text" layout="column">
+              <h4>{{ item.author}}</h4>
+              <p ng-bind-html="item.commentText | addHtmlLineBreaks"></p>
+            </div>
+          </md-list-item>
 
-      </md-list>
-    </div>
-
-      <md-dialog-actions layout="row" layout-align="space-between center" ng-if="!vm.inUpdate()">
-        <md-button ng-click="vm.saveEvent()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
-          SAVE
-        </md-button>
-
-      </md-dialog-actions>
+        </md-list>
+      </div>
     </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <md-button ng-click="vm.saveEvent()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid || eventForm.$pristine" translate="CALENDAR.SAVE" translate-attr-aria-label="CALENDAR.SAVE">
+        SAVE
+      </md-button>
+
+      <md-button class="md-icon-button" aria-label="Delete" translate translate-attr-aria-label="CALENDAR.DELETE" ng-click="vm.exportAppointment()">
+        <md-icon md-font-icon="icon-delete"></md-icon>
+        <md-tooltip><span translate="CALENDAR.DELETE">Export</span></md-tooltip>
+      </md-button>
+    </md-dialog-actions>
+
+
   </form>
 </md-dialog>
