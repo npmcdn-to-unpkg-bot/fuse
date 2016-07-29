@@ -13,11 +13,11 @@
         $logProvider.debugEnabled(true);
 
         // uiGmapgoogle-maps configuration
-        uiGmapGoogleMapApiProvider.configure({
-            key: 'AIzaSyBYM34SP74tkE__vs4fFnAEPKhZL8gPCAM',
-            v        : '3.exp',
-            libraries: 'weather,geometry,visualization, places'
-        });
+        // uiGmapGoogleMapApiProvider.configure({
+        //     key: 'AIzaSyBYM34SP74tkE__vs4fFnAEPKhZL8gPCAM',
+        //     v        : '3.exp',
+        //     libraries: 'weather,geometry,visualization, places'
+        // });
 
         // angular-translate configuration
         $translateProvider.useLoader('$translatePartialLoader', {

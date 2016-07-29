@@ -21,6 +21,9 @@
     vm.activeMailPaneIndex = 0;
     vm.dynamicHeight = false;
 
+    vm.latitude = 40.77627;
+    vm.longitude = -73.910964;
+
     vm.scrollPos = 0;
     vm.scrollEl = angular.element('#content');
 
@@ -78,20 +81,6 @@
         });
     }
 
- vm.simpleMap = {};
-
-  uiGmapGoogleMapApi.then(function (maps) {
-
-
-           vm.simpleMap = {
-               center: {
-                   latitude : -34.397,
-                   longitude: 150.644
-               },
-               zoom  : 8
-           };
-  });
-
 
 
     //////////
@@ -119,6 +108,28 @@
       vm.selectedResident = resident;
 
       drawGraphs(vm.selectedResident);
+
+
+      if(vm.selectedResident.movedFrom) {
+        vm.latitude = vm.selectedResident.movedFrom.latitude;
+        vm.longitude = vm.selectedResident.movedFrom.longitude;
+      }
+
+      vm.movedFromMap = {
+                  center: {
+                    latitude : vm.latitude,
+                    longitude: vm.longitude
+                  },
+                  zoom  : 8,
+                  marker: {
+                      id    : 0,
+                      coords: {
+                        latitude : vm.latitude,
+                        longitude: vm.longitude
+                      }
+                  }
+              };
+
 
       $timeout(function() {
         // If responsive read pane is
