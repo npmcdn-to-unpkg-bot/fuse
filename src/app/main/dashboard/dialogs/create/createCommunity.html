@@ -26,22 +26,22 @@
 
           <md-input-container class="md-block">
               <label>Card number</label>
-              <input ng-model="vm.cardInfo.number" maxlength="20" type="text">
+              <input ng-model="vm.cardInfo.number" cc-number cc-format cc-type="cardType" maxlength="20" type="text">
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>Expiration (Months format MM)</label>
-              <input ng-model="vm.cardInfo.exp_month"  maxlength="2" type="text">
+              <input ng-model="vm.cardInfo.exp_month" cc-exp-month maxlength="2" type="text">
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>Expiration (Years format YY)</label>
-              <input ng-model="vm.cardInfo.exp_year"  maxlength="2" type="text">
+              <input ng-model="vm.cardInfo.exp_year" cc-exp-year  maxlength="2" type="text">
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>CVC</label>
-              <input ng-model="vm.cardInfo.cvc" type="text" maxlength="3" md-maxlength="3"  md-minlength="3">
+              <input ng-model="vm.cardInfo.cvc" cc-cvc type="number" maxlength="4" md-minlength="3"  md-minlength="3">
               <div ng-messages="vm.cardInfo.cvc.$error" role="alert">
                  <div ng-message="required">
                      <span>Firstname field is required.</span>

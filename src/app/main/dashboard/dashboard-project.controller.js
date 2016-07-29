@@ -880,24 +880,24 @@
           vm.communityMemberWidget = {
               title    : vm.dashboardData.communityMemberWidget.title,
               table    : vm.dashboardData.communityMemberWidget.table,
-              dtOptions: {
-               dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-               pagingType: 'simple',
-               autoWidth : false,
-               responsive: true,
-               order     : [1, 'asc'],
-               columnDefs: [
-                   {
-                       width    : '40',
-                       orderable: false,
-                       targets  : [0]
-                   },
-                   {
-                       width  : '33%',
-                       targets: [1, 2, 3]
-                   }
-               ]
-           }
+          //     dtOptions: {
+          //      dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+          //      pagingType: 'simple',
+          //      autoWidth : false,
+          //      responsive: true,
+          //      order     : [1, 'asc'],
+          //      columnDefs: [
+          //          {
+          //              width    : '40',
+          //              orderable: false,
+          //              targets  : [0]
+          //          },
+          //          {
+          //              width  : '33%',
+          //              targets: [1, 2, 3, 4, 5, 6, 7, 8]
+          //          }
+          //      ]
+          //  }
           };
 
 

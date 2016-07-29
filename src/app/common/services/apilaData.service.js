@@ -233,6 +233,10 @@
           return $http.delete(apiUrl + '/api/users/' + userid + '/subscription', getAuth());
         }
 
+        var updateCustomer = function(userid, data) {
+          return $http.put(apiUrl + '/api/users/' + userid + '/update', data, getAuth());
+        }
+
         /***************** COMMUNITY RESOURCES ***************/
 
         var addCommunity = function(data) {
@@ -320,6 +324,7 @@
             saveCreditCard : saveCreditCard,
             getCustomer : getCustomer,
             cancelSubscription : cancelSubscription,
+            updateCustomer : updateCustomer,
 
             //community
             addCommunity : addCommunity,

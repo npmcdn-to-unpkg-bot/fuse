@@ -30,6 +30,7 @@
                 'duScroll',
                 'mdPickers',
                 'google.places',
-                'stripe'
+                'stripe',
+                'credit-cards'
             ]);
 })();
