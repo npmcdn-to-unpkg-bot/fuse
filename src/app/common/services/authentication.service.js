@@ -10,7 +10,7 @@
 
        var apiUrl="http://localhost:3300";
 
-       var userImage = "";
+       var userImage = "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
 
         // create a saveToken method to read a value from localStorage
         var saveToken = function(token) {
@@ -48,7 +48,12 @@
         };
 
         var getUserImage = function() {
-          return userImage;
+          if(userImage === "") {
+            return "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
+          } else {
+            return userImage;
+          }
+
         }
 
         var setUserImage = function(image) {
@@ -64,7 +69,7 @@
         login = function(user) {
             return $http.post(apiUrl + '/api/login', user).success(function(data) {
                 saveToken(data.token);
-        
+
             });
         };
 
