@@ -258,11 +258,12 @@
           var data = {};
           data.member = member[3];
 
+          var addedMember = member.concat([false, false, true, false, "Minion", ""]);
+
           apilaData.acceptMember(data, vm.myCommunity._id)
           .success(function(d) {
-            console.log(d);
             member.splice(member.length-1, 1);
-            communityMemberTable.push(member);
+            communityMemberTable.push(addedMember);
           })
           .error(function(d) {
 
