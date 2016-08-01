@@ -9,13 +9,7 @@
       </div>
     </md-toolbar>
 
-    <!-- Export -->
     <md-dialog-content ms-scroll>
-
-      <md-button ng-click="vm.exportAppointment()" class="md-fab" ng-if="vm.inUpdate()">
-        <md-icon md-font-icon="icon-export"></md-icon>
-        <md-tooltip><span>Export Appointment</span></md-tooltip>
-      </md-button>
 
       <!-- Reason -->
       <md-input-container class="md-block">
@@ -167,9 +161,9 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
         SAVE
       </md-button>
 
-      <md-button class="md-icon-button" aria-label="Delete" translate translate-attr-aria-label="CALENDAR.DELETE" ng-click="vm.exportAppointment()">
-        <md-icon md-font-icon="icon-delete"></md-icon>
-        <md-tooltip><span translate="CALENDAR.DELETE">Export</span></md-tooltip>
+      <md-button class="md-fab md-mini" aria-label="Export" translate translate-attr-aria-label="CALENDAR.EXPORT" ng-click="vm.exportAppointment()" ng-if="vm.inUpdate()">
+        <md-icon md-font-icon="icon-export"></md-icon>
+        <md-tooltip><span translate="CALENDAR.EXPORT">Export</span></md-tooltip>
       </md-button>
     </md-dialog-actions>
 
