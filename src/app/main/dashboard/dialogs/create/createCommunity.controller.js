@@ -68,6 +68,13 @@
               apilaData.addCommunity(vm.form)
               .success(function(d) {
                 closeDialog();
+
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Community has been created!")
+                    .position("top right")
+                    .hideDelay(2200)
+                );
               })
               .error(function(d) {
                 console.log("Error while creating community");
