@@ -14,6 +14,7 @@
       //Functions
       vm.closeDialog = closeDialog;
       vm.addCommunity = addCommunity;
+      vm.recoverCommunity = recoverCommunity;
 
       // Data
       vm.form = {};
@@ -93,6 +94,47 @@
             });
           });
 
+      }
+
+
+      function recoverCommunity() {
+        Stripe.card.createToken(vm.cardInfo,
+          function(status, response) {
+
+            console.log(response);
+
+            if(status !== 200) {
+              showErrorToast(response.error.message);
+            }
+
+            apilaData.saveCreditCard(vm.userid, response)
+            .success(function(response) {
+              console.log(response);
+
+              //restore community
+              apilaData.restoreCommunity(vm.userid, vm.canceledCommunity._id)
+              .success(function(response) {
+                console.log(response);
+
+                closeDialog();
+
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Community has been restored!")
+                    .position("top right")
+                    .hideDelay(2200)
+                );
+
+              })
+              .error(function(response) {
+                console.log(response);
+              });
+            })
+            .error(function(response) {
+
+            });
+
+          });
       }
 
   }

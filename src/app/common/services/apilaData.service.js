@@ -271,6 +271,10 @@
           return $http.get(apiUrl + '/api/communites/canceled/' + userid, getAuth());
         }
 
+        var restoreCommunity = function(userid, communityid) {
+          return $http.post(apiUrl + '/api/communites/' + communityid + '/restore/' + userid, {}, getAuth());
+        }
+
         return {
             //appointments
             appointmentsList : appointmentsList,
@@ -338,7 +342,8 @@
             declineMember : declineMember,
             addRole : addRole,
             removeMember : removeMember,
-            hasCanceledCommunity : hasCanceledCommunity
+            hasCanceledCommunity : hasCanceledCommunity,
+            restoreCommunity : restoreCommunity
         };
     }
 
