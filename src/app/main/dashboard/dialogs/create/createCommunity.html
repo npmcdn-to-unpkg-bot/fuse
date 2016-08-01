@@ -10,19 +10,29 @@
         </md-toolbar>
 
         <md-dialog-content ms-scroll>
-          <md-input-container class="md-block">
-              <label>Community Name</label>
-              <input ng-model="vm.form.name" type="text">
-          </md-input-container>
 
           <h2>Please enter your credit card info to subscribe</h2>
 
           <md-divider></md-divider>
-            <p>
+            <p ng-if="!vm.hasCanceledCommunity">
               By entering your credit card you are subscribing to our service, you will be billed monthly
               200$ but dont worry the first 30 days are free.
             </p>
 
+            <p ng-if="vm.hasCanceledCommunity">
+              Hi back again! You have a closed community <u>{{ vm.canceledCommunity.name }}</u> you can reopen again by checking the option below
+            </p>
+
+            <md-input-container class="md-block" ng-if="vm.hasCanceledCommunity">
+              <md-checkbox ng-model="vm.restoreCommunity" aria-label="Restore">
+                Restore {{ vm.canceledCommunity.name }} community
+              </md-checkbox>
+            </md-input-container>
+
+          <md-input-container class="md-block" ng-hide="vm.restoreCommunity">
+              <label>Community Name</label>
+              <input ng-model="vm.form.name" type="text">
+          </md-input-container>
 
           <md-input-container class="md-block">
               <label>Card number</label>
@@ -54,8 +64,11 @@
 
         <md-dialog-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.addCommunity()" class="send-button md-accent md-raised" aria-label="Add">
+                <md-button ng-click="vm.addCommunity()" ng-if="!vm.restoreCommunity" class="send-button md-accent md-raised" aria-label="Add">
                     ADD COMMUNITY
+                </md-button>
+                <md-button ng-click="vm.addCommunity()" ng-if="vm.restoreCommunity" class="send-button md-accent md-raised" aria-label="Add">
+                    RESTORE COMMUNITY
                 </md-button>
             </div>
 

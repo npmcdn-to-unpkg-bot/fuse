@@ -267,6 +267,10 @@
           return $http.delete(apiUrl + '/api/communites/' + communityid + "/user/" + userid + "/submitby/" + submitby, getAuth());
         }
 
+        var hasCanceledCommunity = function(userid) {
+          return $http.get(apiUrl + '/api/communites/canceled/' + userid, getAuth());
+        }
+
         return {
             //appointments
             appointmentsList : appointmentsList,
@@ -333,7 +337,8 @@
             addPendingMember : addPendingMember,
             declineMember : declineMember,
             addRole : addRole,
-            removeMember : removeMember
+            removeMember : removeMember,
+            hasCanceledCommunity : hasCanceledCommunity
         };
     }
 

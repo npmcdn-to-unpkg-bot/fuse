@@ -15,17 +15,25 @@
       vm.closeDialog = closeDialog;
       vm.addCommunity = addCommunity;
 
+      // Data
       vm.form = {};
 
-      // vm.cardInfo = {
-      //   "number" : "4242424242424242",
-      //   "exp_month" : "11",
-      //   "exp_year" : "2018",
-      //   "cvc" : "432"
-      // }
+      vm.hasCanceledCommunity = false;
 
       vm.username = authentication.currentUser().name;
       vm.userid = authentication.currentUser().id;
+
+      vm.restoreCommunity = false;
+
+      apilaData.hasCanceledCommunity(vm.userid)
+      .success(function(response) {
+        console.log(response);
+        vm.canceledCommunity = response;
+        vm.hasCanceledCommunity = true;
+      })
+      .error(function(response) {
+        console.log(response);
+      });
 
       function closeDialog()
       {
