@@ -8,7 +8,7 @@
 
     /** @ngInject */
     function DashboardProjectController($scope, $interval, $mdSidenav, $mdToast, DashboardData,
-                        $mdDialog, $document, apilaData, authentication)
+                        $mdDialog, $document, apilaData, authentication, $window)
     {
         var vm = this;
 
@@ -228,6 +228,7 @@
            success(function(response) {
              console.log(response);
              vm.subscriptionCanceled = true;
+             $window.location.reload();
            })
            .error(function(response) {
              console.log(response);
