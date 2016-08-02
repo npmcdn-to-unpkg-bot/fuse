@@ -7,7 +7,7 @@
         .controller('WordCloudController', WordCloudController);
 
     /** @ngInject */
-    function WordCloudController($mdDialog, issue, wordCloud) {
+    function WordCloudController($mdDialog, issue, wordCloud, $timeout) {
 
       var vm = this;
 
@@ -15,12 +15,13 @@
 
       function closeDialog()
         {
-          console.log("zatvaraj");
-            $mdDialog.hide();
+          $mdDialog.hide();
         }
 
+      $timeout(function () {
+          wordCloud.drawWordCloud(createWordArray());
+      }, 100);
 
-      wordCloud.drawWordCloud(createWordArray());
 
         // gets all the comments and issue description and converts them to word array
       function createWordArray() {

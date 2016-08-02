@@ -31,7 +31,10 @@
             });
 
             var fill = d3.scale.category20();
-            d3.layout.cloud().size([300, 300])
+
+            console.log(d3.layout);
+
+            d3.layout.cloud().size([500, 400])
                 .words(filteredElements.map(function(d) {
                     return {
                         text: d.text,

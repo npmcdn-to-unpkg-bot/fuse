@@ -384,19 +384,19 @@
             vm.newListName = '';
         }
 
-        function openWordCloud(ev) {
-
-          console.log(ev);
+        function openWordCloud(issueInfo, ev) {
 
           $mdDialog.show({
               controller         : 'WordCloudController',
               controllerAs       : 'vm',
+              scope: $scope,
+              preserveScope: true,
+              targetEvent: ev,
               locals : {
-                issue: ev
+                issue: issueInfo
               },
               templateUrl        : 'app/main/issues/dialogs/wordCloud/wordCloud.html',
-              parent             : angular.element($document.body),
-              targetEvent        : ev,
+              closeTo             : angular.element($document.body),
               clickOutsideToClose: true
           });
         }
