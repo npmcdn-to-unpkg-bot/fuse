@@ -23,17 +23,26 @@
       }, 100);
 
 
-        // gets all the comments and issue description and converts them to word array
+      // gets all the comments and issue description and converts them to word array
       function createWordArray() {
 
-          var commentText = "";
+          var wordCloudText = "";
           for (var i = 0; i < issue.comments.length; ++i) {
-              commentText += " " + issue.comments[i].commentText;
+              wordCloudText += " " + issue.comments[i].commentText;
           }
 
-          commentText += " " + issue.description;
+          // adding description to the word cloud
+          wordCloudText += " " + issue.description;
 
-          return commentText.split(" ");
+          // adding cheklist items name to te word cloud
+          angular.forEach(issue.checklists, function(v, k) {
+            angular.forEach(v.checkItems, function(item, key) {
+              wordCloudText += " " + item.name;
+            });
+          });
+
+
+          return wordCloudText.split(" ");
 
       }
 
