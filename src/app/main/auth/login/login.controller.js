@@ -28,11 +28,12 @@
                     vm.usernameError = "";
                     vm.passwordError = "";
 
-                    if(err.message === "Incorrect username.1") {
-                      vm.usernamError = "Incorrect username.2";
+                    if(err.message === "Incorrect username.") {
+                      vm.usernamError = "Incorrect username.";
                       vm.passwordError = "";
                     } else {
                       vm.passwordError = "Incorrect Password for this Email";
+                      vm.usernamError = "";
                     }
                 })
                 .then(function() {
