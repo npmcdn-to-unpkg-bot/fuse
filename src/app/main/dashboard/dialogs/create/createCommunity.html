@@ -31,32 +31,39 @@
 
           <md-input-container class="md-block" ng-hide="vm.restoreCommunity">
               <label>Community Name</label>
-              <input ng-model="vm.form.name" type="text">
+              <input ng-model="vm.form.name" type="text" required>
+              <div ng-messages>
+                {{ vm.nameError }}
+              </div>
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>Card number</label>
-              <input ng-model="vm.cardInfo.number" cc-number cc-format cc-type="cardType" maxlength="20" type="text">
+              <input ng-model="vm.cardInfo.number" cc-number cc-format cc-type="cardType" maxlength="20">
+              <div ng-messages>
+                {{ vm.cardNumberError }}
+              </div>
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>Expiration (Months format MM)</label>
               <input ng-model="vm.cardInfo.exp_month" cc-exp-month maxlength="2" type="text">
+              <div ng-messages>
+                {{ vm.expMonthError }}
+              </div>
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>Expiration (Years format YY)</label>
               <input ng-model="vm.cardInfo.exp_year" cc-exp-year  maxlength="2" type="text">
+              <div ng-messages>
+                {{ vm.expYearError }}
+              </div>
           </md-input-container>
 
           <md-input-container class="md-block">
               <label>CVC</label>
-              <input ng-model="vm.cardInfo.cvc" cc-cvc type="number" maxlength="4" md-minlength="3"  md-minlength="3">
-              <div ng-messages="vm.cardInfo.cvc.$error" role="alert">
-                 <div ng-message="required">
-                     <span>Firstname field is required.</span>
-                 </div>
-             </div>
+              <input ng-model="vm.cardInfo.cvc" cc-cvc type="number" maxlength="4">
           </md-input-container>
 
 
