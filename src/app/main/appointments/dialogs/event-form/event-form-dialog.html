@@ -2,7 +2,11 @@
   <form name="eventForm" class="md-inline-form" novalidate>
     <md-toolbar class="md-accent md-hue-2">
       <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-        <span class="title">{{vm.dialogTitle}}</span>
+
+        <md-button class="md-icon-button" ng-click="vm.exportAppointment()" aria-label="Options" translate translate-attr-aria-label="SB.OPTIONS">
+          <md-icon md-menu-origin md-font-icon="icon-export"></md-icon>
+        </md-button>
+
         <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog" translate translate-attr-aria-label="CALENDAR.CLOSE_DIALOG">
           <md-icon md-font-icon="icon-close"></md-icon>
         </md-button>
@@ -132,15 +136,16 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
 
       <!-- Comments input -->
       <div ng-if="vm.inUpdate()">
-        <md-input-container>
-          <label>Comments</label>
-          <textarea ng-model="vm.formData.commentText"></textarea>
 
+        <md-input-container flex class="md-block textarea-container">
+          <label>Comment</label>
+          <textarea ng-model="vm.formData.commentText"></textarea>
 
           <md-button ng-click="vm.submitComment()" aria-label="Add Comment">
             <md-icon md-font-icon="icon-comment"></md-icon>
             <md-tooltip><span>Submit</span></md-tooltip>
           </md-button>
+
         </md-input-container>
 
         <!-- Comments list -->
@@ -154,6 +159,41 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
 
         </md-list>
       </div>
+
+      <div class="comments">
+
+        <div class="section-header" layout="row" layout-align="start center">
+          <i class="icon-comment s18"></i>
+          <span class="section-title">Comments</span>
+        </div>
+
+        <div class="section-content">
+          <form name="cardCommentForm" ng-submit="vm.addNewComment(vm.newCommentText); vm.newCommentText =''" class="comment new-comment" layout="column" layout-align="start" no-validate>
+
+              <md-input-container flex md-no-float>
+                <textarea ms-scroll placeholder="Write a comment.." ng-model="vm.newCommentText" required translate translate-attr-placeholder="SB.WRITE_A_COMMENT"></textarea>
+              </md-input-container>
+
+            <div layout="row" layout-align="end center">
+              <md-button type="submit" class="md-raised md-accent" ng-disabled="cardCommentForm.$invalid || cardCommentForm.$pristine" aria-label="Add">
+                <span translate="SB.ADD">Add</span>
+              </md-button>
+            </div>
+          </form>
+
+          <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
+            <img class="comment-member-avatar" ng-src="{{vm.board.members.getById(comment.idMember).avatar}}">
+
+            <div layout="column">
+              <div class="comment-member-name">
+                {{comment.author}}
+              </div>
+              <div class="comment-bubble" ng-bind-html="comment.commentText | addHtmlLineBreaks"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </md-dialog-content>
 
     <md-dialog-actions layout="row" layout-align="space-between center">
@@ -161,10 +201,6 @@ placeholder="Date" min-date="date" ng-model="dateTime" class=" md-input"> -->
         SAVE
       </md-button>
 
-      <md-button class="md-fab md-mini" aria-label="Export" translate translate-attr-aria-label="CALENDAR.EXPORT" ng-click="vm.exportAppointment()" ng-if="vm.inUpdate()">
-        <md-icon md-font-icon="icon-export"></md-icon>
-        <md-tooltip><span translate="CALENDAR.EXPORT">Export</span></md-tooltip>
-      </md-button>
     </md-dialog-actions>
 
 

@@ -503,13 +503,10 @@
             <div class="section-content">
               <form name="cardCommentForm" ng-submit="vm.addNewComment(vm.newCommentText); vm.newCommentText =''" class="comment new-comment" layout="column" layout-align="start" no-validate>
 
-                <div layout="row">
-                  <img class="comment-member-avatar" src="assets/images/avatars/profile.jpg">
                   <md-input-container flex md-no-float>
                     <textarea ms-scroll placeholder="Write a comment.." ng-model="vm.newCommentText" required translate translate-attr-placeholder="SB.WRITE_A_COMMENT"></textarea>
                   </md-input-container>
-                </div>
-
+              
                 <div layout="row" layout-align="end center">
                   <md-button type="submit" class="md-raised md-accent" ng-disabled="cardCommentForm.$invalid || cardCommentForm.$pristine" aria-label="Add">
                     <span translate="SB.ADD">Add</span>

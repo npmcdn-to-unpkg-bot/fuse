@@ -147,21 +147,47 @@
 
       doc.setFillColor(33, 150, 243);
       doc.rect(200, 200, 200, 18, 'F');
+      doc.ellipse(580, 209, 2, 2, 'F');
+      doc.ellipse(570, 209, 2, 2, 'F');
+      doc.ellipse(560, 209, 2, 2, 'F');
+      doc.ellipse(550, 209, 2, 2, 'F');
+      doc.ellipse(540, 209, 2, 2, 'F');
+      doc.ellipse(530, 209, 2, 2, 'F');
+      doc.ellipse(520, 209, 2, 2, 'F');
+      doc.ellipse(510, 209, 2, 2, 'F');
+      doc.ellipse(500, 209, 2, 2, 'F');
+      doc.ellipse(490, 209, 2, 2, 'F');
+      doc.ellipse(480, 209, 2, 2, 'F');
+      doc.ellipse(470, 209, 2, 2, 'F');
+      doc.ellipse(460, 209, 2, 2, 'F');
+      doc.ellipse(450, 209, 2, 2, 'F');
+      doc.ellipse(440, 209, 2, 2, 'F');
+      doc.ellipse(430, 209, 2, 2, 'F');
+      doc.ellipse(420, 209, 2, 2, 'F');
       doc.triangle(200, 200,
         200, 218,
-        190, 209, 'F');
+        187, 209, 'F');
       doc.triangle(400, 200,
         400, 218,
-        410, 209, 'F');
+        413, 209, 'F');
       doc.ellipse(180, 209, 2, 2, 'F');
+      doc.ellipse(170, 209, 2, 2, 'F');
+      doc.ellipse(160, 209, 2, 2, 'F');
+      doc.ellipse(150, 209, 2, 2, 'F');
+      doc.ellipse(140, 209, 2, 2, 'F');
+      doc.ellipse(130, 209, 2, 2, 'F');
+      doc.ellipse(120, 209, 2, 2, 'F');
+      doc.ellipse(110, 209, 2, 2, 'F');
+      doc.ellipse(100, 209, 2, 2, 'F');
+      doc.ellipse(90, 209, 2, 2, 'F');
+      doc.ellipse(80, 209, 2, 2, 'F');
+      doc.ellipse(70, 209, 2, 2, 'F');
+      doc.ellipse(60, 209, 2, 2, 'F');
+      doc.ellipse(50, 209, 2, 2, 'F');
+      doc.ellipse(40, 209, 2, 2, 'F');
+      doc.ellipse(30, 209, 2, 2, 'F');
+      doc.ellipse(20, 209, 2, 2, 'F');
 
-      doc.roundedRect(200, 250, 200, 18, 4, 4, 'F');
-      doc.triangle(202, 251, // top point
-        200, 268, // bottom point
-        190, 259, 'F'); // middle point
-      doc.triangle(400, 250,
-        400, 268,
-        410, 259, 'F');
 
 
       doc.text(40, 40, "Title: ");
