@@ -21,6 +21,7 @@
         vm.recoveryInfo = {};
         vm.currUserId = null;
         vm.bothRoles = 0;
+        vm.chosenUser = "";
 
 
         vm.acceptMember = acceptMember;
@@ -132,6 +133,8 @@
             var role = "";
             var recovery = "";
 
+            console.log(v);
+
             if(vm.myCommunity.creator.name === v.name) {
               creator = true;
               role = "Creator";
@@ -153,8 +156,8 @@
             }
 
             if(v.recovery) {
-              console.log("User that is recovered " + v.name);
-              //recovery = true;
+              vm.chosenUser = v.recovery;
+
               if(v.recovery === vm.currUserId) {
                 console.log("You are selected for recovery");
                 recovery = true;

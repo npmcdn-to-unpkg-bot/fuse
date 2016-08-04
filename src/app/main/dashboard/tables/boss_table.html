@@ -63,11 +63,11 @@
                       </th>
 
 
-                      <!-- <th class="secondary-text">
+                      <th class="secondary-text">
                           <div class="table-header">
-                              <span class="column-title">Confidential</span>
+                              <span class="column-title"></span>
                           </div>
-                      </th> -->
+                      </th>
 
 
                     </tr>
@@ -121,10 +121,12 @@
                       </td>
 
                       <!-- Confidential you were choosen to enter recovery pass as random user -->
-                      <!-- <td>
-                        <md-button ng-if="row[9]" ng-click="vm.openRecoverModal(row[3], row[1], 'randomuser')" class="md-raised md-primary">Recover</md-button>
+                      <td>
+                        <span ng-if="vm.chosenUser == row[3]">
+                          <md-icon md-menu-origin md-font-icon="icon-account-key"></md-icon>
+                        </span>
 
-                      </td> -->
+                      </td>
 
 
                     </tr>
