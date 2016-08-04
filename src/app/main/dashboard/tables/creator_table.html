@@ -12,12 +12,24 @@
                 </div>
             </div>
 
-            <table class="row-border hover">
+            <table class="row-border hover" datatable="ng" dt-options="vm.communityMemberWidget.dtOptions">
                 <thead>
                     <tr>
                       <th class="secondary-text">
                           <div class="table-header">
-                              <span class="column-title">Boss</span>
+                              <span class="column-title"></span>
+                          </div>
+                      </th>
+
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Name</span>
+                          </div>
+                      </th>
+
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Email</span>
                           </div>
                       </th>
                       <th class="secondary-text">
@@ -27,33 +39,40 @@
                       </th>
                       <th class="secondary-text">
                           <div class="table-header">
-                              <span class="column-title"></span>
+                              <span class="column-title">Boss</span>
                           </div>
                       </th>
-                        <th class="secondary-text"
-                            ng-repeat="column in  vm.communityMemberWidget.table.columns">
-                            <div class="table-header">
-                                <span class="column-title">{{column.title}}</span>
-                            </div>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
+
+                      <!-- User image -->
+                      <td>
+                        <img class="avatar"
+                             ng-src="{{row[0] }}">
+                      </td>
+
+                      <!-- User name -->
+                      <td>
+                        <span> {{ row[1]}} </span>
+                      </td>
+
+                      <!-- User email -->
+                      <td>
+                        <span> {{ row[2]}} </span>
+                      </td>
+
+                      <!-- User role -->
+                      <td>
+                        <span> {{ row[8] }} </span>
+                      </td>
+
+                      <!-- Boss checklist -->
                       <td>
                         <input type="radio" name="creator" ng-value="true" ng-model="row[4]" ng-change="vm.addRole(row[3], 'boss')"> Boss<br>
                       </td>
-
-                      <td> {{ row[8] }}</td>
-
-                        <td ng-repeat="cell in row track by $index">
-                            <img class="avatar" ng-if="$index === 0"
-                                 ng-src="{{cell}}">
-                            <span ng-if="$index != 0 && $index < 3">
-                                {{cell}}
-                            </span>
-                        </td>
 
                     </tr>
                   </md-radio-group>

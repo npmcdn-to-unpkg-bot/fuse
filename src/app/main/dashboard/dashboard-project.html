@@ -353,28 +353,48 @@
                                     </div>
                                 </div>
 
-                                <table class="row-border hover">
+                                <table class="row-border hover" datatable="ng" dt-options="vm.pendingMemberWidget.dtOptions">
                                     <thead>
                                         <tr>
-                                            <th class="secondary-text"
-                                                ng-repeat="column in vm.pendingMemberWidget.table.columns">
-                                                <div class="table-header">
-                                                    <span class="column-title">{{column.title}}</span>
-                                                </div>
-                                            </th>
+                                          <th class="secondary-text">
+                                              <div class="table-header">
+                                                  <span class="column-title"></span>
+                                              </div>
+                                          </th>
+
+                                          <th class="secondary-text">
+                                              <div class="table-header">
+                                                  <span class="column-title">Name</span>
+                                              </div>
+                                          </th>
+
+                                          <th class="secondary-text">
+                                              <div class="table-header">
+                                                  <span class="column-title">Email</span>
+                                              </div>
+                                          </th>
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="row in vm.pendingMemberWidget.table.rows">
-                                            <td ng-repeat="cell in row">
-                                                <img class="avatar" ng-if="$index === 0"
-                                                     ng-src="{{cell}}">
-                                                <span ng-if="$index != 0 && $index != 3">
-                                                    {{cell}}
-                                                </span>
-                                            </td>
+                                          <!-- User image -->
+                                          <td>
+                                            <img class="avatar"
+                                                 ng-src="{{row[0] }}">
+                                          </td>
+
+                                          <!-- User name -->
+                                          <td>
+                                            <span> {{ row[1]}} </span>
+                                          </td>
+
+                                          <!-- User email -->
+                                          <td>
+                                            <span> {{ row[2]}} </span>
+                                          </td>
+                                          
                                           <td><md-button ng-disabled="vm.userRole === 'minions'" class="md-raised md-primary" ng-click="vm.acceptMember($index, row)"> Accept </md-button></td>
                                           <td><md-button ng-disabled="vm.userRole === 'minions'" class="md-raised md-warn" ng-click="vm.declineMember($index, row[3])"> Decline </md-button></td>
                                         </tr>

@@ -12,45 +12,67 @@
                 </div>
             </div>
 
-            <table class="row-border hover">
+            <table class="row-border hover" datatable="ng" dt-options="vm.communityMemberWidget.dtOptions">
                 <thead>
                     <tr>
-                      <th class="secondary-text">
-                          <div class="table-header">
-                              <span class="column-title">Role</span>
-                          </div>
-                      </th>
                       <th class="secondary-text">
                           <div class="table-header">
                               <span class="column-title"></span>
                           </div>
                       </th>
-                        <th class="secondary-text"
-                            ng-repeat="column in  vm.communityMemberWidget.table.columns track by $index">
-                            <div class="table-header">
-                                <span class="column-title">{{column.title}}</span>
-                            </div>
-                        </th>
+
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Name</span>
+                          </div>
+                      </th>
+
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Email</span>
+                          </div>
+                      </th>
+
+                      <th class="secondary-text">
+                          <div class="table-header">
+                              <span class="column-title">Role</span>
+                          </div>
+                      </th>
+
+
+
                     </tr>
                 </thead>
                 <tbody>
                     <md-radio-group ng-model="data.group1">
                     <tr ng-repeat="row in  vm.communityMemberWidget.table.rows">
 
-
-                      <td> {{ row[8] }}</td>
+                      <!-- User image -->
                       <td>
-                        <md-button ng-if="row[9]" ng-click="vm.openRecoverModal(row[3], row[1], 'randomuser')" class="md-raised md-primary">Recover</md-button>
-
+                        <img class="avatar"
+                             ng-src="{{row[0] }}">
                       </td>
 
-                        <td ng-repeat="cell in row track by $index">
-                            <img class="avatar" ng-if="$index === 0"
-                                 ng-src="{{cell}}">
-                            <span ng-if="$index != 0 && $index < 3">
-                                {{cell}}
-                            </span>
-                        </td>
+                      <!-- User name -->
+                      <td>
+                        <span> {{ row[1]}} </span>
+                      </td>
+
+                      <!-- User email -->
+                      <td>
+                        <span> {{ row[2]}} </span>
+                      </td>
+
+                      <!-- User role -->
+                      <td>
+                        <span> {{ row[8] }} </span>
+                      </td>
+
+                      <!-- CONDITIONAL recovery button -->
+                      <td ng-if="row[9]">
+                        <md-button ng-click="vm.openRecoverModal(row[3], row[1], 'randomuser')" class="md-raised md-primary">Recover</md-button>
+
+                      </td>
 
                     </tr>
                   </md-radio-group>

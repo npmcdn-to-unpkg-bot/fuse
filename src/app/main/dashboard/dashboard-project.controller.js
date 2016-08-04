@@ -96,17 +96,20 @@
           getAverageAge(vm.myCommunity._id);
           getAverageStayTime(vm.myCommunity._id);
 
+          // WARNING creator checking must be before boss
+          if(vm.myCommunity.creator.name === vm.username) {
+            vm.isCreator = true;
+            vm.userRole = "creator";
+            vm.bothRoles++;
+          }
+
           // check if we are creator of the community
           if(vm.myCommunity.boss.name === vm.username) {
             vm.userRole = "boss";
             vm.bothRoles++;
           }
 
-          if(vm.myCommunity.creator.name === vm.username) {
-            vm.isCreator = true;
-            vm.userRole = "creator";
-            vm.bothRoles++;
-          }
+          console.log(vm.bothRoles);
 
           if(vm.userRole == "") {
             if(_.find(vm.myCommunity.directors, {"name" : vm.username}) !== undefined) {
@@ -158,12 +161,14 @@
               }
             }
 
-            var userImage = (v.userImage !== undefined) ? v.userImage : "";
+            var userImage = (v.userImage !== undefined) ? v.userImage : "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
 
             return [userImage, v.name, v.email, v._id, boss, director, minion, creator, role, recovery];
           });
 
           pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
+            var userImage = (v.userImage !== undefined) ? v.userImage : "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
+
             return [v.userImage, v.name, v.email, v._id];
           });
 
@@ -891,24 +896,20 @@
           vm.communityMemberWidget = {
               title    : vm.dashboardData.communityMemberWidget.title,
               table    : vm.dashboardData.communityMemberWidget.table,
-          //     dtOptions: {
-          //      dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-          //      pagingType: 'simple',
-          //      autoWidth : false,
-          //      responsive: true,
-          //      order     : [1, 'asc'],
-          //      columnDefs: [
-          //          {
-          //              width    : '40',
-          //              orderable: false,
-          //              targets  : [0]
-          //          },
-          //          {
-          //              width  : '33%',
-          //              targets: [1, 2, 3, 4, 5, 6, 7, 8]
-          //          }
-          //      ]
-          //  }
+              dtOptions: {
+               dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+               pagingType: 'simple',
+               autoWidth : false,
+               responsive: true,
+               order     : [1, 'asc'],
+               columnDefs: [
+                   {
+                       width    : '40',
+                       orderable: false,
+                       targets  : [0]
+                   }
+               ]
+           }
           };
 
 
@@ -916,22 +917,18 @@
               title    : vm.dashboardData.pendingMemberWidget.title,
               table    : vm.dashboardData.pendingMemberWidget.table,
               dtOptions: {
-              //  dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-              //  pagingType: 'simple',
-              //  autoWidth : false,
-              //  responsive: true,
-              //  order     : [1, 'asc'],
-              //  columnDefs: [
-              //      {
-              //          width    : '40',
-              //          orderable: false,
-              //          targets  : [0]
-              //      },
-              //      {
-              //          width  : '20%',
-              //          targets: [1, 2, 3, 4, 5]
-              //      }
-              //  ]
+               dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
+               pagingType: 'simple',
+               autoWidth : false,
+               responsive: true,
+               order     : [1, 'asc'],
+               columnDefs: [
+                   {
+                       width    : '40',
+                       orderable: false,
+                       targets  : [0]
+                   }
+               ]
            }
           };
         }
