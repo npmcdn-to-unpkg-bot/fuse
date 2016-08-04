@@ -81,7 +81,9 @@
         });
 
        vm.removeCheckItem = function(checklist, i) {
+         var checkItemName = checklist.checkItems[i].name;
          checklist.checkItems.splice(i, 1);
+         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_remove', "" , checkItemName));
          vm.updateIssue();
        }
 
@@ -89,8 +91,9 @@
          checklist.checkItems[checkitemId] = text;
 
          console.log("Updated checkitem");
+         console.log(checklist.checkItems[checkitemId]);
 
-         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_complete', "" , text));
+         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_change', "" , text.name));
 
          vm.updateIssue();
        }
@@ -552,13 +555,15 @@
 
             console.log(list);
 
-            // apilaData.updateCheckList(vm.card._id, list._id, list)
-            // .success(function(d) {
-            //
-            // })
-            // .error(function() {
-            //   console.log("Error while updateing checklist");
-            // });
+            list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_checked", "jbg", "");
+
+            apilaData.updateCheckList(vm.card._id, list._id, list)
+            .success(function(d) {
+
+            })
+            .error(function() {
+              console.log("Error while updateing checklist");
+            });
         }
 
         /**

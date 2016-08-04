@@ -108,7 +108,7 @@
          //formating for checklists item
          if(v.field === "checkitem") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " added a checklist item " + v.new ;
+             v.infoFormated = updatedBy + " created a checklist item " + v.new ;
            } else {
              v.infoFormated = updatedBy + " removed  a checklist item" + v.old ;
            }
@@ -122,6 +122,14 @@
            }
          }
 
+
+         if(v.field === "checkitem_change") {
+             v.infoFormated = updatedBy + " changed a checklist item " + v.old;
+         }
+
+         if(v.field === "checkitem_remove") {
+             v.infoFormated = updatedBy + " removed a checklist item " + v.old;  
+         }
 
          if(v.field === "comments") {
            if(v.old === "") {

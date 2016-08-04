@@ -11,6 +11,8 @@ var replace = require('gulp-replace-task');
 
 var servicesPath = 'src/app/common/services/';
 
+var stripDebug = require('gulp-strip-debug');
+
 gulp.task('change-url', function(cb) {
   gulp.src([servicesPath + 'apilaData.service.js', servicesPath + 'authentication.service.js'])
   .pipe(replace({
@@ -35,8 +37,9 @@ gulp.task('run-build', ['change-url','build'], function(cb) {
 
 
 gulp.task('copy-client', function() {
-  gulp.src([conf.paths.dist + '/**/*'])
-      .pipe(gulp.dest(userHome + '/deploy/app_client'));
+  gulp.src(["src/**/*.js"])
+      .pipe(stripDebug())
+      .pipe(gulp.dest('deploy'));
 });
 
 gulp.task('copy-api', function() {
