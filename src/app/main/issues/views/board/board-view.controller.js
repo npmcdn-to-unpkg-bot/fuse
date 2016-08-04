@@ -178,7 +178,6 @@
         vm.removeList = removeList;
         vm.cardFilter = cardFilter;
         vm.isOverdue = isOverdue;
-        vm.openWordCloud = openWordCloud;
 
         //OUR DATA LOADING AD SETTING CODE
 
@@ -384,22 +383,6 @@
             vm.newListName = '';
         }
 
-        function openWordCloud(issueInfo, ev) {
-
-          $mdDialog.show({
-              controller         : 'WordCloudController',
-              controllerAs       : 'vm',
-              scope: $scope,
-              preserveScope: true,
-              targetEvent: ev,
-              locals : {
-                issue: issueInfo
-              },
-              templateUrl        : 'app/main/issues/dialogs/wordCloud/wordCloud.html',
-              closeTo             : angular.element($document.body),
-              clickOutsideToClose: true
-          });
-        }
 
         /**
          * Remove list

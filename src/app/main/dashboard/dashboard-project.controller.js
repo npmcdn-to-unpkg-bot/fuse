@@ -20,6 +20,7 @@
         vm.projects = vm.dashboardData.projects;
         vm.recoveryInfo = {};
         vm.currUserId = null;
+        vm.bothRoles = 0;
 
 
         vm.acceptMember = acceptMember;
@@ -96,18 +97,26 @@
           getAverageStayTime(vm.myCommunity._id);
 
           // check if we are creator of the community
+          if(vm.myCommunity.boss.name === vm.username) {
+            vm.userRole = "boss";
+            vm.bothRoles++;
+          }
+
           if(vm.myCommunity.creator.name === vm.username) {
             vm.isCreator = true;
             vm.userRole = "creator";
-          } else if(vm.myCommunity.boss.name === vm.username) {
-            vm.userRole = "boss";
-          } else if(_.find(vm.myCommunity.directors, {"name" : vm.username}) !== undefined) {
-            vm.userRole = "directors";
-          } else if(_.find(vm.myCommunity.minions, {"name" : vm.username}) !== undefined) {
-            vm.userRole = "minions";
+            vm.bothRoles++;
           }
 
-          console.log(vm.communityMembers);
+          if(vm.userRole == "") {
+            if(_.find(vm.myCommunity.directors, {"name" : vm.username}) !== undefined) {
+              vm.userRole = "directors";
+            } else if(_.find(vm.myCommunity.minions, {"name" : vm.username}) !== undefined) {
+              vm.userRole = "minions";
+            }
+          }
+
+          console.log(vm.userRole);
           vm.currUserId = (_.find(vm.communityMembers, {'name' : vm.username}))._id;
 
           loadStats(vm.myCommunity._id);

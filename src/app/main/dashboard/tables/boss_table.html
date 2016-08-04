@@ -35,6 +35,13 @@
                               <span class="column-title">Minion</span>
                           </div>
                       </th>
+
+                      <th class="secondary-text" ng-if="vm.bothRoles == 2">
+                          <div class="table-header">
+                              <span class="column-title">Boss</span>
+                          </div>
+                      </th>
+
                       <th class="secondary-text">
                           <div class="table-header">
                               <span class="column-title">Role</span>
@@ -71,6 +78,10 @@
                         <span ng-if="row[1] !== vm.username">
                           <input type="radio"  ng-value="true" name="group {{ $index}}" ng-model="row[6]" ng-change="vm.addRole(row[3], 'minions')" value="Minion"> Minion<br>
                         </span>
+                      </td>
+
+                      <td ng-if="vm.bothRoles == 2">
+                        <input type="radio" name="creator" ng-value="true" ng-model="row[4]" ng-change="vm.addRole(row[3], 'boss')"> Boss<br>
                       </td>
 
                       <td> {{ row[8] }}</td>

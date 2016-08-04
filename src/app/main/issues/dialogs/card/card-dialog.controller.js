@@ -147,6 +147,8 @@
         vm.addNewComment = addNewComment;
         vm.updateIssue = updateIssue;
 
+        vm.wordCloud = wordCloud;
+
         vm.createdIssue = vm.card.submitBy + " created " + vm.card.title + " " + UpdateInfoService.timeDiff(vm.card.submitDate)
 
         vm.formatUpdateArray = function(updateField, updateBy, updateDate) {
@@ -284,6 +286,21 @@
             {
                 // Canceled
             });
+        }
+
+        function wordCloud() {
+          console.log("kek");
+          $mdDialog.show({
+                controllerAs: 'vm',
+                controller: 'WordCloudController',
+                preserveScope: true,
+                autoWrap: true,
+                skipHide: true,
+                templateUrl: 'app/main/issues/dialogs/wordCloud/wordCloud.html',
+                locals: {
+                  issue: vm.card
+                }
+              });
         }
 
         /**

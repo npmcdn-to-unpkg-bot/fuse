@@ -197,6 +197,11 @@
         </md-button>
       <!-- / EXPORT -->
 
+      <!-- WORD CLOUD -->
+        <md-button class="md-icon-button" ng-click="vm.wordCloud()" aria-label="WordCloud">
+          <md-icon md-menu-origin md-font-icon="icon-cloud"></md-icon>
+        </md-button>
+      <!-- / WORD CLOUD -->
 
       <span flex></span>
 
@@ -506,7 +511,7 @@
                   <md-input-container flex md-no-float>
                     <textarea ms-scroll placeholder="Write a comment.." ng-model="vm.newCommentText" required translate translate-attr-placeholder="SB.WRITE_A_COMMENT"></textarea>
                   </md-input-container>
-              
+
                 <div layout="row" layout-align="end center">
                   <md-button type="submit" class="md-raised md-accent" ng-disabled="cardCommentForm.$invalid || cardCommentForm.$pristine" aria-label="Add">
                     <span translate="SB.ADD">Add</span>
