@@ -19,6 +19,10 @@
             </div>
 
             <div layout="row">
+
+              <md-button ng-if="vm.isTestCommunity" ng-click="vm.openCommunityModal()" class="selected-project">{{vm.selectedProject.name}}</md-button>
+              <md-button ng-if="vm.isTestCommunity" ng-click="vm.openJoinModal()" class="selected-project">Join a Community</md-button>
+
                 <md-button ng-if="!vm.hasCommunity" ng-click="vm.openCommunityModal()" class="selected-project">{{vm.selectedProject.name}}</md-button>
                 <md-button ng-if="!vm.hasCommunity" ng-click="vm.openJoinModal()" class="selected-project">Join a Community</md-button>
 
@@ -394,7 +398,7 @@
                                           <td>
                                             <span> {{ row[2]}} </span>
                                           </td>
-                                          
+
                                           <td><md-button ng-disabled="vm.userRole === 'minions'" class="md-raised md-primary" ng-click="vm.acceptMember($index, row)"> Accept </md-button></td>
                                           <td><md-button ng-disabled="vm.userRole === 'minions'" class="md-raised md-warn" ng-click="vm.declineMember($index, row[3])"> Decline </md-button></td>
                                         </tr>

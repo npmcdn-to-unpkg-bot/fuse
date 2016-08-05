@@ -63,12 +63,10 @@
 
           vm.hasCommunity = true;
 
-          vm.communityMembers = vm.myCommunity.communityMembers;
-          console.log(vm.myCommunity.communityMembers);
+          console.log(vm.myCommunity);
+          vm.isTestCommunity = vm.myCommunity.testCommunity;
 
-          // getCommunityMembers(vm.myCommunity._id, function() {
-          //   formatMembersData();
-          // });
+          vm.communityMembers = vm.myCommunity.communityMembers;
 
           formatMembersData();
 
