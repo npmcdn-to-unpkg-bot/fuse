@@ -527,12 +527,15 @@
          * Update check list stats
          * @param list
          */
-        function updateCheckedCount(list)
+        function updateCheckedCount(list, checkedItem)
         {
             var checkItems = list.checkItems;
             var checkedItems = 0;
             var allCheckedItems = 0;
             var allCheckItems = 0;
+
+            console.log("Brah: ");
+            console.log(checkedItem);
 
             angular.forEach(checkItems, function (checkItem)
             {
@@ -555,7 +558,13 @@
 
             console.log(list);
 
-            list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_checked", "jbg", "");
+            if(checkedItem.checked) {
+              list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_checked", checkedItem.name, "");
+            } else {
+              list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_unchecked", checkedItem.name, "");
+            }
+
+            vm.card.updateInfo.push(list.updateInfo);
 
             apilaData.updateCheckList(vm.card._id, list._id, list)
             .success(function(d) {

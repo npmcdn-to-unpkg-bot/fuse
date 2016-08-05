@@ -467,7 +467,7 @@
 
               <div class="check-items">
                 <div class="check-item" ng-repeat="checkItem in checklist.checkItems">
-                  <md-checkbox ng-model="checkItem.checked" ng-change="vm.updateCheckedCount(checklist)" aria-label="{{checkItem.name}}">
+                  <md-checkbox ng-model="checkItem.checked" ng-change="vm.updateCheckedCount(checklist, checkItem)" aria-label="{{checkItem.name}}">
                   </md-checkbox>
 
                   <a ng-if="checkItem.checked" href="#" style="text-decoration: line-through;" editable-text="checkItem.name" onaftersave="vm.updateCheckItem(checklist, $index, checkItem)">{{checkItem.name}}</a>

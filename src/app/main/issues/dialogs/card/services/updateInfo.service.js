@@ -128,7 +128,15 @@
          }
 
          if(v.field === "checkitem_remove") {
-             v.infoFormated = updatedBy + " removed a checklist item " + v.old;  
+             v.infoFormated = updatedBy + " removed a checklist item " + v.old;
+         }
+
+         if(v.field === "checkitem_checked") {
+             v.infoFormated = updatedBy + " completed a checklist item " + v.new;
+         }
+
+         if(v.field === "checkitem_unchecked") {
+             v.infoFormated = updatedBy + " uncompleted a checklist item " + v.new;  
          }
 
          if(v.field === "comments") {
