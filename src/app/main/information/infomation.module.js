@@ -15,7 +15,7 @@
             views    : {
                 'content@app': {
                     templateUrl: 'app/main/information/information.html',
-                    controller : 'MailController as vm'
+                    controller : 'InformationController as vm'
                 }
             },
             bodyClass: 'information'

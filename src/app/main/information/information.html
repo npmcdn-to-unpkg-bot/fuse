@@ -55,9 +55,24 @@
             <!-- CONTENT -->
             <md-content class="content" flex ms-scroll>
 
-                <!-- DEMO CONTENT -->
-                <div ng-include="'app/main/ui/page-layouts/demo/demo-content.html'"></div>
-                <!-- / DEMO CONTENT -->
+                <!-- Switch content based on selected page -->
+                <div ng-switch on="vm.selectedItem">
+
+                  <div ng-switch-when="Dashboard">
+                      <div ng-include="'app/main/information/information-content/dashboard.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Calendar">
+                      <div ng-include="'app/main/information/information-content/calendar.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Issues">
+                      <div ng-include="'app/main/information/information-content/issues.html'"></div>
+                  </div>
+
+                  <div ng-switch-when="Residents">
+                      <div ng-include="'app/main/information/information-content/residents.html'"></div>
+                  </div>
 
             </md-content>
             <!-- / CONTENT -->

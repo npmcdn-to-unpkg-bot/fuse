@@ -2,98 +2,11 @@
     <md-list>
         <md-subheader class="md-no-sticky">Sidenav Demo</md-subheader>
 
-        <md-list-item>
-            <p>Sidenav Item 1 TEST</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 2</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 3</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 4</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 5</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 6</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 7</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 8</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 9</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 10</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 11</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 12</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 13</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 14</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 15</p>
-        </md-list-item>
-
-        <md-divider></md-divider>
-
-        <md-list-item>
-            <p>Sidenav Item 16</p>
+        <md-list-item ng-repeat="item in vm.menuItems">
+            <md-button ng-click="vm.switchItem(item)" ng-class="vm.selectedItem == item ? 'md-raised md-primary' : 'md-primary'" class="item">
+              <span class="title" flex>{{ item }}</span>
+            </md-button>
+            <md-divider></md-divider>
         </md-list-item>
 
     </md-list>
