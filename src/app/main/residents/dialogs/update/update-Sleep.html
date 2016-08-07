@@ -12,15 +12,6 @@
     <md-dialog-content ms-scroll>
 
       <div layout="row" layout-align="space-around center">
-        <md-input-container>
-          <label>Usual Bedtime</label>
-          <md-select ng-model="vm.form.usualBedtime">
-            <md-option>Early Evening</md-option>
-            <md-option>Mid Morning</md-option>
-            <md-option>Late Evening</md-option>
-            <md-option>Other</md-option>
-          </md-select>
-        </md-input-container>
 
         <md-input-container>
           <label>Usual Arising Time</label>
@@ -28,6 +19,16 @@
             <md-option>Early Morning</md-option>
             <md-option>Mid Morning</md-option>
             <md-option>Late Morning</md-option>
+            <md-option>Other</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Usual Bedtime</label>
+          <md-select ng-model="vm.form.usualBedtime">
+            <md-option>Early Evening</md-option>
+            <md-option>Mid Morning</md-option>
+            <md-option>Late Evening</md-option>
             <md-option>Other</md-option>
           </md-select>
         </md-input-container>

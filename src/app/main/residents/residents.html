@@ -59,17 +59,10 @@
         <div layout="row" layout-align="start center" translate-attr-aria-label="MAIL.REFRESH">
 
           <md-menu>
-            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Filters" translate translate-attr-aria-label="MAIL.FILTERS">
+            <md-button class="md-icon-button" ng-click="vm.exportCarePlan()" aria-label="Filters" translate translate-attr-aria-label="MAIL.FILTERS">
               <md-icon md-font-icon="icon-note-text"></md-icon>
               <md-tooltip><span>Care Plans</span></md-tooltip>
             </md-button>
-            <md-menu-content width="3">
-              <md-menu-item>
-                <md-button ng-click="vm.exportCarePlan()" aria-label="Care Plan">
-                  Care Plan
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
           </md-menu>
         </div>
       </div>
@@ -80,7 +73,7 @@
 
         <md-tabs md-selected="vm.activeMailPaneIndex" class="mail-tabs" md-dynamic-height="{{vm.dynamicHeight}}" flex>
           <md-tab>
-            <md-tab-label>Mails</md-tab-label>
+            <md-tab-label>Residents</md-tab-label>
             <md-tab-body>
               <!-- RESIDENT LIST PANE -->
               <div class="content mail-list-pane" ng-include="'app/main/residents/views/list/list-view.html'" ms-scroll>
