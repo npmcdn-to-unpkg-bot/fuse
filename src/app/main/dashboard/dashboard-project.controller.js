@@ -53,7 +53,7 @@
 
         vm.myComunity = null;
 
-        var pendingMemberTable = [];
+        vm.pendingMemberTable = [];
         var communityMemberTable = [];
 
         apilaData.userCommunity(vm.username)
@@ -167,14 +167,14 @@
             return [userImage, v.name, v.email, v._id, boss, director, minion, creator, role, recovery];
           });
 
-          pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
+          vm.pendingMemberTable = _.map(vm.myCommunity.pendingMembers, function(v) {
             var userImage = (v.userImage !== undefined) ? v.userImage : "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
 
             return [v.userImage, v.name, v.email, v._id];
           });
 
           vm.dashboardData.communityMemberWidget.table.rows = communityMemberTable;
-          vm.dashboardData.pendingMemberWidget.table.rows = pendingMemberTable;
+          vm.dashboardData.pendingMemberWidget.table.rows = vm.pendingMemberTable;
 
           setWidget();
 
@@ -269,7 +269,14 @@
         function acceptMember(index, member)
         {
 
-          pendingMemberTable.splice(index, 1);
+          console.log("Pending member " + index);
+
+          console.log(vm.pendingMemberTable.length);
+          vm.pendingMemberTable.splice(0, 1);
+          console.log(vm.pendingMemberTable.length);
+
+          console.log(vm.pendingMemberTable);
+          console.log(vm.pendingMemberWidget.table);
 
           var data = {};
           data.member = member[3];
@@ -324,7 +331,7 @@
         function declineMember(index, memberid)
         {
 
-          pendingMemberTable.splice(index, 1);
+          vm.pendingMemberTable.splice(index, 1);
 
           var data = {};
           data.member = memberid;
