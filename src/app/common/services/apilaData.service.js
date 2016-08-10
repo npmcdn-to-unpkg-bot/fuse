@@ -185,6 +185,10 @@
           return $http.get(apiUrl + '/api/residents/average_stay/' + communityid, getAuth());
         }
 
+        var getLocations = function(communityid) {
+          return $http.get(apiUrl + '/api/residents/' + communityid + '/locations', getAuth());
+        }
+
         /**************************************************************/
 
         /***************** USERS RESOURCES ***************/
@@ -316,6 +320,7 @@
             residentBirthday : residentBirthday,
             averageAge : averageAge,
             averageStayTime : averageStayTime,
+            getLocations : getLocations,
 
             //api url
             getApiUrl : getApiUrl,
@@ -343,7 +348,7 @@
             addRole : addRole,
             removeMember : removeMember,
             hasCanceledCommunity : hasCanceledCommunity,
-            restoreCommunity : restoreCommunity
+            restoreCommunity : restoreCommunity,
         };
     }
 

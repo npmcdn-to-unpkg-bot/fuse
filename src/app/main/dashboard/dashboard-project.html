@@ -217,93 +217,27 @@
                     <!-- WIDGET GROUP -->
                     <div class="widget-group" layout="row" flex="100" layout-wrap>
 
-                        <!-- WIDGET 6 -->
-                        <ms-widget layout="column" flex="100" flex-gt-sm="50">
+                      <!-- MAP OF RESIDENTS -->
+                      <ms-widget layout="row" flex="100">
 
-                            <!-- Front -->
-                            <ms-widget-front class="white-bg">
+                          <!-- Front -->
+                          <ms-widget-front class="white-bg">
 
-                                <div class="ph-16 border-bottom" layout="row" layout-align="space-between center">
-                                    <div class="h3">{{vm.widget6.title}}</div>
-                                    <div class="pv-16">
-                                        <md-select class="simplified" ng-model="vm.widget6.currentRange"
-                                                   ng-change="vm.widget6.changeRange(vm.widget6.currentRange)"
-                                                   aria-label="Change range">
-                                            <md-option ng-repeat="(key, range) in vm.widget6.ranges"
-                                                       value="{{key}}">
-                                                {{range}}
-                                            </md-option>
-                                        </md-select>
-                                    </div>
-                                </div>
+                              <div class="p-24 mb-8 border-bottom" layout="row" layout-align="space-between center">
+                                  <div class="h2">Map of residents</div>
+                              </div>
 
-                                <div class="p-16">
-                                    <nvd3 class="h-400"
-                                          config="vm.widget6.mainChart.config"
-                                          options="vm.widget6.mainChart.options"
-                                          data="vm.widget6.mainChart.data"></nvd3>
-                                </div>
+                              <ui-gmap-google-map center="vm.locationsMap.center" zoom="vm.locationsMap.zoom">
+                                <ui-gmap-marker ng-repeat="m in vm.locationsMap.markers"
+                                coords="m.coords" idkey="m.id">
+                                </ui-gmap-marker>
+                        </ui-gmap-google-map>
 
-                                <div class="pv-8 mh-16 border-top" layout="row" layout-align="start center" layout-wrap>
-                                    <div class="pv-8 border-right" layout="column" layout-align="center center"
-                                         flex="100" flex-gt-xs="50">
-                                        <span class="font-size-32">{{vm.widget6.footerLeft.count[vm.widget6.currentRange]}}</span>
-                                        <span class="h4">{{vm.widget6.footerLeft.title}}</span>
-                                    </div>
+                          </ms-widget-front>
+                          <!-- / Front -->
 
-                                    <div class="pv-8" layout="column" layout-align="center center" flex="100"
-                                         flex-gt-xs="50">
-                                        <span class="font-size-32">{{vm.widget6.footerRight.count[vm.widget6.currentRange]}}</span>
-                                        <span class="h4">{{vm.widget6.footerRight.title}}</span>
-                                    </div>
-                                </div>
-
-                            </ms-widget-front>
-                            <!-- / Front -->
-
-                        </ms-widget>
-                        <!-- / WIDGET 6 -->
-
-                        <!-- WIDGET 7 -->
-                        <ms-widget layout="column" flex="100" flex-gt-sm="50">
-
-                            <!-- Front -->
-                            <ms-widget-front class="white-bg">
-
-                                <div class="ph-16 border-bottom" layout="row" layout-align="space-between center">
-                                    <div class="h3">{{vm.widget7.title}}</div>
-
-                                    <div class="pv-16">
-                                        <md-select class="simplified" ng-model="vm.widget7.currentRange"
-                                                   aria-label="Change range">
-                                            <md-option ng-repeat="(key, range) in vm.widget7.ranges"
-                                                       value="{{key}}">
-                                                {{range}}
-                                            </md-option>
-                                        </md-select>
-                                    </div>
-                                </div>
-
-                                <div class="p-16" layout="row" layout-align="space-between center"
-                                     ng-repeat="event in vm.widget7.schedule[vm.widget7.currentRange]">
-                                    <div>
-                                        <div class="h3">{{event.title}}</div>
-                                        <div>
-                                            <span class="secondary-text">{{event.time}}</span>
-                                            <span ng-if="event.location">, {{event.location}}</span>
-                                        </div>
-                                    </div>
-
-                                    <md-button class="md-icon-button" aria-label="More information">
-                                        <md-icon md-font-icon="icon-dots-vertical"></md-icon>
-                                    </md-button>
-                                </div>
-
-                            </ms-widget-front>
-                            <!-- / Front -->
-
-                        </ms-widget>
-                        <!-- / WIDGET 7 -->
+                      </ms-widget>
+                      <!-- / MAP OF RESIDENTS -->
 
                     </div>
                     <!-- / WIDGET GROUP -->

@@ -21,7 +21,7 @@
         vm.recoveryInfo = {};
         vm.currUserId = null;
         vm.bothRoles = 0;
-        vm.chosenUser = "";
+        vm.chosenUser = '';
 
 
         vm.acceptMember = acceptMember;
@@ -42,14 +42,14 @@
         vm.residentCount = 0;
         vm.issuesCount = 0;
         vm.isCreator = false;
-        vm.userRole = "";
+        vm.userRole = '';
         vm.averageAge = 0;
         vm.averageStayTime = 0;
 
         vm.checkbox = true;
         vm.hasCommunity = false;
 
-        vm.title = "Join or create a new community";
+        vm.title = 'Join or create a new community';
 
         vm.myComunity = null;
 
@@ -67,6 +67,8 @@
           vm.isTestCommunity = vm.myCommunity.testCommunity;
 
           vm.communityMembers = vm.myCommunity.communityMembers;
+
+          setMapLocations(vm.myCommunity._id);
 
           formatMembersData();
 
@@ -90,6 +92,38 @@
             console.log("Unable to load community members");
           });
         }
+
+
+        function setMapLocations(id) {
+          apilaData.getLocations(id)
+          .success(function(response) {
+
+            var markers = [];
+
+            for(var i = 0; i < response.length; ++i) {
+              markers.push({
+                'id' : i,
+                'coords' : {
+                  latitude : response[i].movedFrom.latitude,
+                  longitude: response[i].movedFrom.longitude
+                }
+              });
+            }
+
+            vm.locationsMap = {
+                center: {
+                  latitude : 33.2148412,
+                  longitude: -97.13306829999999
+                },
+                zoom  : 4,
+                'markers': markers
+            };
+          })
+          .error(function(response) {
+            console.log(response);
+          });
+        }
+
 
         function formatMembersData() {
           getAverageAge(vm.myCommunity._id);
