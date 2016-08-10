@@ -22,6 +22,7 @@
         <h4>Sex: {{ vm.selectedResident.sex }} </h4>
         <h4>Building Status: {{ vm.selectedResident.buildingStatus }} </h4>
         <h4>Moved from: {{ vm.selectedResident.movedFrom.name }} </h4>
+        <h4>Notes: {{ vm.selectedResident.administrativeNotes }} </h4>
 
         <ui-gmap-google-map center="vm.movedFromMap.center" zoom="vm.movedFromMap.zoom">
       <ui-gmap-marker coords="vm.movedFromMap.marker.coords"

@@ -11,7 +11,7 @@
     <div class="info" layout="row" layout-align="space-between start">
 
       <div layout="column" layout-align="start start">
-        
+
         <!-- Add details content here -->
         <h4>Type of Bathing: {{ vm.selectedResident.typeOfBathing }}</h4>
         <h4>Time of Bathing: {{ vm.selectedResident.timeOfBathing }}</h4>
@@ -20,6 +20,7 @@
         <h4 ng-if="vm.selectedResident.acceptanceOfBathing == 'Dislikes'">
           Why Dislikes Bathing: {{ vm.selectedResident.dislikesBathingDescribe }}
         </h4>
+        <h4>Notes: {{ vm.selectedResident.bathingNotes }} </h4>
 
       </div>
     </div>

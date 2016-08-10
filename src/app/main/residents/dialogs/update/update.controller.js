@@ -71,7 +71,7 @@
 
       formatData();
 
-
+      console.log(vm.form);
 
       apilaData.updateResident(currAppointment._id, vm.form)
         .success(function(resident) {
@@ -133,6 +133,7 @@
         "maidenName",
         "sex",
         "buildingStatus",
+        "administrativeNotes",
 
         // bathing
         "typeOfBathing",
