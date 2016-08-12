@@ -6,7 +6,7 @@
 
   function exportPdf($filter, imageData) {
 
-    //deprecated
+    // deprecated
     var exportAppointments = function(name, printable, header) {
       var doc = new jsPDF('p', 'pt', 'letter');
 
@@ -47,7 +47,7 @@
       var dateFilter = $filter('date');
       var appointmentFilteredTime = dateFilter(appointmentDate, 'h:mm a');
       var appointmentFilteredDate = dateFilter(appointmentDate, 'MMM d, yyyy');
-      var residentFiltedBirthDate = dateFilter(residentBirthDate, 'MMM d, yyyy');
+      var residentFilteredBirthDate = dateFilter(residentBirthDate, 'MMM d, yyyy');
 
       doc.setFont("times");
       doc.setFontSize(12);
@@ -64,7 +64,7 @@
       doc.text(140, 238, data.transportation);
 
       doc.text(415, 156, "Date of Birth:");
-      doc.text(490, 156, residentFiltedBirthDate);
+      doc.text(490, 156, residentFilteredBirthDate);
 
       doc.text(415, 204, "Appointment");
       doc.text(415, 221, "Date:");
@@ -134,19 +134,33 @@
       var fileName = "Issue_" + data.title + ".pdf";
 
       var dateFilter = $filter('date');
-      var submitDate = dateFilter(new Date(data.submitDate), 'MMM d, yyyy');
+      var filteredSubmitDate = dateFilter(data.submitDate, 'MMMM d, yyyy');
+
       if (data.due) {
         var dueDate = dateFilter(new Date(data.due), 'MMM d, yyyy');
       }
 
-      doc.setFontSize(10);
+      doc.setFontSize(20);
       doc.setTextColor(33, 33, 33);
       doc.setFont("courier");
       doc.setFontType("bold");
       doc.setLineWidth(25);
 
+      doc.text(40, 40, data.title);
+      doc.setFontSize(12);
+      doc.text(40, 60, "Created by " + data.submitBy + " on " + filteredSubmitDate);
+
       doc.setFillColor(33, 150, 243);
-      doc.rect(200, 200, 200, 18, 'F');
+      doc.roundedRect(
+        188, // x position
+        200, // y position | bigger is lower on page
+        224, // x length
+        18, // y height
+        7, 7, // rounded corners
+        'F'); // F filled | FD filled with borders
+
+
+
       doc.ellipse(580, 209, 2, 2, 'F');
       doc.ellipse(570, 209, 2, 2, 'F');
       doc.ellipse(560, 209, 2, 2, 'F');
@@ -164,12 +178,7 @@
       doc.ellipse(440, 209, 2, 2, 'F');
       doc.ellipse(430, 209, 2, 2, 'F');
       doc.ellipse(420, 209, 2, 2, 'F');
-      doc.triangle(200, 200,
-        200, 218,
-        187, 209, 'F');
-      doc.triangle(400, 200,
-        400, 218,
-        413, 209, 'F');
+
       doc.ellipse(180, 209, 2, 2, 'F');
       doc.ellipse(170, 209, 2, 2, 'F');
       doc.ellipse(160, 209, 2, 2, 'F');
@@ -188,28 +197,6 @@
       doc.ellipse(30, 209, 2, 2, 'F');
       doc.ellipse(20, 209, 2, 2, 'F');
 
-
-
-      doc.text(40, 40, "Title: ");
-      doc.text(200, 40, data.title);
-
-      doc.text(40, 52, "Submited by: ");
-      doc.text(200, 52, data.submitBy);
-
-      doc.text(40, 64, "Submited On: ");
-      doc.text(200, 64, submitDate);
-
-      doc.text(40, 76, "Responsible party: ");
-      doc.text(200, 76, data.responsibleParty);
-
-      doc.text(40, 88, "Description: ");
-      doc.text(200, 88, data.description);
-
-      doc.text(40, 100, "Resolution timeframe: ");
-      doc.text(200, 100, data.resolutionTimeframe);
-
-      doc.text(40, 112, "Issue status: ");
-      doc.text(200, 112, data.status);
 
       // if due date exists
       if (data.due) {
@@ -254,8 +241,8 @@
       var residentBirthDate = new Date(data.birthDate);
       var residentAdmissionDate = new Date(data.admissionDate);
       var dateFilter = $filter('date');
-      var residentFiltedBirthDate = dateFilter(residentBirthDate, 'MMM d, yyyy');
-      var residentFiltedAdmissionDate = dateFilter(residentAdmissionDate, 'MMM d, yyyy');
+      var residentFilteredBirthDate = dateFilter(residentBirthDate, 'MMM d, yyyy');
+      var residentFilteredAdmissionDate = dateFilter(residentAdmissionDate, 'MMM d, yyyy');
 
       var arrayLengthOffset = 0;
       var adminOffset = 250;
@@ -484,8 +471,8 @@
         doc.text(99, adminOffset + 30, "Maiden Name: " + data.maidenName);
         adminOffset = adminOffset + 12;
       }
-      doc.text(87, adminOffset + 42, "Date of Birth: " + residentFiltedBirthDate);
-      doc.text(81, adminOffset + 54, "Admission Date: " + residentFiltedAdmissionDate);
+      doc.text(87, adminOffset + 42, "Date of Birth: " + residentFilteredBirthDate);
+      doc.text(81, adminOffset + 54, "Admission Date: " + residentFilteredAdmissionDate);
       if (data.buildingStatus == "Moved Out") {
         doc.text(87, 42 + adminOffset, "Moved Out: " + movedOutTo);
         doc.text(87, 42 + adminOffset, "Reason: " + movedOutDescribe);
