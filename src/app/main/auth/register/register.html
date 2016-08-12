@@ -24,13 +24,12 @@
           <label>Email</label>
           <input type="email" name="email" ng-model="vm.form.email" translate ng-pattern="/^.+@.+\..+$/" required>
 
-          <div ng-messages>
-            {{ vm.emailExists }}
-          </div>
-
           <div ng-messages="registerForm.email.$error" role="alert" multiple>
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
+            </div>
+            <div ng-messages>
+              {{ vm.emailExists }}
             </div>
             <div ng-message="pattern">
               <span translate="REGISTER.ERRORS.EMAIL_MUST_VALID">Email must be a valid e-mail address</span>
@@ -58,11 +57,11 @@
           <label>Password (Confirm)</label>
           <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm" translate required>
 
-          <div ng-messages>
-            {{ vm.notSamePass }}
-          </div>
 
           <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
+            <div ng-messages>
+              {{ vm.notSamePass }}
+            </div>
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.PASSWORD_CONFIRM_REQUIRED">Password (Confirm) field is required</span>
             </div>
