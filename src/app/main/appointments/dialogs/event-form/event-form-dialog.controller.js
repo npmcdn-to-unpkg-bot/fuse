@@ -5,7 +5,7 @@
     .controller('EventFormDialogController', EventFormDialogController);
 
   /** @ngInject */
-  function EventFormDialogController($mdDialog, dialogData, apilaData, authentication, exportPdf) {
+  function EventFormDialogController($mdDialog, dialogData, apilaData, authentication, exportAppointDetail) {
     var vm = this;
 
     // Data
@@ -367,7 +367,8 @@
 
     function exportAppointment() {
       var name = vm.calendarEvent.residentGoing.firstName + " to " + vm.calendarEvent.locationName;
-      exportPdf.exportAppointmentDetail(name, vm.calendarEvent);
+      //exportPdf.exportAppointmentDetail(name, vm.calendarEvent);
+      exportAppointDetail.exportPdf(name, vm.calendarEvent);
     }
 
     function closeDialog() {

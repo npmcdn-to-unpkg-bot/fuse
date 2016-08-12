@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-    $mdSidenav, $mdToast, apilaData, authentication, exportPdf, uiGmapGoogleMapApi) {
+    $mdSidenav, $mdToast, apilaData, authentication, exportCarePlan, uiGmapGoogleMapApi) {
     var vm = this;
 
     // Data
@@ -54,7 +54,7 @@
     vm.toggleStarred = toggleStarred;
     vm.toggleCheck = toggleCheck;
     vm.updateResident = updateResident;
-    vm.exportCarePlan = exportCarePlan;
+    vm.exportCarePlan = exportResident;
 
     vm.selectedCategory = "Administrative";
 
@@ -195,7 +195,7 @@
 
     }
 
-    function exportCarePlan() {
+    function exportResident() {
 
       if (vm.selectedResident === null) {
         $mdToast.show(
@@ -239,7 +239,7 @@
         // community
         carePlanData.communityName = vm.community.name;
 
-        exportPdf.exportCarePlan(carePlanData);
+        exportCarePlan.exportPdf(carePlanData);
       }, 500);
     }
 

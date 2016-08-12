@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AppoitmentsController($mdDialog, $document, apilaData, msNavigationService,
-                                 authentication, exportPdf, $state, $scope, SearchService) {
+                                 authentication, $state, $scope, SearchService, exportAppointments) {
     var vm = this;
 
     // Data
@@ -175,11 +175,11 @@
     vm.addEvent = addEvent;
     vm.next = next;
     vm.prev = prev;
-    vm.exportAppointments = exportAppointments;
+    vm.exportAppointments = exportAppoint;
 
     //////////
 
-    function exportAppointments() {
+    function exportAppoint() {
       var columns = ["Resident", "Date", "Reason", "Location", "Doctor", "Transportation"];
 
       var month = vm.calendar.getDate().format("MMMM");
@@ -211,13 +211,7 @@
         return arr;
       });
 
-      var doc = new jsPDF('p', 'pt');
-      doc.autoTable(columns, rows, {
-        beforePageContent: function(data) {
-          doc.text("Appointments for " + month, 170, 30);
-        }
-      });
-      doc.save(month + '-Appointments.pdf');
+      exportAppointments.exportPdf(columns, rows, month);
     }
 
     function next() {

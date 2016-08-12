@@ -7,7 +7,7 @@
         .controller('ScrumboardCardDialogController', ScrumboardCardDialogController);
 
     /** @ngInject */
-    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout, exportPdf,
+    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout, exportIssueDetail,
       fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, msNavigationService, ImageUploadService, UpdateInfoService)
     {
         var vm = this;
@@ -614,7 +614,7 @@
         function exportIssue() {
           console.log(vm.card);
 
-          exportPdf.exportIssue(vm.card);
+          exportIssueDetail.exportPdf(vm.card);
         }
 
         /**
