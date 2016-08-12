@@ -11,19 +11,23 @@
         <md-input-container class="md-block" md-no-float>
           <label>Username</label>
           <input name="username" ng-model="vm.form.username" required>
+
           <div ng-messages="registerForm.username.$error" role="alert">
             <div ng-message="required">
-              <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username field is required</span>
+              <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username is required</span>
             </div>
           </div>
+
         </md-input-container>
 
         <md-input-container class="md-block" md-no-float>
-          <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
-            translate translate-attr-placeholder="REGISTER.EMAIL" ng-pattern="/^.+@.+\..+$/" required>
+          <label>Email</label>
+          <input type="email" name="email" ng-model="vm.form.email" translate ng-pattern="/^.+@.+\..+$/" required>
+
           <div ng-messages>
             {{ vm.emailExists }}
           </div>
+
           <div ng-messages="registerForm.email.$error" role="alert" multiple>
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
@@ -32,11 +36,13 @@
               <span translate="REGISTER.ERRORS.EMAIL_MUST_VALID">Email must be a valid e-mail address</span>
             </div>
           </div>
+
         </md-input-container>
 
         <md-input-container class="md-block" md-no-float>
-          <input type="password" name="password" ng-model="vm.form.password" placeholder="Password"
-            minlength="6" translate translate-attr-placeholder="REGISTER.PASSWORD" required>
+          <label>Password</label>
+          <input type="password" name="password" ng-model="vm.form.password" minlength="6" translate required>
+
           <div ng-messages="registerForm.password.$error" role="alert">
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.PASSWORD_REQUIRED">Password field is required</span>
@@ -45,19 +51,23 @@
               <span> The password should be at least 6 charactes long </span>
             </div>
           </div>
+
         </md-input-container>
 
         <md-input-container class="md-block" md-no-float>
-          <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm"
-            placeholder="Password (Confirm)" translate translate-attr-placeholder="REGISTER.PASSWORD_CONFIRM" required>
+          <label>Password (Confirm)</label>
+          <input type="password" name="passwordConfirm" ng-model="vm.form.passwordConfirm" translate required>
+
           <div ng-messages>
             {{ vm.notSamePass }}
           </div>
+
           <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.PASSWORD_CONFIRM_REQUIRED">Password (Confirm) field is required</span>
             </div>
           </div>
+
         </md-input-container>
 
         <div class="terms" layout="row" layout-align="center center">
