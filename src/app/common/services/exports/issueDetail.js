@@ -31,49 +31,66 @@
       doc.setFillColor(33, 150, 243);
       doc.roundedRect(
         188, // x position
-        200, // y position | bigger is lower on page
+        100, // y position | bigger is lower on page
         224, // x length
         18, // y height
         7, 7, // rounded corners
         'F'); // F filled | FD filled with borders
 
+      doc.ellipse(580, 109, 2, 2, 'F');
+      doc.ellipse(570, 109, 2, 2, 'F');
+      doc.ellipse(560, 109, 2, 2, 'F');
+      doc.ellipse(550, 109, 2, 2, 'F');
+      doc.ellipse(540, 109, 2, 2, 'F');
+      doc.ellipse(530, 109, 2, 2, 'F');
+      doc.ellipse(520, 109, 2, 2, 'F');
+      doc.ellipse(510, 109, 2, 2, 'F');
+      doc.ellipse(500, 109, 2, 2, 'F');
+      doc.ellipse(490, 109, 2, 2, 'F');
+      doc.ellipse(480, 109, 2, 2, 'F');
+      doc.ellipse(470, 109, 2, 2, 'F');
+      doc.ellipse(460, 109, 2, 2, 'F');
+      doc.ellipse(450, 109, 2, 2, 'F');
+      doc.ellipse(440, 109, 2, 2, 'F');
+      doc.ellipse(430, 109, 2, 2, 'F');
+      doc.ellipse(420, 109, 2, 2, 'F');
 
+      doc.ellipse(180, 109, 2, 2, 'F');
+      doc.ellipse(170, 109, 2, 2, 'F');
+      doc.ellipse(160, 109, 2, 2, 'F');
+      doc.ellipse(150, 109, 2, 2, 'F');
+      doc.ellipse(140, 109, 2, 2, 'F');
+      doc.ellipse(130, 109, 2, 2, 'F');
+      doc.ellipse(120, 109, 2, 2, 'F');
+      doc.ellipse(110, 109, 2, 2, 'F');
+      doc.ellipse(100, 109, 2, 2, 'F');
+      doc.ellipse(90,  109, 2, 2, 'F');
+      doc.ellipse(80, 109, 2, 2, 'F');
+      doc.ellipse(70, 109, 2, 2, 'F');
+      doc.ellipse(60, 109, 2, 2, 'F');
+      doc.ellipse(50, 109, 2, 2, 'F');
+      doc.ellipse(40, 109, 2, 2, 'F');
+      doc.ellipse(30, 109, 2, 2, 'F');
+      doc.ellipse(20, 109, 2, 2, 'F');
 
-      doc.ellipse(580, 209, 2, 2, 'F');
-      doc.ellipse(570, 209, 2, 2, 'F');
-      doc.ellipse(560, 209, 2, 2, 'F');
-      doc.ellipse(550, 209, 2, 2, 'F');
-      doc.ellipse(540, 209, 2, 2, 'F');
-      doc.ellipse(530, 209, 2, 2, 'F');
-      doc.ellipse(520, 209, 2, 2, 'F');
-      doc.ellipse(510, 209, 2, 2, 'F');
-      doc.ellipse(500, 209, 2, 2, 'F');
-      doc.ellipse(490, 209, 2, 2, 'F');
-      doc.ellipse(480, 209, 2, 2, 'F');
-      doc.ellipse(470, 209, 2, 2, 'F');
-      doc.ellipse(460, 209, 2, 2, 'F');
-      doc.ellipse(450, 209, 2, 2, 'F');
-      doc.ellipse(440, 209, 2, 2, 'F');
-      doc.ellipse(430, 209, 2, 2, 'F');
-      doc.ellipse(420, 209, 2, 2, 'F');
+      var descriptionLength = 78;
+      var descLeftofPoint = 0;
+      doc.text(260, 112, "Description " + data.description.length);
 
-      doc.ellipse(180, 209, 2, 2, 'F');
-      doc.ellipse(170, 209, 2, 2, 'F');
-      doc.ellipse(160, 209, 2, 2, 'F');
-      doc.ellipse(150, 209, 2, 2, 'F');
-      doc.ellipse(140, 209, 2, 2, 'F');
-      doc.ellipse(130, 209, 2, 2, 'F');
-      doc.ellipse(120, 209, 2, 2, 'F');
-      doc.ellipse(110, 209, 2, 2, 'F');
-      doc.ellipse(100, 209, 2, 2, 'F');
-      doc.ellipse(90, 209, 2, 2, 'F');
-      doc.ellipse(80, 209, 2, 2, 'F');
-      doc.ellipse(70, 209, 2, 2, 'F');
-      doc.ellipse(60, 209, 2, 2, 'F');
-      doc.ellipse(50, 209, 2, 2, 'F');
-      doc.ellipse(40, 209, 2, 2, 'F');
-      doc.ellipse(30, 209, 2, 2, 'F');
-      doc.ellipse(20, 209, 2, 2, 'F');
+      if (data.description.length > descriptionLength) {
+        var numTimes = Math.floor(data.description.length / descriptionLength);
+
+        for (var j = 0; j < numTimes; ++j) {
+          var txt = "";
+
+          doc.text(20, 130 + j * 12 + descLeftofPoint, txt + data.description.substr(j * (descriptionLength), descriptionLength));
+        }
+
+        descLeftofPoint = numTimes * 12;
+
+      } else {
+        doc.text(20, 130 + descLeftofPoint, "Text: " + data.description);
+      }
 
 
       // if due date exists
@@ -84,11 +101,14 @@
 
       var commentLength = 70;
       var leftofPoint = 0;
+
+      // for loop to grab all comments
       for (var i = 0; i < data.comments.length; ++i) {
         var comment = data.comments[i];
 
         doc.text(40, 310 + i * 36 + leftofPoint, "Author: " + comment.author);
 
+        // if statement to determine if long
         if (comment.commentText.length > commentLength) {
           var numTimes = Math.floor(comment.commentText.length / commentLength);
 
