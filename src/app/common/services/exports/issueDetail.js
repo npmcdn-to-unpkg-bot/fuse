@@ -75,7 +75,7 @@
 
       var descriptionLength = 78;
       var descLeftofPoint = 0;
-      doc.text(260, 112, "Description " + data.description.length);
+      doc.text(260, 112, "Description");
 
       if (data.description.length > descriptionLength) {
         var numTimes = Math.floor(data.description.length / descriptionLength);
