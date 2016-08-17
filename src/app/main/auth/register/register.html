@@ -13,6 +13,9 @@
           <input name="username" ng-model="vm.form.username" required>
 
           <div ng-messages="registerForm.username.$error" role="alert">
+            <div ng-messages>
+              {{ vm.userExists }}
+            </div>
             <div ng-message="required">
               <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username is required</span>
             </div>

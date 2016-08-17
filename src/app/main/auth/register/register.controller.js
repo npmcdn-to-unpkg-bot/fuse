@@ -34,25 +34,33 @@
         vm.doRegister = function() {
 
           vm.notSamePass = "";
-          if(vm.form.passwordConfirm !== vm.form.password) {
+          vm.userExists = "";
+          vm.emailExists = "";
+
+          if (vm.form.passwordConfirm !== vm.form.password) {
             vm.notSamePass = "The passwords don't match";
             return;
           }
 
-            authentication
-                .register(vm.credentials)
-                .error(function(error) {
+          authentication
+            .register(vm.credentials)
+            .error(function(error) {
 
-                    if(error.err.indexOf("email") != -1) {
-                      vm.emailExists = "This email already exists";
-                    }
-                })
-                .then(function() {
-                    console.log("success register: " + authentication.currentUser().name);
-                    $location.path('/auth/login')
-                });
+              console.log(error);
+
+              if (error.err.indexOf("name_1") != -1) {
+                vm.userExists = "This username already exists";
+              }
+
+              if (error.err.indexOf("email") != -1) {
+                vm.emailExists = "This email already exists";
+              }
+            })
+            .then(function() {
+              console.log("success register: " + authentication.currentUser().name);
+              $location.path('/auth/login')
+            });
         };
-
         //////////
     }
 })();
