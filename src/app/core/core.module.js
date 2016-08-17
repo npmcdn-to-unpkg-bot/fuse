@@ -31,6 +31,7 @@
                 'mdPickers',
                 'google.places',
                 'stripe',
-                'credit-cards'
+                'credit-cards',
+                'ngIdle'
             ]);
 })();

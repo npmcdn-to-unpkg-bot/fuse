@@ -8,9 +8,11 @@
 
     /** @ngInject */
     function DashboardProjectController($scope, $interval, $mdSidenav, $mdToast, DashboardData,
-                        $mdDialog, $document, apilaData, authentication, $window)
+                        $mdDialog, $document, apilaData, authentication, $window, Idle)
     {
         var vm = this;
+
+        Idle.watch();
 
         vm.username = authentication.currentUser().name;
         vm.userid = authentication.currentUser().id;

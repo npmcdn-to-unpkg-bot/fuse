@@ -10,11 +10,9 @@
     function routeRun($rootScope, $location, authentication) {
 
       //urls we can't visit while we're not logged in
-      var restrictedUrls = ['app.residents', 'app.appointments', 'app.issues.boards.board'];
+      var restrictedUrls = ['app.residents', 'app.appointments', 'app.issues.boards.board', 'app.dashboard'];
 
       $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-
-          console.log(toState);
 
           //if we go to login and we are already logged in, switch to appointments
           if(toState.name === "app.pages_auth_login" && authentication.isLoggedIn()) {

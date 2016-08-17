@@ -56,26 +56,26 @@
             return userImage;
           }
 
-        }
+        };
 
         var setUserImage = function(image) {
           userImage = image;
-        }
+        };
 
-        register = function(user) {
+        var register = function(user) {
             return $http.post(apiUrl + '/api/register', user).success(function(data) {
                 saveToken(data.token);
             });
         };
 
-        login = function(user) {
+        var login = function(user) {
             return $http.post(apiUrl + '/api/login', user).success(function(data) {
                 saveToken(data.token);
 
             });
         };
 
-        logout = function() {
+        var logout = function() {
             $window.localStorage.removeItem('apila-token');
         };
 
@@ -86,7 +86,7 @@
             userImage = response;
           })
           .error(function(response) {
-            console.log("Unable to load user image")
+            console.log("Unable to load user image");
           });
         }
 
