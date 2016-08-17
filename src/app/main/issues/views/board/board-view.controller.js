@@ -19,6 +19,7 @@
         vm.board.cards = [];
 
         var username = authentication.currentUser().name;
+        var userid = authentication.currentUser().id;
 
         var listCopy = null;
 
@@ -63,7 +64,7 @@
         }
 
         function issuesCount(id) {
-          apilaData.openIssuesCount(username, id)
+          apilaData.openIssuesCount(userid, id)
             .success(function(count) {
               msNavigationService.saveItem('fuse.issues', {
                 badge: {
@@ -205,8 +206,9 @@
           //add our first list of issues for our current user
           apilaData.listIssueByUsername(username, status, id)
               .success(function(issues) {
+
                 //add card to first list
-                var currUserIssues = _.filter(issues, {"responsibleParty" : username})
+                var currUserIssues = _.filter(issues, {"responsibleParty" : userid});
 
                 vm.board.labels = vm.board.labels.concat(_.flatten(_.map(issues, "labels")));
 
@@ -235,6 +237,7 @@
                           }
                         });
                         if(inList === false) {
+                          console.log(v.name);
                           var currList = {
                             id: msUtils.guidGenerator(),
                             name: v.name,
@@ -242,6 +245,7 @@
                           };
 
                           if(currList.name !== username) {
+                              console.log(currList);
                               vm.board.lists.push(currList);
                             }
                         }
@@ -266,9 +270,11 @@
 
                       angular.forEach(issues, function(v, k) {
 
+                        console.log(v._id.name);
+
                         var currList = {
                           id: msUtils.guidGenerator(),
-                          name: v._id,
+                          name: v._id.name,
                           idCards: []
                         };
 
@@ -298,6 +304,7 @@
                               }
 
                             });
+                            console.log(currList);
                               vm.board.lists.push(currList);
                           }
                           });

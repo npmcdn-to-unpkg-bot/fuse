@@ -31,6 +31,7 @@
         vm.newCheckListTitle = "Checklist";
 
         vm.username = authentication.currentUser().name;
+        var userid = authentication.currentUser().id;
 
         vm.now = new Date();
 
@@ -268,7 +269,7 @@
 
                   vm.username = authentication.currentUser().name;
 
-                  apilaData.openIssuesCount(vm.username)
+                  apilaData.openIssuesCount(userid, vm.myCommunity._id)
                     .success(function(count) {
                       msNavigationService.saveItem('fuse.issues', {
                         badge: {

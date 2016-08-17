@@ -21,10 +21,11 @@
     var appointments = null;
 
     var username = authentication.currentUser().name;
+    var userid = authentication.currentUser().id;
 
 
     function openIssuesCount(id) {
-      apilaData.openIssuesCount(username, id)
+      apilaData.openIssuesCount(userid, id)
         .success(function(count) {
           msNavigationService.saveItem('fuse.issues', {
             badge: {
