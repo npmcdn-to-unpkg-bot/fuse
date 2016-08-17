@@ -7,19 +7,26 @@
         .controller('IdleController', IdleController);
 
     /** @ngInject */
-    function IdleController($mdDialog, $state)
+    function IdleController($mdDialog, $state, Idle, $scope, authentication)
     {
       //Data
       var vm = this;
 
-      //Functions
-      vm.login = login;
+      //When the user has gone idle
+      $scope.$on('IdleTimeout', function() {
 
+        if(authentication.isLoggedIn()) {
+          authentication.logout();
 
-      function login() {
-        $mdDialog.hide();
-        $state.go('app.pages_auth_login');
-      }
+          $state.go('app.pages_auth_login');
+
+          $mdDialog.hide();
+        }
+       });
+
+       $scope.$on('IdleEnd', function() {
+         $mdDialog.hide();
+       });
 
     }
 

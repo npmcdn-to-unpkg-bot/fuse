@@ -7,7 +7,7 @@
         .controller('IndexController', IndexController);
 
     /** @ngInject */
-    function IndexController(fuseTheming, Idle, $scope, $mdDialog, authentication)
+    function IndexController(fuseTheming, Idle, $scope, $mdDialog, authentication, $state)
     {
         var vm = this;
 
@@ -22,11 +22,9 @@
             Idle.watch();
         }
 
-        //When the user has gone idle
-        $scope.$on('IdleTimeout', function() {
+        $scope.$on('IdleStart', function() {
 
           if(authentication.isLoggedIn()) {
-            authentication.logout();
 
             $mdDialog.show({
                 controller         : 'IdleController',
@@ -35,7 +33,6 @@
                 clickOutsideToClose: false
             });
           }
-
          });
 
     }

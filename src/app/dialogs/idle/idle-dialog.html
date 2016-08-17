@@ -15,17 +15,21 @@
 
           <md-divider></md-divider>
             <p>
-              You have been inactive for an whole hour so for safety reasons you were logged out.
-              Don't worry you can easily log in again by clicking the button bellow.
+              You have been inactive for 3 hours so for safety reasons you'll be logged out
+
             </p>
+
+            <div idle-countdown="countdown" ng-init="countdown=300" class="modal-body">
+             <p>You'll be logged out in {{countdown}} second(s).</p>
+            </div>
 
         </md-dialog-content>
 
         <md-dialog-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <md-button ng-click="vm.login()" class="send-button md-accent md-raised" aria-label="Add">
+                <!-- <md-button ng-click="vm.login()" class="send-button md-accent md-raised" aria-label="Add">
                    LOGIN
-                </md-button>
+                </md-button> -->
 
             </div>
 
