@@ -15,12 +15,14 @@
 
         // Data
         vm.username = authentication.currentUser().name;
+        vm.userid = authentication.currentUser().id;
         vm.hasCommunity = false;
 
         // Methods
         vm.sendRequest = sendRequest;
         vm.uploadFiles = uploadFiles;
         vm.openCommunityModal = openCommunityModal;
+        vm.changeUsername = changeUsername;
 
         //Autofield selectbox setup
         vm.residentList = [];
@@ -31,7 +33,7 @@
 
         console.log(vm.userImage);
 
-        apilaData.getUser(vm.username)
+        apilaData.getUser(vm.userid)
         .success(function(response) {
           vm.currUser = response;
 
@@ -65,7 +67,7 @@
               return ret;
           }
 
-        apilaData.userCommunity(vm.username)
+        apilaData.userCommunity(vm.userid)
           .success(function(d) {
             vm.myCommunity = d;
             vm.hasCommunity = true;
@@ -102,6 +104,21 @@
           });
         }
 
+        function changeUsername() {
+
+          apilaData.changeUsername(vm.userid, vm.form)
+          .success(function(response) {
+            console.log(response);
+            vm.userExists = "";
+            authentication.changeUsername(vm.username);
+          })
+          .error(function(response) {
+            console.log(response);
+            vm.userExists = response.message;
+          });
+        }
+
+
         function openCommunityModal(ev) {
           $mdDialog.show({
               controller         : 'CreateCommunityController',
@@ -115,7 +132,7 @@
 
         function uploadFiles(file, errFiles) {
 
-          var uploadUrl = apilaData.getApiUrl() + '/api/users/'+ vm.username + '/upload';
+          var uploadUrl = apilaData.getApiUrl() + '/api/users/'+ vm.userid + '/upload';
 
           console.log("Fik");
 

@@ -29,6 +29,8 @@
 
     vm.selectedMailShowDetails = false;
 
+    vm.userid = authentication.currentUser().id;
+
     vm.categoryList = [
       "Administrative",
       "Allergy",
@@ -63,7 +65,7 @@
     }
 
 
-    apilaData.userCommunity(authentication.currentUser().name)
+    apilaData.userCommunity(vm.userid)
       .success(function(d) {
         vm.community = d;
         residentList(vm.community._id);

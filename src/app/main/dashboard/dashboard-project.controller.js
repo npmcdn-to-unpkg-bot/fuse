@@ -58,7 +58,7 @@
         vm.pendingMemberTable = [];
         var communityMemberTable = [];
 
-        apilaData.userCommunity(vm.username)
+        apilaData.userCommunity(vm.userid)
         .success(function(d) {
 
           vm.myCommunity = d;

@@ -9,6 +9,16 @@
             <div class="content">
 
               <md-input-container class="md-block">
+                <h4>New Username</h4>
+                <input ng-model="vm.form.username" type="text">
+                <div ng-messages>
+                  {{ vm.userExists }}
+                </div>
+                <md-button ng-click="vm.changeUsername()">Save</md-button>
+              </md-input-container>
+
+
+              <md-input-container class="md-block">
                 <h4>Profile image</h4>
                 <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment" accept="image/*" ngf-max-height="1000" ngf-max-size="3MB">
 

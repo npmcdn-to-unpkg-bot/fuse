@@ -10,6 +10,8 @@
 
        var apiUrl="http://localhost:3300";
 
+       var changedUsername = "";
+
        var userImage = "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
 
         // create a saveToken method to read a value from localStorage
@@ -21,6 +23,22 @@
         var getToken = function() {
             return $window.localStorage['apila-token'];
         };
+
+        // var token = getToken();
+        // var payload = JSON.parse($window.atob(token.split('.')[1]));
+        //
+        // console.log("Payload: ");
+        // console.log(payload);
+        //
+        // var encoded = $window.btoa(JSON.stringify(payload));
+        //
+        // var parts = token.split('.');
+        // parts[1] = encoded;
+        //
+        // var newToken = parts.join('.');
+        //
+        // console.log(token);
+        // console.log(newToken);
 
         var isLoggedIn = function() {
             var token = getToken();
@@ -41,12 +59,35 @@
 
                 console.log(payload);
 
+                if(changedUsername !== "") {
+                  payload.name = changeUsername;
+                }
+
                 return {
                     email: payload.email,
                     name: payload.name,
                     id: payload._id
                 };
             }
+        };
+
+        var changeUsername = function(username) {
+          var token = getToken();
+          var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+          payload.name = username;
+
+          changedUsername = username;
+
+          var encoded = $window.btoa(JSON.stringify(payload));
+
+          var parts = token.split('.');
+          parts[1] = encoded;
+
+          var newToken = parts.join('.');
+
+          //$window.localStorage['apila-token'] = newToken;
+
         };
 
         var getUserImage = function() {
@@ -81,7 +122,7 @@
 
 
         if (isLoggedIn()) {
-          $http.get(apiUrl + '/api/users/' + currentUser().name + "/image")
+          $http.get(apiUrl + '/api/users/' + currentUser().id + "/image")
           .success(function(response) {
             userImage = response;
           })
@@ -100,7 +141,8 @@
             login: login,
             logout: logout,
             getUserImage: getUserImage,
-            setUserImage: setUserImage
+            setUserImage: setUserImage,
+            changeUsername : changeUsername
         };
     }
 

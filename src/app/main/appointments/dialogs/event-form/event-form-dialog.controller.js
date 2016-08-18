@@ -12,7 +12,7 @@
     vm.dialogData = dialogData;
 
   //  vm.calendarEvent.date = dialogData.start;
-
+    var userid = authentication.currentUser().id;
 
     // Methods
     vm.saveEvent = saveEvent;
@@ -25,7 +25,7 @@
 
     init();
 
-    apilaData.userCommunity(authentication.currentUser().name)
+    apilaData.userCommunity(userid)
       .success(function(d) {
         vm.community = d;
         residentsList(vm.community._id);

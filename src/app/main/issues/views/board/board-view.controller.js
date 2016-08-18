@@ -23,7 +23,7 @@
 
         var listCopy = null;
 
-        apilaData.userCommunity(username)
+        apilaData.userCommunity(userid)
         .success(function(d) {
           vm.myCommunity = d;
 

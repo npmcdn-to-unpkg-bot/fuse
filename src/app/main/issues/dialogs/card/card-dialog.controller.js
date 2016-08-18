@@ -35,7 +35,7 @@
 
         vm.now = new Date();
 
-        apilaData.userCommunity(vm.username)
+        apilaData.userCommunity(userid)
         .success(function(d) {
 
           vm.myCommunity = d;

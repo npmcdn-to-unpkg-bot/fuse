@@ -15,16 +15,18 @@
         vm.closeDialog = closeDialog;
         vm.addResident = addResident;
 
-        //////////
+        // Data
         vm.residentList = resList;
         vm.form = {};
         vm.form.movedFrom = "Denver, CO, USA";
+
+        var userid = authentication.currentUser().id;
 
         vm.autocompleteOptions = {
           componentRestrictions: { country: 'us' }
         }
 
-        apilaData.userCommunity(authentication.currentUser().name)
+        apilaData.userCommunity(userid)
          .success(function(d) {
            vm.community = d;
         });

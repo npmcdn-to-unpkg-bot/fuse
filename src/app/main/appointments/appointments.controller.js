@@ -38,7 +38,7 @@
     }
 
 
-    apilaData.userCommunity(username)
+    apilaData.userCommunity(userid)
       .success(function(d) {
         vm.community = d;
         loadAppoitnments(vm.community._id);

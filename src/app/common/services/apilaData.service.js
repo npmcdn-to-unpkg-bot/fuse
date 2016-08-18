@@ -195,18 +195,18 @@
 
         var usersList = function() {
           return $http.get(apiUrl + '/api/users', getAuth());
-        }
+        };
 
-        var changeUsername = function(username, data) {
-          return $http.put(apiUrl + "/api/users/change/" + username, data, getAuth());
-        }
+        var changeUsername = function(userid, data) {
+          return $http.put(apiUrl + "/api/users/change/" + userid, data, getAuth());
+        };
 
         var usersInCommunity = function(communityId) {
           return $http.get(apiUrl + '/api/users/list/' + communityId, getAuth());
         }
 
-        var userCommunity = function(username) {
-          return $http.get(apiUrl + '/api/users/community/' + username, getAuth());
+        var userCommunity = function(userid) {
+          return $http.get(apiUrl + '/api/users/community/' + userid, getAuth());
         }
 
         var forgotPassword = function(email) {
@@ -217,12 +217,8 @@
           return $http.post(apiUrl + '/api/users/reset/' + token, data);
         }
 
-        var userImageUpload = function(username, data) {
-          return $http.put(apiUrl + '/api/users/' + username + "/upload", data, getAuth());
-        }
-
-        var getUser = function(username) {
-          return $http.get(apiUrl + '/api/users/getuser/' + username, getAuth());
+        var getUser = function(userid) {
+          return $http.get(apiUrl + '/api/users/getuser/' + userid, getAuth());
         }
 
         var saveCreditCard = function(userid, data) {
@@ -245,39 +241,39 @@
 
         var addCommunity = function(data) {
           return $http.post(apiUrl + '/api/communities/new', data);
-        }
+        };
 
         var communityList = function(data) {
           return $http.get(apiUrl + '/api/communities/', getAuth());
-        }
+        };
 
         var acceptMember = function(data, communityid) {
           return $http.put(apiUrl + '/api/communities/accept/' + communityid, data, getAuth());
-        }
+        };
 
         var addPendingMember = function(data, communityid) {
           return $http.put(apiUrl + '/api/communities/pending/' + communityid, data, getAuth());
-        }
+        };
 
         var declineMember = function(data, communityid) {
           return $http.put(apiUrl + '/api/communities/decline/' + communityid, data, getAuth());
-        }
+        };
 
         var addRole = function(communityid, userid, data) {
           return $http.post(apiUrl + '/api/communites/' + communityid + "/role/" + userid, data, getAuth());
-        }
+        };
 
         var removeMember = function(communityid, userid) {
           return $http.delete(apiUrl + '/api/communites/' + communityid + "/user/" + userid, getAuth());
-        }
+        };
 
         var hasCanceledCommunity = function(userid) {
           return $http.get(apiUrl + '/api/communites/canceled/' + userid, getAuth());
-        }
+        };
 
         var restoreCommunity = function(userid, communityid) {
           return $http.post(apiUrl + '/api/communites/' + communityid + '/restore/' + userid, {}, getAuth());
-        }
+        };
 
         return {
             //appointments
@@ -332,7 +328,6 @@
             userCommunity : userCommunity,
             forgotPassword : forgotPassword,
             resetPassword : resetPassword,
-            userImageUpload : userImageUpload,
             getUser : getUser,
             saveCreditCard : saveCreditCard,
             getCustomer : getCustomer,
