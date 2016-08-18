@@ -349,7 +349,7 @@
              .cancel('Cancel');
 
              $mdDialog.show(confirm).then(function() {
-               apilaData.removeMember(vm.myCommunity._id, userid, vm.username)
+               apilaData.removeMember(vm.myCommunity._id, userid)
                .success(function(response) {
                  console.log(response);
                  removeMemberFromTable(userid);

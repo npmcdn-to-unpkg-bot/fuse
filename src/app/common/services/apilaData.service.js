@@ -267,8 +267,8 @@
           return $http.post(apiUrl + '/api/communites/' + communityid + "/role/" + userid, data, getAuth());
         }
 
-        var removeMember = function(communityid, userid, submitby) {
-          return $http.delete(apiUrl + '/api/communites/' + communityid + "/user/" + userid + "/submitby/" + submitby, getAuth());
+        var removeMember = function(communityid, userid) {
+          return $http.delete(apiUrl + '/api/communites/' + communityid + "/user/" + userid, getAuth());
         }
 
         var hasCanceledCommunity = function(userid) {
