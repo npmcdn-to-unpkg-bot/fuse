@@ -7,7 +7,7 @@
         .controller('ProfileController', ProfileController);
 
     /** @ngInject */
-    function ProfileController(authentication, apilaData, Upload, $mdToast, $timeout, $mdDialog, $document)
+    function ProfileController(authentication, apilaData, Upload, $mdToast, $timeout, $mdDialog, $document, $window)
     {
         var vm = this;
 
@@ -110,7 +110,8 @@
           .success(function(response) {
             console.log(response);
             vm.userExists = "";
-            authentication.changeUsername(vm.username);
+            authentication.changeUsername(vm.form.username);
+            $window.location.reload();
           })
           .error(function(response) {
             console.log(response);

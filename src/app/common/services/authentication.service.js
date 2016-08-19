@@ -17,28 +17,15 @@
         // create a saveToken method to read a value from localStorage
         var saveToken = function(token) {
             $window.localStorage['apila-token'] = token;
+            var name = JSON.parse($window.atob(token.split('.')[1])).name;
+            console.log("COOKIE: " + name);
+            $window.localStorage['apila-username'] = $window.btoa(name);
         };
 
         // create a getToken method to read a value from localStorage
         var getToken = function() {
             return $window.localStorage['apila-token'];
         };
-
-        // var token = getToken();
-        // var payload = JSON.parse($window.atob(token.split('.')[1]));
-        //
-        // console.log("Payload: ");
-        // console.log(payload);
-        //
-        // var encoded = $window.btoa(JSON.stringify(payload));
-        //
-        // var parts = token.split('.');
-        // parts[1] = encoded;
-        //
-        // var newToken = parts.join('.');
-        //
-        // console.log(token);
-        // console.log(newToken);
 
         var isLoggedIn = function() {
             var token = getToken();
@@ -57,36 +44,23 @@
                 var token = getToken();
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-                console.log(payload);
+                var encodedName = $window.localStorage['apila-username'];
 
-                if(changedUsername !== "") {
-                  payload.name = changeUsername;
-                }
+                var name = $window.atob(encodedName);
+
+                console.log("povukao name: " + name);
 
                 return {
                     email: payload.email,
-                    name: payload.name,
+                    name: name,
                     id: payload._id
                 };
             }
         };
 
         var changeUsername = function(username) {
-          var token = getToken();
-          var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-          payload.name = username;
-
-          changedUsername = username;
-
-          var encoded = $window.btoa(JSON.stringify(payload));
-
-          var parts = token.split('.');
-          parts[1] = encoded;
-
-          var newToken = parts.join('.');
-
-          //$window.localStorage['apila-token'] = newToken;
+          console.log(username);
+          $window.localStorage['apila-username'] = $window.btoa(username);
 
         };
 
@@ -118,6 +92,7 @@
 
         var logout = function() {
             $window.localStorage.removeItem('apila-token');
+            $window.localStorage.removeItem('apila-username');
         };
 
 
