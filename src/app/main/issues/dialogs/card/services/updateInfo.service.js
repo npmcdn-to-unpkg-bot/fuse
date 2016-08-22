@@ -66,8 +66,8 @@
       */
       function formatUpdateArray(updateInfo, updatedBy, updateDate) {
         _.forEach(updateInfo, function(v, k) {
-          v.infoFormated = updatedBy + " changed " + v.field
-                           + " from " + v.old + " to " + v.new;
+          v.infoFormated = updatedBy + " changed " + v.field +
+                            " from " + v.old + " to " + v.new;
 
          //formating for members
          if(v.field === "idMembers") {

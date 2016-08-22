@@ -7,11 +7,12 @@
 
   /** @ngInject */
   function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-    $mdSidenav, $mdToast, apilaData, authentication, exportCarePlan, uiGmapGoogleMapApi) {
+    $mdSidenav, $mdToast, apilaData, authentication, exportCarePlan, uiGmapGoogleMapApi, ResidentUpdateInfoService) {
     var vm = this;
 
     // Data
     vm.checked = [];
+    vm.updateInfoList = [];
     vm.colors = ['blue-bg', 'blue-grey-bg', 'orange-bg', 'pink-bg', 'purple-bg'];
     vm.selectedAccount = 'creapond';
     vm.selectedResident = null;
@@ -59,10 +60,7 @@
     vm.exportCarePlan = exportResident;
 
     vm.selectedCategory = "Administrative";
-
-    vm.switchCategory = function(category) {
-      vm.selectedCategory = category;
-    }
+    vm.switchCategory = function(category) {vm.selectedCategory = category;};
 
 
     apilaData.userCommunity(vm.userid)
@@ -111,6 +109,9 @@
 
       drawGraphs(vm.selectedResident);
 
+      vm.updateInfoList = ResidentUpdateInfoService.formatUpdateArray(vm.selectedResident.updateInfo);
+
+      console.log(vm.updateInfoList);
 
       if(vm.selectedResident.movedFrom) {
         vm.latitude = vm.selectedResident.movedFrom.latitude;
@@ -366,6 +367,8 @@
 
       var templateUrl = 'app/main/residents/dialogs/update/update-' +
         cat + '.html';
+
+      vm.updateInfoList = ResidentUpdateInfoService.formatUpdateArray(vm.selectedResident.updateInfo);
 
       $mdDialog.show({
         controller: 'UpdateController',
