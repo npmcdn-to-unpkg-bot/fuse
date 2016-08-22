@@ -39,7 +39,7 @@
         $locationProvider.html5Mode(true);
 
        // $urlRouterProvider.otherwise('/sample');
-       $urlRouterProvider.when('/', '/homepage');
+      // $urlRouterProvider.when('/', '/homepage');
        $urlRouterProvider.otherwise('/errors/error-404');
 
         /**

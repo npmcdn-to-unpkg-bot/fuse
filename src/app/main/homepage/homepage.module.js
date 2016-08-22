@@ -11,7 +11,7 @@
     {
         // State
         $stateProvider.state('app.homepage', {
-            url      : '/homepage',
+            url      : '/',
             views    : {
                 'main@'                        : {
                     templateUrl: 'app/core/layouts/content-only.html',

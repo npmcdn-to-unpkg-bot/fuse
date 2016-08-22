@@ -65,7 +65,7 @@
                   return d.display.toLowerCase().indexOf(text) > -1;
               });
               return ret;
-          }
+          };
 
         apilaData.userCommunity(vm.userid)
           .success(function(d) {
@@ -134,8 +134,6 @@
         function uploadFiles(file, errFiles) {
 
           var uploadUrl = apilaData.getApiUrl() + '/api/users/'+ vm.userid + '/upload';
-
-          console.log("Fik");
 
           if (file) {
               file.upload = Upload.upload({

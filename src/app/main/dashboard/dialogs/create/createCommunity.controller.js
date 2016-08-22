@@ -7,7 +7,7 @@
         .controller('CreateCommunityController', CreateCommunityController);
 
     /** @ngInject */
-    function CreateCommunityController($mdDialog, apilaData, authentication, $mdToast) {
+    function CreateCommunityController($mdDialog, apilaData, authentication, $mdToast, $window) {
 
       var vm = this;
 
@@ -87,6 +87,9 @@
                       .position("top right")
                       .hideDelay(2200)
                   );
+
+                  $window.location.reload();
+
                 })
                 .error(function(d) {
                   console.log("Error while creating community");
