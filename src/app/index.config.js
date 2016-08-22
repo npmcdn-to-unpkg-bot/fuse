@@ -16,7 +16,7 @@
         // stripe published key (test version for now)
         Stripe.setPublishableKey('pk_test_PDxs7SyxPARytJkKUeS6NOS8');
 
-        IdleProvider.idle(HOUR);
+        IdleProvider.idle(3*HOUR);
         IdleProvider.timeout(FIVE_MIN);
         KeepaliveProvider.interval(5);
     }

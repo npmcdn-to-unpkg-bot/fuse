@@ -18,22 +18,21 @@
 
             vm.doLogin();
 
-        }
+        };
 
         vm.doLogin = function() {
             authentication
                 .login(vm.form)
                 .error(function(err) {
-                  console.log(err);
                     vm.usernameError = "";
                     vm.passwordError = "";
 
                     if(err.message === "Incorrect username.") {
-                      vm.usernamError = "Incorrect Email";
+                      vm.usernameError = "Incorrect Email";
                       vm.passwordError = "";
                     } else {
                       vm.passwordError = "Incorrect Password for this Email";
-                      vm.usernamError = "";
+                      vm.usernameError = "";
                     }
                 })
                 .then(function() {

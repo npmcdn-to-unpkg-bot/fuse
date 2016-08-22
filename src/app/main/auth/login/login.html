@@ -12,7 +12,7 @@
           <input type="email" name="email" ng-model="vm.form.email" placeholder="Email" translate translate-attr-placeholder="LOGIN.EMAIL" ng-pattern="/^.+@.+\..+$/" required>
 
           <div ng-messages>
-            {{ vm.usernamError }}
+            {{ vm.usernameError }}
           </div>
           <div ng-messages="loginForm.email.$error" role="alert" multiple>
             <div ng-message="required">

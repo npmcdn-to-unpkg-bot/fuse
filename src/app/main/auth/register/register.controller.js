@@ -20,16 +20,13 @@
 
         // Methods
         vm.register = function() {
-            console.log("In register");
-
-            console.log(vm.form);
 
             vm.credentials.name = vm.form.username;
             vm.credentials.email = vm.form.email;
             vm.credentials.password = vm.form.password;
 
             vm.doRegister();
-        }
+        };
 
         vm.doRegister = function() {
 
@@ -46,19 +43,17 @@
             .register(vm.credentials)
             .error(function(error) {
 
-              console.log(error);
-
-              if (error.err.indexOf("name_1") != -1) {
+              if (error.err.indexOf("name_1") !== -1) {
                 vm.userExists = "This username already exists";
               }
 
-              if (error.err.indexOf("email") != -1) {
+              if (error.err.indexOf("email") !== -1) {
                 vm.emailExists = "This email already exists";
               }
             })
             .then(function() {
               console.log("success register: " + authentication.currentUser().name);
-              $location.path('/auth/login')
+              $location.path('/auth/login');
             });
         };
         //////////
