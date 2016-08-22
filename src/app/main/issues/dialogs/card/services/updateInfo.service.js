@@ -110,7 +110,7 @@
            if(v.old === "") {
              v.infoFormated = updatedBy + " created a checklist item " + v.new ;
            } else {
-             v.infoFormated = updatedBy + " removed  a checklist item" + v.old ;
+             v.infoFormated = updatedBy + " removed a checklist item" + v.old ;
            }
          }
 
@@ -118,7 +118,7 @@
            if(v.old === "") {
              v.infoFormated = updatedBy + " completed a checklist item " + v.new ;
            } else {
-             v.infoFormated = updatedBy + " uncompleted  a checklist item" + v.old ;
+             v.infoFormated = updatedBy + " uncompleted a checklist item" + v.old ;
            }
          }
 
@@ -136,14 +136,14 @@
          }
 
          if(v.field === "checkitem_unchecked") {
-             v.infoFormated = updatedBy + " uncompleted a checklist item " + v.new;  
+             v.infoFormated = updatedBy + " uncompleted a checklist item " + v.new;
          }
 
          if(v.field === "comments") {
            if(v.old === "") {
              v.infoFormated = updatedBy + " added a comment " + v.new ;
            } else {
-             v.infoFormated = updatedBy + " removed  a comment" + v.old ;
+             v.infoFormated = updatedBy + " removed a comment" + v.old ;
            }
          }
 
@@ -151,7 +151,7 @@
            if(v.old === "") {
              v.infoFormated = updatedBy + " added a due date " + moment(+v.new).format('MMMM Do YYYY, h:mm:ss a') ;
            } else {
-             v.infoFormated = updatedBy + " removed  a due date " + moment(+v.old).format('MMMM Do YYYY, h:mm:ss a') ;
+             v.infoFormated = updatedBy + " removed a due date " + moment(+v.old).format('MMMM Do YYYY, h:mm:ss a') ;
            }
          }
 

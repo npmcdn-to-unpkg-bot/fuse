@@ -29,7 +29,7 @@
                     vm.passwordError = "";
 
                     if(err.message === "Incorrect username.") {
-                      vm.usernamError = "Incorrect username.";
+                      vm.usernamError = "Incorrect Email";
                       vm.passwordError = "";
                     } else {
                       vm.passwordError = "Incorrect Password for this Email";

@@ -89,7 +89,7 @@
         descLeftofPoint = numTimes * 12;
 
       } else {
-        doc.text(20, 130 + descLeftofPoint, "Text: " + data.description);
+        doc.text(20, 130 + descLeftofPoint, "" + data.description);
       }
 
 
