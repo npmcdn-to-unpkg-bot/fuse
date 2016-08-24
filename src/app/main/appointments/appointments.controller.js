@@ -18,6 +18,8 @@
 
     var appointList = [];
 
+    vm.events = [[]];
+
     var appointments = null;
 
     var username = authentication.currentUser().name;
@@ -104,7 +106,7 @@
       .error(function(response) {
 
       });
-    }
+    };
 
     var loadBirthdays = function(id) {
       apilaData.residentBirthday(id)
@@ -130,12 +132,7 @@
       .error(function(response) {
 
       });
-    }
-
-
-    vm.events = [
-      []
-    ];
+    };
 
     vm.calendarUiConfig = {
       calendar: {
@@ -199,11 +196,8 @@
           name = d.residentGoing.firstName + " " + d.residentGoing.lastName;
         }
 
-        console.log(d.date);
-        console.log(moment.utc(d.date).format("MM/DD hh:mm A"));
-
         arr.push(name);
-        arr.push(moment.utc(d.date).format("MM/DD hh:mm A"));
+        arr.push(moment.utc(d.start).format("MM/DD hh:mm A"));
         arr.push(d.reason);
         arr.push(d.locationName);
         arr.push(d.locationDoctor);
@@ -276,12 +270,12 @@
       }
 
       //if it's 12 am we need it to 00 for the ISO format thing
-      if(appointment.hours == 12 && appointment.isAm) {
+      if(appointment.hours === 12 && appointment.isAm) {
         appointment.hours = 0;
       }
 
       //if it's 12 pm it will be 24 but we need to set 12 in ISO format
-      if(appointment.hours == 24) {
+      if(appointment.hours === 24) {
         appointment.hours = 12;
       }
 
@@ -309,7 +303,7 @@
         appointmentComment: appointment.appointmentComment,
         residentGoing: appointment.residentGoing,
         stick: true,
-      }
+      };
 
       if(type === "add") {
         calEvent.id = appointment._id;
@@ -351,7 +345,7 @@
           for (var i = 0; i < vm.events[0].length; i++) {
 
             // Update
-            if (vm.events[0][i].appointId == response.calendarEvent.appointId) {
+            if (vm.events[0][i].appointId === response.calendarEvent.appointId) {
 
               vm.events[0][i] = updateAppointment(response.calendarEvent);
               break;
