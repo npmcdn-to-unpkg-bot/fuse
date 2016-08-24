@@ -7,7 +7,7 @@
         .controller('IndexController', IndexController);
 
     /** @ngInject */
-    function IndexController(fuseTheming, Idle, $scope, $mdDialog, authentication, $state)
+    function IndexController(fuseTheming, Idle, $scope, $mdDialog, authentication, $state, $window)
     {
         var vm = this;
 
@@ -21,6 +21,12 @@
         if(authentication.isLoggedIn()) {
             Idle.watch();
         }
+
+        $window.onbeforeunload = function() {
+
+          authentication.logout();
+          
+        };
 
         $scope.$on('IdleStart', function() {
 

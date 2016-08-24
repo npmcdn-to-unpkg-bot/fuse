@@ -7,7 +7,7 @@
         .controller('IdleController', IdleController);
 
     /** @ngInject */
-    function IdleController($mdDialog, $state, Idle, $scope, authentication)
+    function IdleController($mdDialog, $window, Idle, $scope, authentication)
     {
       //Data
       var vm = this;
@@ -18,7 +18,7 @@
         if(authentication.isLoggedIn()) {
           authentication.logout();
 
-          $state.go('app.pages_auth_login');
+          $window.location.reload();
 
           $mdDialog.hide();
         }
