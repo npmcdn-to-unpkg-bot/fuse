@@ -181,6 +181,10 @@
       return $http.get(apiUrl + '/api/residents/' + communityid + '/locations', getAuth());
     };
 
+    var removeListItem = function(residentid, data) {
+      return $http.put(apiUrl + '/api/residents/' + residentid + '/listitem', data, getAuth());
+    };
+
     /**************************************************************/
 
     /***************** USERS RESOURCES ***************/
@@ -308,6 +312,7 @@
       averageAge: averageAge,
       averageStayTime: averageStayTime,
       getLocations: getLocations,
+      removeListItem: removeListItem,
 
       //api url
       getApiUrl: getApiUrl,

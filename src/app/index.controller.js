@@ -22,11 +22,11 @@
             Idle.watch();
         }
 
-        $window.onbeforeunload = function() {
-
-          authentication.logout();
-          
-        };
+        // $window.onbeforeunload = function() {
+        //
+        //   authentication.logout();
+        //
+        // };
 
         $scope.$on('IdleStart', function() {
 

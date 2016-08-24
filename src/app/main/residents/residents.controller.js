@@ -58,6 +58,7 @@
     vm.toggleCheck = toggleCheck;
     vm.updateResident = updateResident;
     vm.exportCarePlan = exportResident;
+    vm.removeChip = removeChip;
 
     vm.selectedCategory = "Administrative";
     vm.switchCategory = function(category) {vm.selectedCategory = category;};
@@ -299,6 +300,23 @@
     function isChecked(mail) {
       return vm.checked.indexOf(mail) > -1;
     }
+
+    function removeChip(list, type) {
+
+      var data = {
+        "list" : list,
+        "type" : type
+      };
+
+      apilaData.removeListItem(vm.selectedResident._id, data)
+      .success(function(response) {
+        console.log(response);
+      })
+      .error(function(response) {
+        console.log(response);
+      });
+    }
+
 
     /**
      * Check all

@@ -14,15 +14,11 @@
 
         <!-- Add details content here -->
         <h4>Food Allergies:
-          <span ng-repeat="foodAllergy in vm.selectedResident.foodAllergies">
-            {{ foodAllergy }} <span ng-if="!$last">,</span>
-          </span>
+            <md-chips ng-model="vm.selectedResident.foodAllergies" readonly="false" md-on-remove="vm.removeChip(vm.selectedResident.foodAllergies, 'foodAllergies')" md-removable="true">
         </h4>
 
         <h4>Medication Allergies:
-          <span ng-repeat="medAllergy in vm.selectedResident.medicationAllergies">
-            {{ medAllergy }} <span ng-if="!$last">,</span>
-          </span>
+          <md-chips ng-model="vm.selectedResident.medicationAllergies" readonly="false" md-on-remove="vm.removeChip(vm.selectedResident.medicationAllergies, 'medicationAllergies')" md-removable="true">
         </h4>
 
         <h4>Notes: {{ vm.selectedResident.allergyNotes }} </h4>
