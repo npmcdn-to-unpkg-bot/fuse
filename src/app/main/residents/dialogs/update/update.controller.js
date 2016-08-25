@@ -5,7 +5,7 @@
     .controller('UpdateController', UpdateController);
 
   /** @ngInject */
-  function UpdateController($mdDialog, currAppointment, apilaData, authentication) {
+  function UpdateController($mdDialog, $mdConstant, currAppointment, apilaData, authentication) {
 
     var vm = this;
 
@@ -30,6 +30,8 @@
 
     vm.foodLikes = vm.copyResident.foodLikes;
     vm.foodDislikes = vm.copyResident.foodDislikes;
+
+    vm.seperators = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 
     vm.autocompleteOptions = {
       componentRestrictions: { country: 'us' }
