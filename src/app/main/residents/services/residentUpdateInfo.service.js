@@ -30,8 +30,6 @@
                             entry.updateField[0].new;
           }
 
-          console.log(entry.updateField[0].field);
-
           if(_.includes(arrayFields, entry.updateField[0].field)) {
             formatedEntry = entry.updateBy + " has added " + entry.updateField[0].new + " to " +
                             _.startCase(entry.updateField[0].field);

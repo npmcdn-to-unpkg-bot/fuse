@@ -5,12 +5,12 @@
     .controller('UpdateController', UpdateController);
 
   /** @ngInject */
-  function UpdateController($mdDialog, $mdConstant, currAppointment, apilaData, authentication) {
+  function UpdateController($mdDialog, $mdConstant, currResident, apilaData, authentication) {
 
     var vm = this;
 
     //filling in old data for the update
-    vm.form = currAppointment;
+    vm.form = currResident;
 
     vm.status = [];
     vm.status.push({active: false, title:"Alert"});
@@ -22,14 +22,14 @@
     vm.status.push({active: false, title:"Confused"});
     vm.status.push({active: false, title:"Uncooperative"});
 
+    vm.foodAllergies = currResident.foodAllergies;
+    vm.medicationAllergies = currResident.medicationAllergies;
+
+    vm.foodLikes = currResident.foodLikes;
+    vm.foodDislikes = currResident.foodDislikes;
+
     //needed unchanged values to compare for updateField
-    vm.copyResident = angular.copy(currAppointment);
-
-    vm.foodAllergies = vm.copyResident.foodAllergies;
-    vm.medicationAllergies = vm.copyResident.medicationAllergies;
-
-    vm.foodLikes = vm.copyResident.foodLikes;
-    vm.foodDislikes = vm.copyResident.foodDislikes;
+    vm.copyResident = angular.copy(currResident);
 
     vm.seperators = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 
@@ -37,10 +37,10 @@
       componentRestrictions: { country: 'us' }
     };
 
-    setSelectedStatuses(currAppointment.psychosocialStatus);
+    setSelectedStatuses(currResident.psychosocialStatus);
 
-    vm.form.birthDate = new Date(currAppointment.birthDate);
-    vm.form.admissionDate = new Date(currAppointment.admissionDate);
+    vm.form.birthDate = new Date(currResident.birthDate);
+    vm.form.admissionDate = new Date(currResident.admissionDate);
     vm.form.locationInfo = vm.form.movedFrom.name;
 
     //Functions
@@ -88,11 +88,10 @@
       vm.form.newfoodLikes = vm.foodLikes;
       vm.form.newfoodDislikes = vm.foodDislikes;
 
-      apilaData.updateResident(currAppointment._id, vm.form)
+      apilaData.updateResident(currResident._id, vm.form)
         .success(function(resident) {
 
-          currAppointment.updateInfo.push(
-            resident.updateInfo[resident.updateInfo.length - 1]);
+          currResident.updateInfo = resident.updateInfo;
 
           pushNewValues();
           resetFields();
@@ -229,9 +228,7 @@
         "newweight",
         "newvitalsPain",
         "newrespiration",
-        "newfoodAllergies",
-        "newmedicationAllergies",
-        "newpsychosocialStatus",
+      //  "newpsychosocialStatus",
         "newtemperature",
         "newinternationalNormalizedRatio"
       ];

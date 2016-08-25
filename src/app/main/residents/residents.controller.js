@@ -375,7 +375,7 @@
         controller: 'UpdateController',
         controllerAs: 'vm',
         locals: {
-          currAppointment: ev
+          currResident: ev
         },
         templateUrl: templateUrl,
         parent: angular.element($document.body),
