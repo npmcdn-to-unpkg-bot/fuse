@@ -81,15 +81,15 @@
         </md-select>
       </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Food Likes</label>
-        <input ng-model="vm.form.newfoodLikes" type="text">
-      </md-input-container>
+      <label>Food likes </label>
+      <md-chips ng-model="vm.foodLikes" readonly="false" md-on-remove="vm.removeChip(vm.foodLikes, 'foodLikes')" md-removable="true" placeholder="Add new food">
+      </md-chips>
 
-      <md-input-container class="md-block">
-        <label>Food Dislikes</label>
-        <input ng-model="vm.form.newfoodDislikes" type="text">
-      </md-input-container>
+      <br />
+
+      <label>Food dislikes </label>
+      <md-chips ng-model="vm.foodDislikes" readonly="false" md-on-remove="vm.removeChip(vm.foodDislikes, 'foodDislikes')" md-removable="true" placeholder="Add new food">
+      </md-chips>
 
       <md-input-container class="md-block">
         <md-checkbox ng-model="vm.form.fingerFoods" ng-hide="vm.showCancel" aria-label="Needs Food In Small Peices">

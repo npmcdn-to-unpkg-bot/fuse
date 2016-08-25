@@ -14,11 +14,11 @@
 
         <!-- Add details content here -->
         <h4>Food Allergies:
-            <md-chips ng-model="vm.selectedResident.foodAllergies" readonly="false" md-on-remove="vm.removeChip(vm.selectedResident.foodAllergies, 'foodAllergies')" md-removable="true">
+            <md-chips ng-model="vm.selectedResident.foodAllergies" readonly="true">
         </h4>
 
         <h4>Medication Allergies:
-          <md-chips ng-model="vm.selectedResident.medicationAllergies" readonly="false" md-on-remove="vm.removeChip(vm.selectedResident.medicationAllergies, 'medicationAllergies')" md-removable="true">
+          <md-chips ng-model="vm.selectedResident.medicationAllergies" readonly="true">
         </h4>
 
         <h4>Notes: {{ vm.selectedResident.allergyNotes }} </h4>

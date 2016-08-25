@@ -11,31 +11,24 @@
 
     <md-dialog-content ms-scroll>
 
-      <div layout="row" layout-align="space-around center">
         <md-input-container class="md-block">
           <md-checkbox ng-model="vm.form.hasFoodAllergies" ng-hide="vm.showCancel" aria-label="">
             Has Food Allergies
           </md-checkbox>
         </md-input-container>
 
-        <md-input-container class="md-block" ng-if="vm.form.hasFoodAllergies">
-          <label>Food Allergies</label>
-          <input ng-model="vm.form.newfoodAllergies" type="text">
-        </md-input-container>
-      </div>
+        <md-chips ng-if="vm.form.hasFoodAllergies" ng-model="vm.foodAllergies" md-on-remove="vm.removeChip(vm.foodAllergies, 'foodAllergies')" md-removable="true" readonly="false" placeholder="Add new food">
+        </md-chips>
 
-      <div layout="row" layout-align="space-around center">
         <md-input-container class="md-block">
           <md-checkbox ng-model="vm.form.hasMedicationAllergies" ng-hide="vm.showCancel" aria-label="">
             Has Medication Allergies
           </md-checkbox>
         </md-input-container>
 
-        <md-input-container class="md-block" ng-if="vm.form.hasMedicationAllergies">
-          <label>Medication Allergies</label>
-          <input ng-model="vm.form.newmedicationAllergies" type="text">
-        </md-input-container>
-      </div>
+
+      <md-chips ng-if="vm.form.hasMedicationAllergies" ng-model="vm.medicationAllergies" md-on-remove="vm.removeChip(vm.medicationAllergies, 'medicationAllergies')" md-removable="true" readonly="false" placeholder="Add new food">
+      </md-chips>
 
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>

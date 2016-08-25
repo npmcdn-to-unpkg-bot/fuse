@@ -25,11 +25,11 @@
         <h4>Finger Foods: {{ vm.selectedResident.fingerFoods }}</h4>
 
         <h4>Food Likes:
-            <md-chips ng-model="vm.selectedResident.foodLikes" readonly="false" md-on-remove="vm.removeChip(vm.selectedResident.foodLikes, 'foodLikes')" md-removable="true">
+            <md-chips ng-model="vm.selectedResident.foodLikes" readonly="true">
         </h4>
 
         <h4>Food Dislikes :
-          <md-chips ng-model="vm.selectedResident.foodDislikes" readonly="false" md-on-remove="vm.removeChip(vm.selectedResident.foodDislikes, 'foodDislikes')" md-removable="true">
+          <md-chips ng-model="vm.selectedResident.foodDislikes" readonly="true">
         </h4>
 
         <h4>Notes: {{ vm.selectedResident.nutritionNotes }} </h4>
