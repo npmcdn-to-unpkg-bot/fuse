@@ -91,6 +91,7 @@
       apilaData.updateResident(currResident._id, vm.form)
         .success(function(resident) {
 
+          //currResident.updateInfo.push(resident.updateInfo[resident.updateInfo.length - 1]);
           currResident.updateInfo = resident.updateInfo;
 
           pushNewValues();
