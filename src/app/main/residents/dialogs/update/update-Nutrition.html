@@ -82,13 +82,13 @@
       </md-input-container>
 
       <label>Food likes </label>
-      <md-chips ng-model="vm.foodLikes" md-separator-keys="vm.seperators" readonly="false" md-on-remove="vm.removeChip(vm.foodLikes, 'foodLikes')" md-removable="true" placeholder="Add new food">
+      <md-chips ng-model="vm.foodLikes" md-separator-keys="vm.seperators" readonly="false" md-on-add="vm.updateChip(vm.foodLikes, 'foodLikes', $chip, 'add')" md-on-remove="vm.updateChip(vm.foodLikes, 'foodLikes', $chip, 'remove')" md-removable="true" placeholder="Add new food">
       </md-chips>
 
       <br />
 
       <label>Food dislikes </label>
-      <md-chips ng-model="vm.foodDislikes" md-separator-keys="vm.seperators" readonly="false" md-on-remove="vm.removeChip(vm.foodDislikes, 'foodDislikes')" md-removable="true" placeholder="Add new food">
+      <md-chips ng-model="vm.foodDislikes" md-separator-keys="vm.seperators" readonly="false" md-on-add="vm.updateChip(vm.foodDislikes, 'foodDislikes', $chip, 'add')" md-on-remove="vm.updateChip(vm.foodDislikes, 'foodDislikes', $chip, 'remove')" md-removable="true" placeholder="Add new food">
       </md-chips>
 
       <md-input-container class="md-block">

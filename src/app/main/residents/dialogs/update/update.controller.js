@@ -46,7 +46,7 @@
     //Functions
     vm.closeDialog = closeDialog;
     vm.updateResident = updateResident;
-    vm.removeChip = removeChip;
+    vm.updateChip = updateChip;
 
     function closeDialog() {
       $mdDialog.hide();
@@ -85,6 +85,9 @@
 
       vm.form.newfoodLikes = vm.foodLikes;
       vm.form.newfoodDislikes = vm.foodDislikes;
+
+      //important to set updateInfo when adding/removing chips because they will generate updateInfo
+      vm.form.updateInfo = currResident.updateInfo;
 
       apilaData.updateResident(currResident._id, vm.form)
         .success(function(resident) {
@@ -132,16 +135,21 @@
       }
     }
 
-    function removeChip(list, type) {
+    function updateChip(list, type, chip, operation) {
 
       var data = {
+        "operation" : operation,
         "list" : list,
-        "type" : type
+        "type" : type,
+        "selectedItem" : chip,
+        "updateBy" : authentication.currentUser().name
       };
 
-      apilaData.removeListItem(vm.copyResident._id, data)
+      apilaData.updateListItem(vm.copyResident._id, data)
       .success(function(response) {
         console.log(response);
+        currResident = response;
+        console.log(currResident);
       })
       .error(function(response) {
         console.log(response);
@@ -169,6 +177,7 @@
         "timeOfBathing",
         "frequencyOfBathing",
         "acceptanceOfBathing",
+        "dislikesBathingDescribe",
 
         // continent
         "bowelContinent",
@@ -178,6 +187,13 @@
         "dribbles",
         "catheter",
         "toiletingDevice",
+        "catheterDescribe",
+
+        // life
+        "religion",
+        "education",
+        "occupation",
+
         "transfers",
         "fallRisk",
         "bedReposition",
@@ -340,6 +356,8 @@
           continue;
         }
 
+        console.log(oldData[nestedAtributes[i].f]);
+
         if (oldValue !== newValue) {
 
           diff.push({
@@ -351,13 +369,16 @@
       }
 
       // handlng movedFrom updateInfo check if name are diff
-      if(oldData['movedFrom'].name !== vm.form.locationInfo.formatted_address) {
-        diff.push({
-          "field": 'movedFrom',
-          "old": oldData['movedFrom'].name,
-          "new": vm.form.locationInfo.formatted_address
-        });
+      if (vm.form.locationInfo.formatted_address) {
+        if (oldData['movedFrom'].name !== vm.form.locationInfo.formatted_address) {
+          diff.push({
+            "field": 'movedFrom',
+            "old": oldData['movedFrom'].name,
+            "new": vm.form.locationInfo.formatted_address
+          });
+        }
       }
+
 
       return diff;
     }

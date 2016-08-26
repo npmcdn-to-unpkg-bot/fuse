@@ -14,55 +14,61 @@
 
     function formatUpdateArray(updateArray) {
 
-      var arrayFields = ['newfoodAllergies', 'newmedicationAllergies'];
+    var arrayFields = ['foodAllergies', 'medicationAllergies'];
 
-      var formatedArray = [];
+    var formatedArray = [];
 
-      _.forEach(updateArray, function(entry, key) {
-        var formatedEntry = "";
+    _.forEach(updateArray, function(entry, key) {
+      var formatedEntry = "";
 
-        // if update field exists
-        if(entry.updateField) {
-
+      // if update field exists
+      if (entry.updateField) {
+        if (entry.updateField[0]) {
           var oldValue = entry.updateField[0].old;
           var newValue = entry.updateField[0].new;
           var field = entry.updateField[0].field;
 
           // format the date values proper
-          if(field === 'admissionDate' || field === 'birthDate') {
+          if (field === 'admissionDate' || field === 'birthDate') {
             oldValue = moment(oldValue).format('MMMM Do YYYY');
             newValue = moment(newValue).format('MMMM Do YYYY');
           }
 
           //format the output string that will be shown to the user
           formatedEntry = entry.updateBy + " has updated " + _.startCase(field) + " from " +
-                         oldValue + " to " + newValue;
+            oldValue + " to " + newValue;
 
-            // if this is the first time some value has been set omit old value
-            if(!oldValue) {
-              formatedEntry = entry.updateBy + " has updated " + _.startCase(field) + " to " +
-                              newValue;
-            }
+          // if this is the first time some value has been set omit old value
+          if (!oldValue) {
+            formatedEntry = entry.updateBy + " has updated " + _.startCase(field) + " to " +
+              newValue;
+          }
 
-            //handling of array fields
-            if(_.includes(arrayFields, field)) {
+          //handling of array fields
+          if (_.includes(arrayFields, field)) {
+            if(newValue !== "") {
               formatedEntry = entry.updateBy + " has added " + newValue + " to " +
-                              _.startCase(field);
+                _.startCase(field);
+            } else {
+              formatedEntry = entry.updateBy + " has removed " + oldValue + " from " +
+                _.startCase(field);
             }
 
-            //attaching a time diff at the end (how long ago did we update it)
-            formatedEntry += " " + timeDiff(entry.updateDate);
+          }
+
+          //attaching a time diff at the end (how long ago did we update it)
+          formatedEntry += " " + timeDiff(entry.updateDate);
 
         }
+      }
 
-        formatedArray.push(formatedEntry);
-      });
+      formatedArray.push(formatedEntry);
+    });
 
 
-      return formatedArray;
+    return formatedArray;
 
-    }
-
+  }
 
     function timeDiff(date) {
       var start = moment(date);
