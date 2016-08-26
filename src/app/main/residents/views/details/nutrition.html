@@ -25,15 +25,11 @@
         <h4>Finger Foods: {{ vm.selectedResident.fingerFoods }}</h4>
 
         <h4>Food Likes:
-          <span ng-repeat="food in vm.selectedResident.foodLikes">
-            {{ food }} <span ng-if="!$last">,</span>
-          </span>
+            <md-chips ng-model="vm.selectedResident.foodLikes" readonly="true">
         </h4>
 
         <h4>Food Dislikes :
-          <span ng-repeat="food in vm.selectedResident.foodDislikes">
-            {{ food }} <span ng-if="!$last">,</span>
-          </span>
+          <md-chips ng-model="vm.selectedResident.foodDislikes" readonly="true">
         </h4>
 
         <h4>Notes: {{ vm.selectedResident.nutritionNotes }} </h4>

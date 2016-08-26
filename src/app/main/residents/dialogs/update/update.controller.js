@@ -5,12 +5,12 @@
     .controller('UpdateController', UpdateController);
 
   /** @ngInject */
-  function UpdateController($mdDialog, currAppointment, apilaData, authentication) {
+  function UpdateController($mdDialog, $mdConstant, currResident, apilaData, authentication) {
 
     var vm = this;
 
     //filling in old data for the update
-    vm.form = currAppointment;
+    vm.form = currResident;
 
     vm.status = [];
     vm.status.push({active: false, title:"Alert"});
@@ -22,22 +22,31 @@
     vm.status.push({active: false, title:"Confused"});
     vm.status.push({active: false, title:"Uncooperative"});
 
+    vm.foodAllergies = currResident.foodAllergies;
+    vm.medicationAllergies = currResident.medicationAllergies;
+
+    vm.foodLikes = currResident.foodLikes;
+    vm.foodDislikes = currResident.foodDislikes;
+
     //needed unchanged values to compare for updateField
-    vm.copyResident = angular.copy(currAppointment);
+    vm.copyResident = angular.copy(currResident);
+
+    vm.seperators = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 
     vm.autocompleteOptions = {
       componentRestrictions: { country: 'us' }
-    }
+    };
 
-    setSelectedStatuses(currAppointment.psychosocialStatus);
+    setSelectedStatuses(currResident.psychosocialStatus);
 
-    vm.form.birthDate = new Date(currAppointment.birthDate);
-    vm.form.admissionDate = new Date(currAppointment.admissionDate);
+    vm.form.birthDate = new Date(currResident.birthDate);
+    vm.form.admissionDate = new Date(currResident.admissionDate);
     vm.form.locationInfo = vm.form.movedFrom.name;
 
     //Functions
     vm.closeDialog = closeDialog;
     vm.updateResident = updateResident;
+    vm.removeChip = removeChip;
 
     function closeDialog() {
       $mdDialog.hide();
@@ -73,11 +82,16 @@
 
       console.log(vm.form);
 
-      apilaData.updateResident(currAppointment._id, vm.form)
+      vm.form.newfoodAllergies = vm.foodAllergies;
+      vm.form.newmedicationAllergies = vm.medicationAllergies;
+
+      vm.form.newfoodLikes = vm.foodLikes;
+      vm.form.newfoodDislikes = vm.foodDislikes;
+
+      apilaData.updateResident(currResident._id, vm.form)
         .success(function(resident) {
 
-          currAppointment.updateInfo.push(
-            resident.updateInfo[resident.updateInfo.length - 1]);
+          currResident.updateInfo = resident.updateInfo;
 
           pushNewValues();
           resetFields();
@@ -88,7 +102,7 @@
           console.log("Error while updating resident");
         });
       return false;
-    };
+    }
 
     function addToStatusArray()
     {
@@ -117,6 +131,22 @@
           checkedElem.active = true;
         }
       }
+    }
+
+    function removeChip(list, type) {
+
+      var data = {
+        "list" : list,
+        "type" : type
+      };
+
+      apilaData.removeListItem(vm.copyResident._id, data)
+      .success(function(response) {
+        console.log(response);
+      })
+      .error(function(response) {
+        console.log(response);
+      });
     }
 
     //checks what fields changed in the updates
@@ -198,9 +228,7 @@
         "newweight",
         "newvitalsPain",
         "newrespiration",
-        "newfoodAllergies",
-        "newmedicationAllergies",
-        "newpsychosocialStatus",
+      //  "newpsychosocialStatus",
         "newtemperature",
         "newinternationalNormalizedRatio"
       ];
@@ -369,15 +397,15 @@
       addToArray(vm.form.temperature, vm.form.newtemperature);
       addToArray(vm.form.internationalNormalizedRatio, vm.form.newinternationalNormalizedRatio);
 
-      addToArray(vm.form.foodAllergies, vm.form.newfoodAllergies);
-      addToArray(vm.form.medicationAllergies, vm.form.newmedicationAllergies);
+      vm.form.foodAllergies = vm.form.newfoodAllergies;
+      vm.form.medicationAllergies = vm.form.newmedicationAllergies;
 
       //addToArray(vm.form.psychosocialStatus, vm.form.newpsychosocialStatus);
       vm.form.psychosocialStatus = vm.form.newpsychosocialStatus;
 
-      addToArray(vm.form.foodLikes, vm.form.newfoodLikes);
-      addToArray(vm.form.foodDislikes, vm.form.newfoodDislikes);
-    }
+      vm.form.foodLikes = vm.form.newfoodLikes;
+      vm.form.foodDislikes = vm.form.newfoodDislikes;
+    };
 
     //when pushing to array make sure we aren't adding invalid data
     function addToArray(arr, value) {

@@ -31,7 +31,7 @@
 
         <!-- Update fields -->
         <md-list>
-          <md-list-item class="md-3-line" ng-repeat="updateField in vm.updateInfoList">
+          <md-list-item class="md-3-line" ng-repeat="updateField in vm.updateInfoList track by $index">
             <div class="md-list-item-text">
               <!-- <h4>Update by: {{ update.updateBy }}</h4>
               <h4>Update date: {{ update.updateDate | date}}</h4> -->
@@ -41,7 +41,7 @@
                    <span>{{updateField}}</span>
 
                        <!-- </span> -->
-                  
+
             </div>
             <md-divider ng-if="!$last"></md-divider>
           </md-list-item>
