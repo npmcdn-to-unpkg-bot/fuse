@@ -58,15 +58,36 @@
 
         <div layout="row" layout-align="start center" translate-attr-aria-label="MAIL.REFRESH">
 
-          <md-menu>
-            <md-button class="md-icon-button" ng-click="vm.exportCarePlan()" aria-label="Filters" translate translate-attr-aria-label="MAIL.FILTERS">
-              <md-icon md-font-icon="icon-note-text"></md-icon>
-              <md-tooltip><span>Care Plans</span></md-tooltip>
+          <!-- SETTINGS MENU -->
+        <md-menu class="settings-menu">
+            <md-button class="md-icon-button"
+                       ng-click="$mdOpenMenu($event)">
+                <md-icon md-font-icon="icon-export"></md-icon>
             </md-button>
-
-            <md-menu-content>
+            <md-menu-content width="3">
+              <md-menu-item>
+                  <md-button ng-click="">
+                      <span>Blank Care Plan</span>
+                  </md-button>
+              </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="vm.exportCarePlan()">
+                        <span>Care Plan</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <span>Census Sheet</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="">
+                        <span>Face Sheet</span>
+                    </md-button>
+                </md-menu-item>
             </md-menu-content>
-          </md-menu>
+        </md-menu>
+        <!-- / SETTINGS MENU -->
         </div>
       </div>
       <!-- / CONTENT TOOLBAR -->
