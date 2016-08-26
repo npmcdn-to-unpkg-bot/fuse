@@ -80,8 +80,6 @@
 
       formatData();
 
-      console.log(vm.form);
-
       vm.form.newfoodAllergies = vm.foodAllergies;
       vm.form.newmedicationAllergies = vm.medicationAllergies;
 
@@ -352,6 +350,15 @@
         }
       }
 
+      // handlng movedFrom updateInfo check if name are diff
+      if(oldData['movedFrom'].name !== vm.form.locationInfo.formatted_address) {
+        diff.push({
+          "field": 'movedFrom',
+          "old": oldData['movedFrom'].name,
+          "new": vm.form.locationInfo.formatted_address
+        });
+      }
+
       return diff;
     }
 
@@ -368,7 +375,7 @@
         }
       }
       return o;
-    }
+    };
 
     var resetFields = function() {
       vm.form.newrespiration = "";

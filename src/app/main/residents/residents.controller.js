@@ -111,8 +111,6 @@
 
       vm.updateInfoList = ResidentUpdateInfoService.formatUpdateArray(vm.selectedResident.updateInfo);
 
-      console.log(vm.updateInfoList);
-
       if(vm.selectedResident.movedFrom) {
         vm.latitude = vm.selectedResident.movedFrom.latitude;
         vm.longitude = vm.selectedResident.movedFrom.longitude;
