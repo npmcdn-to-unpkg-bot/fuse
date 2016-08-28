@@ -17,7 +17,7 @@
           </md-checkbox>
         </md-input-container>
 
-        <md-chips ng-if="vm.form.hasFoodAllergies" md-separator-keys="vm.seperators" ng-model="vm.foodAllergies" md-on-remove="vm.removeChip(vm.foodAllergies, 'foodAllergies')" md-removable="true" readonly="false" placeholder="Add new food">
+        <md-chips ng-if="vm.form.hasFoodAllergies" md-separator-keys="vm.seperators" ng-model="vm.foodAllergies" md-on-add="vm.updateChip(vm.foodAllergies,'foodAllergies', $chip, 'add')" md-on-remove="vm.updateChip(vm.foodAllergies,'foodAllergies', $chip, 'remove')" md-removable="true" readonly="false" placeholder="Add new food">
         </md-chips>
 
         <md-input-container class="md-block">
@@ -27,7 +27,7 @@
         </md-input-container>
 
 
-      <md-chips ng-if="vm.form.hasMedicationAllergies" md-separator-keys="vm.seperators" ng-model="vm.medicationAllergies" md-on-remove="vm.removeChip(vm.medicationAllergies, 'medicationAllergies')" md-removable="true" readonly="false" placeholder="Add new medication">
+      <md-chips ng-if="vm.form.hasMedicationAllergies" md-separator-keys="vm.seperators" ng-model="vm.medicationAllergies" md-on-add="vm.updateChip(vm.medicationAllergies, 'medicationAllergies', $chip, 'add')" md-on-remove="vm.updateChip(vm.medicationAllergies, 'medicationAllergies', $chip, 'remove')" md-removable="true" readonly="false" placeholder="Add new food">
       </md-chips>
 
       <md-input-container flex class="md-block textarea-container">

@@ -111,8 +111,6 @@
 
       vm.updateInfoList = ResidentUpdateInfoService.formatUpdateArray(vm.selectedResident.updateInfo);
 
-      console.log(vm.updateInfoList);
-
       if(vm.selectedResident.movedFrom) {
         vm.latitude = vm.selectedResident.movedFrom.latitude;
         vm.longitude = vm.selectedResident.movedFrom.longitude;
@@ -369,8 +367,6 @@
       var templateUrl = 'app/main/residents/dialogs/update/update-' +
         cat + '.html';
 
-      vm.updateInfoList = ResidentUpdateInfoService.formatUpdateArray(vm.selectedResident.updateInfo);
-
       $mdDialog.show({
         controller: 'UpdateController',
         controllerAs: 'vm',
@@ -381,7 +377,12 @@
         parent: angular.element($document.body),
         targetEvent: ev,
         clickOutsideToClose: true
+      })
+      .then(function() {
+        console.log(vm.selectResident.updateInfo);
+        vm.updateInfoList = ResidentUpdateInfoService.formatUpdateArray(vm.selectedResident.updateInfo);
       });
+
     }
 
     /**

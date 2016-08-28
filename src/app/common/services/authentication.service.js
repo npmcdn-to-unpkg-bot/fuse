@@ -48,8 +48,6 @@
 
                 var name = $window.atob(encodedName);
 
-                console.log("povukao name: " + name);
-
                 return {
                     email: payload.email,
                     name: name,
