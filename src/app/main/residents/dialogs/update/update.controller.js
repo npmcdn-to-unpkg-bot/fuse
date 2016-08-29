@@ -100,8 +100,8 @@
 
           closeDialog();
         })
-        .error(function(appoint) {
-          console.log("Error while updating resident");
+        .error(function(response) {
+          console.log(response);
         });
       return false;
     }
@@ -178,6 +178,7 @@
         "frequencyOfBathing",
         "acceptanceOfBathing",
         "dislikesBathingDescribe",
+        "bathingNotes",
 
         // continent
         "bowelContinent",
@@ -188,51 +189,106 @@
         "catheter",
         "toiletingDevice",
         "catheterDescribe",
+        "continentNotes",
 
         // life
         "religion",
         "education",
         "occupation",
+        "lifeNotes",
 
+        // mobility
         "transfers",
         "fallRisk",
+        "fallRiskDescribe",
         "bedReposition",
+        "mobilityNotes",
+
+        // nutrition
         "overallNutrition",
         "poorNutritionIntervention",
         "diabetic",
         "diabeticType",
-        "regularBloodSugarMonitoring",
+        "bloodSugarMonitoring",
         "bedtimeSnack",
         "adaptiveEquipment",
         "needsFoodInSmallPeices",
         "typeOfDiet",
-        "havePain",
+        "fingerFoods",
+        "nutritionNotes",
+
+        // pain
+        "hasPain",
         "painLocation",
         "painDescription",
         "maxPainTime",
         "painIncreasedBy",
         "painDecreasedBy",
-        "height",
+        "painManagedBy",
+        "painLength",
+        "painNotes",
+
+        // physical
         "skinCondition",
+        "hasWound",
+        "hasWoundDescribe",
+        "woundAmount",
         "wearsHearingAid",
+        "helpWithHearingAid",
+        "helpWithHearingAidDescribe",
+        "leftEar",
+        "rightEar",
+        "leftEye",
+        "rightEye",
+        "visionNotes",
+        "hearingNotes",
+        "dentistName",
+        "upperDentureFit",
+        "upperDentureFitDescribe",
+        "upperTeeth",
+        "lowerDentureFit",
+        "lowerDentureFitDescribe",
+        "lowerTeeth",
         "teethCondition",
+        "physicalNotes",
+
+        // psychosocial
+        "psychosocialStatusDescribe",
         "psychosocialResponsiveness",
         "mood",
         "comprehension",
+        "smokes",
+        "smokesDescribe",
+        "alcohol",
+        "alcoholDescribes",
+        "sexualActive",
         "generalActivityParticipation",
         "diningRoomParticipation",
         "busRideParticipation",
         "fitnessClassParticipation",
+        "bingoParticipation",
+        "communityParticipation",
+        "drivesCar",
+        "licensePlateNumber",
+        "spareKeyLocation",
+        "drivingNeeds",
         "timeInRoom",
         "preferedActivites",
         "useFitnessEquipmentIndependently",
+        "highMaintenance",
         "familyInvolvement",
+        "psychosocialNotes",
+
+        // sleep
         "usualBedtime",
         "usualArisingTime",
         "nap",
+        "napDescribe",
         "assistanceToBed",
         "sleepsThroughNight",
-        "sleepDisturbance"
+        "sleepDisturbance",
+        "canCallForAssistance",
+        "sleepNotes"
       ];
 
       var arrayFields = [
@@ -352,16 +408,14 @@
 
         var newValue = nestedArguments(newData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
 
-        if (oldValue == undefined || newValue == undefined) {
+        if (newValue == undefined) {
           continue;
         }
-
-        console.log(oldData[nestedAtributes[i].f]);
 
         if (oldValue !== newValue) {
 
           diff.push({
-            "field": oldData[nestedAtributes[i].f] + " " + [nestedAtributes[i].s],
+            "field": nestedAtributes[i].f + " " + [nestedAtributes[i].s],
             "old": oldValue,
             "new": newValue
           });

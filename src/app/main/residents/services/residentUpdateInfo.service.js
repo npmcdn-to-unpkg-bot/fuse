@@ -23,10 +23,11 @@
 
       // if update field exists
       if (entry.updateField) {
-        if (entry.updateField[0]) {
-          var oldValue = entry.updateField[0].old;
-          var newValue = entry.updateField[0].new;
-          var field = entry.updateField[0].field;
+        _.forEach(entry.updateField, function(currField) {
+
+          var oldValue = currField.old;
+          var newValue = currField.new;
+          var field = currField.field;
 
           // format the date values proper
           if (field === 'admissionDate' || field === 'birthDate') {
@@ -59,10 +60,12 @@
           //attaching a time diff at the end (how long ago did we update it)
           formatedEntry += " " + timeDiff(entry.updateDate);
 
-        }
+          formatedArray.push(formatedEntry);
+
+        });
       }
 
-      formatedArray.push(formatedEntry);
+
     });
 
 
