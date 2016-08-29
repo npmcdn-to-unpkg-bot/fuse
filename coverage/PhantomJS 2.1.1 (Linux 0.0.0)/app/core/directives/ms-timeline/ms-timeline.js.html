@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/core/directives/ms-timeline/ms-timeline.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/core/directives/ms-timeline/</a> ms-timeline.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.57% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/74</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.57% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.57% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/74</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.core')
+        .controller('MsTimelineController', MsTimelineController)
+        .directive('msTimeline', msTimelineDirective)
+        .directive('msTimelineItem', msTimelineItemDirective);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function MsTimelineController()</span>
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        vm.scrollEl = undefined;</span>
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.setScrollEl = setScrollEl;</span>
+<span class="cstat-no" title="statement not covered" >        vm.getScrollEl = getScrollEl;</span>
+&nbsp;
+        //////////
+&nbsp;
+        /**
+         * Set scroll element
+         *
+         * @param scrollEl
+         */
+<span class="fstat-no" title="function not covered" >        function setScrollEl(scrollEl)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.scrollEl = scrollEl;</span>
+        }
+&nbsp;
+        /**
+         * Get scroll element
+         *
+         * @returns {undefined|*}
+         */
+<span class="fstat-no" title="function not covered" >        function getScrollEl()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return vm.scrollEl;</span>
+        }
+    }
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function msTimelineDirective()</span>
+    {
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            scope     : {
+                msTimeline: '=?',
+                loadMore  : '&amp;?msTimelineLoadMore'
+            },
+            controller: 'MsTimelineController',
+            compile   : <span class="fstat-no" title="function not covered" >function (tElement)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                tElement.addClass('ms-timeline');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return <span class="fstat-no" title="function not covered" >function postLink(scope, iElement, iAttrs, MsTimelineCtrl)</span></span>
+                {
+                    // Create an element for triggering the load more action and append it
+<span class="cstat-no" title="statement not covered" >                    var loadMoreEl = angular.element('&lt;div class="ms-timeline-loader md-accent-bg md-whiteframe-4dp"&gt;&lt;span class="spinner animate-rotate"&gt;&lt;/span&gt;&lt;/div&gt;');</span>
+<span class="cstat-no" title="statement not covered" >                    iElement.append(loadMoreEl);</span>
+&nbsp;
+                    // Default config
+<span class="cstat-no" title="statement not covered" >                    var config = {</span>
+                        scrollEl: '#content'
+                    };
+&nbsp;
+                    // Extend the configuration
+<span class="cstat-no" title="statement not covered" >                    config = angular.extend(config, scope.msTimeline, {});</span>
+                    
+                    // Grab the scrollable element and store it in the controller for general use
+<span class="cstat-no" title="statement not covered" >                    var scrollEl = angular.element(config.scrollEl);</span>
+<span class="cstat-no" title="statement not covered" >                    MsTimelineCtrl.setScrollEl(scrollEl);</span>
+&nbsp;
+                    // Threshold
+<span class="cstat-no" title="statement not covered" >                    var threshold = 144;</span>
+&nbsp;
+                    // Register onScroll event for the first time
+<span class="cstat-no" title="statement not covered" >                    registerOnScroll();</span>
+&nbsp;
+                    /**
+                     * onScroll Event
+                     */
+<span class="fstat-no" title="function not covered" >                    function onScroll()</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        if ( scrollEl.scrollTop() + scrollEl.height() + threshold &gt; loadMoreEl.position().top )</span>
+                        {
+                            // Show the loader
+<span class="cstat-no" title="statement not covered" >                            loadMoreEl.addClass('show');</span>
+&nbsp;
+                            // Unregister scroll event to prevent triggering the function over and over again
+<span class="cstat-no" title="statement not covered" >                            unregisterOnScroll();</span>
+&nbsp;
+                            // Trigger load more event
+<span class="cstat-no" title="statement not covered" >                            scope.loadMore().then(</span>
+                                // Success
+<span class="fstat-no" title="function not covered" >                                function ()</span>
+                                {
+                                    // Hide the loader
+<span class="cstat-no" title="statement not covered" >                                    loadMoreEl.removeClass('show');</span>
+&nbsp;
+                                    // Register the onScroll event again
+<span class="cstat-no" title="statement not covered" >                                    registerOnScroll();</span>
+                                },
+&nbsp;
+                                // Error
+<span class="fstat-no" title="function not covered" >                                function ()</span>
+                                {
+                                    // Remove the loader completely
+<span class="cstat-no" title="statement not covered" >                                    loadMoreEl.remove();</span>
+                                }
+                            );
+                        }
+                    }
+&nbsp;
+                    /**
+                     * onScroll event registerer
+                     */
+<span class="fstat-no" title="function not covered" >                    function registerOnScroll()</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        scrollEl.on('scroll', onScroll);</span>
+                    }
+&nbsp;
+                    /**
+                     * onScroll event unregisterer
+                     */
+<span class="fstat-no" title="function not covered" >                    function unregisterOnScroll()</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        scrollEl.off('scroll', onScroll);</span>
+                    }
+&nbsp;
+                    // Cleanup
+<span class="cstat-no" title="statement not covered" >                    scope.$on('$destroy', <span class="fstat-no" title="function not covered" >function ()</span></span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        unregisterOnScroll();</span>
+                    });
+                };
+            }
+        };
+    }
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function msTimelineItemDirective($timeout, $q)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            scope  : true,
+            require: '^msTimeline',
+            compile: <span class="fstat-no" title="function not covered" >function (tElement)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                tElement.addClass('ms-timeline-item').addClass('hidden');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return <span class="fstat-no" title="function not covered" >function postLink(scope, iElement, iAttrs, MsTimelineCtrl)</span></span>
+                {
+<span class="cstat-no" title="statement not covered" >                    var threshold = 72,</span>
+                        itemLoaded = false,
+                        itemInViewport = false,
+                        scrollEl = MsTimelineCtrl.getScrollEl();
+&nbsp;
+                    //////////
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    init();</span>
+&nbsp;
+                    /**
+                     * Initialize
+                     */
+<span class="fstat-no" title="function not covered" >                    function init()</span>
+                    {
+                        // Check if the timeline item has ms-card
+<span class="cstat-no" title="statement not covered" >                        if ( iElement.find('ms-card') )</span>
+                        {
+                            // If the ms-card template loaded...
+<span class="cstat-no" title="statement not covered" >                            scope.$on('msCard::cardTemplateLoaded', <span class="fstat-no" title="function not covered" >function (event, args)</span></span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                var cardEl = angular.element(args[0]);</span>
+&nbsp;
+                                // Test the card to see if there is any image on it
+<span class="cstat-no" title="statement not covered" >                                testForImage(cardEl).then(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                                {
+<span class="cstat-no" title="statement not covered" >                                    $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                                    {
+<span class="cstat-no" title="statement not covered" >                                        itemLoaded = true;</span>
+                                    });
+                                });
+                            });
+                        }
+                        else
+                        {
+                            // Test the element to see if there is any image on it
+<span class="cstat-no" title="statement not covered" >                            testForImage(iElement).then(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                                {
+<span class="cstat-no" title="statement not covered" >                                    itemLoaded = true;</span>
+                                });
+                            });
+                        }
+&nbsp;
+                        // Check if the loaded element also in the viewport
+<span class="cstat-no" title="statement not covered" >                        scrollEl.on('scroll', testForVisibility);</span>
+&nbsp;
+                        // Test for visibility for the first time without waiting for the scroll event
+<span class="cstat-no" title="statement not covered" >                        testForVisibility();</span>
+                    }
+&nbsp;
+                    // Item ready watcher
+<span class="cstat-no" title="statement not covered" >                    var itemReadyWatcher = scope.$watch(</span>
+<span class="fstat-no" title="function not covered" >                        function ()</span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            return itemLoaded &amp;&amp; itemInViewport;</span>
+                        },
+<span class="fstat-no" title="function not covered" >                        function (current, old)</span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            if ( angular.equals(current, old) )</span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                return;</span>
+                            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if ( current )</span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                iElement.removeClass('hidden').addClass('animate');</span>
+&nbsp;
+                                // Unbind itemReadyWatcher
+<span class="cstat-no" title="statement not covered" >                                itemReadyWatcher();</span>
+                            }
+                        }, true);
+&nbsp;
+                    /**
+                     * Test the given element for image
+                     *
+                     * @param element
+                     * @returns promise
+                     */
+<span class="fstat-no" title="function not covered" >                    function testForImage(element)</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        var deferred = $q.defer(),</span>
+                            imgEl = element.find('img');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if ( imgEl.length &gt; 0 )</span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            imgEl.on('load', <span class="fstat-no" title="function not covered" >function ()</span></span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                deferred.resolve('Image is loaded');</span>
+                            });
+                        }
+                        else
+                        {
+<span class="cstat-no" title="statement not covered" >                            deferred.resolve('No images');</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        return deferred.promise;</span>
+                    }
+&nbsp;
+                    /**
+                     * Test the element for visibility
+                     */
+<span class="fstat-no" title="function not covered" >                    function testForVisibility()</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        if ( scrollEl.scrollTop() + scrollEl.height() &gt; iElement.position().top + threshold )</span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                itemInViewport = true;</span>
+                            });
+&nbsp;
+                            // Unbind the scroll event
+<span class="cstat-no" title="statement not covered" >                            scrollEl.off('scroll', testForVisibility);</span>
+                        }
+                    }
+                };
+            }
+        };
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

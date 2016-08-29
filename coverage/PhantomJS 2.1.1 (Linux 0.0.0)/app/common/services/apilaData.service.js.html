@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/common/services/apilaData.service.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/common/services/</a> apilaData.service.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.1% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/122</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.1% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/122</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+&nbsp;
+  angular
+    .module('app.core')
+    .service('apilaData', apilaData);
+&nbsp;
+  apilaData.$inject = ['$http', 'authentication'];
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function apilaData($http, authentication) {</span>
+&nbsp;
+    ////////////////////////////////////////////////
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var apiUrl = "http://localhost:3300";</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getAuth() {</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        "headers": {
+          Authorization: 'Bearer ' + authentication.getToken()
+        }
+      };
+    }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var getApiUrl = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >      return apiUrl;</span>
+    };
+&nbsp;
+    ///////////////////////////////////////////////
+&nbsp;
+    /***************** ISSUES RESOURCES ***************/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var issuesList = <span class="fstat-no" title="function not covered" >function(status, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/issues/list/' + status + "/id/" + communityid, getAuth());</span>
+    };
+<span class="cstat-no" title="statement not covered" >    var issueById = <span class="fstat-no" title="function not covered" >function(issueid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/issues/' + issueid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var listIssueByUsername = <span class="fstat-no" title="function not covered" >function(username, status, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/issues/' + username + "/s/" + status +</span>
+        "/id/" + communityid, getAuth());
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addIssue = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/issues/new', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateIssue = <span class="fstat-no" title="function not covered" >function(issueid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/issues/' + issueid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var deleteIssueLabelById = <span class="fstat-no" title="function not covered" >function(issueid, labelid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.delete(apiUrl + '/api/issues/' + issueid + '/labels/' + labelid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateIssueLabelById = <span class="fstat-no" title="function not covered" >function(issueId, labelid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/issues/' + issueId + '/labels/' + labelid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addIssueCommentById = <span class="fstat-no" title="function not covered" >function(issueid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/issues/' + issueid + '/comments/new', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addIssueLabelById = <span class="fstat-no" title="function not covered" >function(issueid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/issues/' + issueid + '/labels/new', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addCheckList = <span class="fstat-no" title="function not covered" >function(issueid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/issues/' + issueid + '/checklists/new', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateCheckList = <span class="fstat-no" title="function not covered" >function(issueid, checklistid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/issues/' + issueid + '/checklists/' + checklistid,</span>
+        data, getAuth());
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var deleteCheckList = <span class="fstat-no" title="function not covered" >function(issueid, checklistid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.delete(apiUrl + '/api/issues/' + issueid + '/checklists/' + checklistid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var deleteAttachment = <span class="fstat-no" title="function not covered" >function(issueid, attachmentid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.delete(apiUrl + '/api/issues/' + issueid + '/attachments/' + attachmentid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var openIssuesCount = <span class="fstat-no" title="function not covered" >function(username, communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/issues/count/' + username + '/id/' + communityId, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var deleteIssue = <span class="fstat-no" title="function not covered" >function(issueid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.delete(apiUrl + '/api/issues/' + issueid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var issuesCount = <span class="fstat-no" title="function not covered" >function(communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/issues/issuescount/' + communityId, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var dueIssuesList = <span class="fstat-no" title="function not covered" >function(communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/issues/due/' + communityId, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var createIssueRecovery = <span class="fstat-no" title="function not covered" >function(data, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/issues/recovery/' + communityid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var verifyPassword = <span class="fstat-no" title="function not covered" >function(data, userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/issues/recovery/verify/' + userid, data, getAuth());</span>
+    };
+&nbsp;
+    /***************** APPOINTMENTS RESOURCES ***************/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var appointmentsList = <span class="fstat-no" title="function not covered" >function(communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/appointments/' + communityid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var appointmentsListByMonth = <span class="fstat-no" title="function not covered" >function(month) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/appointments/' + month, getAuth());</span>
+    };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var appointmentById = <span class="fstat-no" title="function not covered" >function(appointmentid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/appointments/' + appointmentid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addAppointment = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/appointments/new', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateAppointment = <span class="fstat-no" title="function not covered" >function(appointmentid, formData) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/appointments/update/' + appointmentid,</span>
+        formData, getAuth());
+&nbsp;
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addAppointmentCommentById = <span class="fstat-no" title="function not covered" >function(appointmentid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/appointments/' + appointmentid + '/comments/', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var appointmentsToday = <span class="fstat-no" title="function not covered" >function(communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/appointments/today/' + communityId, getAuth());</span>
+    };
+&nbsp;
+    /*********************************************************/
+&nbsp;
+    /***************** RESIDENTS RESOURCES ******************/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var residentsList = <span class="fstat-no" title="function not covered" >function(communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/residents/list/' + communityId, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addResident = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/residents/new', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var residentById = <span class="fstat-no" title="function not covered" >function(residentid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/residents/' + residentid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateResident = <span class="fstat-no" title="function not covered" >function(residentid, formData) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/residents/update/' + residentid,</span>
+        formData, getAuth());
+&nbsp;
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var residentBirthday = <span class="fstat-no" title="function not covered" >function(communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + "/api/residents/birthday/" + communityId, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var residentCount = <span class="fstat-no" title="function not covered" >function(communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/residents/count/' + communityid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var averageAge = <span class="fstat-no" title="function not covered" >function(communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/residents/average_age/' + communityid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var averageStayTime = <span class="fstat-no" title="function not covered" >function(communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/residents/average_stay/' + communityid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var getLocations = <span class="fstat-no" title="function not covered" >function(communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/residents/' + communityid + '/locations', getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateListItem = <span class="fstat-no" title="function not covered" >function(residentid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/residents/' + residentid + '/listitem', data, getAuth());</span>
+    };
+&nbsp;
+    /**************************************************************/
+&nbsp;
+    /***************** USERS RESOURCES ***************/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var usersList = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/users', getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var changeUsername = <span class="fstat-no" title="function not covered" >function(userid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + "/api/users/change/" + userid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var usersInCommunity = <span class="fstat-no" title="function not covered" >function(communityId) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/users/list/' + communityId, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var userCommunity = <span class="fstat-no" title="function not covered" >function(userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/users/community/' + userid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var forgotPassword = <span class="fstat-no" title="function not covered" >function(email) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/users/forgotpassowrd/' + email);</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var resetPassword = <span class="fstat-no" title="function not covered" >function(token, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/users/reset/' + token, data);</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var getUser = <span class="fstat-no" title="function not covered" >function(userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/users/getuser/' + userid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var saveCreditCard = <span class="fstat-no" title="function not covered" >function(userid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/users/' + userid + '/savecard', data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var getCustomer = <span class="fstat-no" title="function not covered" >function(userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/users/' + userid + "/customer", getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var cancelSubscription = <span class="fstat-no" title="function not covered" >function(userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.delete(apiUrl + '/api/users/' + userid + '/subscription', getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var updateCustomer = <span class="fstat-no" title="function not covered" >function(userid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/users/' + userid + '/update', data, getAuth());</span>
+    };
+&nbsp;
+    /***************** COMMUNITY RESOURCES ***************/
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addCommunity = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/communities/new', data);</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var communityList = <span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/communities/', getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var acceptMember = <span class="fstat-no" title="function not covered" >function(data, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/communities/accept/' + communityid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addPendingMember = <span class="fstat-no" title="function not covered" >function(data, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/communities/pending/' + communityid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var declineMember = <span class="fstat-no" title="function not covered" >function(data, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.put(apiUrl + '/api/communities/decline/' + communityid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var addRole = <span class="fstat-no" title="function not covered" >function(communityid, userid, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/communites/' + communityid + "/role/" + userid, data, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var removeMember = <span class="fstat-no" title="function not covered" >function(communityid, userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.delete(apiUrl + '/api/communites/' + communityid + "/user/" + userid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var hasCanceledCommunity = <span class="fstat-no" title="function not covered" >function(userid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.get(apiUrl + '/api/communites/canceled/' + userid, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var restoreCommunity = <span class="fstat-no" title="function not covered" >function(userid, communityid) {</span></span>
+<span class="cstat-no" title="statement not covered" >      return $http.post(apiUrl + '/api/communites/' + communityid + '/restore/' + userid, {}, getAuth());</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      //appointments
+      appointmentsList: appointmentsList,
+      appointmentById: appointmentById,
+      addAppointment: addAppointment,
+      updateAppointment: updateAppointment,
+      addAppointmentCommentById: addAppointmentCommentById,
+      appointmentsListByMonth: appointmentsListByMonth,
+      appointmentsToday: appointmentsToday,
+&nbsp;
+      //issues
+      issuesList: issuesList,
+      issueById: issueById,
+      addIssue: addIssue,
+      addIssueCommentById: addIssueCommentById,
+      updateIssue: updateIssue,
+      listIssueByUsername: listIssueByUsername,
+      addIssueLabelById: addIssueLabelById,
+      deleteIssueLabelById: deleteIssueLabelById,
+      updateIssueLabelById: updateIssueLabelById,
+      addCheckList: addCheckList,
+      updateCheckList: updateCheckList,
+      deleteCheckList: deleteCheckList,
+      deleteAttachment: deleteAttachment,
+      openIssuesCount: openIssuesCount,
+      deleteIssue: deleteIssue,
+      issuesCount: issuesCount,
+      dueIssuesList: dueIssuesList,
+      createIssueRecovery: createIssueRecovery,
+      verifyPassword: verifyPassword,
+&nbsp;
+      //residents
+      residentsList: residentsList,
+      addResident: addResident,
+      residentById: residentById,
+      updateResident: updateResident,
+      residentCount: residentCount,
+      residentBirthday: residentBirthday,
+      averageAge: averageAge,
+      averageStayTime: averageStayTime,
+      getLocations: getLocations,
+      updateListItem: updateListItem,
+&nbsp;
+      //api url
+      getApiUrl: getApiUrl,
+&nbsp;
+      //users
+      usersList: usersList,
+      changeUsername: changeUsername,
+      usersInCommunity: usersInCommunity,
+      userCommunity: userCommunity,
+      forgotPassword: forgotPassword,
+      resetPassword: resetPassword,
+      getUser: getUser,
+      saveCreditCard: saveCreditCard,
+      getCustomer: getCustomer,
+      cancelSubscription: cancelSubscription,
+      updateCustomer: updateCustomer,
+&nbsp;
+      //community
+      addCommunity: addCommunity,
+      communityList: communityList,
+      acceptMember: acceptMember,
+      addPendingMember: addPendingMember,
+      declineMember: declineMember,
+      addRole: addRole,
+      removeMember: removeMember,
+      hasCanceledCommunity: hasCanceledCommunity,
+      restoreCommunity: restoreCommunity,
+    };
+  }
+&nbsp;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

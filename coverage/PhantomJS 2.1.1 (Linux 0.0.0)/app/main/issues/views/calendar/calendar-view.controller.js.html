@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/main/issues/views/calendar/calendar-view.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/main/issues/views/calendar/</a> calendar-view.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.15% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>11/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.15% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/52</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.issues')
+        .controller('CalendarViewController', CalendarViewController);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function CalendarViewController($scope, $document, $mdDialog, $mdSidenav, BoardService, DialogService)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        vm.board = BoardService.data;</span>
+<span class="cstat-no" title="statement not covered" >        vm.eventSources = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.calendarUiConfig = {</span>
+            calendar: {
+                editable                 : true,
+                eventLimit               : true,
+                header                   : '',
+                handleWindowResize       : false,
+                aspectRatio              : 1,
+                dayNames                 : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                dayNamesShort            : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                timezone                 : 'local',
+                eventDurationEditable    : false,
+                defaultTimedEventDuration: '01:00:00',
+                viewRender               : <span class="fstat-no" title="function not covered" >function (view)</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    vm.calendarView = view;</span>
+<span class="cstat-no" title="statement not covered" >                    vm.calendar = vm.calendarView.calendar;</span>
+<span class="cstat-no" title="statement not covered" >                    vm.currentMonthShort = vm.calendar.getDate().format('MMM');</span>
+                },
+                columnFormat             : {
+                    month: 'ddd',
+                    week : 'ddd D',
+                    day  : 'ddd D'
+                },
+                eventClick               : <span class="fstat-no" title="function not covered" >function eventDetail(calendarEvent, ev)</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    vm.openCardDialog(ev, calendarEvent.idCard);</span>
+                },
+                eventDrop                : <span class="fstat-no" title="function not covered" >function (event)</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    vm.board.cards.getById(event.idCard).due = moment.utc(event.start).format('x');</span>
+                },
+                selectable               : true,
+                selectHelper             : true,
+                dayClick                 : <span class="fstat-no" title="function not covered" >function (date, ev)</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    var offset = moment().utcOffset();</span>
+<span class="cstat-no" title="statement not covered" >                    var corrDate = '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if ( offset &lt; 0 )</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        corrDate = moment.utc(date).subtract(offset, 'm').format('x');</span>
+                    }
+                    else
+                    {
+<span class="cstat-no" title="statement not covered" >                        corrDate = moment.utc(date).add(offset, 'm').format('x');</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    eventDialog(corrDate, ev);</span>
+                }
+            }
+        };
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.next = next;</span>
+<span class="cstat-no" title="statement not covered" >        vm.prev = prev;</span>
+<span class="cstat-no" title="statement not covered" >        vm.goToDate = goToDate;</span>
+<span class="cstat-no" title="statement not covered" >        vm.openCardDialog = DialogService.openCardDialog;</span>
+<span class="cstat-no" title="statement not covered" >        vm.toggleSidenav = toggleSidenav;</span>
+&nbsp;
+        //////////
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        init();</span>
+&nbsp;
+        /**
+         * Initialize
+         */
+<span class="fstat-no" title="function not covered" >        function init()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.cards = getScheduledCards();</span>
+<span class="cstat-no" title="statement not covered" >            vm.eventSources[0] = vm.cards;</span>
+        }
+&nbsp;
+        /**
+         * Get scheduled cards and prepare
+         * them to show on the calendar
+         *
+         * @returns {Array}
+         */
+<span class="fstat-no" title="function not covered" >        function getScheduledCards()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var cards = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(vm.board.cards, <span class="fstat-no" title="function not covered" >function (card)</span></span>
+            {
+<span class="cstat-no" title="statement not covered" >                if ( card.due )</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    cards.push({</span>
+                        idCard         : card.id,
+                        title          : card.name,
+                        start          : moment.utc(card.due, 'x'),
+                        due            : card.due,
+                        backgroundColor: getEventBgColor(card.due)
+                    });
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return cards;</span>
+        }
+&nbsp;
+        /**
+         * Get background color
+         *
+         * @param cardDue
+         * @returns {*}
+         */
+<span class="fstat-no" title="function not covered" >        function getEventBgColor(cardDue)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( moment() &gt; moment(cardDue, 'x') )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return '#F44336';</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return '#4CAF50';</span>
+        }
+&nbsp;
+        /**
+         * Watch board changes
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.$watch('vm.board', <span class="fstat-no" title="function not covered" >function (current, old)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( angular.equals(current, old) )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            init();</span>
+&nbsp;
+        }, true);
+&nbsp;
+        /**
+         * Go to Date
+         *
+         * @param date
+         */
+<span class="fstat-no" title="function not covered" >        function goToDate(date)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.calendarView.calendar.gotoDate(date);</span>
+<span class="cstat-no" title="statement not covered" >            $mdSidenav('scheduled-tasks-sidenav').close();</span>
+        }
+&nbsp;
+        /**
+         * Go to next on current view (week, month etc.)
+         */
+<span class="fstat-no" title="function not covered" >        function next()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.calendarView.calendar.next();</span>
+        }
+&nbsp;
+        /**
+         * Go to previous on current view (week, month etc.)
+         */
+<span class="fstat-no" title="function not covered" >        function prev()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.calendarView.calendar.prev();</span>
+        }
+&nbsp;
+        /**
+         * Event Dialog
+         */
+<span class="fstat-no" title="function not covered" >        function eventDialog(date, ev)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdDialog.show({</span>
+                templateUrl        : 'app/main/apps/issues/views/calendar/dialogs/event/event-dialog.html',
+                controller         : 'ScrumboardCalendarEventDialogController',
+                controllerAs       : 'vm',
+                parent             : $document.find('#issues'),
+                targetEvent        : ev,
+                clickOutsideToClose: true,
+                locals             : {
+                    dueDate: date
+                }
+            });
+        }
+&nbsp;
+        /**
+         * Toggle sidenav
+         *
+         * @param sidenavId
+         */
+<span class="fstat-no" title="function not covered" >        function toggleSidenav(sidenavId)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdSidenav(sidenavId).toggle();</span>
+        }
+&nbsp;
+    }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

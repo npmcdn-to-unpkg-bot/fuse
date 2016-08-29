@@ -11,6 +11,7 @@
        var apiUrl="http://localhost:3300";
 
        var changedUsername = "";
+       var community = {};
 
        var userImage = "https://s3-us-west-2.amazonaws.com/apilatest2/logo.png";
 
@@ -18,7 +19,6 @@
         var saveToken = function(token) {
             $window.localStorage['apila-token'] = token;
             var name = JSON.parse($window.atob(token.split('.')[1])).name;
-            console.log("COOKIE: " + name);
             $window.localStorage['apila-username'] = $window.btoa(name);
         };
 
@@ -51,13 +51,13 @@
                 return {
                     email: payload.email,
                     name: name,
-                    id: payload._id
+                    id: payload._id,
+                    community: community
                 };
             }
         };
 
         var changeUsername = function(username) {
-          console.log(username);
           $window.localStorage['apila-username'] = $window.btoa(username);
 
         };
@@ -84,7 +84,7 @@
         var login = function(user) {
             return $http.post(apiUrl + '/api/login', user).success(function(data) {
                 saveToken(data.token);
-
+                getCommunity();
             });
         };
 
@@ -92,6 +92,19 @@
             $window.localStorage.removeItem('apila-token');
             $window.localStorage.removeItem('apila-username');
         };
+
+        function getCommunity() {
+          $http.get(apiUrl + '/api/users/community/' + this.currentUser().id, {"headers": {
+            Authorization: 'Bearer ' + this.getToken()
+          }})
+          .success(function(response) {
+            console.log(response);
+            community = response;
+          })
+          .error(function(response) {
+            console.log(response);
+          });
+        }
 
 
         if (isLoggedIn()) {

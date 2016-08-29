@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/main/profile/profile.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/main/profile/</a> profile.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.77% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/65</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.76% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.77% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/65</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.profile')
+        .controller('ProfileController', ProfileController);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function ProfileController(authentication, apilaData, Upload, $mdToast, $timeout, $mdDialog, $document, $window)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.searchText = "";</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        vm.username = authentication.currentUser().name;</span>
+<span class="cstat-no" title="statement not covered" >        vm.userid = authentication.currentUser().id;</span>
+<span class="cstat-no" title="statement not covered" >        vm.hasCommunity = false;</span>
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.sendRequest = sendRequest;</span>
+<span class="cstat-no" title="statement not covered" >        vm.uploadFiles = uploadFiles;</span>
+<span class="cstat-no" title="statement not covered" >        vm.openCommunityModal = openCommunityModal;</span>
+<span class="cstat-no" title="statement not covered" >        vm.changeUsername = changeUsername;</span>
+&nbsp;
+        //Autofield selectbox setup
+<span class="cstat-no" title="statement not covered" >        vm.residentList = [];</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectedCommunity = {};</span>
+<span class="cstat-no" title="statement not covered" >        vm.formatedRegister = "";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.userImage = authentication.getUserImage();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log(vm.userImage);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        apilaData.getUser(vm.userid)</span>
+        .success(<span class="fstat-no" title="function not covered" >function(response) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.currUser = response;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.formatedRegister = moment(vm.currUser.registeredOn).format('LL');</span>
+        })
+        .error(<span class="fstat-no" title="function not covered" >function(response) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(response);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        apilaData.communityList()</span>
+          .success(<span class="fstat-no" title="function not covered" >function(residentList) {</span>
+            //console.log(residentList);
+<span class="cstat-no" title="statement not covered" >            vm.residentList = residentList.map(<span class="fstat-no" title="function not covered" >function(elem) {</span></span>
+<span class="cstat-no" title="statement not covered" >              return {value: elem._id, display: elem.name};</span>
+            });
+          })
+          .error(<span class="fstat-no" title="function not covered" >function(residentList) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Error retriving the list of residents");</span>
+          });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.getMatches = <span class="fstat-no" title="function not covered" >function (text) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if(text === null) {</span>
+<span class="cstat-no" title="statement not covered" >              return vm.residentList;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var textLower = text.toLowerCase();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              var ret = vm.residentList.filter(<span class="fstat-no" title="function not covered" >function (d) {</span></span>
+<span class="cstat-no" title="statement not covered" >                  if(d.display != null)</span>
+<span class="cstat-no" title="statement not covered" >                  return d.display.toLowerCase().indexOf(text) &gt; -1;</span>
+              });
+<span class="cstat-no" title="statement not covered" >              return ret;</span>
+          };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        apilaData.userCommunity(vm.userid)</span>
+          .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.myCommunity = d;</span>
+<span class="cstat-no" title="statement not covered" >            vm.hasCommunity = true;</span>
+          })
+          .error(<span class="fstat-no" title="function not covered" >function(d) {</span>
+          });
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function sendRequest()</span>
+        {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if(vm.selectedItem === null) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          $mdToast.show(</span>
+            $mdToast.simple()
+              .textContent('Invite Request Sent to ' + vm.selectedItem.display)
+              .position("top right")
+              .hideDelay(3000)
+          );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.communityId = vm.selectedItem.value;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          var data = {};</span>
+<span class="cstat-no" title="statement not covered" >          data.pendingMember = vm.username;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          apilaData.addPendingMember(data, vm.communityId)</span>
+          .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.searchText = "";</span>
+          })
+          .error(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+          });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function changeUsername() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          apilaData.changeUsername(vm.userid, vm.form)</span>
+          .success(<span class="fstat-no" title="function not covered" >function(response) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >            vm.userExists = "";</span>
+<span class="cstat-no" title="statement not covered" >            authentication.changeUsername(vm.form.username);</span>
+<span class="cstat-no" title="statement not covered" >            $window.location.reload();</span>
+          })
+          .error(<span class="fstat-no" title="function not covered" >function(response) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >            vm.userExists = response.message;</span>
+          });
+        }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function openCommunityModal(ev) {</span>
+<span class="cstat-no" title="statement not covered" >          $mdDialog.show({</span>
+              controller         : 'CreateCommunityController',
+              controllerAs       : 'vm',
+              templateUrl        : 'app/main/dashboard/dialogs/create/createCommunity.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function uploadFiles(file, errFiles) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          var uploadUrl = apilaData.getApiUrl() + '/api/users/'+ vm.userid + '/upload';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (file) {</span>
+<span class="cstat-no" title="statement not covered" >              file.upload = Upload.upload({</span>
+                  url: uploadUrl,
+                  data: {file: file},
+                  headers: {
+                      Authorization: 'Bearer ' + authentication.getToken()
+                  }
+              });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              file.upload.then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                  $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                      file.result = response.data;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                      authentication.setUserImage(response.data);</span>
+<span class="cstat-no" title="statement not covered" >                      vm.userImage = response.data;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                      $mdToast.show(</span>
+                        $mdToast.simple()
+                          .textContent("User profile image updated!")
+                          .position("top right")
+                          .hideDelay(1000)
+                      );
+&nbsp;
+                  });
+&nbsp;
+              });
+          }
+        }
+&nbsp;
+        //////////
+    }
+&nbsp;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

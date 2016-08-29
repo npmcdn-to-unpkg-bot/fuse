@@ -1,0 +1,1787 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/common/services/exports/residentCarePlan.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/common/services/exports/</a> residentCarePlan.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.46% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/343</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.46% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/343</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+  angular.module("app.core").service("exportCarePlan", exportCarePlan);
+&nbsp;
+  exportCarePlan.$inject = ['$filter', 'imageData'];
+&nbsp;
+<span class="fstat-no" title="function not covered" >  function exportCarePlan($filter, imageData) {</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function exportPdf(data) {</span>
+      
+<span class="cstat-no" title="statement not covered" >      var doc = new jsPDF('p', 'pt', 'letter');</span>
+<span class="cstat-no" title="statement not covered" >      var fileName = data.firstName + ' ' + data.lastName + '.pdf';</span>
+&nbsp;
+      // date config
+<span class="cstat-no" title="statement not covered" >      var residentBirthDate = new Date(data.birthDate);</span>
+<span class="cstat-no" title="statement not covered" >      var residentAdmissionDate = new Date(data.admissionDate);</span>
+<span class="cstat-no" title="statement not covered" >      var dateFilter = $filter('date');</span>
+<span class="cstat-no" title="statement not covered" >      var residentFilteredBirthDate = dateFilter(residentBirthDate, 'MMM d, yyyy');</span>
+<span class="cstat-no" title="statement not covered" >      var residentFilteredAdmissionDate = dateFilter(residentAdmissionDate, 'MMM d, yyyy');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var arrayLengthOffset = 0;</span>
+<span class="cstat-no" title="statement not covered" >      var adminOffset = 250;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.insideApartment === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        data.insideApartment = {};</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.outApartment === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        data.outApartment = {};</span>
+      }
+&nbsp;
+      // doc.addImage(imageData.getApilaLogo(), 'JPEG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);
+&nbsp;
+      /* rounded box attempt
+      doc.text(200, 80, data.communityName + " - Care Plan");
+&nbsp;
+      doc.setFontSize(10);
+      doc.text(200, 30, "3407 Carroll St");
+      doc.text(200, 42, "Alamosa CO, 81101");
+      doc.text(200, 54, "AlamosaBridge.com");
+&nbsp;
+      doc.text(350, 30, "Phone:");
+      doc.text(350, 42, "Fax:");
+      doc.text(350, 54, "Clinical Services Fax:");
+&nbsp;
+      doc.text(450, 30, "(719) 587-3514");
+      doc.text(450, 42, "(719) 589-3614");
+      doc.text(450, 54, "(719) 589-7424");
+&nbsp;
+      doc.roundedRect(30, 90, 550, 200, 7, 7);
+      doc.text(35, 102, "Name: " + data.firstName + " " + data.middleName + " " + data.lastName);
+      doc.text(35, 114, "Maiden Name: " + data.maidenName);
+      */
+&nbsp;
+      // font setup
+<span class="cstat-no" title="statement not covered" >      doc.setFontSize(10);</span>
+<span class="cstat-no" title="statement not covered" >      doc.setTextColor(33, 33, 33);</span>
+<span class="cstat-no" title="statement not covered" >      doc.setFont("courier");</span>
+<span class="cstat-no" title="statement not covered" >      doc.setFontType("bold");</span>
+<span class="cstat-no" title="statement not covered" >      doc.setLineWidth(25);</span>
+&nbsp;
+      // address line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(236, 239, 241);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 25, 650, 25);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(14, 28, "ADDRESS");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 28, "3407 Carroll St Alamosa CO, 81101");</span>
+&nbsp;
+      // phone line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(207, 216, 220);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 50, 650, 50);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(25, 53, "PHONE");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 53, "(719) 587-3514");</span>
+&nbsp;
+      // fax line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(176, 190, 197);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 75, 650, 75);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(36, 78, "FAX");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 78, "(719) 589-3614");</span>
+&nbsp;
+      // web line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(144, 164, 174);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 100, 650, 100);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(37, 103, "WEB");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 103, "AlamosaBridge.com");</span>
+&nbsp;
+      // allergy
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(0, 150, 136);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 150, 650, 150);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 153, "ALLERGY");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.hasFoodAllergies === true || data.hasMedicationAllergies === true) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        arrayLengthOffset = 174;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (data.hasFoodAllergies === true) {</span>
+<span class="cstat-no" title="statement not covered" >          doc.text(295, arrayLengthOffset, "Food Allergies:");</span>
+<span class="cstat-no" title="statement not covered" >          doc.text(430, arrayLengthOffset, data.foodAllergies);</span>
+<span class="cstat-no" title="statement not covered" >          arrayLengthOffset = (data.foodAllergies.length * 12) + arrayLengthOffset;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (data.hasMedicationAllergies === true) {</span>
+<span class="cstat-no" title="statement not covered" >          doc.text(295, arrayLengthOffset, "Medication Allergies:");</span>
+<span class="cstat-no" title="statement not covered" >          doc.text(430, arrayLengthOffset, data.medicationAllergies);</span>
+<span class="cstat-no" title="statement not covered" >          arrayLengthOffset = (data.medicationAllergies.length * 12) + arrayLengthOffset;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        arrayLengthOffset = arrayLengthOffset + 25;</span>
+&nbsp;
+      } else {
+<span class="cstat-no" title="statement not covered" >        doc.text(295, 174, data.firstName + " has no known allergies");</span>
+<span class="cstat-no" title="statement not covered" >        arrayLengthOffset = 174 + 35;</span>
+      }
+&nbsp;
+      // bathing line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(3, 169, 244);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, arrayLengthOffset, 650, arrayLengthOffset);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, arrayLengthOffset + 3, "BATHING");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 24, "Type:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 24, data.typeOfBathing + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 36, "Time:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 36, data.timeOfBathing + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 48, "Frequency:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 48, data.frequencyOfBathing + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      arrayLengthOffset = arrayLengthOffset + 60;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset, "Acceptance:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset, data.acceptanceOfBathing + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.acceptanceOfBathing == "Dislikes") {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(295, arrayLengthOffset + 12, "Why Dislikes:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(430, arrayLengthOffset + 12, data.dislikesBathingDescribe + " ");</span>
+<span class="cstat-no" title="statement not covered" >        arrayLengthOffset = arrayLengthOffset + 12;</span>
+      }
+&nbsp;
+      // continent line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(121, 85, 72);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, arrayLengthOffset + 38, 650, arrayLengthOffset + 38);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, arrayLengthOffset + 41, "CONTINENT");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 62, "Bowel Continent:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 62, data.bowelContinent + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 74, "Constipated:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 74, data.constipated + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 86, "Laxative:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 86, data.laxative + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 110, "Bladder Continent:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 110, data.bladderContinent + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 122, "Dribbles:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset + 122, data.dribbles + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.catheter == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(295, arrayLengthOffset + 134, "Catheter Description:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(430, arrayLengthOffset + 134, data.catheterDescribe + " ");</span>
+<span class="cstat-no" title="statement not covered" >        arrayLengthOffset = arrayLengthOffset + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      arrayLengthOffset = arrayLengthOffset + 134;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset, "Toileting Device:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(430, arrayLengthOffset, data.toiletingDevice + " ");</span>
+&nbsp;
+      // mobility line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(255, 235, 59);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, arrayLengthOffset + 38, 650, arrayLengthOffset + 38);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, arrayLengthOffset + 41, "MOBILITY");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 62, "Inside Apartment:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 74, "Use of Assistive Device:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 74, data.insideApartment.useOfAssistiveDevice + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 86, "Assitance with Device:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 86, data.insideApartment.assitanceWithDevice + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 98, "Special Ambulation Needs:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 98, data.insideApartment.specialAmbulationNeeds + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 122, "Outside Apartment:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 134, "Use of Assistive Device:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 134, data.toiletingDevice + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 146, "Assitance with Device:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 146, data.toiletingDevice + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 158, "Special Ambulation Needs:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 158, data.toiletingDevice + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 182, "Transfers:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 182, data.transfers + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.fallRisk == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(295, arrayLengthOffset + 194, "Fall Risk Description:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(450, arrayLengthOffset + 194, data.fallRiskDescribe + " ");</span>
+<span class="cstat-no" title="statement not covered" >        arrayLengthOffset = arrayLengthOffset + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(295, arrayLengthOffset + 194, "Bed Reposition:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(450, arrayLengthOffset + 194, data.bedReposition + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      arrayLengthOffset = arrayLengthOffset + 202</span>
+&nbsp;
+      // big vertical line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(120, 144, 156);</span>
+<span class="cstat-no" title="statement not covered" >      doc.setLineWidth(220);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(180, 0, 180, 800);</span>
+&nbsp;
+      // community title
+<span class="cstat-no" title="statement not covered" >      doc.setFontSize(16.6);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(75, 40, data.communityName);</span>
+&nbsp;
+      // logo
+<span class="cstat-no" title="statement not covered" >      var logoPosX = 55,</span>
+        logoPosY = 55;
+<span class="cstat-no" title="statement not covered" >      var logoWidth = 190,</span>
+        logoHeight = 75;
+<span class="cstat-no" title="statement not covered" >      doc.addImage(imageData.getImage('transperent_logo'), 'PNG', logoPosX, logoPosY, logoPosX + logoWidth, logoPosY + logoHeight);</span>
+&nbsp;
+      // admin header
+<span class="cstat-no" title="statement not covered" >      doc.setTextColor(33, 33, 33);</span>
+<span class="cstat-no" title="statement not covered" >      doc.setFontSize(16.6);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(135, 220, "Care Plan");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(164, 235, "for");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(75, adminOffset, data.firstName);</span>
+&nbsp;
+/*
+      if (data.middleName !== "" || data.middleName === undefined) {
+        adminOffset = adminOffset + 15;
+        doc.text(75, adminOffset, data.middleName + " ");
+      } */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(75, adminOffset + 15, data.lastName);</span>
+&nbsp;
+      // admin info
+<span class="cstat-no" title="statement not covered" >      doc.setFontSize(10);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(147, adminOffset + 30, "Sex: " + data.sex);</span>
+<span class="cstat-no" title="statement not covered" >      if (data.sex == "Female") {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(99, adminOffset + 30, "Maiden Name: " + data.maidenName);</span>
+<span class="cstat-no" title="statement not covered" >        adminOffset = adminOffset + 12;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      doc.text(87, adminOffset + 42, "Date of Birth: " + residentFilteredBirthDate);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(81, adminOffset + 54, "Admission Date: " + residentFilteredAdmissionDate);</span>
+<span class="cstat-no" title="statement not covered" >      if (data.buildingStatus == "Moved Out") {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(87, 42 + adminOffset, "Moved Out: " + movedOutTo);</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(87, 42 + adminOffset, "Reason: " + movedOutDescribe);</span>
+<span class="cstat-no" title="statement not covered" >        adminOffset = adminOffset + 24;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        doc.text(75, 66 + adminOffset, "Building Status: " + data.buildingStatus);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      doc.text(81, adminOffset + 104, "Story about " + data.firstName + " " + data.lastName);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(81, adminOffset + 116, "could go here");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.addPage();</span>
+<span class="cstat-no" title="statement not covered" >      doc.setLineWidth(25);</span>
+<span class="cstat-no" title="statement not covered" >      var offset2 = 0;</span>
+&nbsp;
+      // nutrition line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(139, 195, 74);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 25, 650, 25);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 28, "NUTRITION");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 49, "Overall Nutrition:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 49, data.overallNutrition + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.overallNutrition == "Poor") {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 61, "Poor Nutrition Description:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 61, data.poorNutritionDescribe + " ");</span>
+<span class="cstat-no" title="statement not covered" >        offset2 = 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.diabetic == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 61 + offset2, "Diabetic Type:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 61 + offset2, data.diabeticType + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 73 + offset2, "Blood Sugar Monitoring:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 73 + offset2, data.bloodSugarMonitoring + " ");</span>
+<span class="cstat-no" title="statement not covered" >        offset2 = 12 + offset2;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 61 + offset2, data.firstName + " is not diabetic");</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 73 + offset2, "Bedtime Snack:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 73 + offset2, data.bedtimeSnack + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 85 + offset2, "Adaptive Equipment:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 85 + offset2, data.adaptiveEquipment + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 97 + offset2, "Needs Food in Small Peices:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 97 + offset2, data.needsFoodInSmallPeices + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 109 + offset2, "Type of Diet:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 109 + offset2, data.typeOfDiet + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 121 + offset2, "Finger Foods:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 121 + offset2, data.fingerFoods + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.foodLikes.length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 133 + offset2, "Food Likes:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 133 + offset2, data.foodLikes);</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(400, 133 + offset2, "likes length: " + data.foodLikes.length + " | offset2: " + offset2);</span>
+<span class="cstat-no" title="statement not covered" >        offset2 = (data.foodLikes.length * 12) + offset2;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.foodDislikes.length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 133 + offset2, "Food Dislikes:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 133 + offset2, data.foodDislikes);</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(400, 133 + offset2, "dislikes length: " + data.foodDislikes.length + " | offset2: " + offset2);</span>
+<span class="cstat-no" title="statement not covered" >        offset2 = (data.foodDislikes.length * 12) + offset2;</span>
+      }
+&nbsp;
+      // pain line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(244, 67, 54);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 159 + offset2, 650, 159 + offset2);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 162 + offset2, "PAIN");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.hasPain == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 186 + offset2, "Pain Location:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 186 + offset2, data.painLocation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 198 + offset2, "Pain Description:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 198 + offset2, data.painDescription + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 210 + offset2, "Max Pain Time:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 210 + offset2, data.maxPainTime + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 222 + offset2, "Pain Increased By:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 222 + offset2, data.painIncreasedBy + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 234 + offset2, "Pain Decreased By:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 234 + offset2, data.painDecreasedBy + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 246 + offset2, "Pain Managed By:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 246 + offset2, data.painManagedBy + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 258 + offset2, "Pain Length:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 258 + offset2, data.painLength + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset2 = offset2 + 84;</span>
+&nbsp;
+      } else {
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 186 + offset2, data.firstName + " has not mentioned pain");</span>
+      }
+&nbsp;
+      // physical condition line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(33, 150, 243);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 212 + offset2, 650, 212 + offset2);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 215 + offset2, "PHYSICAL");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 236 + offset2, "Skin Condition:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 236 + offset2, data.skinCondition + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.hasWound == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 248 + offset2, "Wound Description:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 248 + offset2, data.hasWoundDescribe + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 260 + offset2, "Wound Amount:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 260 + offset2, data.woundAmount + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset2 = offset2 + 24;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 248 + offset2, "Right Ear:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 248 + offset2, data.rightEar + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 260 + offset2, "Left Ear:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 260 + offset2, data.leftEar + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 272 + offset2, "Hearing Notes:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 272 + offset2, data.hearingNotes + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.wearsHearingAid == true) {</span>
+<span class="cstat-no" title="statement not covered" >        if (data.helpWithHearingAid == true) {</span>
+<span class="cstat-no" title="statement not covered" >          doc.text(20, 284 + offset2, "Hearing Aid Help:");</span>
+<span class="cstat-no" title="statement not covered" >          doc.text(220, 284 + offset2, data.helpWithHearingAidDescribe + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          offset2 = offset2 + 12;</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 284 + offset2, "Right Eye:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 284 + offset2, data.rightEye + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 296 + offset2, "Left Eye:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 296 + offset2, data.leftEye + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 308 + offset2, "Vision Notes:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 308 + offset2, data.visionNotes + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 320 + offset2, "Dentist Name:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 320 + offset2, data.dentistName + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.upperDentureFit == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 332 + offset2, "Upper Denture Fit:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 332 + offset2, data.upperDentureFitDescribe + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset2 = offset2 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 332 + offset2, "Upper Teeth:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 332 + offset2, data.upperTeeth + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.lowerDentureFit == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 344 + offset2, "Lower Denture Fit:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 344 + offset2, data.lowerDentureFitDescribe + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset2 = offset2 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 344 + offset2, "Lower Teeth:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 344 + offset2, data.lowerTeeth + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 356 + offset2, "Teeth Condition:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 356 + offset2, data.teethCondition + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.addPage();</span>
+<span class="cstat-no" title="statement not covered" >      doc.setLineWidth(25);</span>
+<span class="cstat-no" title="statement not covered" >      var offset3 = 0;</span>
+&nbsp;
+      // psychosocial line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(156, 39, 176);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 25, 650, 25);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 28, "PSYCHOSOCIAL");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.psychosocialStatus.length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 49, "Psychosocial Status:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 49, data.psychosocialStatus);</span>
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + (data.psychosocialStatus.length * 12) - 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 61 + offset3, "Psychosocial Status Description:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 61 + offset3, data.psychosocialStatusDescribe + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 73 + offset3, "Comprehension:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 73 + offset3, data.comprehension + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.smokes == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 85 + offset3, "Smokes:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 85 + offset3, data.smokesDescribe);</span>
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.alcohol == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 85 + offset3, "Alcohol:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 85 + offset3, data.alcoholDescribes);</span>
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.sexualActive == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 85 + offset3, "Sexual Activity:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 85 + offset3, data.sexualActiveDescribe);</span>
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 85 + offset3, "Other Habits:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 85 + offset3, data.otherHabits + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 97 + offset3, "Activity Participation:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 97 + offset3, data.generalActivityParticipation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 109 + offset3, "Dining Room Participation:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 109 + offset3, data.diningRoomParticipation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 121 + offset3, "Bus Ride Participation:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 121 + offset3, data.busRideParticipation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 133 + offset3, "Fitness Class Participation:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 133 + offset3, data.fitnessClassParticipation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 145 + offset3, "Bingo Participation:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 145 + offset3, data.bingoParticipation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 157 + offset3, "Community Participation:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 157 + offset3, data.communityParticipation + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 169 + offset3, "Time in Room:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 169 + offset3, data.timeInRoom + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.drivesCar == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 181 + offset3, "License Plate Number:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 181 + offset3, data.licensePlateNumber + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 193 + offset3, "Spare Key Location:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 193 + offset3, data.spareKeyLocation);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 205 + offset3, "Driving Needs:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 205 + offset3, data.drivingNeeds);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + 36;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 181 + offset3, "Prefered Activites:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 181 + offset3, data.preferedActivites + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 193 + offset3, "Uses Fitness Equipment Alone:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 193 + offset3, data.useFitnessEquipmentIndependently + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 205 + offset3, "Family Involvement:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 205 + offset3, data.familyInvolvement + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 217 + offset3, "High Maintenance:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 217 + offset3, data.highMaintenance + " ");</span>
+&nbsp;
+      // sleep line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(233, 30, 99);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 255 + offset3, 650, 255 + offset3);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 258 + offset3, "SLEEP");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 279 + offset3, "Usual Bedtime:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 279 + offset3, data.usualBedtime + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 291 + offset3, "Usual Arising Time:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 291 + offset3, data.usualArisingTime + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.nap == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 303 + offset3, "Nap Description:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 303 + offset3, data.napDescribe + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(20, 303 + offset3, "Assistance to Bed:");</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(220, 303 + offset3, data.assistanceToBed + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (data.sleepsThroughNight == true) {</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(20, 315 + offset3, "Can Call for Assistance:");</span>
+<span class="cstat-no" title="statement not covered" >        doc.text(220, 315 + offset3, data.canCallForAssistance + " ");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        offset3 = offset3 + 12;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.addPage();</span>
+<span class="cstat-no" title="statement not covered" >      doc.setLineWidth(25);</span>
+<span class="cstat-no" title="statement not covered" >      var offset4 = 0;</span>
+&nbsp;
+      // vitals line
+<span class="cstat-no" title="statement not covered" >      doc.setDrawColor(205, 220, 57);</span>
+<span class="cstat-no" title="statement not covered" >      doc.line(0, 25, 650, 25);</span>
+<span class="cstat-no" title="statement not covered" >      doc.text(300, 28, "VITALS");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(50, 100, "Temperature");</span>
+<span class="cstat-no" title="statement not covered" >      doc.addImage(data.temperature, 'PNG', 50, 120, 150, 150);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(210, 100, "Blood Pressure ");</span>
+<span class="cstat-no" title="statement not covered" >      doc.addImage(data.bloodCanvas, 'PNG', 250, 120, 150, 150);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(410, 100, "Respiration");</span>
+<span class="cstat-no" title="statement not covered" >      doc.addImage(data.resp, 'PNG', 410, 120, 150, 150);</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(50, 300, "Oxygen Saturation");</span>
+<span class="cstat-no" title="statement not covered" >      doc.addImage(data.oxygen, 'PNG', 50, 320, 150, 150);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(210, 300, "Pulse");</span>
+<span class="cstat-no" title="statement not covered" >      doc.addImage(data.pulse, 'PNG', 250, 320, 150, 150);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.text(410, 300, "Pain");</span>
+<span class="cstat-no" title="statement not covered" >      doc.addImage(data.vitals, 'PNG', 410, 320, 150, 150);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      doc.save(fileName);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      exportPdf : exportPdf
+    };
+&nbsp;
+  }
+&nbsp;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

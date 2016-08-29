@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/main/issues/directives/ms-sb-add-card/ms-sb-add-card.directive.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/main/issues/directives/ms-sb-add-card/</a> ms-sb-add-card.directive.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/50</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.69% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/50</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.issues')
+        .controller('msSbAddCardController', msSbAddCardController)
+        .directive('msSbAddCard', msSbAddCardDirective);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function msSbAddCardController($scope, $timeout, BoardService, $mdDialog, $document, msUtils)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.newCardName = '';</span>
+<span class="cstat-no" title="statement not covered" >        vm.listId = $scope.msListId;</span>
+<span class="cstat-no" title="statement not covered" >        vm.board = BoardService.data.data;</span>
+<span class="cstat-no" title="statement not covered" >        vm.cards = vm.board.cards;</span>
+<span class="cstat-no" title="statement not covered" >        vm.list = vm.board.lists.getById(vm.listId);</span>
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.addNewCard = addNewCard;</span>
+&nbsp;
+        /////
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.addIssue = <span class="fstat-no" title="function not covered" >function(ev) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                console.log(vm.list.name);</span>
+<span class="cstat-no" title="statement not covered" >          $mdDialog.show({</span>
+              controller         : 'CreateIssueController',
+              controllerAs       : 'vm',
+              locals             : {
+                  board: vm.board,
+                  name: vm.list.name
+              },
+              templateUrl        : 'app/main/issues/dialogs/createIssue/createIssue.html',
+              parent             : angular.element($document.body),
+              targetEvent        : ev,
+              clickOutsideToClose: true
+          });
+        }
+&nbsp;
+        /**
+         * Add New Card
+         */
+<span class="fstat-no" title="function not covered" >        function addNewCard()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( vm.newCardName === '' )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var newCardId = msUtils.guidGenerator();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.cards.push({</span>
+                id               : newCardId,
+                name             : vm.newCardName,
+                description      : '',
+                idAttachmentCover: '',
+                idMembers        : [],
+                idLabels         : [],
+                attachments      : [],
+                subscribed       : false,
+                checklists       : [],
+                checkItems       : 0,
+                checkItemsChecked: 0,
+                comments         : [],
+                activities       : [],
+                due              : null
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.list.idCards.push(newCardId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+            {
+<span class="cstat-no" title="statement not covered" >                $scope.scrollListContentBottom();</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.newCardName = '';</span>
+        }
+    }
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function msSbAddCardDirective($document, $window, $timeout)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            restrict   : 'E',
+            controller : 'msSbAddCardController as vm',
+            templateUrl: 'app/main/issues/directives/ms-sb-add-card/ms-sb-add-card.html',
+            scope      : {
+                msListId: '='
+            },
+            link       : <span class="fstat-no" title="function not covered" >function (scope, iElement)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                scope.formActive = false;</span>
+<span class="cstat-no" title="statement not covered" >                scope.toggleForm = toggleForm;</span>
+<span class="cstat-no" title="statement not covered" >                scope.scrollListContentBottom = scrollListContentBottom;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var buttonEl = iElement.find('.ms-sb-add-card-button'),</span>
+                    formEl = iElement.find('.ms-sb-add-card-form'),
+                    listCards = iElement.parent().prev().find('.list-cards');
+&nbsp;
+                /**
+                 * Click Event
+                 */
+<span class="cstat-no" title="statement not covered" >                buttonEl.on('click', toggleForm);</span>
+&nbsp;
+                /**
+                 * Toggle Form
+                 */
+<span class="fstat-no" title="function not covered" >                function toggleForm()</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    scope.$evalAsync(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        scope.formActive = !scope.formActive;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if ( scope.formActive )</span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                formEl.find('input').focus();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                scrollListContentBottom();</span>
+                            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            $document.on('click', outSideClick);</span>
+                        }
+                        else
+                        {
+<span class="cstat-no" title="statement not covered" >                            PerfectScrollbar.update(listCards[0]);</span>
+<span class="cstat-no" title="statement not covered" >                            $document.off('click', outSideClick);</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                        {
+                            // IE list-content max-height hack
+<span class="cstat-no" title="statement not covered" >                            if ( angular.element('html').hasClass('explorer') )</span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                angular.element($window).trigger('resize');</span>
+                            }
+                        });
+&nbsp;
+                    });
+                }
+&nbsp;
+                /**
+                 * Scroll List to the Bottom
+                 */
+<span class="fstat-no" title="function not covered" >                function scrollListContentBottom()</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    listCards[0].scrollTop = listCards[0].scrollHeight;</span>
+                }
+&nbsp;
+                /**
+                 * Click Outside Event Handler
+                 * @param event
+                 */
+<span class="cstat-no" title="statement not covered" >                var outSideClick = <span class="fstat-no" title="function not covered" >function (event)</span></span>
+                {
+<span class="cstat-no" title="statement not covered" >                    var isChild = formEl.has(event.target).length &gt; 0;</span>
+<span class="cstat-no" title="statement not covered" >                    var isSelf = formEl[0] === event.target;</span>
+<span class="cstat-no" title="statement not covered" >                    var isInside = isChild || isSelf;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if ( !isInside )</span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        toggleForm();</span>
+                    }
+                };
+            }
+        };
+    }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

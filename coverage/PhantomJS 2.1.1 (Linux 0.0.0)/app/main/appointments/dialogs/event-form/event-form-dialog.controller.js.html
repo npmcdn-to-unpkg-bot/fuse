@@ -1,0 +1,1295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/main/appointments/dialogs/event-form/event-form-dialog.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/main/appointments/dialogs/event-form/</a> event-form-dialog.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>15/165</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>15/165</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+  'use strict';
+&nbsp;
+  angular.module('app.appointments')
+    .controller('EventFormDialogController', EventFormDialogController);
+&nbsp;
+  /** @ngInject */
+<span class="fstat-no" title="function not covered" >  function EventFormDialogController($mdDialog, dialogData, apilaData, authentication, exportAppointDetail) {</span>
+<span class="cstat-no" title="statement not covered" >    var vm = this;</span>
+&nbsp;
+    // Data
+<span class="cstat-no" title="statement not covered" >    vm.dialogData = dialogData;</span>
+&nbsp;
+  //  vm.calendarEvent.date = dialogData.start;
+<span class="cstat-no" title="statement not covered" >    var userid = authentication.currentUser().id;</span>
+&nbsp;
+    // Methods
+<span class="cstat-no" title="statement not covered" >    vm.saveEvent = saveEvent;</span>
+<span class="cstat-no" title="statement not covered" >    vm.closeDialog = closeDialog;</span>
+<span class="cstat-no" title="statement not covered" >    vm.updateIssue = updateIssue;</span>
+<span class="cstat-no" title="statement not covered" >    vm.exportAppointment = exportAppointment;</span>
+<span class="cstat-no" title="statement not covered" >    vm.inUpdate = inUpdate;</span>
+<span class="cstat-no" title="statement not covered" >    vm.submitComment = submitComment;</span>
+<span class="cstat-no" title="statement not covered" >    vm.getMatches = getMatches;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    init();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    apilaData.userCommunity(userid)</span>
+      .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >        vm.community = d;</span>
+<span class="cstat-no" title="statement not covered" >        residentsList(vm.community._id);</span>
+      });
+&nbsp;
+    //////////
+&nbsp;
+    //This will only be set when the add part is active
+<span class="cstat-no" title="statement not covered" >    vm.dayTimeSwitch = "AM";</span>
+<span class="cstat-no" title="statement not covered" >    vm.showCancel = false;</span>
+&nbsp;
+    //If we are in the add dialog
+<span class="cstat-no" title="statement not covered" >    if (!inUpdate()) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.transportation = "We are transporting";</span>
+<span class="cstat-no" title="statement not covered" >          vm.showCancel = true;</span>
+<span class="cstat-no" title="statement not covered" >          vm.currentTime =  new Date();</span>
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function getMatches(text) {</span>
+<span class="cstat-no" title="statement not covered" >       if(text === null) {</span>
+<span class="cstat-no" title="statement not covered" >         return vm.residentList;</span>
+       }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       var textLower = text.toLowerCase();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       var ret = vm.residentList.filter(<span class="fstat-no" title="function not covered" >function (d) {</span></span>
+<span class="cstat-no" title="statement not covered" >           if(d.display != null) {</span>
+<span class="cstat-no" title="statement not covered" >             return d.display.toLowerCase().indexOf(textLower) &gt; -1;</span>
+           }
+&nbsp;
+       });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       return ret;</span>
+     }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    vm.residentList = [];</span>
+<span class="cstat-no" title="statement not covered" >    vm.selectedUser = {};</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function residentsList(id){</span>
+<span class="cstat-no" title="statement not covered" >      apilaData.residentsList(id)</span>
+        .success(<span class="fstat-no" title="function not covered" >function(residentList) {</span>
+          //console.log(residentList);
+<span class="cstat-no" title="statement not covered" >          vm.residentList = residentList.map(<span class="fstat-no" title="function not covered" >function(elem) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return {value: elem._id, display: elem.firstName + " " + elem.lastName};</span>
+          });
+        })
+        .error(<span class="fstat-no" title="function not covered" >function(residentList) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log("Error retriving the list of residents");</span>
+        });
+&nbsp;
+    }
+&nbsp;
+&nbsp;
+      //if we are in the update model set fields value
+<span class="cstat-no" title="statement not covered" >      if (vm.dialogData.calendarEvent) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.dayTimeSwitch = vm.calendarEvent.isAm;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log(vm.calendarEvent);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.currentTime = new Date();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(vm.calendarEvent.isAm) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.currentTime.setHours(vm.calendarEvent.hours);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          vm.currentTime.setHours(vm.calendarEvent.hours + 12);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.currentTime.setMinutes(vm.calendarEvent.minutes);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(vm.dayTimeSwitch == false) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.dayTimeSwitch = "PM";</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          vm.dayTimeSwitch = "AM";</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var fullName = vm.calendarEvent.currentUser.firstName + " " +</span>
+                       vm.calendarEvent.currentUser.lastName;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.selectedItem = {value: vm.calendarEvent.currentUser._id,</span>
+                           display: fullName
+                             };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.selectedUser = vm.calendarEvent.currentUser;</span>
+&nbsp;
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function updateIssue()</span>
+    {
+<span class="cstat-no" title="statement not covered" >      if (inUpdate())</span>
+      {
+<span class="cstat-no" title="statement not covered" >        if(vm.selectedItem){</span>
+<span class="cstat-no" title="statement not covered" >          saveEvent();</span>
+        }
+&nbsp;
+      }
+&nbsp;
+    }
+&nbsp;
+&nbsp;
+    /**
+     * Initialize
+     */
+<span class="fstat-no" title="function not covered" >    function init() {</span>
+<span class="cstat-no" title="statement not covered" >      vm.dialogTitle = (vm.dialogData.type === 'add' ? 'Add Appointment' : 'Edit Appointment');</span>
+&nbsp;
+      // Edit
+<span class="cstat-no" title="statement not covered" >      if (vm.dialogData.calendarEvent) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent = angular.copy(vm.dialogData.calendarEvent);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log(vm.calendarEvent);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent.reason = vm.calendarEvent.reason;</span>
+<span class="cstat-no" title="statement not covered" >        vm.isCancel = vm.calendarEvent.cancel;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log(vm.calendarEvent.date);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.date = new Date(vm.calendarEvent.start);</span>
+&nbsp;
+        //vm.date.setHours(parseInt(vm.calendarEvent.hours) + parseInt(vm.date.getTimezoneOffset()/60));
+<span class="cstat-no" title="statement not covered" >        vm.transportation = vm.calendarEvent.transportation;</span>
+&nbsp;
+&nbsp;
+        // Convert moment.js dates to javascript date object
+<span class="cstat-no" title="statement not covered" >        if (moment.isMoment(vm.calendarEvent.date)) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.calendarEvent.date = vm.calendarEvent.date.toDate();</span>
+        }
+&nbsp;
+      }
+      // Add
+      else {
+        // Convert moment.js dates to javascript date object
+<span class="cstat-no" title="statement not covered" >        if (moment.isMoment(vm.dialogData.date)) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.dialogData.date = vm.dialogData.date.toDate();</span>
+&nbsp;
+        }
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent = {</span>
+          start: vm.dialogData.start,
+          end: vm.dialogData.end
+        };
+&nbsp;
+        //the date that is set when we click the dialog must be in local time for the md-datepicker
+<span class="cstat-no" title="statement not covered" >        if(dialogData.start._d !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.date = utcToLocalDate(dialogData.start._d);</span>
+<span class="cstat-no" title="statement not covered" >          console.log(vm.date);</span>
+        }
+&nbsp;
+&nbsp;
+      }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function saveEvent() {</span>
+&nbsp;
+      //set up the date to proper fields before sending to the api
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.transportation = vm.transportation;</span>
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.residentId = vm.selectedItem.value;</span>
+<span class="cstat-no" title="statement not covered" >      console.log(vm.selectedItem.display);</span>
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.date = vm.date;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.cancel = vm.isCancel;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var parseDate = new Date(vm.calendarEvent.date);</span>
+&nbsp;
+      //setting timeSwith stuff
+      // if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {
+      //   vm.calendarEvent.isAm = false;
+      // } else {
+      //   vm.calendarEvent.isAm = true;
+      // }
+&nbsp;
+      //converting date to am/pm format
+<span class="cstat-no" title="statement not covered" >      if (vm.dayTimeSwitch === false || vm.dayTimeSwitch === "PM") {</span>
+<span class="cstat-no" title="statement not covered" >        parseDate.setUTCHours(parseInt(vm.calendarEvent.hours) + 12);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        parseDate.setUTCHours(parseInt(vm.calendarEvent.hours));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      parseDate.setMinutes(vm.calendarEvent.minutes);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      setTime();</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      console.log("The current date is:" + parseDate);</span>
+&nbsp;
+      //this is sent to db as the appointments date/time
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.time = parseDate;</span>
+&nbsp;
+      // Update
+<span class="cstat-no" title="statement not covered" >      if (vm.dialogData.calendarEvent) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent.appointmentDate = vm.date;</span>
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent.timezone = vm.date.getTimezoneOffset() / 60;</span>
+&nbsp;
+        //update info
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent.modifiedBy = authentication.currentUser().name;</span>
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent.modifiedDate = new Date();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var changedFields = checkChangedFields(vm.dialogData.calendarEvent, vm.calendarEvent);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(changedFields.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.calendarEvent.updateField = changedFields;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var srcEvents = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(vm.calendarEvent.source != undefined) {</span>
+<span class="cstat-no" title="statement not covered" >          srcEvents = vm.calendarEvent.source.events;</span>
+<span class="cstat-no" title="statement not covered" >          vm.calendarEvent.source.events.length = 0;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.calendarEvent.date = vm.calendarEvent.time;</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        apilaData.updateAppointment(vm.calendarEvent.appointId, vm.calendarEvent)</span>
+          .success(<span class="fstat-no" title="function not covered" >function(appoint) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var calId = vm.dialogData.calendarEvent._id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log(appoint);</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent = appoint;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.source = srcEvents;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.residentGoing = appoint.residentGoing;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.appointId = appoint._id;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.title = appoint.reason;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.calId = calId;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.currentUser = appoint.residentGoing;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var response = {</span>
+              type: vm.dialogData.type,
+              calendarEvent: vm.calendarEvent
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $mdDialog.hide(response);</span>
+&nbsp;
+          })
+          .error(<span class="fstat-no" title="function not covered" >function(appoint) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Something went wrong while updating the appointments");</span>
+          });
+&nbsp;
+      } else { // Add
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log("Time added " + vm.calendarEvent.time);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       vm.calendarEvent.date = vm.calendarEvent.time;</span>
+<span class="cstat-no" title="statement not covered" >       vm.calendarEvent.community = vm.community;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       vm.calendarEvent.appointmentDate = vm.date;</span>
+<span class="cstat-no" title="statement not covered" >       vm.calendarEvent.timezone = vm.date.getTimezoneOffset() / 60;</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        apilaData.addAppointment(vm.calendarEvent)</span>
+          .success(<span class="fstat-no" title="function not covered" >function(appoint) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent = appoint;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.appointId = appoint._id;</span>
+<span class="cstat-no" title="statement not covered" >            vm.calendarEvent.title = appoint.reason;</span>
+<span class="cstat-no" title="statement not covered" >            var response = {</span>
+              type: vm.dialogData.type,
+              calendarEvent: vm.calendarEvent
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $mdDialog.hide(response);</span>
+          })
+          .error(<span class="fstat-no" title="function not covered" >function(appoint) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Something went wrong with the appointment, try again");</span>
+          });
+      }
+&nbsp;
+  }
+&nbsp;
+&nbsp;
+&nbsp;
+    //checks what fields changed in the updates
+<span class="fstat-no" title="function not covered" >    function checkChangedFields(oldData, newData) {</span>
+<span class="cstat-no" title="statement not covered" >              var d1 = new Date(oldData.date);</span>
+<span class="cstat-no" title="statement not covered" >              var d2 = newData.date;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              var diff = [];</span>
+<span class="cstat-no" title="statement not covered" >              var attributeArr = [</span>
+                  "reason",
+                  "locationName",
+                  "locationDoctor",
+                  "transportation",
+              ];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              for (var i = 0; i &lt; attributeArr.length; ++i) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                  if (oldData[attributeArr[i]] !== newData[attributeArr[i]]) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                      diff.push({</span>
+                          "field": attributeArr[i],
+                          "old": oldData[attributeArr[i]],
+                          "new": newData[attributeArr[i]]
+                      });
+                  }
+              }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              if(d1.getTime() !== d2.getTime()) {</span>
+<span class="cstat-no" title="statement not covered" >                diff.push({</span>
+                  "field": "time",
+                  "old": d1,
+                  "new": d2
+                });
+              }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              return diff;</span>
+          }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function submitComment() {</span>
+&nbsp;
+          // var tmpText = '';
+          // for(var i = 0; i &lt; vm.formData.commentText.length;++i) {
+          //   if(i % 40 == 0) {
+          //     tmpText += '\n';
+          //   }
+          //   tmpText += vm.formData.commentText[i];
+          // }
+          //
+          // console.log(tmpText);
+          //
+          // vm.formData.commentText = tmpText;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.addAppointmentCommentById(vm.calendarEvent.appointId, vm.formData)</span>
+                .success(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >                    console.log("Comment has been aded");</span>
+<span class="cstat-no" title="statement not covered" >                    vm.calendarEvent.appointmentComment.push(data);</span>
+<span class="cstat-no" title="statement not covered" >                      vm.dialogData.calendarEvent.appointmentComment.push(data);</span>
+<span class="cstat-no" title="statement not covered" >                    vm.formData.commentText = "";</span>
+                })
+                .error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >                    console.log("Error while adding comments");</span>
+                });
+          }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function exportAppointment() {</span>
+<span class="cstat-no" title="statement not covered" >      var name = vm.calendarEvent.residentGoing.firstName + " to " + vm.calendarEvent.locationName;</span>
+      //exportPdf.exportAppointmentDetail(name, vm.calendarEvent);
+<span class="cstat-no" title="statement not covered" >      exportAppointDetail.exportPdf(name, vm.calendarEvent);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function closeDialog() {</span>
+<span class="cstat-no" title="statement not covered" >      $mdDialog.cancel();</span>
+    }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function setTime() {</span>
+<span class="cstat-no" title="statement not covered" >      var hours = vm.currentTime.getHours();</span>
+<span class="cstat-no" title="statement not covered" >      var minutes = vm.currentTime.getMinutes();</span>
+<span class="cstat-no" title="statement not covered" >      var isAm = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if(hours &gt;= 12) {</span>
+<span class="cstat-no" title="statement not covered" >        hours -= 12;</span>
+<span class="cstat-no" title="statement not covered" >        isAm = false;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.hours = hours;</span>
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.minutes = minutes;</span>
+<span class="cstat-no" title="statement not covered" >      vm.calendarEvent.isAm = isAm;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function inUpdate()</span>
+    {
+<span class="cstat-no" title="statement not covered" >      if (!vm.dialogData.calendarEvent){</span>
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+      }
+      else {
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+      }
+    }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function utcToLocalDate(date)</span>
+    {
+<span class="cstat-no" title="statement not covered" >      return new Date(date.getTime() + date.getTimezoneOffset()*60*1000);</span>
+    }
+  }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

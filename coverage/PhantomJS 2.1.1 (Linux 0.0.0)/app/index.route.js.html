@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/index.route.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">app/</a> index.route.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.18% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/22</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('fuse')
+        .config(routeConfig)
+        .run(routeRun);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function routeRun($rootScope, $location, authentication) {</span>
+&nbsp;
+      //urls we can't visit while we're not logged in
+<span class="cstat-no" title="statement not covered" >      var restrictedUrls = ['app.residents', 'app.appointments', 'app.issues.boards.board', 'app.dashboard'];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $rootScope.$on('$stateChangeStart', <span class="fstat-no" title="function not covered" >function (event, toState, toParams) {</span></span>
+&nbsp;
+          //if we go to login and we are already logged in, switch to appointments
+<span class="cstat-no" title="statement not covered" >          if(toState.name === "app.pages_auth_login" &amp;&amp; authentication.isLoggedIn()) {</span>
+<span class="cstat-no" title="statement not covered" >            $location.path('/dashboard');</span>
+          }
+&nbsp;
+          //if we go to homepage and we are already logged in, switch to appointments
+<span class="cstat-no" title="statement not covered" >          if(toState.name === "app.homepage" &amp;&amp; authentication.isLoggedIn()) {</span>
+<span class="cstat-no" title="statement not covered" >            $location.path('/dashboard');</span>
+          }
+&nbsp;
+          //if we are not logged in and it's a restricted url, switch page
+<span class="cstat-no" title="statement not covered" >          if(!authentication.isLoggedIn()) {</span>
+<span class="cstat-no" title="statement not covered" >            if(_.includes(restrictedUrls, toState.name) === true) {</span>
+<span class="cstat-no" title="statement not covered" >                $location.path('/not-auth');</span>
+            }
+          }
+        });
+    }
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function routeConfig($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        $locationProvider.html5Mode(true);</span>
+&nbsp;
+       // $urlRouterProvider.otherwise('/sample');
+      // $urlRouterProvider.when('/', '/homepage');
+<span class="cstat-no" title="statement not covered" >       $urlRouterProvider.otherwise('/errors/error-404');</span>
+&nbsp;
+        /**
+         * Layout Style Switcher
+         *
+         * This code is here for demonstration purposes.
+         * If you don't need to switch between the layout
+         * styles like in the demo, you can set one manually by
+         * typing the template urls into the `State definitions`
+         * area and remove this code
+         */
+        // Inject $cookies
+<span class="cstat-no" title="statement not covered" >        var $cookies;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        angular.injector(['ngCookies']).invoke([</span>
+            '$cookies', <span class="fstat-no" title="function not covered" >function (_$cookies)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                $cookies = _$cookies;</span>
+            }
+        ]);
+&nbsp;
+        // Get active layout
+<span class="cstat-no" title="statement not covered" >        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var layouts = {</span>
+            verticalNavigation  : {
+                main      : 'app/core/layouts/vertical-navigation.html',
+                toolbar   : 'app/toolbar/layouts/vertical-navigation/toolbar.html',
+                navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'
+            },
+            horizontalNavigation: {
+                main      : 'app/core/layouts/horizontal-navigation.html',
+                toolbar   : 'app/toolbar/layouts/horizontal-navigation/toolbar.html',
+                navigation: 'app/navigation/layouts/horizontal-navigation/navigation.html'
+            },
+            contentOnly         : {
+                main      : 'app/core/layouts/content-only.html',
+                toolbar   : '',
+                navigation: ''
+            },
+            contentWithToolbar  : {
+                main      : 'app/core/layouts/content-with-toolbar.html',
+                toolbar   : 'app/toolbar/layouts/content-with-toolbar/toolbar.html',
+                navigation: ''
+            }
+        };
+        // END - Layout Style Switcher
+&nbsp;
+        // State definitions
+<span class="cstat-no" title="statement not covered" >        $stateProvider</span>
+            .state('app', {
+                abstract: true,
+                views   : {
+                    'main@'         : {
+                        templateUrl: layouts[layoutStyle].main,
+                        controller : 'MainController as vm'
+                    },
+                    'toolbar@app'   : {
+                        templateUrl: layouts[layoutStyle].toolbar,
+                        controller : 'ToolbarController as vm'
+                    },
+                    'navigation@app': {
+                        templateUrl: layouts[layoutStyle].navigation,
+                        controller : 'NavigationController as vm'
+                    },
+                    'quickPanel@app': {
+                        templateUrl: 'app/quick-panel/quick-panel.html',
+                        controller : 'QuickPanelController as vm'
+                    }
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $httpProvider.interceptors.push('errorInterceptor');</span>
+    }
+&nbsp;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

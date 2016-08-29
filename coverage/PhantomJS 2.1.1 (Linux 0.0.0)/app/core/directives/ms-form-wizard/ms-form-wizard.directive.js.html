@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/core/directives/ms-form-wizard/ms-form-wizard.directive.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">app/core/directives/ms-form-wizard/</a> ms-form-wizard.directive.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.42% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.42% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>17/62</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.core')
+        .controller('MsFormWizardController', MsFormWizardController)
+        .directive('msFormWizard', msFormWizardDirective)
+        .directive('msFormWizardForm', msFormWizardFormDirective);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function MsFormWizardController()</span>
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        vm.forms = [];</span>
+<span class="cstat-no" title="statement not covered" >        vm.selectedIndex = 0;</span>
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.registerForm = registerForm;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.previousStep = previousStep;</span>
+<span class="cstat-no" title="statement not covered" >        vm.nextStep = nextStep;</span>
+<span class="cstat-no" title="statement not covered" >        vm.firstStep = firstStep;</span>
+<span class="cstat-no" title="statement not covered" >        vm.lastStep = lastStep;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.totalSteps = totalSteps;</span>
+<span class="cstat-no" title="statement not covered" >        vm.isFirstStep = isFirstStep;</span>
+<span class="cstat-no" title="statement not covered" >        vm.isLastStep = isLastStep;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.currentStepInvalid = currentStepInvalid;</span>
+<span class="cstat-no" title="statement not covered" >        vm.previousStepInvalid = previousStepInvalid;</span>
+<span class="cstat-no" title="statement not covered" >        vm.formsIncomplete = formsIncomplete;</span>
+<span class="cstat-no" title="statement not covered" >        vm.resetForm = resetForm;</span>
+&nbsp;
+        //////////
+&nbsp;
+        /**
+         * Register form
+         *
+         * @param form
+         */
+<span class="fstat-no" title="function not covered" >        function registerForm(form)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.forms.push(form);</span>
+        }
+&nbsp;
+        /**
+         * Go to previous step
+         */
+<span class="fstat-no" title="function not covered" >        function previousStep()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( isFirstStep() )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.selectedIndex--;</span>
+        }
+&nbsp;
+        /**
+         * Go to next step
+         */
+<span class="fstat-no" title="function not covered" >        function nextStep()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( isLastStep() )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.selectedIndex++;</span>
+        }
+&nbsp;
+        /**
+         * Go to first step
+         */
+<span class="fstat-no" title="function not covered" >        function firstStep()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.selectedIndex = 0;</span>
+        }
+&nbsp;
+        /**
+         * Go to last step
+         */
+<span class="fstat-no" title="function not covered" >        function lastStep()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.selectedIndex = totalSteps() - 1;</span>
+        }
+&nbsp;
+        /**
+         * Return total steps
+         *
+         * @returns {int}
+         */
+<span class="fstat-no" title="function not covered" >        function totalSteps()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return vm.forms.length;</span>
+        }
+&nbsp;
+        /**
+         * Is first step?
+         *
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function isFirstStep()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return vm.selectedIndex === 0;</span>
+        }
+&nbsp;
+        /**
+         * Is last step?
+         *
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function isLastStep()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return vm.selectedIndex === totalSteps() - 1;</span>
+        }
+&nbsp;
+        /**
+         * Is current step invalid?
+         *
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function currentStepInvalid()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return angular.isDefined(vm.forms[vm.selectedIndex]) &amp;&amp; vm.forms[vm.selectedIndex].$invalid;</span>
+        }
+&nbsp;
+        /**
+         * Is previous step invalid?
+         *
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function previousStepInvalid()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return vm.selectedIndex &gt; 0 &amp;&amp; angular.isDefined(vm.forms[vm.selectedIndex - 1]) &amp;&amp; vm.forms[vm.selectedIndex - 1].$invalid;</span>
+        }
+&nbsp;
+        /**
+         * Check if there is any incomplete forms
+         *
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function formsIncomplete()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            for ( var x = 0; x &lt; vm.forms.length; x++ )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                if ( vm.forms[x].$invalid )</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        }
+&nbsp;
+        /**
+         * Reset form
+         */
+<span class="fstat-no" title="function not covered" >        function resetForm()</span>
+        {
+            // Go back to the first step
+<span class="cstat-no" title="statement not covered" >            vm.selectedIndex = 0;</span>
+&nbsp;
+            // Make sure all the forms are back in the $pristine &amp; $untouched status
+<span class="cstat-no" title="statement not covered" >            for ( var x = 0; x &lt; vm.forms.length; x++ )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                vm.forms[x].$setPristine();</span>
+<span class="cstat-no" title="statement not covered" >                vm.forms[x].$setUntouched();</span>
+            }
+        }
+    }
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function msFormWizardDirective()</span>
+    {
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            restrict  : 'E',
+            scope     : true,
+            controller: 'MsFormWizardController as msWizard',
+            compile   : <span class="fstat-no" title="function not covered" >function (tElement)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                tElement.addClass('ms-form-wizard');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return <span class="fstat-no" title="function not covered" >function postLink()</span></span>
+                {
+&nbsp;
+                };
+            }
+        }
+&nbsp;
+    }
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function msFormWizardFormDirective()</span>
+    {
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            restrict: 'A',
+            require : ['form', '^msFormWizard'],
+            compile : <span class="fstat-no" title="function not covered" >function (tElement)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                tElement.addClass('ms-form-wizard-form');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return <span class="fstat-no" title="function not covered" >function postLink(scope, iElement, iAttrs, ctrls)</span></span>
+                {
+<span class="cstat-no" title="statement not covered" >                    var formCtrl = ctrls[0],</span>
+                        MsFormWizardCtrl = ctrls[1];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    MsFormWizardCtrl.registerForm(formCtrl);</span>
+                }
+            }
+        }
+    }
+&nbsp;
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

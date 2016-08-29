@@ -20,8 +20,8 @@ exports.config = {
   specs: [paths.e2e + '/**/*.js'],
 
   // Options to be passed to Jasmine-node.
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000
-  }
+  // jasmineNodeOpts: {
+  //   showColors: true,
+  //   defaultTimeoutInterval: 30000
+  // }
 };

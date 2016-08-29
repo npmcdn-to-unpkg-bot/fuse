@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/core/directives/highlight.directive.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/core/directives/</a> highlight.directive.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.11% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">12.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/32</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.core')
+        .directive('hljs', hljsDirective);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function hljsDirective($timeout, $q, $interpolate)</span>
+    {
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            restrict: 'E',
+            compile : <span class="fstat-no" title="function not covered" >function (element, attr)</span>
+            {
+<span class="cstat-no" title="statement not covered" >                var code;</span>
+                //No attribute? code is the content
+<span class="cstat-no" title="statement not covered" >                if ( !attr.code )</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    code = element.html();</span>
+<span class="cstat-no" title="statement not covered" >                    element.empty();</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return <span class="fstat-no" title="function not covered" >function (scope, element, attr)</span></span>
+                {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if ( attr.code )</span>
+                    {
+                        // Attribute? code is the evaluation
+<span class="cstat-no" title="statement not covered" >                        code = scope.$eval(attr.code);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    var shouldInterpolate = scope.$eval(attr.shouldInterpolate);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    $q.when(code).then(<span class="fstat-no" title="function not covered" >function (code)</span></span>
+                    {
+<span class="cstat-no" title="statement not covered" >                        if ( code )</span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            if ( shouldInterpolate )</span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                code = $interpolate(code)(scope);</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            var contentParent = angular.element(</span>
+                                '&lt;pre&gt;&lt;code class="highlight" ng-non-bindable&gt;&lt;/code&gt;&lt;/pre&gt;'
+                            );
+<span class="cstat-no" title="statement not covered" >                            element.append(contentParent);</span>
+                            // Defer highlighting 1-frame to prevent GA interference...
+<span class="cstat-no" title="statement not covered" >                            $timeout(<span class="fstat-no" title="function not covered" >function ()</span></span>
+                            {
+<span class="cstat-no" title="statement not covered" >                                render(code, contentParent);</span>
+                            }, 34, false);
+                        }
+                    });
+&nbsp;
+<span class="fstat-no" title="function not covered" >                    function render(contents, parent)</span>
+                    {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var codeElement = parent.find('code');</span>
+<span class="cstat-no" title="statement not covered" >                        var lines = contents.split('\n');</span>
+&nbsp;
+                        // Remove empty lines
+<span class="cstat-no" title="statement not covered" >                        lines = lines.filter(<span class="fstat-no" title="function not covered" >function (line)</span></span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            return line.trim().length;</span>
+                        });
+&nbsp;
+                        // Make it so each line starts at 0 whitespace
+<span class="cstat-no" title="statement not covered" >                        var firstLineWhitespace = lines[0].match(/^\s*/)[0];</span>
+<span class="cstat-no" title="statement not covered" >                        var startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);</span>
+<span class="cstat-no" title="statement not covered" >                        lines = lines.map(<span class="fstat-no" title="function not covered" >function (line)</span></span>
+                        {
+<span class="cstat-no" title="statement not covered" >                            return line</span>
+                                .replace(startingWhitespaceRegex, '')
+                                .replace(/\s+$/, '');
+                        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var highlightedCode = hljs.highlight(attr.language || attr.lang, lines.join('\n'), true);</span>
+<span class="cstat-no" title="statement not covered" >                        highlightedCode.value = highlightedCode.value</span>
+                            .replace(/=&lt;span class="hljs-value"&gt;""&lt;\/span&gt;/gi, '')
+                            .replace('&lt;head&gt;', '')
+                            .replace('&lt;head/&gt;', '');
+<span class="cstat-no" title="statement not covered" >                        codeElement.append(highlightedCode.value).addClass('highlight');</span>
+                    }
+                };
+            }
+        };
+    }
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,2396 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/main/issues/dialogs/card/card-dialog.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">app/main/issues/dialogs/card/</a> card-dialog.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.93% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>29/292</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.35% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/74</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.07% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>29/288</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.issues')
+        .controller('ScrumboardCardDialogController', ScrumboardCardDialogController);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, $scope, $timeout, exportIssueDetail,</span>
+      fuseGenerator, msUtils, BoardService, cardId, apilaData, authentication, msNavigationService, ImageUploadService, UpdateInfoService)
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        vm.board = BoardService.data.data;</span>
+<span class="cstat-no" title="statement not covered" >        vm.card = vm.board.cards.getById(cardId);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.card.currdue = vm.card.due;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.log(vm.card);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.card.labels.map(<span class="fstat-no" title="function not covered" >function(d){<span class="cstat-no" title="statement not covered" ></span>d.id = d._id; <span class="cstat-no" title="statement not covered" ></span>return d;}</span>);</span>
+<span class="cstat-no" title="statement not covered" >        vm.board.labels.map(<span class="fstat-no" title="function not covered" >function(d){<span class="cstat-no" title="statement not covered" ></span>d.id = d._id; <span class="cstat-no" title="statement not covered" ></span>return d;}</span>);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.newLabelColor = 'red';</span>
+<span class="cstat-no" title="statement not covered" >        vm.members = vm.board.members;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.labels = vm.board.labels;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.newCheckListTitle = "Checklist";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.username = authentication.currentUser().name;</span>
+<span class="cstat-no" title="statement not covered" >        var userid = authentication.currentUser().id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.now = new Date();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        apilaData.userCommunity(userid)</span>
+        .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.myCommunity = d;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if(vm.myCommunity.creator.name === vm.username) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.userRole = "creator";</span>
+          } else <span class="cstat-no" title="statement not covered" >if(vm.myCommunity.boss.name === vm.username) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.userRole = "boss";</span>
+          } else <span class="cstat-no" title="statement not covered" >if(_.find(vm.myCommunity.directors, {"name" : vm.username}) !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.userRole = "directors";</span>
+          } else <span class="cstat-no" title="statement not covered" >if(_.find(vm.myCommunity.minions, {"name" : vm.username}) !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.userRole = "minions";</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          console.log(vm.userRole);</span>
+&nbsp;
+          //load member list
+<span class="cstat-no" title="statement not covered" >          apilaData.usersInCommunity(d)</span>
+              .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >                vm.members = d;</span>
+              })
+              .error(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log("error while loading users");</span>
+              });
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var unchangedDueDate = angular.copy(vm.card.due);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$watch('vm.card.currdue', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          if(unchangedDueDate !== vm.card.currdue) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(vm.card.currdue != null) {</span>
+<span class="cstat-no" title="statement not covered" >              if(vm.card.currdue !== "2016") {</span>
+<span class="cstat-no" title="statement not covered" >                vm.card.due = vm.card.currdue;</span>
+<span class="cstat-no" title="statement not covered" >                if(vm.card.due !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                  vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.currdue, ""));</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                vm.updateIssue();</span>
+              }
+            }
+&nbsp;
+          }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       vm.removeCheckItem = <span class="fstat-no" title="function not covered" >function(checklist, i) {</span></span>
+<span class="cstat-no" title="statement not covered" >         var checkItemName = checklist.checkItems[i].name;</span>
+<span class="cstat-no" title="statement not covered" >         checklist.checkItems.splice(i, 1);</span>
+<span class="cstat-no" title="statement not covered" >         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_remove', "" , checkItemName));</span>
+<span class="cstat-no" title="statement not covered" >         vm.updateIssue();</span>
+       }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       vm.updateCheckItem = <span class="fstat-no" title="function not covered" >function(checklist, checkitemId, text) {</span></span>
+<span class="cstat-no" title="statement not covered" >         checklist.checkItems[checkitemId] = text;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >         console.log("Updated checkitem");</span>
+<span class="cstat-no" title="statement not covered" >         console.log(checklist.checkItems[checkitemId]);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_change', "" , text.name));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >         vm.updateIssue();</span>
+       }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >       vm.openImage = <span class="fstat-no" title="function not covered" >function(url){</span></span>
+<span class="cstat-no" title="statement not covered" >         $mdDialog.show({</span>
+               controllerAs: 'vm',
+               controller: 'ImageViewController',
+               preserveScope: true,
+               autoWrap: true,
+               skipHide: true,
+               templateUrl: 'app/main/issues/dialogs/card/imageView.html',
+               resolve: {
+                 imgUrl: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >                   return url;</span>
+                 }
+               }
+             });
+        }
+&nbsp;
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.palettes = fuseTheming.getRegisteredPalettes();</span>
+<span class="cstat-no" title="statement not covered" >        vm.rgba = fuseGenerator.rgba;</span>
+<span class="cstat-no" title="statement not covered" >        vm.toggleInArray = msUtils.toggleInArray;</span>
+<span class="cstat-no" title="statement not covered" >        vm.exists = msUtils.exists;</span>
+<span class="cstat-no" title="statement not covered" >        vm.existsMembers = msUtils.exists;</span>
+<span class="cstat-no" title="statement not covered" >        vm.closeDialog = closeDialog;</span>
+<span class="cstat-no" title="statement not covered" >        vm.getCardList = getCardList;</span>
+<span class="cstat-no" title="statement not covered" >        vm.removeCard = removeCard;</span>
+        /* Attachment */
+<span class="cstat-no" title="statement not covered" >        vm.toggleCoverImage = toggleCoverImage;</span>
+<span class="cstat-no" title="statement not covered" >        vm.removeAttachment = removeAttachment;</span>
+        /* Labels */
+<span class="cstat-no" title="statement not covered" >        vm.labelQuerySearch = labelQuerySearch;</span>
+<span class="cstat-no" title="statement not covered" >        vm.filterLabel = filterLabel;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addNewLabel = addNewLabel;</span>
+<span class="cstat-no" title="statement not covered" >        vm.removeLabel = removeLabel;</span>
+<span class="cstat-no" title="statement not covered" >        vm.removeLabelFromCard = removeLabelFromCard;</span>
+<span class="cstat-no" title="statement not covered" >        vm.editLabel = editLabel;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addLabelToCard = addLabelToCard;</span>
+<span class="cstat-no" title="statement not covered" >        vm.isLabelInCard = isLabelInCard;</span>
+&nbsp;
+        /* Members */
+<span class="cstat-no" title="statement not covered" >        vm.memberQuerySearch = memberQuerySearch;</span>
+<span class="cstat-no" title="statement not covered" >        vm.filterMember = filterMember;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addMembers = addMembers;</span>
+        /* Checklist */
+<span class="cstat-no" title="statement not covered" >        vm.updateCheckedCount = updateCheckedCount;</span>
+<span class="cstat-no" title="statement not covered" >        vm.addCheckItem = addCheckItem;</span>
+<span class="cstat-no" title="statement not covered" >        vm.removeChecklist = removeChecklist;</span>
+<span class="cstat-no" title="statement not covered" >        vm.createCheckList = createCheckList;</span>
+        /* Comment */
+<span class="cstat-no" title="statement not covered" >        vm.addNewComment = addNewComment;</span>
+<span class="cstat-no" title="statement not covered" >        vm.updateIssue = updateIssue;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.wordCloud = wordCloud;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.createdIssue = vm.card.submitBy + " created " + vm.card.title + " " + UpdateInfoService.timeDiff(vm.card.submitDate)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.formatUpdateArray = <span class="fstat-no" title="function not covered" >function(updateField, updateBy, updateDate) {</span></span>
+<span class="cstat-no" title="statement not covered" >          return UpdateInfoService.formatUpdateArray(updateField, updateBy, updateDate);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        vm.changeStatus = changeStatus;</span>
+<span class="cstat-no" title="statement not covered" >        vm.exportIssue = exportIssue;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.uploadFiles = <span class="fstat-no" title="function not covered" >function(file, invalidFiles, card) {</span></span>
+<span class="cstat-no" title="statement not covered" >          ImageUploadService.uploadFiles(file, invalidFiles, card, UpdateInfoService.setUpdateInfo);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.removeDueDate = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', "" , vm.card.currdue));</span>
+<span class="cstat-no" title="statement not covered" >          vm.card.currdue = '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          updateIssue();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.updateTextFields = <span class="fstat-no" title="function not covered" >function(type) {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log("dvaput");</span>
+<span class="cstat-no" title="statement not covered" >          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo(type, vm.card[type], ""));</span>
+<span class="cstat-no" title="statement not covered" >          vm.updateIssue();</span>
+        }
+&nbsp;
+        //deleting a member
+<span class="cstat-no" title="statement not covered" >        vm.memberUpdate = <span class="fstat-no" title="function not covered" >function(selectedMember) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.card.deletedMember = selectedMember;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('idMembers', "" , selectedMember));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          updateIssue(selectedMember);</span>
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.updateLabel = <span class="fstat-no" title="function not covered" >function(labelid) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          for(var i = 0; i &lt; vm.card.labels.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >            if(vm.card.labels[i].id === labelid) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log(vm.card.labels[i]);</span>
+            }
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.updateIssue();</span>
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.selectedItemChange = <span class="fstat-no" title="function not covered" >function(selectedMember) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if(selectedMember !== null) {</span>
+<span class="cstat-no" title="statement not covered" >            updateIssue();</span>
+          }
+        }
+&nbsp;
+&nbsp;
+        //////////
+&nbsp;
+        /**
+         * Close Dialog
+         */
+<span class="fstat-no" title="function not covered" >        function closeDialog()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdDialog.hide();</span>
+        }
+&nbsp;
+        /**
+         * Get Card List
+         */
+<span class="fstat-no" title="function not covered" >        function getCardList()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var response;</span>
+<span class="cstat-no" title="statement not covered" >            for ( var i = 0, len = vm.board.lists.length; i &lt; len; i++ )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                if ( vm.board.lists[i].idCards.indexOf(vm.card.id) &gt; -1 )</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    response = vm.board.lists[i];</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            return response;</span>
+        }
+&nbsp;
+        /**
+         * Remove card
+         *
+         * @param ev
+         */
+<span class="fstat-no" title="function not covered" >        function removeCard(ev)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var confirm = $mdDialog.confirm({</span>
+                title              : 'Remove Card',
+                parent             : $document.find('#issues'),
+                textContent        : 'Are you sure want to remove card?',
+                ariaLabel          : 'remove card',
+                targetEvent        : ev,
+                clickOutsideToClose: true,
+                escapeToClose      : true,
+                ok                 : 'Remove',
+                cancel             : 'Cancel'
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $mdDialog.show(confirm).then(<span class="fstat-no" title="function not covered" >function ()</span></span>
+            {
+<span class="cstat-no" title="statement not covered" >                var cardList = getCardList();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                cardList.idCards.splice(cardList.idCards.indexOf(vm.card.id), 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                vm.board.cards.splice(vm.board.cards.indexOf(vm.card), 1);</span>
+&nbsp;
+                //delete that issue
+<span class="cstat-no" title="statement not covered" >                apilaData.deleteIssue(vm.card._id)</span>
+                .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                  vm.username = authentication.currentUser().name;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                  apilaData.openIssuesCount(userid, vm.myCommunity._id)</span>
+                    .success(<span class="fstat-no" title="function not covered" >function(count) {</span>
+<span class="cstat-no" title="statement not covered" >                      msNavigationService.saveItem('fuse.issues', {</span>
+                        badge: {
+                          content:  count,
+                          color  : '#F44336'
+                        }
+                      });
+                    })
+                    .error(<span class="fstat-no" title="function not covered" >function(count) {</span>
+                    })
+&nbsp;
+                })
+                .error(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+                });
+&nbsp;
+            }, <span class="fstat-no" title="function not covered" >function ()</span>
+            {
+                // Canceled
+            });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function wordCloud() {</span>
+<span class="cstat-no" title="statement not covered" >          console.log("kek");</span>
+<span class="cstat-no" title="statement not covered" >          $mdDialog.show({</span>
+                controllerAs: 'vm',
+                controller: 'WordCloudController',
+                preserveScope: true,
+                autoWrap: true,
+                skipHide: true,
+                templateUrl: 'app/main/issues/dialogs/wordCloud/wordCloud.html',
+                locals: {
+                  issue: vm.card
+                }
+              });
+        }
+&nbsp;
+        /**
+         * Toggle cover image
+         *
+         * @param attachmentId
+         */
+<span class="fstat-no" title="function not covered" >        function toggleCoverImage(attachmentId)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( attachmentId === vm.card.idAttachmentCover )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                vm.card.idAttachmentCover = null;</span>
+            }
+            else
+            {
+<span class="cstat-no" title="statement not covered" >                vm.card.idAttachmentCover = attachmentId;</span>
+            }
+        }
+&nbsp;
+        /**
+         * Remove attachment
+         *
+         * @param item
+         */
+<span class="fstat-no" title="function not covered" >        function removeAttachment(item)</span>
+        {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if ( vm.card.idAttachmentCover === item.id )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                vm.card.idAttachmentCover = '';</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var updateInfo = UpdateInfoService.setUpdateInfo('attachments', "" , item.name);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.deleteAttachment(vm.card._id, item._id, vm.card)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >              vm.card.attachments.splice(vm.card.attachments.indexOf(item), 1);</span>
+<span class="cstat-no" title="statement not covered" >              vm.card.updateInfo.push(updateInfo);</span>
+            })
+            .error(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error removing attachment");</span>
+            });
+&nbsp;
+&nbsp;
+        }
+&nbsp;
+        /**
+         * Add label chips
+         *
+         * @param query
+         * @returns {filterFn}
+         */
+<span class="fstat-no" title="function not covered" >        function labelQuerySearch(query)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return query ? vm.labels.filter(createFilterFor(query)) : [];</span>
+        }
+&nbsp;
+        /**
+         * Label filter
+         *
+         * @param label
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function filterLabel(label)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( !vm.labelSearchText || vm.labelSearchText === '' )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return angular.lowercase(label.name).indexOf(angular.lowercase(vm.labelSearchText)) &gt;= 0;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function editLabel(id) {</span>
+<span class="cstat-no" title="statement not covered" >          vm.labelTabIndex = 2</span>
+<span class="cstat-no" title="statement not covered" >          vm.editLabelId = id;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function addLabelToCard(id) {</span>
+<span class="cstat-no" title="statement not covered" >          if(!isLabelInCard(id)) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.card.labels.push(vm.board.labels.getById(id));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('labels', vm.board.labels.getById(id).name, ""));</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            removeLabelFromCard(id);</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          updateIssue();</span>
+&nbsp;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function isLabelInCard(id) {</span>
+<span class="cstat-no" title="statement not covered" >          for(var i = 0; i &lt; vm.card.labels.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >            if(vm.card.labels[i].id === id) {</span>
+<span class="cstat-no" title="statement not covered" >              return true;</span>
+            }
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          return false;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function removeLabelFromCard(id) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          var index = null;</span>
+<span class="cstat-no" title="statement not covered" >          for(var i = 0; i &lt; vm.card.labels.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >            if(vm.card.labels[i].id === id) {</span>
+<span class="cstat-no" title="statement not covered" >              index = i;</span>
+<span class="cstat-no" title="statement not covered" >              break;</span>
+            }
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if(index != null) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.card.labels.splice(index, 1);</span>
+          }
+&nbsp;
+        }
+&nbsp;
+        /**
+         * Add new label
+         */
+<span class="fstat-no" title="function not covered" >        function addNewLabel()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var label = {</span>
+                id   : msUtils.guidGenerator(),
+                name : vm.newLabelName,
+                color: vm.newLabelColor,
+                author: authentication.currentUser().name
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            label.updateInfo = UpdateInfoService.setUpdateInfo('labels', label.name, "");</span>
+&nbsp;
+            //send data to the api
+<span class="cstat-no" title="statement not covered" >            apilaData.addIssueLabelById(vm.card._id, label)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >              data.id = data._id;</span>
+<span class="cstat-no" title="statement not covered" >              vm.board.labels.push(data);</span>
+<span class="cstat-no" title="statement not covered" >              vm.card.updateInfo.push(label.updateInfo);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              vm.newLabelName = '';</span>
+&nbsp;
+            })
+            .error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while adding label");</span>
+            });
+&nbsp;
+        }
+&nbsp;
+        /**
+         * Remove label
+         */
+<span class="fstat-no" title="function not covered" >        function removeLabel(id)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var arr = vm.board.labels;</span>
+<span class="cstat-no" title="statement not covered" >            arr.splice(arr.indexOf(arr.getById(vm.editLabelId)), 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log(id);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var updateInfo = UpdateInfoService.setUpdateInfo('labels', "", id.name);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.deleteIssueLabelById(vm.card._id, id._id)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              vm.card.updateInfo.push(updateInfo);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              angular.forEach(vm.board.cards, <span class="fstat-no" title="function not covered" >function (card)</span></span>
+              {
+<span class="cstat-no" title="statement not covered" >                  if ( card.idLabels &amp;&amp; card.idLabels.indexOf(vm.editLabelId) &gt; -1 )</span>
+                  {
+<span class="cstat-no" title="statement not covered" >                      card.idLabels.splice(card.idLabels.indexOf(vm.editLabelId), 1);</span>
+                  }
+              });
+&nbsp;
+            })
+            .error(<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while deleting label");</span>
+            });
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.newLabelName = '';</span>
+        }
+&nbsp;
+        /**
+         * Add member chips
+         *
+         * @param query
+         * @returns {Array}
+         */
+<span class="fstat-no" title="function not covered" >        function memberQuerySearch(query)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            return query ? vm.members.filter(createFilterFor(query)) : [];</span>
+        }
+&nbsp;
+        /**
+         * Member filter
+         *
+         * @param member
+         * @returns {boolean}
+         */
+<span class="fstat-no" title="function not covered" >        function filterMember(member)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( !vm.memberSearchText || vm.memberSearchText === '' )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return angular.lowercase(member.name).indexOf(angular.lowercase(vm.memberSearchText)) &gt;= 0;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function addMembers(item, array) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            msUtils.toggleInArray(item, array);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('idMembers', item.name, ""));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            updateIssue();</span>
+&nbsp;
+        }
+&nbsp;
+        /**
+         * Update check list stats
+         * @param list
+         */
+<span class="fstat-no" title="function not covered" >        function updateCheckedCount(list, checkedItem)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var checkItems = list.checkItems;</span>
+<span class="cstat-no" title="statement not covered" >            var checkedItems = 0;</span>
+<span class="cstat-no" title="statement not covered" >            var allCheckedItems = 0;</span>
+<span class="cstat-no" title="statement not covered" >            var allCheckItems = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log("Brah: ");</span>
+<span class="cstat-no" title="statement not covered" >            console.log(checkedItem);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(checkItems, <span class="fstat-no" title="function not covered" >function (checkItem)</span></span>
+            {
+<span class="cstat-no" title="statement not covered" >                if ( checkItem.checked )</span>
+                {
+<span class="cstat-no" title="statement not covered" >                    checkedItems++;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            list.checkItemsChecked = checkedItems;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(vm.card.checklists, <span class="fstat-no" title="function not covered" >function (item)</span></span>
+            {
+<span class="cstat-no" title="statement not covered" >                allCheckItems += item.checkItems.length;</span>
+<span class="cstat-no" title="statement not covered" >                allCheckedItems += item.checkItemsChecked;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.card.checkItems = allCheckItems;</span>
+<span class="cstat-no" title="statement not covered" >            vm.card.checkItemsChecked = allCheckedItems;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log(list);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if(checkedItem.checked) {</span>
+<span class="cstat-no" title="statement not covered" >              list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_checked", checkedItem.name, "");</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_unchecked", checkedItem.name, "");</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.card.updateInfo.push(list.updateInfo);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.updateCheckList(vm.card._id, list._id, list)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+            })
+            .error(<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while updateing checklist");</span>
+            });
+        }
+&nbsp;
+        /**
+         * Add checklist item
+         *
+         * @param text
+         * @param checkList
+         */
+<span class="fstat-no" title="function not covered" >        function addCheckItem(text, checkList)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            if ( !text || text === '' )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var newCheckItem = {</span>
+                'name'   : text,
+                'checked': false
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            checkList.checkItems.push(newCheckItem);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(checkList);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            checkList.updateInfo = UpdateInfoService.setUpdateInfo('checkitem', newCheckItem.name, "");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.updateCheckList(vm.card._id, checkList._id, checkList)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                vm.card.updateInfo.push(checkList.updateInfo);</span>
+<span class="cstat-no" title="statement not covered" >                updateCheckedCount(checkList);</span>
+&nbsp;
+            })
+            .error(<span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while updateing checklist");</span>
+            });
+&nbsp;
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function exportIssue() {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(vm.card);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          exportIssueDetail.exportPdf(vm.card);</span>
+        }
+&nbsp;
+        /**
+         * Remove checklist
+         *
+         * @param item
+         */
+<span class="fstat-no" title="function not covered" >        function removeChecklist(item)</span>
+        {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >           var updateInfo = UpdateInfoService.setUpdateInfo("checklists", "", item.checklistName);</span>
+&nbsp;
+            //send remove request to the api
+<span class="cstat-no" title="statement not covered" >            apilaData.deleteCheckList(vm.card._id, item._id)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >              vm.card.checklists.splice(vm.card.checklists.indexOf(item), 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              vm.card.updateInfo.push(updateInfo);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              angular.forEach(vm.card.checklists, <span class="fstat-no" title="function not covered" >function (list)</span></span>
+              {
+<span class="cstat-no" title="statement not covered" >                  updateCheckedCount(list);</span>
+              });
+            })
+            .error(<span class="fstat-no" title="function not covered" >function(d){</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while removing checklist");</span>
+            });
+&nbsp;
+        }
+&nbsp;
+        /**
+         * Create checklist
+         */
+<span class="fstat-no" title="function not covered" >        function createCheckList()</span>
+        {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var data = {</span>
+                id               : msUtils.guidGenerator(),
+                name             : vm.newCheckListTitle,
+                checklistName    : vm.newCheckListTitle,
+                checkItemsChecked: 0,
+                checkItems       : []
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            data.updateInfo = UpdateInfoService.setUpdateInfo('checklists', data.name, "");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.newCheckListTitle = '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.addCheckList(vm.card._id, data)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >                vm.card.checklists.push(d);</span>
+<span class="cstat-no" title="statement not covered" >                vm.card.updateInfo.push(data.updateInfo);</span>
+<span class="cstat-no" title="statement not covered" >                vm.newCheckListTitle = "Checklist";</span>
+            })
+            .error(<span class="fstat-no" title="function not covered" >function(d) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while adding checklist");</span>
+            });
+        }
+&nbsp;
+        /**
+         * Add new comment
+         *
+         * @param newCommentText
+         */
+<span class="fstat-no" title="function not covered" >        function addNewComment(newCommentText)</span>
+        {
+            //send the comment to the api
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log(vm.card);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var issueid = vm.card._id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var commentData = {</span>
+              commentText: newCommentText,
+              author: authentication.currentUser().name
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('comments', commentData.commentText, ""));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            apilaData.addIssueCommentById(issueid, commentData)</span>
+            .success(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              var newComment = {</span>
+                  idMember: '',
+                  commentText : newCommentText,
+                  author    : data.author
+              };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >              vm.card.comments.unshift(newComment);</span>
+&nbsp;
+            }).error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >              console.log("Error while adding comment");</span>
+            });
+&nbsp;
+&nbsp;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var oldData = angular.copy(vm.card);</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function updateIssue(deletedMember) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.card.title = vm.card.name;</span>
+&nbsp;
+          //add updateInfo Data
+<span class="cstat-no" title="statement not covered" >          vm.card.modifiedBy = authentication.currentUser().name;</span>
+<span class="cstat-no" title="statement not covered" >          vm.card.modifiedDate = new Date();</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          apilaData.updateIssue(vm.card._id, vm.card)</span>
+          .success(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("updated issue");</span>
+<span class="cstat-no" title="statement not covered" >            vm.card.updateInfo = data.updateInfo;</span>
+&nbsp;
+          }).error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Error while adding comment");</span>
+          });
+        }
+&nbsp;
+&nbsp;
+        /**
+         * Filter for chips
+         *
+         * @param query
+         * @returns {filterFn}
+         */
+<span class="fstat-no" title="function not covered" >        function createFilterFor(query)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            var lowercaseQuery = angular.lowercase(query);</span>
+<span class="cstat-no" title="statement not covered" >            return <span class="fstat-no" title="function not covered" >function filterFn(item)</span></span>
+            {
+<span class="cstat-no" title="statement not covered" >                return angular.lowercase(item.name).indexOf(lowercaseQuery) &gt;= 0;</span>
+            };
+        }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function changeStatus() {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if(vm.card.status === "Shelved") {</span>
+<span class="cstat-no" title="statement not covered" >            vm.card.shelvedDate = new Date();</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('status', vm.card.status, ""));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          vm.updateIssue();</span>
+&nbsp;
+          // delete card
+<span class="cstat-no" title="statement not covered" >          var cardList = getCardList();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          cardList.idCards.splice(cardList.idCards.indexOf(vm.card.id), 1);</span>
+<span class="cstat-no" title="statement not covered" >          vm.board.cards.splice(vm.board.cards.indexOf(vm.card), 1);</span>
+        }
+    }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

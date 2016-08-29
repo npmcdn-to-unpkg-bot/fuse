@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app/toolbar/toolbar.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">app/toolbar/</a> toolbar.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.53% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/49</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.53% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/49</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function ()
+{
+    'use strict';
+&nbsp;
+    angular
+        .module('app.toolbar')
+        .controller('ToolbarController', ToolbarController);
+&nbsp;
+    /** @ngInject */
+<span class="fstat-no" title="function not covered" >    function ToolbarController($rootScope, $mdSidenav, $translate, $mdToast,</span>
+                              $location, $state, authentication, msNavigationService, $q, $timeout, SearchService)
+    {
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+        // Data
+<span class="cstat-no" title="statement not covered" >        $rootScope.global = {</span>
+            search: ''
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.userImage = authentication.getUserImage();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.username = authentication.currentUser().name;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.bodyEl = angular.element('body');</span>
+<span class="cstat-no" title="statement not covered" >        vm.userStatusOptions = [</span>
+            {
+                'title': 'Online',
+                'icon' : 'icon-checkbox-marked-circle',
+                'color': '#4CAF50'
+            },
+            {
+                'title': 'Away',
+                'icon' : 'icon-clock',
+                'color': '#FFC107'
+            },
+            {
+                'title': 'Do not Disturb',
+                'icon' : 'icon-minus-circle',
+                'color': '#F44336'
+            },
+            {
+                'title': 'Invisible',
+                'icon' : 'icon-checkbox-blank-circle-outline',
+                'color': '#BDBDBD'
+            },
+            {
+                'title': 'Offline',
+                'icon' : 'icon-checkbox-blank-circle-outline',
+                'color': '#616161'
+            }
+        ];
+<span class="cstat-no" title="statement not covered" >        vm.languages = {</span>
+            en: {
+                'title'      : 'English',
+                'translation': 'TOOLBAR.ENGLISH',
+                'code'       : 'en',
+                'flag'       : 'us'
+            },
+            es: {
+                'title'      : 'Spanish',
+                'translation': 'TOOLBAR.SPANISH',
+                'code'       : 'es',
+                'flag'       : 'es'
+            },
+            tr: {
+                'title'      : 'Turkish',
+                'translation': 'TOOLBAR.TURKISH',
+                'code'       : 'tr',
+                'flag'       : 'tr'
+            }
+        };
+&nbsp;
+        // Methods
+<span class="cstat-no" title="statement not covered" >        vm.toggleSidenav = toggleSidenav;</span>
+<span class="cstat-no" title="statement not covered" >        vm.logout = logout;</span>
+<span class="cstat-no" title="statement not covered" >        vm.changeLanguage = changeLanguage;</span>
+<span class="cstat-no" title="statement not covered" >        vm.setUserStatus = setUserStatus;</span>
+<span class="cstat-no" title="statement not covered" >        vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;</span>
+<span class="cstat-no" title="statement not covered" >        vm.openProfile = openProfile;</span>
+<span class="cstat-no" title="statement not covered" >        vm.search = search;</span>
+<span class="cstat-no" title="statement not covered" >        vm.searchResultClick = searchResultClick;</span>
+<span class="cstat-no" title="statement not covered" >        vm.onCollapse = onCollapse;</span>
+&nbsp;
+        //////////
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        init();</span>
+&nbsp;
+        /**
+         * Initialize
+         */
+<span class="fstat-no" title="function not covered" >        function init()</span>
+        {
+            // Select the first status as a default
+<span class="cstat-no" title="statement not covered" >            vm.userStatus = vm.userStatusOptions[0];</span>
+&nbsp;
+            // Get the selected language directly from angular-translate module setting
+<span class="cstat-no" title="statement not covered" >            vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];</span>
+        }
+&nbsp;
+&nbsp;
+        /**
+        * Opens profile page
+        */
+<span class="fstat-no" title="function not covered" >        function openProfile()</span>
+        {
+<span class="cstat-no" title="statement not covered" >          $state.go('app.profile');</span>
+        }
+&nbsp;
+&nbsp;
+        /**
+         * Toggle sidenav
+         *
+         * @param sidenavId
+         */
+<span class="fstat-no" title="function not covered" >        function toggleSidenav(sidenavId)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            $mdSidenav(sidenavId).toggle();</span>
+        }
+&nbsp;
+        /**
+         * Sets User Status
+         * @param status
+         */
+<span class="fstat-no" title="function not covered" >        function setUserStatus(status)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.userStatus = status;</span>
+        }
+&nbsp;
+        /**
+         * Logout Function
+         */
+<span class="fstat-no" title="function not covered" >        function logout()</span>
+        {
+            // Do logout here..
+<span class="cstat-no" title="statement not covered" >            console.log("Logout");</span>
+<span class="cstat-no" title="statement not covered" >            authentication.logout();</span>
+<span class="cstat-no" title="statement not covered" >            $location.path('/auth/login');</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        SearchService.setData(msNavigationService.getFlatNavigation());</span>
+&nbsp;
+        /**
+        * Search action
+        *
+        * @param query
+        * @returns {Promise}
+        */
+<span class="fstat-no" title="function not covered" >       function search(query)</span>
+       {
+<span class="cstat-no" title="statement not covered" >           return SearchService.search(query);</span>
+       }
+&nbsp;
+<span class="fstat-no" title="function not covered" >       function searchResultClick(item)</span>
+       {
+<span class="cstat-no" title="statement not covered" >         SearchService.searchResultClick(item);</span>
+&nbsp;
+       }
+&nbsp;
+<span class="fstat-no" title="function not covered" >       function onCollapse() {</span>
+<span class="cstat-no" title="statement not covered" >         SearchService.collapseSearch();</span>
+       }
+&nbsp;
+&nbsp;
+        /**
+         * Change Language
+         */
+<span class="fstat-no" title="function not covered" >        function changeLanguage(lang)</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.selectedLanguage = lang;</span>
+&nbsp;
+            /**
+             * Show temporary message if user selects a language other than English
+             *
+             * angular-translate module will try to load language specific json files
+             * as soon as you change the language. And because we don't have them, there
+             * will be a lot of errors in the page potentially breaking couple functions
+             * of the template.
+             *
+             * To prevent that from happening, we added a simple "return;" statement at the
+             * end of this if block. If you have all the translation files, remove this if
+             * block and the translations should work without any problems.
+             */
+<span class="cstat-no" title="statement not covered" >            if ( lang.code !== 'en' )</span>
+            {
+<span class="cstat-no" title="statement not covered" >                var message = 'Fuse supports translations through angular-translate module, but currently we do not have any translations other than English language. If you want to help us, send us a message through ThemeForest profile page.';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $mdToast.show({</span>
+                    template : '&lt;md-toast id="language-message" layout="column" layout-align="center start"&gt;&lt;div class="md-toast-content"&gt;' + message + '&lt;/div&gt;&lt;/md-toast&gt;',
+                    hideDelay: 7000,
+                    position : 'top right',
+                    parent   : '#content'
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+            // Change the language
+<span class="cstat-no" title="statement not covered" >            $translate.use(lang.code);</span>
+        }
+&nbsp;
+        /**
+         * Toggle horizontal mobile menu
+         */
+<span class="fstat-no" title="function not covered" >        function toggleHorizontalMobileMenu()</span>
+        {
+<span class="cstat-no" title="statement not covered" >            vm.bodyEl.toggleClass('ms-navigation-horizontal-mobile-menu-active');</span>
+        }
+    }
+&nbsp;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 29 2016 16:29:03 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
