@@ -23,6 +23,7 @@
 
         vm.newLabelColor = 'red';
         vm.members = vm.board.members;
+        vm.UpdateInfoService = UpdateInfoService;
 
         vm.labels = vm.board.labels;
 
@@ -34,6 +35,16 @@
         vm.now = new Date();
 
         console.log(vm.card);
+
+        // Initial loading of data
+        apilaData.issueCommentsList(vm.card._id)
+        .success(function(response) {
+          console.log(response);
+          vm.card.comments = response;
+        })
+        .error(function(response) {
+          console.log(response);
+        });
 
         apilaData.userCommunity(userid)
         .success(function(d) {
@@ -682,10 +693,6 @@
          */
         function addNewComment(newCommentText)
         {
-            //send the comment to the api
-
-            console.log(vm.card);
-
             var issueid = vm.card._id;
 
             var commentData = {
@@ -697,15 +704,19 @@
 
             apilaData.addIssueCommentById(issueid, commentData)
             .success(function(data) {
-              console.log(data);
 
+              //only updating frontend view with our comment so we can use our user data
               var newComment = {
                   idMember: '',
                   commentText : newCommentText,
-                  author    : data.author
+                  author    : {
+                    name: authentication.currentUser().name,
+                    userImage: authentication.getUserImage()
+                  },
+                  createdOn: data.createdOn
               };
 
-              vm.card.comments.unshift(newComment);
+              vm.card.comments.push(newComment);
 
             }).error(function(data) {
               console.log("Error while adding comment");

@@ -530,15 +530,18 @@
                 </div>
               </div> -->
 
-              <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
-              <img class="comment-member-avatar" ng-src="{{vm.board.members.getById(comment.idMember).avatar}}">
+              <div class="comment" layout="row" ng-repeat="comment in vm.card.comments.slice().reverse()">
+
+              <img ng-if="comment.author.userImage !== undefined" class="comment-member-avatar" ng-src="{{comment.author.userImage}}">
+
+              <img ng-if="comment.author.userImage === undefined" class="comment-member-avatar" ng-src="https://s3-us-west-2.amazonaws.com/apilatest2/logo.png">
 
               <div layout="column">
                 <div class="comment-member-name">
-                  {{comment.author}}
+                  {{comment.author.name}}
                 </div>
                 <div class="comment-bubble">{{comment.commentText}}</div>
-                <div class="comment-time secondary-text">{{comment.createdOn | date}}</div>
+                <div class="comment-time secondary-text">{{vm.UpdateInfoService.timeDiff(comment.createdOn)}}</div>
               </div>
             </div>
 

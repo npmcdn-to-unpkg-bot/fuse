@@ -98,6 +98,10 @@
       return $http.get(apiUrl + '/api/issues/due/' + communityId, getAuth());
     };
 
+    var issueCommentsList = function(issueid) {
+      return $http.get(apiUrl + '/api/issues/' + issueid + '/comments/', getAuth());
+    };
+
     var createIssueRecovery = function(data, communityid) {
       return $http.post(apiUrl + '/api/issues/recovery/' + communityid, data, getAuth());
     };
@@ -298,6 +302,7 @@
       openIssuesCount: openIssuesCount,
       deleteIssue: deleteIssue,
       issuesCount: issuesCount,
+      issueCommentsList : issueCommentsList,
       dueIssuesList: dueIssuesList,
       createIssueRecovery: createIssueRecovery,
       verifyPassword: verifyPassword,
