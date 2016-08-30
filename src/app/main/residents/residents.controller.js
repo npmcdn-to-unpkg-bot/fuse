@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function MailController($scope, $document, $timeout, $mdDialog, $mdMedia,
-    $mdSidenav, $mdToast, apilaData, authentication, exportCarePlan, uiGmapGoogleMapApi, ResidentUpdateInfoService) {
+    $mdSidenav, $mdToast, apilaData, authentication, exportCarePlan, exportResidentCensus, exportFaceSheet, exportBlankCarePlan, uiGmapGoogleMapApi, ResidentUpdateInfoService) {
     var vm = this;
 
 
@@ -55,6 +55,9 @@
     vm.selectResident = selectResident;
     vm.updateResident = updateResident;
     vm.exportCarePlan = exportResident;
+    vm.exportCensus = exportCensus;
+    vm.exportResidentFaceSheet = exportResidentFaceSheet;
+    vm.exportBlankPlan = exportBlankPlan;
     vm.replyDialog = replyDialog;
     vm.composeDialog = composeDialog;
 
@@ -131,8 +134,7 @@
       });
     }
 
-    function exportResident() {
-
+    function selectedResidentToast() {
       if (vm.selectedResident === null) {
         $mdToast.show(
           $mdToast.simple()
@@ -140,6 +142,15 @@
           .position("top right")
           .hideDelay(2000)
         );
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function exportResident() {
+
+      if(!selectedResidentToast()){
         return;
       }
 
@@ -179,6 +190,29 @@
       }, 500);
     }
 
+    function exportCensus() {
+
+      var inBuildingResidents = _.filter(vm.residentList, ['buildingStatus', 'In Building']);
+
+      exportResidentCensus.exportPdf(inBuildingResidents);
+    }
+
+    function exportResidentFaceSheet() {
+
+      if(!selectedResidentToast()){
+        return;
+      }
+
+      exportFaceSheet.exportPdf(vm.selectedResident);
+    }
+
+    function exportBlankPlan() {
+      if(!selectedResidentToast()){
+        return;
+      }
+
+      exportBlankCarePlan.exportPdf(vm.selectedResident);
+    }
 
     function updateResident(ev) {
       //switch form based on category selected
