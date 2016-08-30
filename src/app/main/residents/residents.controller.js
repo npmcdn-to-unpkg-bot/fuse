@@ -47,7 +47,8 @@
       "Physical condition",
       "Psychosocial",
       "Sleep",
-      "Vitals"
+      "Vitals",
+      "Activity"
     ];
 
     // Methods

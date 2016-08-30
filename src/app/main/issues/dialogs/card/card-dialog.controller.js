@@ -34,12 +34,9 @@
 
         vm.now = new Date();
 
-        console.log(vm.card);
-
         // Initial loading of data
         apilaData.issueCommentsList(vm.card._id)
         .success(function(response) {
-          console.log(response);
           vm.card.comments = response;
         })
         .error(function(response) {
@@ -61,10 +58,8 @@
             vm.userRole = "minions";
           }
 
-          console.log(vm.userRole);
-
           //load member list
-          apilaData.usersInCommunity(d)
+          apilaData.usersInCommunity(d._id)
               .success(function(d) {
                 vm.members = d;
               })
@@ -101,9 +96,6 @@
 
        vm.updateCheckItem = function(checklist, checkitemId, text) {
          checklist.checkItems[checkitemId] = text;
-
-         console.log("Updated checkitem");
-         console.log(checklist.checkItems[checkitemId]);
 
          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_change', "" , text.name));
 
@@ -174,20 +166,19 @@
 
         vm.uploadFiles = function(file, invalidFiles, card) {
           ImageUploadService.uploadFiles(file, invalidFiles, card, UpdateInfoService.setUpdateInfo);
-        }
+        };
 
         vm.removeDueDate = function() {
           vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', "" , vm.card.currdue));
           vm.card.currdue = '';
 
           updateIssue();
-        }
+        };
 
         vm.updateTextFields = function(type) {
-          console.log("dvaput");
           vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo(type, vm.card[type], ""));
           vm.updateIssue();
-        }
+        };
 
         //deleting a member
         vm.memberUpdate = function(selectedMember) {
@@ -198,26 +189,20 @@
 
           updateIssue(selectedMember);
 
-        }
+        };
 
         vm.updateLabel = function(labelid) {
 
-          for(var i = 0; i < vm.card.labels.length; ++i) {
-            if(vm.card.labels[i].id === labelid) {
-              console.log(vm.card.labels[i]);
-            }
-          }
-
           vm.updateIssue();
 
-        }
+        };
 
         vm.selectedItemChange = function(selectedMember) {
 
           if(selectedMember !== null) {
             updateIssue();
           }
-        }
+        };
 
 
         //////////
@@ -304,7 +289,6 @@
         }
 
         function wordCloud() {
-          console.log("kek");
           $mdDialog.show({
                 controllerAs: 'vm',
                 controller: 'WordCloudController',
@@ -471,8 +455,6 @@
             var arr = vm.board.labels;
             arr.splice(arr.indexOf(arr.getById(vm.editLabelId)), 1);
 
-            console.log(id);
-
             var updateInfo = UpdateInfoService.setUpdateInfo('labels', "", id.name);
 
             apilaData.deleteIssueLabelById(vm.card._id, id._id)
@@ -546,9 +528,6 @@
             var allCheckedItems = 0;
             var allCheckItems = 0;
 
-            console.log("Brah: ");
-            console.log(checkedItem);
-
             angular.forEach(checkItems, function (checkItem)
             {
                 if ( checkItem.checked )
@@ -567,8 +546,6 @@
 
             vm.card.checkItems = allCheckItems;
             vm.card.checkItemsChecked = allCheckedItems;
-
-            console.log(list);
 
             if(checkedItem.checked) {
               list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_checked", checkedItem.name, "");
@@ -606,7 +583,6 @@
             };
 
             checkList.checkItems.push(newCheckItem);
-            console.log(checkList);
 
             checkList.updateInfo = UpdateInfoService.setUpdateInfo('checkitem', newCheckItem.name, "");
 
@@ -624,7 +600,6 @@
         }
 
         function exportIssue() {
-          console.log(vm.card);
 
           exportIssueDetail.exportPdf(vm.card);
         }
@@ -741,7 +716,6 @@
 
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(data) {
-            console.log("updated issue");
             vm.card.updateInfo = data.updateInfo;
 
           }).error(function(data) {
