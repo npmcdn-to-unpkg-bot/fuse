@@ -519,7 +519,7 @@
                 </div>
               </form>
 
-              <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
+              <!-- <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
                 <img class="comment-member-avatar" ng-src="{{vm.board.members.getById(comment.idMember).avatar}}">
 
                 <div layout="column">
@@ -528,7 +528,20 @@
                   </div>
                   <div class="comment-bubble" ng-bind-html="comment.commentText | addHtmlLineBreaks"></div>
                 </div>
+              </div> -->
+
+              <div class="comment" layout="row" ng-repeat="comment in vm.card.comments">
+              <img class="comment-member-avatar" ng-src="{{vm.board.members.getById(comment.idMember).avatar}}">
+
+              <div layout="column">
+                <div class="comment-member-name">
+                  {{comment.author}}
+                </div>
+                <div class="comment-bubble">{{comment.commentText}}</div>
+                <div class="comment-time secondary-text">{{comment.createdOn | date}}</div>
               </div>
+            </div>
+
             </div>
           </div>
         </div>

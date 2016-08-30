@@ -18,8 +18,6 @@
 
         vm.card.currdue = vm.card.due;
 
-        console.log(vm.card);
-
         vm.card.labels.map(function(d){d.id = d._id; return d;});
         vm.board.labels.map(function(d){d.id = d._id; return d;});
 
@@ -34,6 +32,8 @@
         var userid = authentication.currentUser().id;
 
         vm.now = new Date();
+
+        console.log(vm.card);
 
         apilaData.userCommunity(userid)
         .success(function(d) {
@@ -690,7 +690,7 @@
 
             var commentData = {
               commentText: newCommentText,
-              author: authentication.currentUser().name
+              author: authentication.currentUser().id
             };
 
             vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('comments', commentData.commentText, ""));
