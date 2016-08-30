@@ -569,7 +569,13 @@
                 <ul>
 
                   <li ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy, update.updateDate) ">
-                    <span>{{ f.infoFormated }} </span>
+                    <span class="activity-member-name"> {{ f.userName }} </span>
+                    <span>{{ f.infoFormated }}
+                      <md-tooltip ng-if="f.tooltip" md-direction="top">
+                        {{ f.tooltip }}
+                      </md-tooltip>
+                    </span>
+                    <span class="activity-time secondary-text">{{ f.timeDiff }} </span>
                   </li>
 
                 </ul>

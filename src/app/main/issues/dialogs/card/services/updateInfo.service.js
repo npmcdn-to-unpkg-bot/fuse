@@ -13,9 +13,6 @@
 
       function checkChangedFields(oldData, newData, selectedMember) {
 
-        console.log(oldData);
-        console.log(newData);
-
          var diff = [];
          var attributeArr = ["title", "resolutionTimeframe", "description"];
 
@@ -66,104 +63,124 @@
       */
       function formatUpdateArray(updateInfo, updatedBy, updateDate) {
         _.forEach(updateInfo, function(v, k) {
-          v.infoFormated = updatedBy + " changed " + v.field +
+          v.infoFormated = " changed " + v.field +
                             " from " + v.old + " to " + v.new;
+
+          v.userName = updatedBy;
 
          //formating for members
          if(v.field === "idMembers") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " added a member " + v.new ;
+             v.infoFormated =  " added a member ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " removed a member " + v.old ;
+             v.infoFormated =  " removed a member ";
+             v.tooltip = v.old;
            }
          }
 
          //formating for attachemnts
          if(v.field === "attachments") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " uploaded an attachment " + v.new ;
+             v.infoFormated =  " uploaded an attachment ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " removed an attachment " + v.old ;
+             v.infoFormated =  " removed an attachment ";
+             v.tooltip = v.old;
            }
          }
 
          //formating for labels
          if(v.field === "labels") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " added a label " + v.new ;
+             v.infoFormated =  "added a label ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " removed a label " + v.old ;
+             v.infoFormated =  "removed a label ";
+             v.tooltip = v.old;
            }
          }
 
          //formating for checklists
          if(v.field === "checklists") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " added a checklist " + v.new ;
+             v.infoFormated =  " added a checklist ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " removed a checklist " + v.old ;
+             v.infoFormated =  " removed a checklist ";
+             v.tooltip = v.old;
            }
          }
 
          //formating for checklists item
          if(v.field === "checkitem") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " created a checklist item " + v.new ;
+             v.infoFormated =  " created a checklist item ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " removed a checklist item" + v.old ;
+             v.infoFormated =  " removed a checklist item";
+              v.tooltip = v.old;
            }
          }
 
          if(v.field === "checkitem_complete") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " completed a checklist item " + v.new ;
+             v.infoFormated =  " completed a checklist item ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " uncompleted a checklist item" + v.old ;
+             v.infoFormated =  " uncompleted a checklist item";
+             v.tooltip = v.old;
            }
          }
 
 
          if(v.field === "checkitem_change") {
-             v.infoFormated = updatedBy + " changed a checklist item " + v.old;
+             v.infoFormated =  " changed a checklist item ";
+             v.tooltip = v.old;
          }
 
          if(v.field === "checkitem_remove") {
-             v.infoFormated = updatedBy + " removed a checklist item " + v.old;
+             v.infoFormated =  " removed a checklist item ";
+             v.tooltip = v.old;
          }
 
          if(v.field === "checkitem_checked") {
-             v.infoFormated = updatedBy + " completed a checklist item " + v.new;
+             v.infoFormated =  " completed a checklist item ";
+             v.tooltip = v.new;
          }
 
          if(v.field === "checkitem_unchecked") {
-             v.infoFormated = updatedBy + " uncompleted a checklist item " + v.new;
+             v.infoFormated =  " uncompleted a checklist item ";
+             v.tooltip = v.new;
          }
 
          if(v.field === "comments") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " added a comment " + v.new ;
+             v.infoFormated =  " added a comment ";
+             v.tooltip = v.new;
            } else {
-             v.infoFormated = updatedBy + " removed a comment" + v.old ;
+             v.infoFormated =  " removed a comment";
+             v.tooltip = v.old;
            }
          }
 
          if(v.field === "due") {
            if(v.old === "") {
-             v.infoFormated = updatedBy + " added a due date " + moment(+v.new).format('MMMM Do YYYY, h:mm:ss a') ;
+             v.infoFormated =  " added a due date " + moment(+v.new).format('MMMM Do YYYY, h:mm:ss a') ;
            } else {
-             v.infoFormated = updatedBy + " removed a due date " + moment(+v.old).format('MMMM Do YYYY, h:mm:ss a') ;
+             v.infoFormated =  " removed a due date " + moment(+v.old).format('MMMM Do YYYY, h:mm:ss a') ;
            }
          }
 
          if(v.field === "status") {
-           v.infoFormated = updatedBy + " changed the issue status to " + v.new ;
+           v.infoFormated =  " changed the issue status to " + v.new ;
          }
 
          if(v.field === "description") {
-           v.infoFormated = updatedBy + " changed " + v.field + " to " + v.new;
+           v.infoFormated =  " changed " + v.field + " to " + v.new;
          }
 
-         v.infoFormated += " " + timeDiff(updateDate);
+         v.timeDiff = timeDiff(updateDate);
 
         });
 
@@ -175,8 +192,6 @@
       */
       function setUpdateInfo(fieldName, newField, oldField) {
         var updateInfo = {};
-
-        console.log("update info");
 
         updateInfo.updateBy = authentication.currentUser().name;
         updateInfo.updateDate = new Date();
