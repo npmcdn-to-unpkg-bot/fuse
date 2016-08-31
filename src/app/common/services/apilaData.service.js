@@ -102,6 +102,10 @@
       return $http.get(apiUrl + '/api/issues/' + issueid + '/comments/', getAuth());
     };
 
+    var issueUpdateInfo = function(issueid) {
+      return $http.get(apiUrl + '/api/issues/' + issueid + '/updateinfo', getAuth());
+    };
+
     var createIssueRecovery = function(data, communityid) {
       return $http.post(apiUrl + '/api/issues/recovery/' + communityid, data, getAuth());
     };
@@ -304,6 +308,7 @@
       issuesCount: issuesCount,
       issueCommentsList : issueCommentsList,
       dueIssuesList: dueIssuesList,
+      issueUpdateInfo: issueUpdateInfo,
       createIssueRecovery: createIssueRecovery,
       verifyPassword: verifyPassword,
 

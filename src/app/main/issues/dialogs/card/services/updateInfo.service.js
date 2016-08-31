@@ -66,7 +66,8 @@
           v.infoFormated = " changed " + v.field +
                             " from " + v.old + " to " + v.new;
 
-          v.userName = updatedBy;
+          v.userName = updatedBy.name;
+          v.userImage = updatedBy.userImage;
 
          //formating for members
          if(v.field === "idMembers") {
@@ -193,7 +194,7 @@
       function setUpdateInfo(fieldName, newField, oldField) {
         var updateInfo = {};
 
-        updateInfo.updateBy = authentication.currentUser().name;
+        updateInfo.updateBy = authentication.currentUser().id;
         updateInfo.updateDate = new Date();
         updateInfo.updateField = [];
         updateInfo.updateField.push({

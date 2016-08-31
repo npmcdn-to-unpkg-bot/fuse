@@ -569,6 +569,8 @@
                 <ul>
 
                   <li ng-repeat="f in vm.formatUpdateArray(update.updateField, update.updateBy, update.updateDate) ">
+                    <img class="activity-member-avatar"
+                                 ng-src="{{f.userImage}}">
                     <span class="activity-member-name"> {{ f.userName }} </span>
                     <span>{{ f.infoFormated }}
                       <md-tooltip ng-if="f.tooltip" md-direction="top">

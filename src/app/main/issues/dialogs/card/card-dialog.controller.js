@@ -43,6 +43,15 @@
           console.log(response);
         });
 
+        apilaData.issueUpdateInfo(vm.card._id)
+        .success(function(response) {
+          console.log(response);
+          vm.card.updateInfo = response;
+        })
+        .error(function(response) {
+          console.log(response);
+        });
+
         apilaData.userCommunity(userid)
         .success(function(d) {
 
@@ -77,7 +86,7 @@
               if(vm.card.currdue !== "2016") {
                 vm.card.due = vm.card.currdue;
                 if(vm.card.due !== "") {
-                  vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', vm.card.currdue, ""));
+                  vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('due', vm.card.currdue, "")));
                 }
 
                 vm.updateIssue();
@@ -90,14 +99,14 @@
        vm.removeCheckItem = function(checklist, i) {
          var checkItemName = checklist.checkItems[i].name;
          checklist.checkItems.splice(i, 1);
-         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_remove', "" , checkItemName));
+         vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('checkitem_remove', "" , checkItemName)));
          vm.updateIssue();
        }
 
        vm.updateCheckItem = function(checklist, checkitemId, text) {
          checklist.checkItems[checkitemId] = text;
 
-         vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('checkitem_change', "" , text.name));
+         vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('checkitem_change', "" , text.name)));
 
          vm.updateIssue();
        }
@@ -169,14 +178,14 @@
         };
 
         vm.removeDueDate = function() {
-          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('due', "" , vm.card.currdue));
+          vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('due', "" , vm.card.currdue)));
           vm.card.currdue = '';
 
           updateIssue();
         };
 
         vm.updateTextFields = function(type) {
-          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo(type, vm.card[type], ""));
+          vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo(type, vm.card[type], "")));
           vm.updateIssue();
         };
 
@@ -185,7 +194,7 @@
 
           vm.card.deletedMember = selectedMember;
 
-          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('idMembers', "" , selectedMember));
+          vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('idMembers', "" , selectedMember)));
 
           updateIssue(selectedMember);
 
@@ -337,7 +346,7 @@
             apilaData.deleteAttachment(vm.card._id, item._id, vm.card)
             .success(function(d) {
               vm.card.attachments.splice(vm.card.attachments.indexOf(item), 1);
-              vm.card.updateInfo.push(updateInfo);
+              vm.card.updateInfo.push(transformUpdateInfo(updateInfo));
             })
             .error(function(d) {
               console.log("Error removing attachment");
@@ -382,7 +391,7 @@
           if(!isLabelInCard(id)) {
             vm.card.labels.push(vm.board.labels.getById(id));
 
-            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('labels', vm.board.labels.getById(id).name, ""));
+            vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('labels', vm.board.labels.getById(id).name, "")));
           } else {
             removeLabelFromCard(id);
           }
@@ -436,7 +445,7 @@
             .success(function(data) {
               data.id = data._id;
               vm.board.labels.push(data);
-              vm.card.updateInfo.push(label.updateInfo);
+              vm.card.updateInfo.push(transformUpdateInfo(label.updateInfo));
 
               vm.newLabelName = '';
 
@@ -460,7 +469,7 @@
             apilaData.deleteIssueLabelById(vm.card._id, id._id)
             .success(function(d) {
 
-              vm.card.updateInfo.push(updateInfo);
+              vm.card.updateInfo.push(transformUpdateInfo(updateInfo));
 
               angular.forEach(vm.board.cards, function (card)
               {
@@ -511,7 +520,7 @@
 
             msUtils.toggleInArray(item, array);
 
-            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('idMembers', item.name, ""));
+            vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('idMembers', item.name, "")));
 
             updateIssue();
 
@@ -553,7 +562,7 @@
               list.updateInfo = UpdateInfoService.setUpdateInfo("checkitem_unchecked", checkedItem.name, "");
             }
 
-            vm.card.updateInfo.push(list.updateInfo);
+            vm.card.updateInfo.push(transformUpdateInfo(list.updateInfo));
 
             apilaData.updateCheckList(vm.card._id, list._id, list)
             .success(function(d) {
@@ -564,12 +573,18 @@
             });
         }
 
-        /**
-         * Add checklist item
-         *
-         * @param text
-         * @param checkList
-         */
+        //why this? when adding something new we want it to show imidiately right?
+        //But we store userId in updateInfo not the whole object as everything that
+        //is pushed imidiately is by us push our username and id
+        function transformUpdateInfo(updateInfo) {
+          updateInfo.updateBy = {
+            'name' : authentication.currentUser().name,
+            'userImage' : authentication.getUserImage()
+          };
+
+          return updateInfo;
+        }
+
         function addCheckItem(text, checkList)
         {
             if ( !text || text === '' )
@@ -589,7 +604,7 @@
             apilaData.updateCheckList(vm.card._id, checkList._id, checkList)
             .success(function(d) {
 
-                vm.card.updateInfo.push(checkList.updateInfo);
+                vm.card.updateInfo.push(transformUpdateInfo(checkList.updateInfo));
                 updateCheckedCount(checkList);
 
             })
@@ -619,7 +634,7 @@
             .success(function(d) {
               vm.card.checklists.splice(vm.card.checklists.indexOf(item), 1);
 
-              vm.card.updateInfo.push(updateInfo);
+              vm.card.updateInfo.push(transformUpdateInfo(updateInfo));
 
               angular.forEach(vm.card.checklists, function (list)
               {
@@ -653,7 +668,7 @@
             apilaData.addCheckList(vm.card._id, data)
             .success(function(d) {
                 vm.card.checklists.push(d);
-                vm.card.updateInfo.push(data.updateInfo);
+                vm.card.updateInfo.push(transformUpdateInfo(data.updateInfo));
                 vm.newCheckListTitle = "Checklist";
             })
             .error(function(d) {
@@ -675,7 +690,7 @@
               author: authentication.currentUser().id
             };
 
-            vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('comments', commentData.commentText, ""));
+            vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('comments', commentData.commentText, "")));
 
             apilaData.addIssueCommentById(issueid, commentData)
             .success(function(data) {
@@ -707,17 +722,22 @@
           vm.card.title = vm.card.name;
 
           //add updateInfo Data
-          vm.card.modifiedBy = authentication.currentUser().name;
+          vm.card.modifiedBy = authentication.currentUser().id;
           vm.card.modifiedDate = new Date();
-
 
           vm.card.updateField = UpdateInfoService.checkChangedFields(oldData, vm.card, deletedMember);
 
+          vm.card.updateInfo.push({
+            updateBy : {
+              name: authentication.currentUser().name,
+              userImage : authentication.getUserImage()
+            },
+            updateDate : vm.card.modifiedDate,
+            updateField : vm.card.updateField
+          });
 
           apilaData.updateIssue(vm.card._id, vm.card)
           .success(function(data) {
-            vm.card.updateInfo = data.updateInfo;
-
           }).error(function(data) {
             console.log("Error while adding comment");
           });
@@ -748,7 +768,7 @@
             vm.card.shelvedDate = new Date();
           }
 
-          vm.card.updateInfo.push(UpdateInfoService.setUpdateInfo('status', vm.card.status, ""));
+          vm.card.updateInfo.push(transformUpdateInfo(UpdateInfoService.setUpdateInfo('status', vm.card.status, "")));
 
           vm.updateIssue();
 
