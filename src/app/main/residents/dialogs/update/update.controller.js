@@ -55,7 +55,7 @@
     //before sending to server set all the fields and format them correctly
     function formatData() {
 
-      vm.form.modifiedBy = authentication.currentUser().name;
+      vm.form.modifiedBy = authentication.currentUser().id;
       vm.form.modifiedDate = new Date();
 
       var changedFields =

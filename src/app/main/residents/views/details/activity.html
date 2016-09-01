@@ -15,7 +15,11 @@
         <md-list>
           <md-list-item class="md-3-line" ng-repeat="updateField in vm.updateInfoList.slice().reverse() track by $index">
             <div class="md-list-item-text">
-              <span>{{updateField}}</span>
+              <img class="activity-member-avatar"
+                           ng-src="{{updateField.username.userImage}}">
+              <span class="activity-member-name">{{updateField.username.name}}</span>
+              <span>{{updateField.text}}</span>
+              <span class="activity-time secondary-text">{{updateField.diffTime}}</span>
             </div>
             <md-divider ng-if="!$last"></md-divider>
           </md-list-item>

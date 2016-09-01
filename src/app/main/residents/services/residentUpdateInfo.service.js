@@ -3,8 +3,8 @@
   'use strict';
 
   angular
-      .module('app.residents')
-      .service('ResidentUpdateInfoService', ResidentUpdateInfoService);
+    .module('app.residents')
+    .service('ResidentUpdateInfoService', ResidentUpdateInfoService);
 
 
   /** @ngInject */
@@ -14,64 +14,72 @@
 
     function formatUpdateArray(updateArray) {
 
-    var arrayFields = ['foodAllergies', 'medicationAllergies'];
+      var arrayFields = ['foodAllergies', 'medicationAllergies'];
 
-    var formatedArray = [];
+      var formatedArray = [];
 
-    _.forEach(updateArray, function(entry, key) {
-      var formatedEntry = "";
+      _.forEach(updateArray, function(entry, key) {
+        var formatEntry = {
+          'text': '',
+          'diffTime': '',
+          'username': ''
+        };
 
-      // if update field exists
-      if (entry.updateField) {
-        _.forEach(entry.updateField, function(currField) {
+        console.log(entry);
 
-          var oldValue = currField.old;
-          var newValue = currField.new;
-          var field = currField.field;
+        // if update field exists
+        if (entry.updateField) {
+          _.forEach(entry.updateField, function(currField) {
 
-          // format the date values proper
-          if (field === 'admissionDate' || field === 'birthDate') {
-            oldValue = moment(oldValue).format('MMMM Do YYYY');
-            newValue = moment(newValue).format('MMMM Do YYYY');
-          }
+            var oldValue = currField.old;
+            var newValue = currField.new;
+            var field = currField.field;
 
-          //format the output string that will be shown to the user
-          formatedEntry = entry.updateBy + " has updated " + _.startCase(field) + " from " +
-            oldValue + " to " + newValue;
+            formatEntry.username = entry.updateBy;
 
-          // if this is the first time some value has been set omit old value
-          if (!oldValue) {
-            formatedEntry = entry.updateBy + " has updated " + _.startCase(field) + " to " +
-              newValue;
-          }
-
-          //handling of array fields
-          if (_.includes(arrayFields, field)) {
-            if(newValue !== "") {
-              formatedEntry = entry.updateBy + " has added " + newValue + " to " +
-                _.startCase(field);
-            } else {
-              formatedEntry = entry.updateBy + " has removed " + oldValue + " from " +
-                _.startCase(field);
+            // format the date values proper
+            if (field === 'admissionDate' || field === 'birthDate') {
+              oldValue = moment(oldValue).format('MMMM Do YYYY');
+              newValue = moment(newValue).format('MMMM Do YYYY');
             }
 
-          }
+            //format the output string that will be shown to the user
+            formatEntry.text = " has updated " + _.startCase(field) + " from " +
+              oldValue + " to " + newValue;
 
-          //attaching a time diff at the end (how long ago did we update it)
-          formatedEntry += " " + timeDiff(entry.updateDate);
+            // if this is the first time some value has been set omit old value
+            if (!oldValue) {
+              formatEntry.text = " has updated " + _.startCase(field) + " to " +
+                newValue;
+            }
 
-          formatedArray.push(formatedEntry);
+            //handling of array fields
+            if (_.includes(arrayFields, field)) {
+              if (newValue !== "") {
+                formatEntry.text = " has added " + newValue + " to " +
+                  _.startCase(field);
+              } else {
+                formatEntry.text =  " has removed " + oldValue + " from " +
+                  _.startCase(field);
+              }
 
-        });
-      }
+            }
+
+            //attaching a time diff at the end (how long ago did we update it)
+            formatEntry.diffTime += " " + timeDiff(entry.updateDate);
+
+            formatedArray.push(formatEntry);
+
+          });
+        }
 
 
-    });
+      });
 
 
-    return formatedArray;
+      return formatedArray;
 
-  }
+    }
 
     function timeDiff(date) {
       var start = moment(date);
@@ -79,15 +87,15 @@
 
       var duration = moment.duration(end.diff(start));
 
-      if(duration.asSeconds() < 60) {
+      if (duration.asSeconds() < 60) {
         return Math.floor(duration.asSeconds()) + " seconds ago";
-      } else if(duration.asMinutes() < 60) {
+      } else if (duration.asMinutes() < 60) {
         return Math.floor(duration.asMinutes()) + " minutes ago";
-      } else if(duration.asHours() < 24) {
+      } else if (duration.asHours() < 24) {
         return Math.floor(duration.asHours()) + " hours ago";
-      } else if(duration.asDays() < 31) {
+      } else if (duration.asDays() < 31) {
         return Math.floor(duration.asDays()) + " days ago";
-      } else if(duration.asMonths() < 12) {
+      } else if (duration.asMonths() < 12) {
         return Math.floor(duration.asMonths()) + " months ago";
       } else {
         return Math.floor(duration.asYears()) + " years ago";
@@ -96,7 +104,7 @@
     }
 
     return {
-      formatUpdateArray : formatUpdateArray
+      formatUpdateArray: formatUpdateArray
     };
 
   }

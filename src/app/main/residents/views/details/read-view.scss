@@ -6,6 +6,13 @@
                 width: 300px;
             }
 
+            .activity-member-avatar {
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              margin-right: 16px;
+            }
+
     .mail-read-pane {
         background: #FFFFFF;
 
@@ -17,6 +24,12 @@
                 font-size: 17px;
                 font-weight: 500;
             }
+        }
+
+        .activity-member-name {
+          font-size: 14px;
+          font-weight: 500;
+          margin-right: 8px;
         }
 
         .mail-content {
