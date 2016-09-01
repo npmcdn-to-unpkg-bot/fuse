@@ -52,14 +52,11 @@
         <input ng-model="vm.form.psychosocialStatusDescribe" type="text">
       </md-input-container>
 
-      <md-input-container>
-        <label>Comprehension</label>
-        <md-select ng-model="vm.form.comprehension">
-          <md-option>Slow</md-option>
-          <md-option>Moderate</md-option>
-          <md-option>Quick</md-option>
-        </md-select>
-      </md-input-container>
+      <div class="md-block">
+        <label>Comprehension : {{ vm.mapComprehension(vm.comprehensionLevel) }}</label>
+        <md-slider flex min="0" max="2" ng-model="vm.comprehensionLevel" aria-label="blue" id="red-slider">
+        </md-slider>
+      </div>
 
       <md-input-container class="md-block">
         <md-checkbox ng-model="vm.form.smokes" ng-hide="vm.showCancel" aria-label="Smokes">

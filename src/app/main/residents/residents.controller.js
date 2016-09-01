@@ -66,6 +66,7 @@
     vm.isChecked = isChecked;
     vm.toggleStarred = toggleStarred;
     vm.toggleCheck = toggleCheck;
+    vm.mapComprehension = mapComprehension;
 
     vm.switchCategory = function(category) {
       vm.selectedCategory = category;
@@ -378,12 +379,23 @@
       mail.starred = !mail.starred;
     }
 
-    /**
-     * Toggle checked status of the mail
-     *
-     * @param mail
-     * @param event
-     */
+    function mapComprehension(numValue) {
+      switch(numValue) {
+        case 0: {
+          return "Slow";
+        }
+        case 1: {
+          return "Moderate";
+        }
+        case 2: {
+          return "Quick";
+        }
+        default: {
+          return "Slow";
+        }
+      }
+    }
+
     function toggleCheck(mail, event) {
       if (event) {
         event.stopPropagation();
