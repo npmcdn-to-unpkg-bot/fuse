@@ -13,14 +13,38 @@
     vm.form = currResident;
 
     vm.status = [];
-    vm.status.push({active: false, title:"Alert"});
-    vm.status.push({active: false, title:"Friendly"});
-    vm.status.push({active: false, title:"Disoriented"});
-    vm.status.push({active: false, title:"Withdrawn"});
-    vm.status.push({active: false, title:"Lonely"});
-    vm.status.push({active: false, title:"Happy"});
-    vm.status.push({active: false, title:"Confused"});
-    vm.status.push({active: false, title:"Uncooperative"});
+    vm.status.push({
+      active: false,
+      title: "Alert"
+    });
+    vm.status.push({
+      active: false,
+      title: "Friendly"
+    });
+    vm.status.push({
+      active: false,
+      title: "Disoriented"
+    });
+    vm.status.push({
+      active: false,
+      title: "Withdrawn"
+    });
+    vm.status.push({
+      active: false,
+      title: "Lonely"
+    });
+    vm.status.push({
+      active: false,
+      title: "Happy"
+    });
+    vm.status.push({
+      active: false,
+      title: "Confused"
+    });
+    vm.status.push({
+      active: false,
+      title: "Uncooperative"
+    });
 
     vm.foodAllergies = currResident.foodAllergies;
     vm.medicationAllergies = currResident.medicationAllergies;
@@ -36,7 +60,9 @@
     vm.seperators = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 
     vm.autocompleteOptions = {
-      componentRestrictions: { country: 'us' }
+      componentRestrictions: {
+        country: 'us'
+      }
     };
 
     setSelectedStatuses(currResident.psychosocialStatus);
@@ -66,7 +92,7 @@
 
       addToStatusArray();
 
-      if(vm.form.locationInfo.geometry !== undefined) {
+      if (vm.form.locationInfo.geometry !== undefined) {
         vm.form.movedFrom.name = vm.form.locationInfo.formatted_address;
         vm.form.movedFrom.latitude = vm.form.locationInfo.geometry.location.lat();
         vm.form.movedFrom.longitude = vm.form.locationInfo.geometry.location.lng();
@@ -79,19 +105,23 @@
     }
 
     function mapComprehension(numValue) {
-      switch(numValue) {
-        case 0: {
-          return "Slow";
-        }
-        case 1: {
-          return "Moderate";
-        }
-        case 2: {
-          return "Quick";
-        }
-        default: {
-          return "Slow";
-        }
+      switch (numValue) {
+        case 0:
+          {
+            return "Slow";
+          }
+        case 1:
+          {
+            return "Moderate";
+          }
+        case 2:
+          {
+            return "Quick";
+          }
+        default:
+          {
+            return "Slow";
+          }
       }
     }
 
@@ -128,13 +158,11 @@
       return false;
     }
 
-    function addToStatusArray()
-    {
+    function addToStatusArray() {
       vm.form.newpsychosocialStatus = [];
 
-      for(var i  = 0; i < vm.status.length; ++i)
-      {
-        if(vm.status[i].active == true) {
+      for (var i = 0; i < vm.status.length; ++i) {
+        if (vm.status[i].active == true) {
           vm.form.newpsychosocialStatus.push(vm.status[i].title);
         }
 
@@ -142,17 +170,16 @@
     }
 
     // sets which psychosocialStatus is checked
-    function setSelectedStatuses(arr)
-    {
+    function setSelectedStatuses(arr) {
 
-      for(var i  = 0; i < vm.status.length; ++i)
-      {
-         var checkedElem = _.find(vm.status, function(d) {
-            if(d.title == arr[i]){
-              return d;
-            }});
+      for (var i = 0; i < vm.status.length; ++i) {
+        var checkedElem = _.find(vm.status, function(d) {
+          if (d.title == arr[i]) {
+            return d;
+          }
+        });
 
-        if(checkedElem != undefined) {
+        if (checkedElem != undefined) {
           checkedElem.active = true;
         }
       }
@@ -161,20 +188,20 @@
     function updateChip(list, type, chip, operation) {
 
       var data = {
-        "operation" : operation,
-        "list" : list,
-        "type" : type,
-        "selectedItem" : chip,
-        "updateBy" : authentication.currentUser().name
+        "operation": operation,
+        "list": list,
+        "type": type,
+        "selectedItem": chip,
+        "updateBy": authentication.currentUser().name
       };
 
       apilaData.updateListItem(vm.copyResident._id, data)
-      .success(function(response) {
-        currResident = response;
-      })
-      .error(function(response) {
-        console.log(response);
-      });
+        .success(function(response) {
+          currResident = response;
+        })
+        .error(function(response) {
+          console.log(response);
+        });
     }
 
     //checks what fields changed in the updates
@@ -320,7 +347,7 @@
         "newweight",
         "newvitalsPain",
         "newrespiration",
-      //  "newpsychosocialStatus",
+        //  "newpsychosocialStatus",
         "newtemperature",
         "newinternationalNormalizedRatio"
       ];
@@ -331,7 +358,7 @@
 
           //handeling when the value is an object with a data field
           var newValue = newData[arrayFields[i]];
-          if(newValue.data != undefined) {
+          if (newValue.data != undefined) {
             newValue = newData[arrayFields[i]].data;
           }
 
