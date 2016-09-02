@@ -15,7 +15,15 @@
         <!-- Add details content here -->
         <h4>Type of Bathing: {{ vm.selectedResident.typeOfBathing }}</h4>
         <h4>Time of Bathing: {{ vm.selectedResident.timeOfBathing }}</h4>
-        <h4>Frequency of Bathing: {{ vm.selectedResident.frequencyOfBathing }}</h4>
+
+        <h4 ng-switch on="vm.selectedResident.frequencyOfBathing">
+            <span ng-switch-when="0">Frequency of Bathing : No Bathing</span>
+            <span ng-switch-when="1">Frequency of Bathing : Once a week</span>
+            <span ng-switch-when="2">Frequency of Bathing : Twice a week</span>
+            <span ng-switch-when="3">Frequency of Bathing : Every other day</span>
+            <span ng-switch-when="4">Frequency of Bathing : Everyday</span>
+        </h4>
+
         <h4>Acceptance of Bathing: {{ vm.selectedResident.acceptanceOfBathing }}</h4>
         <h4 ng-if="vm.selectedResident.acceptanceOfBathing == 'Dislikes'">
           Why Dislikes Bathing: {{ vm.selectedResident.dislikesBathingDescribe }}
