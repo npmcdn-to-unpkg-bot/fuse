@@ -12,6 +12,8 @@
     //filling in old data for the update
     vm.form = currResident;
 
+    vm.form.contacts = {};
+
     vm.status = [];
     vm.status.push({
       active: false,

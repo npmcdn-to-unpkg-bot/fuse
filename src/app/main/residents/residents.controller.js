@@ -48,6 +48,7 @@
       "Psychosocial",
       "Sleep",
       "Vitals",
+      "Contacts",
       "Activity"
     ];
 
