@@ -16,6 +16,14 @@
         <h4>Religion: {{ vm.selectedResident.religion }}</h4>
         <h4>Education: {{ vm.selectedResident.education }}</h4>
         <h4>Occupation: {{ vm.selectedResident.occupation }}</h4>
+        <h4>Contribution: {{ vm.selectedResident.contribution }}</h4>
+
+        <h4>Shopping:
+          <span ng-repeat="shop in vm.selectedResident.shopping">
+            {{ shop }} <span ng-if="!$last">,</span>
+          </span>
+        </h4>
+
         <h4>Notes: {{ vm.selectedResident.lifeNotes }} </h4>
 
       </div>

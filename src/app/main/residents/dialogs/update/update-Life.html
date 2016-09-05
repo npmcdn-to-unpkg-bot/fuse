@@ -26,6 +26,27 @@
         <input ng-model="vm.form.occupation" type="text">
       </md-input-container>
 
+      <md-input-container class="md-block">
+        <label>Contribution</label>
+        <input ng-model="vm.form.contribution" type="text">
+      </md-input-container>
+
+      <div layout="column" layout-align="start start">
+          <h4>Shopping (check all that apply) </h4>
+
+          <md-checkbox ng-model="vm.shopping[0].active">
+            {{ vm.shopping[0].title}}
+          </md-checkbox>
+
+          <md-checkbox ng-model="vm.shopping[1].active">
+            {{ vm.shopping[1].title}}
+          </md-checkbox>
+
+          <md-checkbox ng-model="vm.shopping[2].active">
+            {{ vm.shopping[2].title}}
+          </md-checkbox>
+      </div>
+
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
         <textarea ng-model="vm.form.lifeNotes"></textarea>

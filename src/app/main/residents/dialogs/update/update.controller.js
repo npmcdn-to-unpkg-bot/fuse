@@ -14,39 +14,13 @@
 
     vm.form.contacts = {};
 
-    vm.status = [];
-    vm.status.push({
-      active: false,
-      title: "Alert"
-    });
-    vm.status.push({
-      active: false,
-      title: "Friendly"
-    });
-    vm.status.push({
-      active: false,
-      title: "Disoriented"
-    });
-    vm.status.push({
-      active: false,
-      title: "Withdrawn"
-    });
-    vm.status.push({
-      active: false,
-      title: "Lonely"
-    });
-    vm.status.push({
-      active: false,
-      title: "Happy"
-    });
-    vm.status.push({
-      active: false,
-      title: "Confused"
-    });
-    vm.status.push({
-      active: false,
-      title: "Uncooperative"
-    });
+    vm.status = populateMultiSelect(["Alert", "Friendly", "Disoriented",
+                                    "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative"]);
+
+    vm.shopping = populateMultiSelect(["Family", "Self", "Friend"]);
+
+    setSelectedStatuses(currResident.psychosocialStatus);
+    setSelectedShopping(currResident.shopping);
 
     vm.foodAllergies = currResident.foodAllergies;
     vm.medicationAllergies = currResident.medicationAllergies;
@@ -66,8 +40,6 @@
         country: 'us'
       }
     };
-
-    setSelectedStatuses(currResident.psychosocialStatus);
 
     vm.form.birthDate = new Date(currResident.birthDate);
     vm.form.admissionDate = new Date(currResident.admissionDate);
@@ -93,6 +65,7 @@
         checkChangedFields(vm.copyResident, vm.form);
 
       addToStatusArray();
+      addToShoppingArray();
 
       if (vm.form.locationInfo.geometry !== undefined) {
         vm.form.movedFrom.name = vm.form.locationInfo.formatted_address;
@@ -144,6 +117,7 @@
       //important to set updateInfo when adding/removing chips because they will generate updateInfo
       vm.form.updateInfo = currResident.updateInfo;
 
+
       apilaData.updateResident(currResident._id, vm.form)
         .success(function(resident) {
 
@@ -159,6 +133,34 @@
           console.log(response);
         });
       return false;
+    }
+
+
+    function addToShoppingArray() {
+      vm.form.newShoppingStatus = [];
+
+      for (var i = 0; i < vm.shopping.length; ++i) {
+        if (vm.shopping[i].active == true) {
+          vm.form.newShoppingStatus.push(vm.shopping[i].title);
+        }
+
+      }
+    }
+
+    // sets which psychosocialStatus is checked
+    function setSelectedShopping(arr) {
+
+      for (var i = 0; i < vm.shopping.length; ++i) {
+        var checkedElem = _.find(vm.shopping, function(d) {
+          if (d.title == arr[i]) {
+            return d;
+          }
+        });
+
+        if (checkedElem != undefined) {
+          checkedElem.active = true;
+        }
+      }
     }
 
     function addToStatusArray() {
@@ -207,6 +209,21 @@
         });
     }
 
+    // Builds up proper array of object for multi select fields like psyho status
+    function populateMultiSelect(titleArray) {
+
+      var selectArr = [];
+
+      for(var i = 0; i < titleArray.length; ++i) {
+        selectArr.push({
+          active : false,
+          title: titleArray[i]
+        });
+      }
+
+      return selectArr;
+    }
+
     //checks what fields changed in the updates
     function checkChangedFields(oldData, newData) {
 
@@ -250,6 +267,7 @@
         "education",
         "occupation",
         "lifeNotes",
+        "contribution",
 
         // mobility
         "transfers",
@@ -539,6 +557,7 @@
 
       //addToArray(vm.form.psychosocialStatus, vm.form.newpsychosocialStatus);
       vm.form.psychosocialStatus = vm.form.newpsychosocialStatus;
+      vm.form.shopping = vm.form.newShoppingStatus;
 
       vm.form.foodLikes = vm.form.newfoodLikes;
       vm.form.foodDislikes = vm.form.newfoodDislikes;

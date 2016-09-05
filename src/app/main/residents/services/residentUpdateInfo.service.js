@@ -25,8 +25,6 @@
           'username': ''
         };
 
-        console.log(entry);
-
         // if update field exists
         if (entry.updateField) {
           _.forEach(entry.updateField, function(currField) {
