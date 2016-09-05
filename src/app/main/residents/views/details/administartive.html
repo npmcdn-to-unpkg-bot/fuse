@@ -24,6 +24,16 @@
         <h4>Admission Date: {{ vm.selectedResident.admissionDate | date }} </h4>
         <h4>Sex: {{ vm.selectedResident.sex }} </h4>
         <h4>Building Status: {{ vm.selectedResident.buildingStatus }} </h4>
+
+        <h4 ng-switch on="vm.selectedResident.assessmentInterval">
+          <span>Assessment Interval : None</span>
+          <span>Assessment Interval : Weekly</span>
+          <span>Assessment Interval : Monthly</span>
+          <span>Assessment Interval : Quarterly</span>
+          <span>Assessment Interval : Yearly</span>
+          <span ng-switch-default>Assessment Interval :  </span>
+        </h4>
+
         <h4>Moved from: {{ vm.selectedResident.movedFrom.name }} </h4>
         <h4>Notes: {{ vm.selectedResident.administrativeNotes }} </h4>
 

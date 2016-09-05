@@ -27,6 +27,12 @@
         <input ng-model="vm.form.painDescription" type="text">
       </md-input-container>
 
+      <div class="md-block" ng-if="vm.form.hasPain">
+       <label>Pain Severity: {{ vm.form.painSeverity }}</label>
+       <md-slider flex min="0" max="10" ng-model="vm.form.painSeverity" aria-label="blue">
+       </md-slider>
+     </div>
+
       <md-input-container class="md-block" ng-if="vm.form.hasPain">
         <label>Time of Max Pain</label>
         <input ng-model="vm.form.maxPainTime" type="text">

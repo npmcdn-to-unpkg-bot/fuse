@@ -34,16 +34,18 @@
       </div>
 <br>
       <div layout="row" layout-align="space-around center">
-        <md-input-container>
-          <label>Frequency of Bathing</label>
-          <md-select ng-model="vm.form.frequencyOfBathing">
-            <md-option>Once per Week</md-option>
-            <md-option>Twice per Week</md-option>
-            <md-option>Everyday</md-option>
-            <md-option>Every Other Day</md-option>
-            <md-option>By Outside Agency</md-option>
-          </md-select>
-        </md-input-container>
+        <div class="md-block">
+         <label ng-switch on="vm.form.frequencyOfBathing">
+             <span ng-switch-when="0">Frequency of Bathing : No Bathing</span>
+             <span ng-switch-when="1">Frequency of Bathing : Once a week</span>
+            <span ng-switch-when="2">Frequency of Bathing : Twice a week</span>
+             <span ng-switch-when="3">Frequency of Bathing : Every other day</span>
+             <span ng-switch-when="4">Frequency of Bathing : Everyday</span>
+            <span ng-switch-default>Frequency of Bathing : </span>
+         </label>
+         <md-slider flex min="0" max="4" ng-model="vm.form.frequencyOfBathing" aria-label="blue">
+         </md-slider>
+       </div>
 
         <md-input-container>
           <label>Acceptance of Bathing</label>

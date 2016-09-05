@@ -12,56 +12,66 @@
     <md-dialog-content ms-scroll>
 
       <div layout="row" layout-align="space-around center">
-        <md-input-container>
-          <label>Bowel Continent</label>
-          <md-select ng-model="vm.form.bowelContinent">
-            <md-option>Never</md-option>
-            <md-option>Sometimes</md-option>
-            <md-option>Always</md-option>
-            <md-option>Colostomy</md-option>
-          </md-select>
-        </md-input-container>
+          <div class="md-block">
+            <label ng-switch on="vm.form.bowelContinent">
+              <span ng-switch-when="0">Bowel Continent : Never</span>
+              <span ng-switch-when="1">Bowel Continent : Sometimes</span>
+              <span ng-switch-when="2">Bowel Continent : Always</span>
+              <span ng-switch-default>Bowel Continent :</span>
+            </label>
+          <md-slider flex min="0" max="2" ng-model="vm.form.bowelContinent" aria-label="blue">
+          </md-slider>
+      </div>
 
-        <md-input-container>
-          <label>Constipated</label>
-          <md-select ng-model="vm.form.constipated">
-            <md-option>Never</md-option>
-            <md-option>Sometimes</md-option>
-            <md-option>Always</md-option>
-          </md-select>
-        </md-input-container>
+        <div class="md-block">
+         <label ng-switch on="vm.form.constipated">
+             <span ng-switch-when="0">Constipated : Never</span>
+             <span ng-switch-when="1">Constipated : Sometimes</span>
+             <span ng-switch-when="2">Constipated : Always</span>
+             <span ng-switch-default>Constipated : </span>
+         </label>
+         <md-slider flex min="0" max="2" ng-model="vm.form.constipated" aria-label="blue">
+         </md-slider>
+       </div>
 
-        <md-input-container>
-          <label>Laxative</label>
-          <md-select ng-model="vm.form.laxative">
-            <md-option>Never</md-option>
-            <md-option>Sometimes</md-option>
-            <md-option>Always</md-option>
-          </md-select>
-        </md-input-container>
+       <div class="md-block">
+         <label ng-switch on="vm.form.laxative">
+            <span ng-switch-when="0">Laxative : Never</span>
+             <span ng-switch-when="1">Laxative : Sometimes</span>
+             <span ng-switch-when="2">Laxative : Always</span>
+             <span ng-switch-default>Laxative : </span>
+         </label>
+         <md-slider flex min="0" max="2" ng-model="vm.form.laxative" aria-label="blue">
+         </md-slider>
+       </div>
+
+
       </div>
 
       <br>
 
       <div layout="row" layout-align="space-around center">
-        <md-input-container>
-          <label>Bladder Continent</label>
-          <md-select ng-model="vm.form.bladderContinent">
-            <md-option>Never</md-option>
-            <md-option>Sometimes</md-option>
-            <md-option>Always</md-option>
-            <md-option>Urostomy</md-option>
-          </md-select>
-        </md-input-container>
+        <div class="md-block">
+             <label ng-switch on="vm.form.bladderContinent">
+                 <span ng-switch-when="0">Bladder Continent : Never</span>
+                 <span ng-switch-when="1">Bladder Continent : Sometimes</span>
+                <span ng-switch-when="2">Bladder Continent : Always</span>
+                <span ng-switch-default>Bladder Continent : </span>
+             </label>
+             <md-slider flex min="0" max="2" ng-model="vm.form.bladderContinent" aria-label="blue">
+             </md-slider>
+          </div>
 
-        <md-input-container>
-          <label>Dribbles</label>
-          <md-select ng-model="vm.form.dribbles">
-            <md-option>Never</md-option>
-            <md-option>Sometimes</md-option>
-            <md-option>Always</md-option>
-          </md-select>
-        </md-input-container>
+          <div class="md-block">
+              <label ng-switch on="vm.form.dribbles">
+                  <span ng-switch-when="0">Dribbles : Never</span>
+                  <span ng-switch-when="1">Dribbles : Sometimes</span>
+                  <span ng-switch-when="2">Dribbles : Always</span>
+                  <span ng-switch-default>Dribbles :</span>
+              </label>
+               <md-slider flex min="0" max="2" ng-model="vm.form.dribbles" aria-label="blue">
+              </md-slider>
+             </div>
 
         <md-input-container>
           <label>Toileting Device</label>

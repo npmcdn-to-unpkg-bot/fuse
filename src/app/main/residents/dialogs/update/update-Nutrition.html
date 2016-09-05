@@ -11,6 +11,18 @@
 
     <md-dialog-content ms-scroll>
 
+      <div class="md-block">
+       <label ng-switch on="vm.form.overallNutrition">
+           <span ng-switch-when="0">Overall Nutrition : Not Eating</span>
+           <span ng-switch-when="1">Overall Nutrition : Poor</span>
+           <span ng-switch-when="2">Overall Nutrition : Good</span>
+           <span ng-switch-when="3">Overall Nutrition : Over Eating</span>
+           <span ng-switch-default>Overall Nutrition : </span>
+       </label>
+       <md-slider flex min="0" max="3" ng-model="vm.form.overallNutrition" aria-label="blue">
+       </md-slider>
+     </div>
+
       <md-input-container>
         <label>Overall Nutrition</label>
         <md-select ng-model="vm.form.overallNutrition">

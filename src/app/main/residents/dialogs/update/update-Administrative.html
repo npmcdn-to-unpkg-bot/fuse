@@ -111,6 +111,18 @@
           <input type="text" g-places-autocomplete options="vm.autocompleteOptions" ng-model="vm.form.locationInfo" />
         </md-input-container>
 
+        <div class="md-block">
+         <label ng-switch on="vm.form.assessmentInterval">
+             <span ng-switch-when="0">Assessment Interval : None</span>
+             <span ng-switch-when="1">Assessment Interval : Weekly</span>
+             <span ng-switch-when="2">Assessment Interval : Monthly</span>
+             <span ng-switch-when="3">Assessment Interval : Quarterly</span>
+             <span ng-switch-when="4">Assessment Interval : Yearly</span>
+         </label>
+         <md-slider flex min="0" max="4" ng-model="vm.form.assessmentInterval" aria-label="blue">
+         </md-slider>
+       </div>
+
         <md-input-container flex class="md-block textarea-container">
           <label>Notes</label>
           <textarea ng-model="vm.form.administrativeNotes"></textarea>

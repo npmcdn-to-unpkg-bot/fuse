@@ -16,30 +16,35 @@
             <span ng-switch-when="0">Bowel Continent : Never</span>
             <span ng-switch-when="1">Bowel Continent : Sometimes</span>
             <span ng-switch-when="2">Bowel Continent : Always</span>
+            <span ng-switch-default>Bowel Continent :</span>
         </h4>
 
         <h4 ng-switch on="vm.selectedResident.constipated">
             <span ng-switch-when="0">Constipated : Never</span>
             <span ng-switch-when="1">Constipated : Sometimes</span>
             <span ng-switch-when="2">Constipated : Always</span>
+            <span ng-switch-default>Constipated :</span>
         </h4>
 
         <h4 ng-switch on="vm.selectedResident.laxative">
             <span ng-switch-when="0">Laxative : Never</span>
             <span ng-switch-when="1">Laxative : Sometimes</span>
             <span ng-switch-when="2">Laxative : Always</span>
+            <span ng-switch-default>Laxative : </span>
         </h4>
 
         <h4 ng-switch on="vm.selectedResident.bladderContinent">
             <span ng-switch-when="0">Bladder Continent : Never</span>
             <span ng-switch-when="1">Bladder Continent : Sometimes</span>
             <span ng-switch-when="2">Bladder Continent : Always</span>
+            <span ng-switch-default>Bladder Continent :</span>
         </h4>
 
         <h4 ng-switch on="vm.selectedResident.bladderContinent">
             <span ng-switch-when="0">Dribbles : Never</span>
             <span ng-switch-when="1">Dribbles : Sometimes</span>
             <span ng-switch-when="2">Dribbles : Always</span>
+            <span ng-switch-default>Dribbles :</span>
         </h4>
 
         <h4>Catheter : {{ vm.selectedResident.catheter }}</h4>
