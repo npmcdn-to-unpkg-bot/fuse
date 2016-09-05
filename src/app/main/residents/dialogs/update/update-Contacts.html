@@ -41,8 +41,38 @@
       </md-input-container>
 
       <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.primaryContact" ng-hide="vm.showCancel" aria-label="Has Pain">
+        <md-checkbox ng-model="vm.form.contacts.primaryContact" aria-label="Primary Contact">
           Primary Contact
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.contacts.trustedPerson" aria-label="Trusted Person">
+          Trusted Person
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.contacts.medicalPowerOfAttorney" aria-label="Medical Power Of Attorney">
+          Medical Power Of Attorney
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.contacts.financialPowerOfAttorney" aria-label="Financial Power Of Attorney">
+          Financial Power Of Attorney
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.contacts.conservator" aria-label="Conservator">
+          Conservator
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.contacts.guardian" aria-label="Guardian">
+          Guardian
         </md-checkbox>
       </md-input-container>
 

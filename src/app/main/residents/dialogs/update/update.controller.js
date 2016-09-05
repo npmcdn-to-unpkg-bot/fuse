@@ -220,6 +220,9 @@
         "middleName",
         "maidenName",
         "sex",
+        "room",
+        "veteran",
+        "maritalStatus",
         "buildingStatus",
         "administrativeNotes",
 
@@ -359,7 +362,7 @@
 
         if (oldData[arrayFields[i]] !== newData[arrayFields[i]]) {
 
-          //handeling when the value is an object with a data field
+          //handling when the value is an object with a data field
           var newValue = newData[arrayFields[i]];
           if (newValue.data != undefined) {
             newValue = newData[arrayFields[i]].data;

@@ -17,6 +17,9 @@
         <h4>Middle Name: {{ vm.selectedResident.middleName }} </h4>
         <h4>Maiden Name: {{ vm.selectedResident.maidenName }} </h4>
         <h4>Last Name: {{ vm.selectedResident.lastName }} </h4>
+        <h4>Room Number: {{ vm.selectedResident.room }}</h4>
+        <h4>Veteran: {{ vm.selectedResident.veteran }}</h4>
+        <h4>Marital Status: {{ vm.selectedResident.maritalStatus }} </h4>
         <h4>Date of Birth: {{ vm.selectedResident.birthDate | date }} </h4>
         <h4>Admission Date: {{ vm.selectedResident.admissionDate | date }} </h4>
         <h4>Sex: {{ vm.selectedResident.sex }} </h4>
@@ -28,16 +31,6 @@
       <ui-gmap-marker coords="vm.movedFromMap.marker.coords"
                       idkey="vm.movedFromMap.marker.id"></ui-gmap-marker>
   </ui-gmap-google-map>
-
-        <!-- Update fields -->
-        <md-list>
-          <md-list-item class="md-3-line" ng-repeat="updateField in vm.updateInfoList track by $index">
-            <div class="md-list-item-text">
-              <span>{{updateField}}</span>
-            </div>
-            <md-divider ng-if="!$last"></md-divider>
-          </md-list-item>
-        </md-list>
 
       </div>
     </div>

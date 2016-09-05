@@ -30,6 +30,28 @@
         <input ng-model="vm.form.lastName" type="text" required="">
       </md-input-container>
 
+      <md-input-container class="md-block">
+        <label>Room number</label>
+        <input ng-model="vm.form.room" type="number" required="">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.veteran" aria-label="Veteran">
+          Veteran
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Marital Status</label>
+        <md-select ng-model="vm.form.maritalStatus" required="">
+          <md-option>Single</md-option>
+          <md-option>Divorced</md-option>
+          <md-option>Widowed</md-option>
+          <md-option>Married</md-option>
+          <md-option>Single never married</md-option>
+        </md-select>
+      </md-input-container>
+
       <div layout="row" layout-align="space-around start">
         <div>
           <h4>Date of Birth</h4>
