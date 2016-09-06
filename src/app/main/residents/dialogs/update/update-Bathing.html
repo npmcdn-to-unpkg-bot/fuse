@@ -63,6 +63,17 @@
         <textarea ng-model="vm.form.dislikesBathingDescribe" rows="5"></textarea>
       </md-input-container>
 
+      <md-input-container>
+        <label>Bathing Assist</label>
+        <md-select ng-model="vm.form.bathingAssist">
+          <md-option>Full Assistance</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Independent</md-option>
+          <md-option>Partial Assistance</md-option>
+        </md-select>
+      </md-input-container>
+
+
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
         <textarea ng-model="vm.form.bathingNotes"></textarea>

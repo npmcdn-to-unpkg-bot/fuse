@@ -123,6 +123,63 @@
          </md-slider>
        </div>
 
+       <!-- Random fields -->
+
+       <md-input-container class="md-block">
+         <md-checkbox ng-model="vm.form.fullCode" aria-label="Full Code">
+           Full Code
+         </md-checkbox>
+       </md-input-container>
+
+       <md-input-container class="md-block">
+         <label>Primary Doctor</label>
+         <input ng-model="vm.form.primaryDoctor" type="text">
+       </md-input-container>
+
+       <md-input-container class="md-block">
+         <label>Pharmacy</label>
+         <input ng-model="vm.form.pharmacy" type="text">
+       </md-input-container>
+
+       <md-input-container class="md-block">
+         <md-checkbox ng-model="vm.form.longTermCareInsurance" aria-label="Long Term Care Insurance">
+           Long Term Care Insurance
+         </md-checkbox>
+       </md-input-container>
+
+       <md-input-container class="md-block" ng-if="vm.form.longTermCareInsurance == true">
+         <md-checkbox ng-model="vm.form.receiveingLongTermCareInsurance" aria-label="Receiveing Long Term Care Insurance">
+           Receiveing Long Term Care Insurance
+         </md-checkbox>
+       </md-input-container>
+
+       <md-input-container>
+         <label>Appointment Coordination</label>
+         <md-select ng-model="vm.form.appointmentCoordination">
+           <md-option>Self</md-option>
+           <md-option>Needs assistance</md-option>
+           <md-option>Family</md-option>
+         </md-select>
+       </md-input-container>
+
+       <md-input-container class="md-block">
+         <md-checkbox ng-model="vm.form.communicatedWithResident" aria-label="Communicated With Resident">
+           Communicated With Resident
+         </md-checkbox>
+       </md-input-container>
+
+       <md-input-container class="md-block">
+         <md-checkbox ng-model="vm.form.communicatedWithPrimaryContact" aria-label="Communicated With Primary Contact">
+           Communicated With Primary Contact
+         </md-checkbox>
+       </md-input-container>
+
+       <md-input-container class="md-block">
+         <md-checkbox ng-model="vm.form.communicatedWithTrustedPerson" aria-label="Communicated With Trusted Person">
+           Communicated With Trusted Person
+         </md-checkbox>
+       </md-input-container>
+
         <md-input-container flex class="md-block textarea-container">
           <label>Notes</label>
           <textarea ng-model="vm.form.administrativeNotes"></textarea>

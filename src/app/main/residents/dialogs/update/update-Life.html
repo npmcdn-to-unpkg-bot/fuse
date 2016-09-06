@@ -47,6 +47,64 @@
           </md-checkbox>
       </div>
 
+      <md-input-container>
+        <label>Outside Agency</label>
+        <md-select ng-model="vm.form.outsideAgency">
+          <md-option>Hospice</md-option>
+          <md-option>Home health</md-option>
+          <md-option>Home care</md-option>
+          <md-option>Social worker</md-option>
+          <md-option>Private duty</md-option>
+          <md-option>Other</md-option>
+        </md-select>
+      </md-input-container>
+
+      <!-- outsideAgency fileupload -->
+
+      <!-- Speech -->
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.easilyUnderstood" aria-label="Easily Understood">
+          Easily Understood
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.englishFirstLanguage" aria-label="English First Language">
+          English First Language
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Other Language</label>
+        <input ng-model="vm.form.otherLanguage" type="text">
+      </md-input-container>
+
+      <!-- accessories -->
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.heatingPad" aria-label="Heating Pad">
+          Heating Pad
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.microwave" aria-label="Microwave">
+          Microwave
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.extensionCord" aria-label="Extension Cord">
+          Extension Cord
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Accessory Safety Assessment</label>
+        <input ng-model="vm.form.accessorySafetyAssessment" type="text">
+        <input ng-if="vm.form.extensionCord == true || vm.form.microwave == true || vm.form.heatingPad == true"
+        ng-model="vm.form.accessorySafetyAssessment" type="text" placeholder="Assessed for Safety">
+      </md-input-container>
+
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
         <textarea ng-model="vm.form.lifeNotes"></textarea>

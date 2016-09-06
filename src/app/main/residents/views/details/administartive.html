@@ -35,6 +35,18 @@
         </h4>
 
         <h4>Moved from: {{ vm.selectedResident.movedFrom.name }} </h4>
+
+        <!-- Random -->
+        <h4>Full Code: {{vm.selectedResident.fullCode}}</h4>
+        <h4>Primary Doctor: {{vm.selectedResident.primaryDoctor}}</h4>
+        <h4>Pharmacy: {{vm.selectedResident.pharmacy}}</h4>
+        <h4>Long Term Care Insurance: {{vm.selectedResident.longTermCareInsurance}}</h4>
+        <h4>Receiveing Long Term Care Insurance: {{vm.selectedResident.receiveingLongTermCareInsurance}}</h4>
+        <h4>Appointment Coordination: {{vm.selectedResident.appointmentCoordination}}</h4>
+        <h4>Communicated With Resident: {{vm.selectedResident.communicatedWithResident}}</h4>
+        <h4>Communicated With Primary Contact: {{vm.selectedResident.communicatedWithPrimaryContact}}</h4>
+        <h4>Communicated With Trusted Person: {{vm.selectedResident.communicatedWithTrustedPerson}}</h4>
+
         <h4>Notes: {{ vm.selectedResident.administrativeNotes }} </h4>
 
         <ui-gmap-google-map center="vm.movedFromMap.center" zoom="vm.movedFromMap.zoom">

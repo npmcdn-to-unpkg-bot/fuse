@@ -33,6 +33,39 @@
         <input ng-model="vm.form.insideApartment.specialAmbulationNeeds" type="text">
       </md-input-container>
 
+      <!-- devices -->
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.insideApartment.transferPole" aria-label="Transfer Pole">
+          Transfer Pole
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.insideApartment.liftReclinerChair" aria-label="Lift Recliner Chair">
+          Lift Recliner Chair
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.insideApartment.transferLift" aria-label="Transfer Lift">
+          Transfer Lift
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.insideApartment.sideRails" aria-label="Side Rails">
+          Side Rails
+        </md-checkbox>
+      </md-input-container>
+
+
+      <md-input-container class="md-block">
+        <label>Mobility Safety Assessment</label>
+        <input ng-model="vm.form.insideApartment.mobilitySafetyAssessment" type="text">
+        <input ng-if="vm.form.sideRails == true || vm.form.transferLift == true || vm.form.liftReclinerChair == true"
+        ng-model="vm.form.insideApartment.mobilitySafetyAssessment" type="text" placeholder="Assessed for Safety">
+      </md-input-container>
+
       <h4>Outside Apartment</h4>
       <md-input-container>
         <label>Use of Assistive Device</label>
@@ -82,6 +115,23 @@
         <label>Describe the Fall Risk</label>
         <textarea ng-model="vm.form.fallRiskDescribe" rows="5"></textarea>
       </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Bed Reposition Explain</label>
+        <input ng-model="vm.form.bedRepositionExplain" type="text">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Bed Reposition Outside Agency</label>
+        <input ng-model="vm.form.bedRepositionOutsideAgency" type="text">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.twoPersonLift"  aria-label="">
+          Two Person Lift
+        </md-checkbox>
+      </md-input-container>
+
 
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
