@@ -16,6 +16,11 @@
         <md-select ng-model="vm.form.skinCondition">
           <md-option>Hydrated</md-option>
           <md-option>Dry</md-option>
+          <md-option>Ashen</md-option>
+          <md-option>Jaundice</md-option>
+          <md-option>Clammy</md-option>
+          <md-option>Pale</md-option>
+          <md-option>Normal</md-option>
         </md-select>
       </md-input-container>
 
@@ -33,6 +38,12 @@
       <md-input-container class="md-block" ng-if="vm.form.hasWound">
         <label>Wound Amount</label>
         <input ng-model="vm.form.woundAmount" type="number">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.skinBreakdown">
+          Skin Breakdown
+        </md-checkbox>
       </md-input-container>
 
       <md-input-container class="md-block">
@@ -166,6 +177,42 @@
        <md-slider flex min="0" max="10" ng-model="vm.form.teethCondition" aria-label="blue">
        </md-slider>
      </div>
+
+     <md-input-container class="md-block">
+       <md-checkbox ng-model="vm.form.urinaryTractInfectionRisk"  aria-label="Urinary Tract Infection Risk">
+         Urinary Tract Infection Risk
+       </md-checkbox>
+     </md-input-container>
+
+     <md-input-container class="md-block">
+       <md-checkbox ng-model="vm.form.upperRespiratoryInfectionRisk"  aria-label="Upper Respiratory Infection Risk">
+         Upper Respiratory Infection Risk
+       </md-checkbox>
+     </md-input-container>
+
+     <md-input-container class="md-block">
+       <md-checkbox ng-model="vm.form.methicillinResistantStaphylococcusAureusRisk"  aria-label="Methicillin Resistant Staphylococcus Aureus Risk">
+         Methicillin Resistant Staphylococcus Aureus Risk
+       </md-checkbox>
+     </md-input-container>
+
+     <md-input-container class="md-block">
+       <md-checkbox ng-model="vm.form.vancomycinResistantEnterococcusRisk"  aria-label="Vancomycin Resistant Enterococcus Risk">
+         Vancomycin Resistant Enterococcus Risk
+       </md-checkbox>
+     </md-input-container>
+
+     <md-input-container class="md-block">
+       <md-checkbox ng-model="vm.form.shinglesRisk"  aria-label="Shingles Risk">
+         Shingles Risk
+       </md-checkbox>
+     </md-input-container>
+
+     <md-input-container class="md-block">
+       <md-checkbox ng-model="vm.form.pneumoniaRisk"  aria-label="Pneumonia Risk">
+         Pneumonia Risk
+       </md-checkbox>
+     </md-input-container>
 
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>

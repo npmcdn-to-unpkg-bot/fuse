@@ -12,13 +12,21 @@
 
       <div layout="column" layout-align="start start">
 
+        <!-- <h4>Has Food Allergies: {{vm.selectedResident.hasFoodAllergies}} </h4> -->
+
         <!-- Add details content here -->
         <h4>Food Allergies:
             <md-chips ng-model="vm.selectedResident.foodAllergies" readonly="true">
         </h4>
 
+        <!-- <h4>Has Medication Allergies: {{vm.selectedResident.hasMedicationAllergies}} </h4> -->
+
         <h4>Medication Allergies:
           <md-chips ng-model="vm.selectedResident.medicationAllergies" readonly="true">
+        </h4>
+
+        <h4>Other Allergies:
+          <md-chips ng-model="vm.selectedResident.otherAllergies" readonly="true">
         </h4>
 
         <h4>Notes: {{ vm.selectedResident.allergyNotes }} </h4>

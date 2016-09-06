@@ -12,6 +12,42 @@
 
       <div layout="column" layout-align="start start">
 
+
+        <!-- hearingAssist: {type: String}, // full, independent, reminder
+
+        // vision
+        visionAssistance: {type: String}, // glasses, contacts, none
+        rightEye: {type: String}, // adequate, adequate with aid, poor
+        leftEye: {type: String}, // adequate, adequate with aid, poor
+        visionAbility: {type: Number}, // number scale 0 through 10
+        visionNotes: {type: String},
+        visionAssist: {type: String}, // full, independent, reminder
+
+        // teeth
+        dentistName: {type: String},
+        upperDentureFit: {type: Boolean, default: false},
+          upperDentureFitDescribe: {type: String}, // if no | open field
+        upperTeeth: {type: String}, // Has own, Has dentures, has partial
+        lowerDentureFit: {type: Boolean, default: false},
+          lowerDentureFitDescribe: {type: String}, // if no | open field
+        lowerTeeth: {type: String}, // Has own, Has dentures, has partial
+        teethCondition: {type: Number}, // number scale 0 through 10
+        teethAssist: {type: String}, // full, independent, reminder
+
+        // oxygen
+        oxygen: {type: Boolean, default: false},
+
+        // medication
+        medsAtBedside: {type: Boolean, default: false},
+        selfMeds: {type: Boolean, default: false},
+        meds: {type: Boolean, default: false},
+        swallowAssist: {type: Boolean, default: false},
+        chemotherapy: {type: Boolean, default: false},
+        dialysis: {type: Boolean, default: false},
+        marijuana: {type: Boolean, default: false},
+
+        physicalNotes: {type: String}, -->
+
         <!-- Add details content here -->
         <h4>Skin Condition: {{ vm.selectedResident.skinCondition }}</h4>
         <h4>Has wound: {{ vm.selectedResident.hasWound }}</h4>
@@ -21,6 +57,9 @@
         <h4 ng-if="vm.selectedResident.hasWound">
           Wound Amount: {{ vm.selectedResident.woundAmount }}
         </h4>
+
+        <h4>Skin Breakdown: {{vm.selectedResident.skinBreakdown}}</h4>
+
         <h4>Wears Hearing Aid: {{ vm.selectedResident.wearsHearingAid }}</h4>
         <h4 ng-if="vm.selectedResident.wearsHearingAid">
           Help with Hearing Aid: {{ vm.selectedResident.helpWithHearingAid }}
@@ -48,6 +87,15 @@
         </h4>
         <h4>Lower Teeth Status: {{ vm.selectedResident.lowerTeeth }}</h4>
         <h4>Teeth Condition: {{ vm.selectedResident.teethCondition }}</h4>
+
+        <!-- Infection -->
+        <h4>Urinary Tract Infection Risk: {{vm.selectedResident.urinaryTractInfectionRisk}}</h4>
+        <h4>Upper Respiratory Infection Risk: {{vm.selectedResident.upperRespiratoryInfectionRisk}}</h4>
+        <h4>Methicillin Resistant Staphylococcus Aureus Risk: {{vm.selectedResident.methicillinResistantStaphylococcusAureusRisk}}</h4>
+        <h4>Vancomycin Resistant Enterococcus Risk: {{vm.selectedResident.vancomycinResistantEnterococcusRisk}}</h4>
+        <h4>Shingles Risk: {{vm.selectedResident.shinglesRisk}}</h4>
+        <h4>Pneumonia Risk: {{vm.selectedResident.pneumoniaRisk}}</h4>
+
         <h4>Notes: {{ vm.selectedResident.physicalNotes }} </h4>
 
       </div>

@@ -11,6 +11,18 @@
 
     <md-dialog-content ms-scroll>
 
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.continentIndependent" aria-label="">
+          Continent Independent
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.colostomy" aria-label="">
+          Colostomy
+        </md-checkbox>
+      </md-input-container>
+
       <div layout="row" layout-align="space-around center">
           <div class="md-block">
             <label ng-switch on="vm.form.bowelContinent">
@@ -78,12 +90,61 @@
           <md-select ng-model="vm.form.toiletingDevice">
             <md-option>Urnal</md-option>
             <md-option>Seat Riser</md-option>
-            <md-option>Bedside Comod</md-option>
+            <md-option>Bedside Commode</md-option>
             <md-option>Bars around Toilet</md-option>
             <md-option>None</md-option>
           </md-select>
         </md-input-container>
       </div>
+
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.urostomy" aria-label="Urostomy">
+          Urostomy
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.incontinentApparel" aria-label="Incontinent Apparel">
+          Incontinent Apparel
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container ng-if="vm.form.incontinentApparel == true">
+        <label>Incontinent Apparel Assist</label>
+        <md-select ng-model="vm.form.incontinentApparelAssist">
+          <md-option>Independent</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Partial</md-option>
+          <md-option>Full</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Toilet Transfer</label>
+        <md-select ng-model="vm.form.toiletTransfer">
+          <md-option>Independent</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Partial assitance</md-option>
+          <md-option>Full assistance</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Toileting Assist</label>
+        <md-select ng-model="vm.form.toiletingAssist">
+          <md-option>Independent</md-option>
+          <md-option>Reminder</md-option>
+          <md-option>Partial assitance</md-option>
+          <md-option>Full assistance</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.toiletingReminder" aria-label="Toileting Reminder">
+          Toileting Reminder
+        </md-checkbox>
+      </md-input-container>
 
       <md-input-container class="md-block">
         <md-checkbox ng-model="vm.form.catheter" ng-hide="vm.showCancel" aria-label="">

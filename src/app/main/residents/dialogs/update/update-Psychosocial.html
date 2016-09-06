@@ -14,36 +14,8 @@
       <div layout="column" layout-align="start start">
           <h4>Psychosocial Status (check all that apply) </h4>
 
-          <md-checkbox ng-model="vm.status[0].active">
-            {{ vm.status[0].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[1].active">
-            {{ vm.status[1].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[2].active">
-            {{ vm.status[2].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[3].active">
-            {{ vm.status[3].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[4].active">
-            {{ vm.status[4].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[5].active">
-            {{ vm.status[5].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[6].active">
-            {{ vm.status[6].title}}
-          </md-checkbox>
-
-          <md-checkbox ng-model="vm.status[7].active">
-            {{ vm.status[7].title}}
+          <md-checkbox ng-repeat="status in vm.status" ng-model="status.active">
+            {{ status.title}}
           </md-checkbox>
       </div>
 
@@ -57,6 +29,34 @@
         <md-slider flex min="0" max="2" ng-model="vm.comprehensionLevel" aria-label="blue">
         </md-slider>
       </div>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.sunDowner">
+          Sun Downer
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-if="vm.form.sunDowner == true">
+        <label>Sun Downer Explain</label>
+        <input ng-model="vm.form.sunDownerExplain" type="text">
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.wanderer">
+          Wanderer
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.anxiety">
+          Anxiety
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-if="vm.form.anxiety == true">
+        <label>Antipsychotic Meds</label>
+        <input ng-model="vm.form.antipsychoticMeds" type="text">
+      </md-input-container>
 
       <md-input-container class="md-block">
         <md-checkbox ng-model="vm.form.smokes" ng-hide="vm.showCancel" aria-label="Smokes">
@@ -73,6 +73,11 @@
         <md-checkbox ng-model="vm.form.alcohol" ng-hide="vm.showCancel" aria-label="Smokes">
           Alcohol
         </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block" ng-if="vm.form.alcohol">
+        <label>Alcohol In Room</label>
+        <input ng-model="vm.form.alcoholInRoom" type="text">
       </md-input-container>
 
       <md-input-container class="md-block" ng-if="vm.form.alcohol">
@@ -180,6 +185,12 @@
           <md-option>Radio</md-option>
           <md-option>Other</md-option>
         </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.volunteer" aria-label="Volunteer">
+          Volunteer
+        </md-checkbox>
       </md-input-container>
 
       <md-input-container class="md-block">

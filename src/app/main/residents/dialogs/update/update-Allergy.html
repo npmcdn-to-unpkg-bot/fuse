@@ -30,6 +30,9 @@
       <md-chips ng-if="vm.form.hasMedicationAllergies" md-separator-keys="vm.seperators" ng-model="vm.medicationAllergies" md-on-add="vm.updateChip(vm.medicationAllergies, 'medicationAllergies', $chip, 'add')" md-on-remove="vm.updateChip(vm.medicationAllergies, 'medicationAllergies', $chip, 'remove')" md-removable="true" readonly="false" placeholder="Add new food">
       </md-chips>
 
+      <md-chips md-separator-keys="vm.seperators" ng-model="vm.form.otherAllergies" md-on-add="vm.updateChip(vm.otherAllergies,'otherAllergies', $chip, 'add')" md-on-remove="vm.updateChip(vm.otherAllergies,'otherAllergies', $chip, 'remove')" md-removable="true" readonly="false" placeholder="Add other allergies">
+      </md-chips>
+
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
         <textarea ng-model="vm.form.allergyNotes"></textarea>

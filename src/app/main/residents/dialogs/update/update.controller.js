@@ -14,8 +14,14 @@
 
     vm.form.contacts = {};
 
+    // check all that apply:
+                                 // alert, friendly, disoriented, withdrawn, talkative
+                                 // lonely, happy, confused, uncooperative, at times angry, sad,
+                                 // emotional outbursts, feel like a burden
+
     vm.status = populateMultiSelect(["Alert", "Friendly", "Disoriented",
-                                    "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative"]);
+                                    "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative",
+                                    "At times angry", "Sad", "Emotional outbursts", "Feel like a burden"]);
 
     vm.shopping = populateMultiSelect(["Family", "Self", "Friend"]);
 

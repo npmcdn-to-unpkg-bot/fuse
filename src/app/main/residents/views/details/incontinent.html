@@ -10,8 +10,13 @@
   <div class="mail-content">
     <div class="info" layout="row" layout-align="space-between start">
 
+
       <div layout="column" layout-align="start start">
         <!-- Add details content here -->
+
+        <h4>Continent Independent : {{ vm.selectedResident.continentIndependent}} </h4>
+        <h4>Colostomy : {{ vm.selectedResident.colostomy}} </h4>
+
         <h4 ng-switch on="vm.selectedResident.bowelContinent">
             <span ng-switch-when="0">Bowel Continent : Never</span>
             <span ng-switch-when="1">Bowel Continent : Sometimes</span>
@@ -47,11 +52,19 @@
             <span ng-switch-default>Dribbles :</span>
         </h4>
 
+
+        <h4>Urostomy: {{vm.selectedResident.urostomy}} </h4>
         <h4>Catheter : {{ vm.selectedResident.catheter }}</h4>
         <h4 ng-if="vm.selectedResident.catheter">
           Describe Catheter : {{ vm.selectedResident.catheterDescribe }}
         </h4>
         <h4>Toileting Device : {{ vm.selectedResident.toiletingDevice }}</h4>
+
+        <h4>Incontinent Apparel: {{vm.selectedResident.incontinentApparel}}</h4>
+        <h4>Incontinent Apparel Assist: {{vm.selectedResident.incontinentApparelAssist}}</h4>
+        <h4>Toilet Transfer: {{vm.selectedResident.toiletTransfer}}</h4>
+        <h4>Toileting Assist: {{vm.selectedResident.toiletingAssist}}</h4>
+        <h4>Toileting Reminder: {{vm.selectedResident.toiletingReminder}}</h4>
 
         <h4>Notes: {{ vm.selectedResident.continentNotes }} </h4>
 

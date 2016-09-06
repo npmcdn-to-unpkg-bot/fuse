@@ -109,6 +109,28 @@
         </md-checkbox>
       </md-input-container>
 
+      <md-input-container>
+        <label>Feed Assist</label>
+        <md-select ng-model="vm.form.feedAssist">
+          <md-option>Independent</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Partial assistance</md-option>
+          <md-option>Full assistance</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.foodInRoom" aria-label="Food In Room">
+          Food In Room
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.drinkInRoom" aria-label="Drink In Room">
+          Drink In Room
+        </md-checkbox>
+      </md-input-container>
+
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
         <textarea ng-model="vm.form.nutritionNotes"></textarea>

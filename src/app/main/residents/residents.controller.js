@@ -39,7 +39,7 @@
       "Administrative",
       "Allergy",
       "Bathing",
-      "Continent",
+      "Incontinent",
       "Life",
       "Mobility",
       "Nutrition",

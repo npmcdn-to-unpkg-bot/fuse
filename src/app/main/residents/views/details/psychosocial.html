@@ -31,6 +31,10 @@
           Alcohol Description: {{ vm.selectedResident.alcoholDescribes }}
         </h4>
 
+        <h4 ng-if="vm.selectedResident.alcohol">
+          Alcohol In Room: {{ vm.selectedResident.alcoholInRoom }}
+        </h4>
+
         <h4>Sexual Active: {{ vm.selectedResident.sexualActive }}</h4>
         <h4 ng-if="vm.selectedResident.sexualActive">
           Sexual Description: {{ vm.selectedResident.sexualActiveDescribe }}
@@ -98,6 +102,7 @@
         </h4>
 
         <h4>Time In Room: {{ vm.selectedResident.timeInRoom }}</h4>
+        <h4>Volunteer: {{ vm.selectedResident.volunteer }}</h4>
         <h4>Prefered Activites: {{ vm.selectedResident.preferedActivites }}</h4>
         <h4>Use Fitness Equipment Independently: {{ vm.selectedResident.useFitnessEquipmentIndependently }}</h4>
 
@@ -110,6 +115,10 @@
             <span ng-switch-when="2">Dementia : Moderate</span>
             <span ng-switch-when="3">Dementia : Severe</span>
         </h4>
+
+        <h4> Sun Downer Explain: {{vm.selectedResident.sunDownerExplain}}</h4>
+        <h4> Wanderer: {{vm.selectedResident.wanderer}}</h4>
+        <h4> Antipsychotic Meds: {{vm.selectedResident.antipsychoticMeds}}</h4>
 
         <h4>Notes: {{ vm.selectedResident.psychosocialNotes }} </h4>
 
