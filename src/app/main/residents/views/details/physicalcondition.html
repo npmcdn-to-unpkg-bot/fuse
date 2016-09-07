@@ -12,43 +12,7 @@
 
       <div layout="column" layout-align="start start">
 
-
-        <!-- hearingAssist: {type: String}, // full, independent, reminder
-
-        // vision
-        visionAssistance: {type: String}, // glasses, contacts, none
-        rightEye: {type: String}, // adequate, adequate with aid, poor
-        leftEye: {type: String}, // adequate, adequate with aid, poor
-        visionAbility: {type: Number}, // number scale 0 through 10
-        visionNotes: {type: String},
-        visionAssist: {type: String}, // full, independent, reminder
-
-        // teeth
-        dentistName: {type: String},
-        upperDentureFit: {type: Boolean, default: false},
-          upperDentureFitDescribe: {type: String}, // if no | open field
-        upperTeeth: {type: String}, // Has own, Has dentures, has partial
-        lowerDentureFit: {type: Boolean, default: false},
-          lowerDentureFitDescribe: {type: String}, // if no | open field
-        lowerTeeth: {type: String}, // Has own, Has dentures, has partial
-        teethCondition: {type: Number}, // number scale 0 through 10
-        teethAssist: {type: String}, // full, independent, reminder
-
-        // oxygen
-        oxygen: {type: Boolean, default: false},
-
-        // medication
-        medsAtBedside: {type: Boolean, default: false},
-        selfMeds: {type: Boolean, default: false},
-        meds: {type: Boolean, default: false},
-        swallowAssist: {type: Boolean, default: false},
-        chemotherapy: {type: Boolean, default: false},
-        dialysis: {type: Boolean, default: false},
-        marijuana: {type: Boolean, default: false},
-
-        physicalNotes: {type: String}, -->
-
-        <!-- Add details content here -->
+        <!-- Skin and wound -->
         <h4>Skin Condition: {{ vm.selectedResident.skinCondition }}</h4>
         <h4>Has wound: {{ vm.selectedResident.hasWound }}</h4>
         <h4 ng-if="vm.selectedResident.hasWound">
@@ -60,6 +24,8 @@
 
         <h4>Skin Breakdown: {{vm.selectedResident.skinBreakdown}}</h4>
 
+        <!-- Hearing -->
+        <h4>Hearing Assist : {{vm.selectedResident.hearingAssist}}</h4>
         <h4>Wears Hearing Aid: {{ vm.selectedResident.wearsHearingAid }}</h4>
         <h4 ng-if="vm.selectedResident.wearsHearingAid">
           Help with Hearing Aid: {{ vm.selectedResident.helpWithHearingAid }}
@@ -71,10 +37,16 @@
         <h4>Hearing in Left Ear: {{ vm.selectedResident.leftEar }}</h4>
         <h4>Hearing Ability: {{ vm.selectedResident.hearingAbility }}</h4>
         <h4>Hearing Notes: {{ vm.selectedResident.hearingNotes }}</h4>
+
+        <!-- Vision -->
+        <h4>Vision Assistance: {{vm.selectedResident.visionAssistance}}</h4>
         <h4>Vision in Right Eye: {{ vm.selectedResident.rightEye }}</h4>
         <h4>Vision in Left Eye: {{ vm.selectedResident.leftEye }}</h4>
         <h4>Vision Ability: {{ vm.selectedResident.visionAbility }}</h4>
         <h4>Vision Notes: {{ vm.selectedResident.visionNotes }}</h4>
+
+        <!-- Teeth -->
+        <h4>Teeth Assist: {{vm.selectedResident.teethAssist}}</h4>
         <h4>Dentist's Name: {{ vm.selectedResident.dentistName }}</h4>
         <h4>Upper Denture Does Not Fit: {{ vm.selectedResident.upperDentureFit }}</h4>
         <h4 ng-if="vm.selectedResident.upperDentureFit">
@@ -95,6 +67,15 @@
         <h4>Vancomycin Resistant Enterococcus Risk: {{vm.selectedResident.vancomycinResistantEnterococcusRisk}}</h4>
         <h4>Shingles Risk: {{vm.selectedResident.shinglesRisk}}</h4>
         <h4>Pneumonia Risk: {{vm.selectedResident.pneumoniaRisk}}</h4>
+
+        <!-- Medication -->
+        <h4>Meds At Bedside: {{vm.selectedResident.medsAtBedside}}</h4>
+        <h4>Self Meds: {{vm.selectedResident.selfMeds}}</h4>
+        <h4>Meds: {{vm.selectedResident.meds}}</h4>
+        <h4>Swallow Assist: {{vm.selectedResident.swallowAssist}}</h4>
+        <h4>Chemotherapy: {{vm.selectedResident.chemotherapy}}</h4>
+        <h4>Dialysis: {{vm.selectedResident.dialysis}}</h4>
+        <h4>Marijuana: {{vm.selectedResident.marijuana}}</h4>
 
         <h4>Notes: {{ vm.selectedResident.physicalNotes }} </h4>
 

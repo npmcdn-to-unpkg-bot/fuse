@@ -83,6 +83,15 @@
         </md-input-container>
       </div>
 
+       <md-input-container>
+         <label>Hearing Assist</label>
+         <md-select ng-model="vm.form.hearingAssist">
+           <md-option>Full</md-option>
+           <md-option>Independent</md-option>
+           <md-option>Reminder</md-option>
+         </md-select>
+       </md-input-container>
+
       <div class="md-block">
        <label>Hearing Ability: {{ vm.form.hearingAbility }}</label>
        <md-slider flex min="0" max="10" ng-model="vm.form.hearingAbility" aria-label="blue">
@@ -92,6 +101,15 @@
       <md-input-container class="md-block">
         <label>Hearing Notes</label>
         <input ng-model="vm.form.hearingNotes" type="text">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Vision Assistance</label>
+        <md-select ng-model="vm.form.visionAssistance">
+          <md-option>Glasses</md-option>
+          <md-option>Contacts</md-option>
+          <md-option>None</md-option>
+        </md-select>
       </md-input-container>
 
       <div layout="row" layout-align="space-around center">
@@ -128,6 +146,15 @@
       <md-input-container class="md-block">
         <label>Dentist's Name</label>
         <input ng-model="vm.form.dentistName" type="text">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Teeth Assist</label>
+        <md-select ng-model="vm.form.teethAssist">
+          <md-option>Full</md-option>
+          <md-option>Independent</md-option>
+          <md-option>Reminder</md-option>
+        </md-select>
       </md-input-container>
 
       <md-input-container class="md-block">
@@ -217,6 +244,48 @@
       <md-input-container flex class="md-block textarea-container">
         <label>Notes</label>
         <textarea ng-model="vm.form.physicalNotes"></textarea>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.medsAtBedside"  aria-label="Meds At Bedside">
+          Meds At Bedside
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.selfMeds"  aria-label="Self Meds">
+          Self Meds
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.meds"  aria-label="Meds">
+          Meds
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.swallowAssist"  aria-label="Swallow Assist">
+          Swallow Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.chemotherapy"  aria-label="Chemotherapy">
+          Chemotherapy
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.dialysis"  aria-label="Dialysis">
+          Dialysis
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.marijuana"  aria-label="Marijuana">
+          Marijuana
+        </md-checkbox>
       </md-input-container>
 
     </md-dialog-content>
