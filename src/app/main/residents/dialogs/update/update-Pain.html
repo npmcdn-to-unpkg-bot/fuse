@@ -48,17 +48,17 @@
         <input ng-model="vm.form.painDecreasedBy" type="text">
       </md-input-container>
 
+      <md-input-container ng-if="vm.form.hasPain">
+
+        <h4>Manage Pain By (check all that apply) </h4>
+
+        <md-checkbox ng-repeat="cure in vm.painManagedBy" ng-model="cure.active">
+          {{ cure.title}}
+        </md-checkbox>
+
+      </md-input-container>
+
       <div layout="row" layout-align="space-around center">
-        <md-input-container ng-if="vm.form.hasPain">
-          <label>Pain Managed By</label>
-          <md-select ng-model="vm.form.painManagedBy">
-            <md-option>Medication</md-option>
-            <md-option>Hot Pack</md-option>
-            <md-option>Cold Pack</md-option>
-            <md-option>Positioning</md-option>
-            <md-option>Topicals</md-option>
-          </md-select>
-        </md-input-container>
 
         <md-input-container ng-if="vm.form.hasPain">
           <label>How Long Endured Pain</label>

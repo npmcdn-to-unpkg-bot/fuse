@@ -19,7 +19,11 @@
         <h4>Time of Max Pain: {{ vm.selectedResident.maxPainTime }}</h4>
         <h4>Pain Increased By: {{ vm.selectedResident.painIncreasedBy }}</h4>
         <h4>Pain Decreased By: {{ vm.selectedResident.painDecreasedBy }}</h4>
-        <h4>Pain Managed By: {{ vm.selectedResident.painManagedBy }}</h4>
+        <h4>Pain Managed By:
+          <span ng-repeat="cure in vm.selectedResident.painManagedBy">
+            {{ cure}} <span ng-if="!$last">,</span>
+          </span>
+        </h4>
         <h4>How Long Endured Pain: {{ vm.selectedResident.painLength }}</h4>
 
         <h4>Notes: {{ vm.selectedResident.painNotes }} </h4>

@@ -14,14 +14,17 @@
 
     vm.form.contacts = {};
 
-    vm.status = populateMultiSelect(["Alert", "Friendly", "Disoriented",
+    vm.status = createMultiSelect(["Alert", "Friendly", "Disoriented",
                                     "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative",
                                     "At times angry", "Sad", "Emotional outbursts", "Feel like a burden"]);
 
-    vm.shopping = populateMultiSelect(["Family", "Self", "Friend"]);
+    vm.shopping = createMultiSelect(["Family", "Self", "Friend"]);
+
+    vm.painManagedBy = createMultiSelect(['Medication', 'Hot pack', 'Cold pack', 'Positioning', 'Topicals']);
 
     setSelectedStatuses(currResident.psychosocialStatus);
     setSelectedShopping(currResident.shopping);
+    //setMultiSelect("painManagedBy");
 
     vm.foodAllergies = currResident.foodAllergies;
     vm.medicationAllergies = currResident.medicationAllergies;
@@ -65,6 +68,8 @@
 
       addToStatusArray();
       addToShoppingArray();
+
+      populateMultiSelect(['painManagedBy']);
 
       if (vm.form.locationInfo.geometry !== undefined) {
         vm.form.movedFrom.name = vm.form.locationInfo.formatted_address;
@@ -118,8 +123,36 @@
         if (vm.shopping[i].active == true) {
           vm.form.newShoppingStatus.push(vm.shopping[i].title);
         }
-
       }
+    }
+
+    function populateMultiSelect(fields) {
+      _.forEach(fields, function(field) {
+        vm.form[field] = [];
+
+        _.forEach(vm[field], function(v) {
+          if(v.active === true) {
+            vm.form[field].push(v.title);
+          }
+        });
+
+      });
+    }
+
+    function setMultiSelect(field) {
+        _.forEach(vm[field], function(v) {
+
+          var checkedElem = _.find(vm[field], function(d) {
+            if (d.title === currResident[field][i]) {
+              return d;
+            }
+          });
+
+          if (checkedElem !== undefined) {
+            checkedElem.active = true;
+          }
+
+      });
     }
 
     // sets which psychosocialStatus is checked
@@ -208,7 +241,7 @@
     }
 
     // Builds up proper array of object for multi select fields like psyho status
-    function populateMultiSelect(titleArray) {
+    function createMultiSelect(titleArray) {
 
       var selectArr = [];
 
