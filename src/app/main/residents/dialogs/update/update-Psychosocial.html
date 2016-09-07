@@ -25,8 +25,13 @@
       </md-input-container>
 
       <div class="md-block">
-        <label>Comprehension : {{ vm.mapComprehension(vm.comprehensionLevel) }}</label>
-        <md-slider flex min="0" max="2" ng-model="vm.comprehensionLevel" aria-label="blue">
+        <label ng-switch on="vm.form.comprehension">
+            <span ng-switch-when="0">Comprehension : Slow</span>
+            <span ng-switch-when="1">Comprehension : Moderate</span>
+            <span ng-switch-when="2">Comprehension : Quick</span>
+            <span ng-switch-default>Comprehension : </span>
+        </label>
+        <md-slider flex min="0" max="2" ng-model="vm.form.comprehension" aria-label="blue">
         </md-slider>
       </div>
 

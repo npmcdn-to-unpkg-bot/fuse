@@ -19,7 +19,13 @@
           </span>
         </h4>
         <h4>Describe the Psychosocial Status: {{ vm.selectedResident.psychosocialStatusDescribe}}</h4>
-        <h4>Comprehension: {{ vm.mapComprehension(vm.selectedResident.comprehension) }}</h4>
+
+        <h4 ng-switch on="vm.selectedResident.comprehension">
+            <span ng-switch-when="0">Comprehension : Slow</span>
+            <span ng-switch-when="1">Comprehension : Moderate</span>
+            <span ng-switch-when="2">Comprehension : Quick</span>
+            <span ng-switch-default>Comprehension : </span>
+        </h4>
 
         <h4>Smokes: {{ vm.selectedResident.smokes }}</h4>
         <h4 ng-if="vm.selectedResident.smokes">

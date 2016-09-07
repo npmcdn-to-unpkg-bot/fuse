@@ -14,11 +14,6 @@
 
     vm.form.contacts = {};
 
-    // check all that apply:
-                                 // alert, friendly, disoriented, withdrawn, talkative
-                                 // lonely, happy, confused, uncooperative, at times angry, sad,
-                                 // emotional outbursts, feel like a burden
-
     vm.status = populateMultiSelect(["Alert", "Friendly", "Disoriented",
                                     "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative",
                                     "At times angry", "Sad", "Emotional outbursts", "Feel like a burden"]);
@@ -33,8 +28,6 @@
 
     vm.foodLikes = currResident.foodLikes;
     vm.foodDislikes = currResident.foodDislikes;
-
-    vm.comprehensionLevel = currResident.comprehension;
 
     //needed unchanged values to compare for updateField
     vm.copyResident = angular.copy(currResident);
@@ -55,7 +48,6 @@
     vm.closeDialog = closeDialog;
     vm.updateResident = updateResident;
     vm.updateChip = updateChip;
-    vm.mapComprehension = mapComprehension;
     vm.uploadFiles = uploadFiles;
 
     function closeDialog() {
@@ -86,27 +78,6 @@
 
     }
 
-    function mapComprehension(numValue) {
-      switch (numValue) {
-        case 0:
-          {
-            return "Slow";
-          }
-        case 1:
-          {
-            return "Moderate";
-          }
-        case 2:
-          {
-            return "Quick";
-          }
-        default:
-          {
-            return "Slow";
-          }
-      }
-    }
-
 
     function updateResident() {
 
@@ -117,9 +88,6 @@
 
       vm.form.newfoodLikes = vm.foodLikes;
       vm.form.newfoodDislikes = vm.foodDislikes;
-
-      vm.form.comprehension = vm.comprehensionLevel;
-      currResident.comprehension = vm.form.comprehension;
 
       //important to set updateInfo when adding/removing chips because they will generate updateInfo
       vm.form.updateInfo = currResident.updateInfo;
