@@ -2,17 +2,17 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v1.1.0
+ * v1.0.9
  */
-goog.provide('ngmaterial.components.fabShared');
-goog.require('ngmaterial.core');
+goog.provide('ng.material.components.fabShared');
+goog.require('ng.material.core');
 (function() {
   'use strict';
 
   angular.module('material.components.fabShared', ['material.core'])
-    .controller('MdFabController', MdFabController);
+    .controller('FabController', FabController);
 
-  function MdFabController($scope, $element, $animate, $mdUtil, $mdConstant, $timeout) {
+  function FabController($scope, $element, $animate, $mdUtil, $mdConstant, $timeout) {
     var vm = this;
 
     // NOTE: We use async eval(s) below to avoid conflicts with any existing digest loops
@@ -150,7 +150,7 @@ goog.require('ngmaterial.core');
       // If the element is actually visible on the screen
       if ($element[0].scrollHeight > 0) {
         // Fire our animation
-        $animate.addClass($element, '_md-animations-ready').then(function() {
+        $animate.addClass($element, 'md-animations-ready').then(function() {
           // Remove the waiting class
           $element.removeClass('md-animations-waiting');
         });
@@ -301,7 +301,7 @@ goog.require('ngmaterial.core');
       return $element.find('md-fab-actions');
     }
   }
-  MdFabController.$inject = ["$scope", "$element", "$animate", "$mdUtil", "$mdConstant", "$timeout"];
+  FabController.$inject = ["$scope", "$element", "$animate", "$mdUtil", "$mdConstant", "$timeout"];
 })();
 
 (function() {
@@ -323,6 +323,7 @@ goog.require('ngmaterial.core');
     .module('material.components.fabSpeedDial', [
       'material.core',
       'material.components.fabShared',
+      'material.components.fabTrigger',
       'material.components.fabActions'
     ])
 
@@ -411,7 +412,7 @@ goog.require('ngmaterial.core');
       },
 
       bindToController: true,
-      controller: 'MdFabController',
+      controller: 'FabController',
       controllerAs: 'vm',
 
       link: FabSpeedDialLink
@@ -419,7 +420,7 @@ goog.require('ngmaterial.core');
 
     function FabSpeedDialLink(scope, element) {
       // Prepend an element to hold our CSS variables so we can use them in the animations below
-      element.prepend('<div class="_md-css-variables"></div>');
+      element.prepend('<div class="md-css-variables"></div>');
     }
   }
 
@@ -428,7 +429,7 @@ goog.require('ngmaterial.core');
 
     function runAnimation(element) {
       // Don't run if we are still waiting and we are not ready
-      if (element.hasClass('md-animations-waiting') && !element.hasClass('_md-animations-ready')) {
+      if (element.hasClass('md-animations-waiting') && !element.hasClass('md-animations-ready')) {
         return;
       }
 
@@ -440,7 +441,7 @@ goog.require('ngmaterial.core');
       var triggerElement = el.querySelector('md-fab-trigger');
 
       // Grab our element which stores CSS variables
-      var variablesElement = el.querySelector('._md-css-variables');
+      var variablesElement = el.querySelector('.md-css-variables');
 
       // Setup JS variables based on our CSS variables
       var startZIndex = parseInt(window.getComputedStyle(variablesElement).zIndex);
@@ -526,7 +527,7 @@ goog.require('ngmaterial.core');
       var items = el.querySelectorAll('.md-fab-action-item');
 
       // Grab our element which stores CSS variables
-      var variablesElement = el.querySelector('._md-css-variables');
+      var variablesElement = el.querySelector('.md-css-variables');
 
       // Setup JS variables based on our CSS variables
       var startZIndex = parseInt(window.getComputedStyle(variablesElement).zIndex);
@@ -560,4 +561,4 @@ goog.require('ngmaterial.core');
   MdFabSpeedDialScaleAnimation.$inject = ["$timeout"];
 })();
 
-ngmaterial.components.fabShared = angular.module("material.components.fabShared");
+ng.material.components.fabShared = angular.module("material.components.fabShared");
