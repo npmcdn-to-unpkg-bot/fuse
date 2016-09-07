@@ -5,7 +5,7 @@
     .controller('UpdateController', UpdateController);
 
   /** @ngInject */
-  function UpdateController($mdDialog, $mdConstant, currResident, apilaData, authentication) {
+  function UpdateController($mdDialog, $mdConstant, Upload, $timeout, currResident, apilaData, authentication) {
 
     var vm = this;
 
@@ -56,6 +56,7 @@
     vm.updateResident = updateResident;
     vm.updateChip = updateChip;
     vm.mapComprehension = mapComprehension;
+    vm.uploadFiles = uploadFiles;
 
     function closeDialog() {
       $mdDialog.hide();
@@ -193,6 +194,29 @@
         if (checkedElem != undefined) {
           checkedElem.active = true;
         }
+      }
+    }
+
+    function uploadFiles(file, errFiles) {
+
+      var uploadUrl = apilaData.getApiUrl() + '/api/residents/'+ currResident._id + '/upload';
+
+      if (file) {
+          file.upload = Upload.upload({
+              url: uploadUrl,
+              data: {file: file},
+              headers: {
+                  Authorization: 'Bearer ' + authentication.getToken()
+              }
+          });
+
+          file.upload.then(function (response) {
+              $timeout(function () {
+                  file.result = response.data;
+                  vm.fileUploaded = true;
+              });
+
+          });
       }
     }
 

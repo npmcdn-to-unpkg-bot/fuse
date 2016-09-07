@@ -60,6 +60,17 @@
       </md-input-container>
 
       <!-- outsideAgency fileupload -->
+      <md-input-container class="md-block">
+        <h4>Outside Agency</h4>
+        <md-button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)" class="add-attachment-button" aria-label="add attachment" accept="*" ngf-max-height="1000" ngf-max-size="3MB">
+
+          <div layout="row" layout-align="start center">
+            <i class="icon-plus s20"></i>
+            <span>Assessment</span>
+          </div>
+        </md-button>
+        <h4 ng-if="vm.fileUploaded ">The file has been uploaded</h4>
+      </md-input-container>
 
       <!-- Speech -->
       <md-input-container class="md-block">

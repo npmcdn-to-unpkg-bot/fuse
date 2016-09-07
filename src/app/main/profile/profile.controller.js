@@ -31,8 +31,6 @@
 
         vm.userImage = authentication.getUserImage();
 
-        console.log(vm.userImage);
-
         apilaData.getUser(vm.userid)
         .success(function(response) {
           vm.currUser = response;
