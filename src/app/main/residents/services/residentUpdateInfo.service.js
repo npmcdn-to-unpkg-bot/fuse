@@ -19,15 +19,16 @@
       var formatedArray = [];
 
       _.forEach(updateArray, function(entry, key) {
-        var formatEntry = {
-          'text': '',
-          'diffTime': '',
-          'username': ''
-        };
 
         // if update field exists
         if (entry.updateField) {
           _.forEach(entry.updateField, function(currField) {
+
+            var formatEntry = {
+              'text': '',
+              'diffTime': '',
+              'username': ''
+            };
 
             var oldValue = currField.old;
             var newValue = currField.new;
@@ -65,6 +66,8 @@
 
             //attaching a time diff at the end (how long ago did we update it)
             formatEntry.diffTime += " " + timeDiff(entry.updateDate);
+
+            console.log(formatEntry);
 
             formatedArray.push(formatEntry);
 
@@ -119,6 +122,16 @@
         "maritalStatus",
         "buildingStatus",
         "administrativeNotes",
+        "assessmentInterval",
+        "fullCode",
+        "primaryDoctor",
+        "pharmacy",
+        "longTermCareInsurance",
+        "receiveingLongTermCareInsurance",
+        "appointmentCoordination",
+        "communicatedWithResident",
+        "communicatedWithPrimaryContact",
+        "communicatedWithTrustedPerson",
 
         // bathing
         "typeOfBathing",
@@ -137,6 +150,12 @@
         "catheter",
         "toiletingDevice",
         "catheterDescribe",
+        "colostomy",
+        "urostomy",
+        "incontinentApparelAssist",
+        "toiletTransfer",
+        "toiletingAssist",
+        "toiletingReminder",
         "continentNotes",
 
         // life
@@ -145,17 +164,29 @@
         "occupation",
         "lifeNotes",
         "contribution",
+        "outsideAgency",
+        "easilyUnderstood",
+        "englishFirstLanguage",
+        "otherLanguage",
+        "heatingPad",
+        "microwave",
+        "extensionCord",
+        "accessorySafetyAssessment",
 
         // mobility
         "transfers",
         "fallRisk",
         "fallRiskDescribe",
         "bedReposition",
+        "bedRepositionExplain",
+        "bedRepositionOutsideAgency",
+        "twoPersonLift",
         "mobilityNotes",
 
         // nutrition
         "overallNutrition",
         "poorNutritionIntervention",
+        "poorNutritionDescribe",
         "diabetic",
         "diabeticType",
         "bloodSugarMonitoring",
@@ -164,6 +195,9 @@
         "needsFoodInSmallPeices",
         "typeOfDiet",
         "fingerFoods",
+        "feedAssist",
+        "foodInRoom",
+        "drinkInRoom",
         "nutritionNotes",
 
         // pain
@@ -180,15 +214,26 @@
         "skinCondition",
         "hasWound",
         "hasWoundDescribe",
+        "skinBreakdown",
         "woundAmount",
         "wearsHearingAid",
         "helpWithHearingAid",
         "helpWithHearingAidDescribe",
+        "urinaryTractInfectionRisk",
+        "upperRespiratoryInfectionRisk",
+        "methicillinResistantStaphylococcusAureusRisk",
+        "vancomycinResistantEnterococcusRisk",
+        "shinglesRisk",
+        "pneumoniaRisk",
+        "hearingAbility",
+        "hearingAssist",
         "leftEar",
         "rightEar",
         "leftEye",
         "rightEye",
         "visionNotes",
+        "visionAssistance",
+        "visionAbility",
         "hearingNotes",
         "dentistName",
         "upperDentureFit",
@@ -198,9 +243,25 @@
         "lowerDentureFitDescribe",
         "lowerTeeth",
         "teethCondition",
+        "teethAssist",
+        "medsAtBedside",
+        "selfMeds",
+        "swallowAssist",
+        "chemotherapy",
+        "dialysis",
+        "marijuana",
         "physicalNotes",
 
         // psychosocial
+        "dementia",
+        "sunDowner",
+        "sunDownerExplain",
+        "wanderer",
+        "anxiety",
+        "antipsychoticMeds",
+        "sexualActiveDescribe",
+        "otherHabits",
+        "volunteer",
         "psychosocialStatusDescribe",
         "psychosocialResponsiveness",
         "mood",

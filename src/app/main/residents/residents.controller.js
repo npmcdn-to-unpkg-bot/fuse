@@ -67,7 +67,6 @@
     vm.isChecked = isChecked;
     vm.toggleStarred = toggleStarred;
     vm.toggleCheck = toggleCheck;
-    vm.mapComprehension = mapComprehension;
 
     vm.switchCategory = function(category) {
       vm.selectedCategory = category;
@@ -224,6 +223,16 @@
         cat = "PhysicalCondition";
       }
 
+      if (vm.selectedCategory === "Activity") {
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent("Activity category is not availbe to update")
+          .position("top right")
+          .hideDelay(2000)
+        );
+        return;
+      }
+
       var templateUrl = 'app/main/residents/dialogs/update/update-' +
         cat + '.html';
 
@@ -378,23 +387,6 @@
     function toggleStarred(mail, event) {
       event.stopPropagation();
       mail.starred = !mail.starred;
-    }
-
-    function mapComprehension(numValue) {
-      switch(numValue) {
-        case 0: {
-          return "Slow";
-        }
-        case 1: {
-          return "Moderate";
-        }
-        case 2: {
-          return "Quick";
-        }
-        default: {
-          return "Slow";
-        }
-      }
     }
 
     function toggleCheck(mail, event) {
