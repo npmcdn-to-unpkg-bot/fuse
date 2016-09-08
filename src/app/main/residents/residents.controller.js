@@ -38,6 +38,7 @@
     vm.categoryList = [
       "Administrative",
       "Allergy",
+      "Assistance",
       "Bathing",
       "Incontinent",
       "Life",

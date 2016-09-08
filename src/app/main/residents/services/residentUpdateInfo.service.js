@@ -67,8 +67,6 @@
             //attaching a time diff at the end (how long ago did we update it)
             formatEntry.diffTime += " " + timeDiff(entry.updateDate);
 
-            console.log(formatEntry);
-
             formatedArray.push(formatEntry);
 
           });
@@ -182,6 +180,29 @@
         "bedRepositionOutsideAgency",
         "twoPersonLift",
         "mobilityNotes",
+
+        // assistance
+        "hairAssist",
+        "barber",
+        "shaveAssist",
+        "hairNotes",
+        "fingerNailsAssist",
+        "toeNailsAssist",
+        "makeupAssist",
+        "jewelryAssist",
+        "lotionAssist",
+        "layoutCloths",
+        "shoesAssist",
+        "topAssist",
+        "bottomAssist",
+        "buttonAssist",
+        "zipperAssist",
+        "dressingNotes",
+        "compressionStockingsAssist",
+        "brace",
+        "braceAssist",
+        "braceDescribe",
+        "bedAssist",
 
         // nutrition
         "overallNutrition",

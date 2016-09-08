@@ -1,0 +1,173 @@
+<md-dialog class="compose-dialog" aria-label="Update">
+  <form class="md-inline-form">
+    <md-toolbar class="md-accent md-hue-2">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+        <span class="title">Update resident - Assistance</span>
+        <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Close dialog">
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content ms-scroll>
+
+      <!-- hair -->
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.hairAssist" aria-label="Hair Assist">
+          Hair Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.barber" aria-label="Barber">
+          Barber
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Shave Assist</label>
+        <md-select ng-model="vm.form.shaveAssist">
+          <md-option>Independent</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Partial</md-option>
+          <md-option>Full</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Hair Notes</label>
+        <input ng-model="vm.form.hairNotes" type="text">
+      </md-input-container>
+
+      <!-- nails -->
+      <md-input-container>
+        <label>Finger Nails Assist</label>
+        <md-select ng-model="vm.form.fingerNailsAssist">
+          <md-option>Independent</md-option>
+          <md-option>Full</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Toe Nails Assist</label>
+        <md-select ng-model="vm.form.toeNailsAssist">
+          <md-option>Independent</md-option>
+          <md-option>Full</md-option>
+        </md-select>
+      </md-input-container>
+
+      <!-- accessories -->
+      <md-input-container>
+        <label>Makeup Assist</label>
+        <md-select ng-model="vm.form.makeupAssist">
+          <md-option>Independent</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Partial</md-option>
+          <md-option>Full</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Jewelry Assist</label>
+        <md-select ng-model="vm.form.jewelryAssist">
+          <md-option>Independent</md-option>
+          <md-option>Standby</md-option>
+          <md-option>Partial</md-option>
+          <md-option>Full</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container>
+        <label>Lotion Assist</label>
+        <md-select ng-model="vm.form.lotionAssist">
+          <md-option>Independent</md-option>
+          <md-option>Partial</md-option>
+          <md-option>Full</md-option>
+          <md-option>Reminder</md-option>
+        </md-select>
+      </md-input-container>
+
+      <!-- dressing -->
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.layoutCloths" aria-label="layoutCloths">
+          Layout Cloths
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.shoesAssist" aria-label="Shoes Assist">
+          Shoes Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.topAssist" aria-label="Top Assist">
+          Top Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.bottomAssist" aria-label="Bottom Assist">
+          Bottom Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.buttonAssist" aria-label="Button Assist">
+          Button Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.zipperAssist" aria-label="Zipper Assist">
+         Zipper Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Dressing Notes</label>
+        <input ng-model="vm.form.dressingNotes" type="text">
+      </md-input-container>
+
+      <!-- devices -->
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.compressionStockingsAssist" aria-label="Compression Stockings Assist">
+          Compression Stockings Assist
+        </md-checkbox>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-checkbox ng-model="vm.form.brace" aria-label="Brace">
+          Brace
+        </md-checkbox>
+      </md-input-container>
+
+        <md-input-container class="md-block" ng-if="vm.form.brace == true">
+          <md-checkbox ng-model="vm.form.braceAssist" aria-label="Brace Assist">
+            Brace Assist
+          </md-checkbox>
+        </md-input-container>
+
+        <md-input-container class="md-block" ng-if="vm.form.brace == true">
+          <label>Brace Describe</label>
+          <input ng-model="vm.form.braceDescribe" type="text">
+        </md-input-container>
+
+      <!-- night time routine -->
+      <md-input-container class="md-block" ng-if="vm.form.brace == true">
+        <label>Bed Assist</label>
+        <input ng-model="vm.form.bedAssist" type="text">
+      </md-input-container>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="start center">
+        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+          UPDATE
+        </md-button>
+      </div>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

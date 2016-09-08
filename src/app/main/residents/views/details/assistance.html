@@ -1,0 +1,51 @@
+<div ng-if="vm.selectedResident === null">
+  <h3>Select a resident to view details </h3>
+</div>
+
+<div ng-if="vm.selectedResident !== null">
+  <div class="mail-header">
+    <div class="subject" flex>{{vm.selectedCategory}}</div>
+  </div>
+
+  <div class="mail-content">
+    <div class="info" layout="row" layout-align="space-between start">
+
+      <div layout="column" layout-align="start start">
+
+        <!-- hair -->
+        <h4>Hair Assist: {{vm.selectedResident.hairAssist}}</h4>
+        <h4>Barber: {{vm.selectedResident.barber}}</h4>
+        <h4>Shave Assist: {{vm.selectedResident.shaveAssist}}</h4>
+        <h4>Hair Notes: {{vm.selectedResident.hairNotes}}</h4>
+
+        <!-- nails -->
+        <h4>Finger Nails Assist: {{vm.selectedResident.fingerNailsAssist}}</h4>
+        <h4>Toe Nails Assist: {{vm.selectedResident.toeNailsAssist}}</h4>
+
+        <!-- accessories -->
+        <h4>Makeup Assist: {{vm.selectedResident.makeupAssist}}</h4>
+        <h4>Jewelry Assist: {{vm.selectedResident.jewelryAssist}}</h4>
+        <h4>Lotion Assist: {{vm.selectedResident.lotionAssist}}</h4>
+
+        <!-- dressing -->
+        <h4>Layout Cloths: {{vm.selectedResident.layoutCloths}}</h4>
+        <h4>Shoes Assist: {{vm.selectedResident.shoesAssist}}</h4>
+        <h4>Top Assist: {{vm.selectedResident.topAssist}}</h4>
+        <h4>Bottom Assist: {{vm.selectedResident.bottomAssist}}</h4>
+        <h4>Button Assist: {{vm.selectedResident.buttonAssist}}</h4>
+        <h4>Zipper Assist: {{vm.selectedResident.zipperAssist}}</h4>
+        <h4>Dressing Notes: {{vm.selectedResident.dressingNotes}}</h4>
+
+        <!-- device -->
+        <h4>Compression Stockings Assist: {{vm.selectedResident.compressionStockingsAssist}}</h4>
+        <h4>Brace: {{vm.selectedResident.brace}}</h4>
+        <h4>Brace Assist: {{vm.selectedResident.braceAssist}}</h4>
+        <h4>Brace Describe: {{vm.selectedResident.braceDescribe}}</h4>
+
+        <!-- night time routine -->
+        <h4>Bed Assist: {{vm.selectedResident.bedAssist}}</h4>
+
+      </div>
+    </div>
+  </div>
+</div>
