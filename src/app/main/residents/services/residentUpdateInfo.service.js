@@ -173,7 +173,6 @@
         "maxPainTime",
         "painIncreasedBy",
         "painDecreasedBy",
-        "painManagedBy",
         "painLength",
         "painNotes",
 

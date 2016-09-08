@@ -9,14 +9,15 @@
 
     var vm = this;
 
-    //filling in old data for the update
+    //DATA
     vm.form = currResident;
 
     vm.form.contacts = {};
 
     vm.status = createMultiSelect(["Alert", "Friendly", "Disoriented",
-                                    "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative",
-                                    "At times angry", "Sad", "Emotional outbursts", "Feel like a burden"]);
+      "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative",
+      "At times angry", "Sad", "Emotional outbursts", "Feel like a burden"
+    ]);
 
     vm.shopping = createMultiSelect(["Family", "Self", "Friend"]);
 
@@ -97,11 +98,11 @@
       //important to set updateInfo when adding/removing chips because they will generate updateInfo
       vm.form.updateInfo = currResident.updateInfo;
 
+      userObjectsToIds();
 
       apilaData.updateResident(currResident._id, vm.form)
         .success(function(resident) {
 
-          //currResident.updateInfo.push(resident.updateInfo[resident.updateInfo.length - 1]);
           currResident.updateInfo = resident.updateInfo;
 
           pushNewValues();
@@ -112,9 +113,67 @@
         .error(function(response) {
           console.log(response);
         });
-      return false;
+
     }
 
+
+    function updateChip(list, type, chip, operation) {
+
+      var data = {
+        "operation": operation,
+        "list": list,
+        "type": type,
+        "selectedItem": chip,
+        "updateBy": authentication.currentUser().name
+      };
+
+      apilaData.updateListItem(vm.copyResident._id, data)
+        .success(function(response) {
+          currResident = response;
+        })
+        .error(function(response) {
+          console.log(response);
+        });
+    }
+
+    function uploadFiles(file, errFiles) {
+
+      var uploadUrl = apilaData.getApiUrl() + '/api/residents/' + currResident._id + '/upload';
+
+      if (file) {
+        file.upload = Upload.upload({
+          url: uploadUrl,
+          data: {
+            file: file
+          },
+          headers: {
+            Authorization: 'Bearer ' + authentication.getToken()
+          }
+        });
+
+        file.upload.then(function(response) {
+          $timeout(function() {
+            file.result = response.data;
+            vm.fileUploaded = true;
+          });
+
+        });
+      }
+    }
+
+
+    //////////////////////// HELPER FUNCTIONS //////////////////////////////////
+
+    // Goes through updateInfo each UpdateBy field and switches an user object with an userid
+    function userObjectsToIds() {
+      _.map(vm.form.updateInfo, function(updateField) {
+        if(updateField.updateBy) {
+          updateField.updateBy = updateField.updateBy._id;
+        }
+
+        return updateField;
+      });
+    }
 
     function addToShoppingArray() {
       vm.form.newShoppingStatus = [];
@@ -195,62 +254,6 @@
       }
     }
 
-    function uploadFiles(file, errFiles) {
-
-      var uploadUrl = apilaData.getApiUrl() + '/api/residents/'+ currResident._id + '/upload';
-
-      if (file) {
-          file.upload = Upload.upload({
-              url: uploadUrl,
-              data: {file: file},
-              headers: {
-                  Authorization: 'Bearer ' + authentication.getToken()
-              }
-          });
-
-          file.upload.then(function (response) {
-              $timeout(function () {
-                  file.result = response.data;
-                  vm.fileUploaded = true;
-              });
-
-          });
-      }
-    }
-
-    function updateChip(list, type, chip, operation) {
-
-      var data = {
-        "operation": operation,
-        "list": list,
-        "type": type,
-        "selectedItem": chip,
-        "updateBy": authentication.currentUser().name
-      };
-
-      apilaData.updateListItem(vm.copyResident._id, data)
-        .success(function(response) {
-          currResident = response;
-        })
-        .error(function(response) {
-          console.log(response);
-        });
-    }
-
-    // Builds up proper array of object for multi select fields like psyho status
-    function createMultiSelect(titleArray) {
-
-      var selectArr = [];
-
-      for(var i = 0; i < titleArray.length; ++i) {
-        selectArr.push({
-          active : false,
-          title: titleArray[i]
-        });
-      }
-
-      return selectArr;
-    }
 
 
     var resetFields = function() {
@@ -306,6 +309,26 @@
       }
 
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+
+
+    // Builds up proper array of object for multi select fields like psyho status
+    function createMultiSelect(titleArray) {
+
+      var selectArr = [];
+
+      for (var i = 0; i < titleArray.length; ++i) {
+        selectArr.push({
+          active: false,
+          title: titleArray[i]
+        });
+      }
+
+      return selectArr;
+    }
+
 
   }
 
