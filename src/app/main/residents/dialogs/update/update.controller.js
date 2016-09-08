@@ -5,7 +5,7 @@
     .controller('UpdateController', UpdateController);
 
   /** @ngInject */
-  function UpdateController($mdDialog, $mdConstant, Upload, $timeout, currResident, apilaData, authentication) {
+  function UpdateController($mdDialog, $mdConstant, Upload, $timeout, currResident, apilaData, authentication, ResidentUpdateInfoService) {
 
     var vm = this;
 
@@ -24,7 +24,7 @@
 
     setSelectedStatuses(currResident.psychosocialStatus);
     setSelectedShopping(currResident.shopping);
-    //setMultiSelect("painManagedBy");
+    setSelectedPainManagedBy(currResident.painManagedBy);
 
     vm.foodAllergies = currResident.foodAllergies;
     vm.medicationAllergies = currResident.medicationAllergies;
@@ -64,12 +64,12 @@
       vm.form.modifiedDate = new Date();
 
       var changedFields =
-        checkChangedFields(vm.copyResident, vm.form);
+        ResidentUpdateInfoService.checkChangedFields(vm.copyResident, vm.form);
 
       addToStatusArray();
       addToShoppingArray();
 
-      populateMultiSelect(['painManagedBy']);
+      addToPainManagedBy();
 
       if (vm.form.locationInfo.geometry !== undefined) {
         vm.form.movedFrom.name = vm.form.locationInfo.formatted_address;
@@ -126,33 +126,18 @@
       }
     }
 
-    function populateMultiSelect(fields) {
-      _.forEach(fields, function(field) {
-        vm.form[field] = [];
-
-        _.forEach(vm[field], function(v) {
-          if(v.active === true) {
-            vm.form[field].push(v.title);
+    function setSelectedPainManagedBy(arr) {
+      for (var i = 0; i < vm.painManagedBy.length; ++i) {
+        var checkedElem = _.find(vm.painManagedBy, function(d) {
+          if (d.title == arr[i]) {
+            return d;
           }
         });
 
-      });
-    }
-
-    function setMultiSelect(field) {
-        _.forEach(vm[field], function(v) {
-
-          var checkedElem = _.find(vm[field], function(d) {
-            if (d.title === currResident[field][i]) {
-              return d;
-            }
-          });
-
-          if (checkedElem !== undefined) {
-            checkedElem.active = true;
-          }
-
-      });
+        if (checkedElem != undefined) {
+          checkedElem.active = true;
+        }
+      }
     }
 
     // sets which psychosocialStatus is checked
@@ -175,8 +160,20 @@
       vm.form.newpsychosocialStatus = [];
 
       for (var i = 0; i < vm.status.length; ++i) {
-        if (vm.status[i].active == true) {
+        if (vm.status[i].active === true) {
           vm.form.newpsychosocialStatus.push(vm.status[i].title);
+        }
+
+      }
+    }
+
+
+    function addToPainManagedBy() {
+      vm.form.newPainManagedBy = [];
+
+      for (var i = 0; i < vm.painManagedBy.length; ++i) {
+        if (vm.painManagedBy[i].active === true) {
+          vm.form.newPainManagedBy.push(vm.painManagedBy[i].title);
         }
 
       }
@@ -255,305 +252,6 @@
       return selectArr;
     }
 
-    //checks what fields changed in the updates
-    function checkChangedFields(oldData, newData) {
-
-      var diff = [];
-      var attributeArr = [
-
-        // administrative
-        "firstName",
-        "aliasName",
-        "lastName",
-        "middleName",
-        "maidenName",
-        "sex",
-        "room",
-        "veteran",
-        "maritalStatus",
-        "buildingStatus",
-        "administrativeNotes",
-
-        // bathing
-        "typeOfBathing",
-        "timeOfBathing",
-        "frequencyOfBathing",
-        "acceptanceOfBathing",
-        "dislikesBathingDescribe",
-        "bathingNotes",
-
-        // continent
-        "bowelContinent",
-        "constipated",
-        "laxative",
-        "bladderContinent",
-        "dribbles",
-        "catheter",
-        "toiletingDevice",
-        "catheterDescribe",
-        "continentNotes",
-
-        // life
-        "religion",
-        "education",
-        "occupation",
-        "lifeNotes",
-        "contribution",
-
-        // mobility
-        "transfers",
-        "fallRisk",
-        "fallRiskDescribe",
-        "bedReposition",
-        "mobilityNotes",
-
-        // nutrition
-        "overallNutrition",
-        "poorNutritionIntervention",
-        "diabetic",
-        "diabeticType",
-        "bloodSugarMonitoring",
-        "bedtimeSnack",
-        "adaptiveEquipment",
-        "needsFoodInSmallPeices",
-        "typeOfDiet",
-        "fingerFoods",
-        "nutritionNotes",
-
-        // pain
-        "hasPain",
-        "painLocation",
-        "painDescription",
-        "maxPainTime",
-        "painIncreasedBy",
-        "painDecreasedBy",
-        "painManagedBy",
-        "painLength",
-        "painNotes",
-
-        // physical
-        "skinCondition",
-        "hasWound",
-        "hasWoundDescribe",
-        "woundAmount",
-        "wearsHearingAid",
-        "helpWithHearingAid",
-        "helpWithHearingAidDescribe",
-        "leftEar",
-        "rightEar",
-        "leftEye",
-        "rightEye",
-        "visionNotes",
-        "hearingNotes",
-        "dentistName",
-        "upperDentureFit",
-        "upperDentureFitDescribe",
-        "upperTeeth",
-        "lowerDentureFit",
-        "lowerDentureFitDescribe",
-        "lowerTeeth",
-        "teethCondition",
-        "physicalNotes",
-
-        // psychosocial
-        "psychosocialStatusDescribe",
-        "psychosocialResponsiveness",
-        "mood",
-        "comprehension",
-        "smokes",
-        "smokesDescribe",
-        "alcohol",
-        "alcoholDescribes",
-        "sexualActive",
-        "generalActivityParticipation",
-        "diningRoomParticipation",
-        "busRideParticipation",
-        "fitnessClassParticipation",
-        "bingoParticipation",
-        "communityParticipation",
-        "drivesCar",
-        "licensePlateNumber",
-        "spareKeyLocation",
-        "drivingNeeds",
-        "timeInRoom",
-        "preferedActivites",
-        "useFitnessEquipmentIndependently",
-        "highMaintenance",
-        "familyInvolvement",
-        "psychosocialNotes",
-
-        // sleep
-        "usualBedtime",
-        "usualArisingTime",
-        "nap",
-        "napDescribe",
-        "assistanceToBed",
-        "sleepsThroughNight",
-        "sleepDisturbance",
-        "canCallForAssistance",
-        "sleepNotes"
-      ];
-
-      var arrayFields = [
-        "newbloodPressureSystolic",
-        "newbloodPressureDiastolic",
-        "newoxygenSaturation",
-        "newpulse",
-        "newweight",
-        "newvitalsPain",
-        "newrespiration",
-        //  "newpsychosocialStatus",
-        "newtemperature",
-        "newinternationalNormalizedRatio"
-      ];
-
-      for (var i = 0; i < arrayFields.length; ++i) {
-
-        if (oldData[arrayFields[i]] !== newData[arrayFields[i]]) {
-
-          //handling when the value is an object with a data field
-          var newValue = newData[arrayFields[i]];
-          if (newValue.data != undefined) {
-            newValue = newData[arrayFields[i]].data;
-          }
-
-          diff.push({
-            "field": arrayFields[i],
-            "new": newValue
-          });
-        }
-      }
-
-      for (var i = 0; i < attributeArr.length; ++i) {
-
-        if (oldData[attributeArr[i]] !== newData[attributeArr[i]]) {
-
-          diff.push({
-            "field": attributeArr[i],
-            "old": oldData[attributeArr[i]],
-            "new": newData[attributeArr[i]]
-          });
-        }
-      }
-
-      //handling for date fields
-      var dateAttributes = ["admissionDate", "birthDate"];
-
-      for (var i = 0; i < dateAttributes.length; ++i) {
-
-        if (new Date(oldData[dateAttributes[i]]).toDateString() !== new Date(newData[dateAttributes[i]]).toDateString()) {
-
-          diff.push({
-            "field": dateAttributes[i],
-            "old": oldData[dateAttributes[i]],
-            "new": newData[dateAttributes[i]]
-          });
-        }
-      }
-
-      //handling of nested strings
-      var nestedAtributes = [{
-        f: "personalHabits",
-        s: "smokes"
-      }, {
-        f: "personalHabits",
-        s: "alcohol"
-      }, {
-        f: "personalHabits",
-        s: "other"
-      }, {
-        f: "hearing",
-        s: "rightEar"
-      }, {
-        f: "hearing",
-        s: "leftEar"
-      }, {
-        f: "vision",
-        s: "rightEye"
-      }, {
-        f: "vision",
-        s: "leftEye"
-      }, {
-        f: "teeth",
-        s: "upperDentureFit"
-      }, {
-        f: "teeth",
-        s: "lowerDentureFit"
-      }, {
-        f: "teeth",
-        s: "upperTeeth"
-      }, {
-        f: "teeth",
-        s: "lowerTeeth"
-      }, {
-        f: "insideApartment",
-        s: "useOfAssistiveDevice"
-      }, {
-        f: "insideApartment",
-        s: "assitanceWithDevice"
-      }, {
-        f: "insideApartment",
-        s: "specialAmbulationNeeds"
-      }, {
-        f: "outsideApartment",
-        s: "useOfAssistiveDevice"
-      }, {
-        f: "outsideApartment",
-        s: "assitanceWithDevice"
-      }, {
-        f: "outsideApartment",
-        s: "specialAmbulationNeeds"
-      }];
-
-      for (var i = 0; i < nestedAtributes.length; ++i) {
-
-        var oldValue = nestedArguments(oldData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
-
-        var newValue = nestedArguments(newData, nestedAtributes[i].f + "." + nestedAtributes[i].s);
-
-        if (newValue == undefined) {
-          continue;
-        }
-
-        if (oldValue !== newValue) {
-
-          diff.push({
-            "field": nestedAtributes[i].f + " " + [nestedAtributes[i].s],
-            "old": oldValue,
-            "new": newValue
-          });
-        }
-      }
-
-      // handlng movedFrom updateInfo check if name are diff
-      if (vm.form.locationInfo.formatted_address) {
-        if (oldData['movedFrom'].name !== vm.form.locationInfo.formatted_address) {
-          diff.push({
-            "field": 'movedFrom',
-            "old": oldData['movedFrom'].name,
-            "new": vm.form.locationInfo.formatted_address
-          });
-        }
-      }
-
-
-      return diff;
-    }
-
-    var nestedArguments = function(o, s) {
-      s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
-      s = s.replace(/^\./, ''); // strip a leading dot
-      var a = s.split('.');
-      for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i];
-        if (k in o) {
-          o = o[k];
-        } else {
-          return;
-        }
-      }
-      return o;
-    };
 
     var resetFields = function() {
       vm.form.newrespiration = "";
@@ -589,6 +287,7 @@
       //addToArray(vm.form.psychosocialStatus, vm.form.newpsychosocialStatus);
       vm.form.psychosocialStatus = vm.form.newpsychosocialStatus;
       vm.form.shopping = vm.form.newShoppingStatus;
+      vm.form.painManagedBy = vm.form.newPainManagedBy;
 
       vm.form.foodLikes = vm.form.newfoodLikes;
       vm.form.foodDislikes = vm.form.newfoodDislikes;
