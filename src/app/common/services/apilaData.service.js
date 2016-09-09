@@ -193,6 +193,10 @@
       return $http.put(apiUrl + '/api/residents/' + residentid + '/listitem', data, getAuth());
     };
 
+    var addContact = function(residentid, data) {
+      return $http.post(apiUrl + '/api/residents/' + residentid + '/contact', data, getAuth());
+    };
+
     /**************************************************************/
 
     /***************** USERS RESOURCES ***************/
@@ -323,6 +327,7 @@
       averageStayTime: averageStayTime,
       getLocations: getLocations,
       updateListItem: updateListItem,
+      addContact: addContact,
 
       //api url
       getApiUrl: getApiUrl,

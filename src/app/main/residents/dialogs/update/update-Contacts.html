@@ -9,91 +9,184 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content ms-scroll>
-      <md-input-container class="md-block">
-        <label>First Name</label>
-        <input ng-model="vm.form.contacts.firstName" type="text" required="">
-      </md-input-container>
+    <md-tabs md-selected="vm.selectedTab" md-dynamic-height md-border-bottom ms-scroll>
 
-      <md-input-container class="md-block">
-        <label>Last Name</label>
-        <input ng-model="vm.form.contacts.lastName" type="text" required="">
-      </md-input-container>
+      <md-tab label="new" >
+          <md-dialog-content ms-scroll>
+            <md-input-container class="md-block">
+              <label>First Name</label>
+              <input ng-model="vm.form.contact.firstName" type="text" required="">
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Primary Phone Number</label>
-        <input ng-model="vm.form.contacts.primaryPhoneNumber" type="text" required="">
-      </md-input-container>
+            <md-input-container class="md-block">
+              <label>Last Name</label>
+              <input ng-model="vm.form.contact.lastName" type="text" required="">
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Secondary Phone Number</label>
-        <input ng-model="vm.form.contacts.primaryPhoneNumber" type="text" required="">
-      </md-input-container>
+            <md-input-container class="md-block">
+              <label>Primary Phone Number</label>
+              <input ng-model="vm.form.contact.primaryPhoneNumber" type="text" required="">
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Email</label>
-        <input ng-model="vm.form.contacts.email" type="text" required="">
-      </md-input-container>
+            <md-input-container class="md-block">
+              <label>Secondary Phone Number</label>
+              <input ng-model="vm.form.contact.secondaryPhoneNumber" type="text" required="">
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Physical Address</label>
-        <input ng-model="vm.form.contacts.physicalAddress" type="text" required="">
-      </md-input-container>
+            <md-input-container class="md-block">
+              <label>Email</label>
+              <input ng-model="vm.form.contact.email" type="text" required="">
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.primaryContact" aria-label="Primary Contact">
-          Primary Contact
-        </md-checkbox>
-      </md-input-container>
+            <md-input-container class="md-block">
+              <label>Physical Address</label>
+              <input ng-model="vm.form.contact.physicalAddress" type="text" required="">
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.trustedPerson" aria-label="Trusted Person">
-          Trusted Person
-        </md-checkbox>
-      </md-input-container>
+            <md-input-container class="md-block">
+              <md-checkbox ng-model="vm.form.contact.primaryContact" aria-label="Primary Contact">
+                Primary Contact
+              </md-checkbox>
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.medicalPowerOfAttorney" aria-label="Medical Power Of Attorney">
-          Medical Power Of Attorney
-        </md-checkbox>
-      </md-input-container>
+            <md-input-container class="md-block">
+              <md-checkbox ng-model="vm.form.contact.trustedPerson" aria-label="Trusted Person">
+                Trusted Person
+              </md-checkbox>
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.financialPowerOfAttorney" aria-label="Financial Power Of Attorney">
-          Financial Power Of Attorney
-        </md-checkbox>
-      </md-input-container>
+            <md-input-container class="md-block">
+              <md-checkbox ng-model="vm.form.contact.medicalPowerOfAttorney" aria-label="Medical Power Of Attorney">
+                Medical Power Of Attorney
+              </md-checkbox>
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.conservator" aria-label="Conservator">
-          Conservator
-        </md-checkbox>
-      </md-input-container>
+            <md-input-container class="md-block">
+              <md-checkbox ng-model="vm.form.contact.financialPowerOfAttorney" aria-label="Financial Power Of Attorney">
+                Financial Power Of Attorney
+              </md-checkbox>
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.form.contacts.guardian" aria-label="Guardian">
-          Guardian
-        </md-checkbox>
-      </md-input-container>
+            <md-input-container class="md-block">
+              <md-checkbox ng-model="vm.form.contact.conservator" aria-label="Conservator">
+                Conservator
+              </md-checkbox>
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Relation</label>
-        <input ng-model="vm.form.contacts.relation" type="text" required="">
-      </md-input-container>
+            <md-input-container class="md-block">
+              <md-checkbox ng-model="vm.form.contact.guardian" aria-label="Guardian">
+                Guardian
+              </md-checkbox>
+            </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Notes</label>
-        <input ng-model="vm.form.contacts.contactNotes" type="text" required="">
-      </md-input-container
+            <md-input-container class="md-block">
+              <label>Relation</label>
+              <input ng-model="vm.form.contact.relation" type="text" required="">
+            </md-input-container>
 
-    </md-dialog-content>
+            <md-input-container class="md-block">
+              <label>Notes</label>
+              <input ng-model="vm.form.contact.contactNotes" type="text" required="">
+            </md-input-container
 
-    <md-dialog-actions layout="row" layout-align="space-between center">
-      <div layout="row" layout-align="start center">
-        <md-button ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
-          UPDATE
-        </md-button>
-      </div>
-    </md-dialog-actions>
+          </md-dialog-content>
+
+    </md-tab>
+
+      <md-tab ng-repeat="tab in vm.form.residentContacts" label="{{tab.firstName}}" >
+
+        <md-dialog-content ms-scroll>
+          <md-input-container class="md-block">
+            <label>First Name</label>
+            <input ng-model="tab.firstName" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Last Name</label>
+            <input ng-model="tab.lastName" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Primary Phone Number</label>
+            <input ng-model="tab.primaryPhoneNumber" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Secondary Phone Number</label>
+            <input ng-model="tab.secondaryPhoneNumber" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input ng-model="tab.email" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Physical Address</label>
+            <input ng-model="tab.physicalAddress" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="tab.primaryContact" aria-label="Primary Contact">
+              Primary Contact
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="tab.trustedPerson" aria-label="Trusted Person">
+              Trusted Person
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="tab.medicalPowerOfAttorney" aria-label="Medical Power Of Attorney">
+              Medical Power Of Attorney
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="tab.financialPowerOfAttorney" aria-label="Financial Power Of Attorney">
+              Financial Power Of Attorney
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="tab.conservator" aria-label="Conservator">
+              Conservator
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="tab.guardian" aria-label="Guardian">
+              Guardian
+            </md-checkbox>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Relation</label>
+            <input ng-model="tab.relation" type="text" required="">
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Notes</label>
+            <input ng-model="tab.contactNotes" type="text" required="">
+          </md-input-container
+
+        </md-dialog-content>
+      </md-tab>
+
+
+</md-tabs>
+<md-dialog-actions layout="row" layout-align="space-between center">
+  <div layout="row" layout-align="start center">
+    <md-button ng-if="vm.selectedTab == 0" ng-click="vm.addContact()" class="send-button md-accent md-raised" aria-label="Add">
+      ADD
+    </md-button>
+
+    <md-button ng-if="vm.selectedTab != 0" ng-click="vm.updateResident()" class="send-button md-accent md-raised" aria-label="Add">
+      UPDATE
+    </md-button>
+  </div>
+</md-dialog-actions>
   </form>
 </md-dialog>

@@ -11,8 +11,9 @@
 
     //DATA
     vm.form = currResident;
+    vm.form.contact = {};
+    vm.selctedTab = "";
 
-    vm.form.contacts = {};
 
     vm.status = createMultiSelect(["Alert", "Friendly", "Disoriented",
       "Withdrawn", "Lonely", "Happy", "Confused", "Uncooperative",
@@ -44,6 +45,8 @@
       }
     };
 
+    console.log(vm.form.residentContacts);
+
     vm.form.birthDate = new Date(currResident.birthDate);
     vm.form.admissionDate = new Date(currResident.admissionDate);
     vm.form.locationInfo = vm.form.movedFrom.name;
@@ -53,6 +56,7 @@
     vm.updateResident = updateResident;
     vm.updateChip = updateChip;
     vm.uploadFiles = uploadFiles;
+    vm.addContact = addContact;
 
     function closeDialog() {
       $mdDialog.hide();
@@ -134,6 +138,21 @@
         .error(function(response) {
           console.log(response);
         });
+    }
+
+    function addContact() {
+
+      vm.form.contact.submitBy = authentication.currentUser().id;
+
+      apilaData.addContact(currResident._id, vm.form.contact)
+      .success(function(response) {
+        console.log(response);
+        currResident.residentContacts = response;
+        closeDialog();
+      })
+      .error(function(response) {
+        console.log(response);
+      });
     }
 
     function uploadFiles(file, errFiles) {
